@@ -1,4 +1,5 @@
 import React from "react";
+import { AntdProvider } from "~/contexts/antdContext";
 import DefaultLayout from "~/layouts/DefaultLayout";
 
 const Index = async () => {
