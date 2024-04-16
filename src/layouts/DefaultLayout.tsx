@@ -5,13 +5,7 @@ interface Props {
 }
 
 const DefaultLayout = ({ children }: Props) => {
-	return (
-		<>
-			<header>Header</header>
-			{children}
-			<footer>Footer</footer>
-		</>
-	);
+	return <>{children}</>;
 };
 
 export default DefaultLayout;

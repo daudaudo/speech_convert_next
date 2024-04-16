@@ -1,11 +1,11 @@
-import { Button, theme, Tooltip } from "antd";
+import { Button, Tooltip } from "antd";
 import React, { useMemo } from "react";
 import { Moon, PartlySunny } from "react-ionicons";
-import { useAntd } from "~/contexts/antdContext";
+import { useTheme } from "~/contexts/themeContext";
 
 const DarkModeButton = () => {
-	const { token } = theme.useToken();
-	const { isDark, toggleDark } = useAntd();
+	const { token } = useTheme();
+	const { isDark, toggleDark } = useTheme();
 
 	const Icon = useMemo(() => (isDark ? PartlySunny : Moon), [isDark]);
 

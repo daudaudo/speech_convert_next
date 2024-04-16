@@ -2,6 +2,7 @@ import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "~/styles/global.scss";
+import { ThemeProvider } from "~/contexts/themeContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,9 @@ interface Props {
 const RootLayout = ({ children }: Props) => {
 	return (
 		<html lang="en">
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<ThemeProvider>{children}</ThemeProvider>
+			</body>
 		</html>
 	);
 };

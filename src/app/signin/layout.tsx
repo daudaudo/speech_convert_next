@@ -2,8 +2,10 @@
 
 import React from "react";
 import Link from "next/link";
-import { Button, Flex, Layout, theme, Typography } from "antd";
+import { Button, Flex, Layout, Typography } from "antd";
 import { ArrowLeftOutlined } from "@ant-design/icons";
+import DarkModeButton from "~/components/DarkModeButton";
+import { useTheme } from "~/contexts/themeContext";
 const { Header, Content } = Layout;
 
 interface SigninLayoutProps {
@@ -11,7 +13,7 @@ interface SigninLayoutProps {
 }
 
 const SigninLayout = ({ children }: SigninLayoutProps) => {
-	const { token } = theme.useToken();
+	const { token } = useTheme();
 
 	return (
 		<>
@@ -24,8 +26,10 @@ const SigninLayout = ({ children }: SigninLayoutProps) => {
 							</Typography.Text>
 						</Button>
 					</Link>
-					{/* Todo TruongNBN: Add settinng button here later */}
-					{/* <DarkModeButton /> */}
+					<Flex gap={token.marginXS}>
+						<DarkModeButton />
+						{/* Todo TruongNBN: Add select language here later  */}
+					</Flex>
 				</Flex>
 			</Header>
 			<Content style={{ backgroundColor: token.colorBgBase }}>
