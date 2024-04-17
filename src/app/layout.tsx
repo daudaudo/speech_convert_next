@@ -11,11 +11,7 @@ export const metadata: Metadata = {
 	description: "Speech Convert App",
 };
 
-interface Props {
-	children?: React.ReactNode;
-}
-
-const RootLayout = ({ children }: Props) => {
+const RootLayout = ({ children }: React.PropsWithChildren) => {
 	return (
 		<html lang="en">
 			<body className={inter.className}>

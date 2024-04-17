@@ -5,34 +5,34 @@ import { Button, Flex, Form, Input, Typography } from "antd";
 import { LoginOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import { useTheme } from "~/contexts/themeContext";
+import authActions from "~/actions/auth";
+import { PagePath } from "~/enums/path";
 
-export type FieldType = {
-	username?: string;
-	password?: string;
+type SigninFieldType = {
+	email: string;
+	password: string;
 };
 
-interface SigninFormProps {
-	onSubmit: (data: FieldType) => void;
-}
-
-const SigninForm = (props: SigninFormProps) => {
-	const { onSubmit } = props;
-
+const SigninForm = () => {
 	const { token } = useTheme();
 	const [form] = Form.useForm();
 
 	const onFinish = useCallback(
-		(values: FieldType) => {
-			onSubmit(values);
+		async (values: SigninFieldType) => {
+			const { email, password } = values;
+			if (email && password) {
+				const res = await authActions.onSignin(email, password);
+				console.log("signin", res);
+			} else form.validateFields();
 		},
-		[onSubmit],
+		[form],
 	);
 
 	return (
 		<Flex
 			style={{
 				flexDirection: "column",
-				minWidth: 400,
+				width: 400,
 				height: "fit-content",
 				padding: token.paddingSM,
 				backgroundColor: token.colorBgContainer,
@@ -54,10 +54,10 @@ const SigninForm = (props: SigninFormProps) => {
 					style={{ width: "100%" }}
 					colon={false}
 				>
-					<Form.Item<FieldType> name="username" label="Tài khoản" rules={[{ required: true, message: "" }]}>
-						<Input placeholder="Nhập tài khoản của bạn" autoFocus />
+					<Form.Item<SigninFieldType> name="email" label="Email" rules={[{ required: true, message: "" }]}>
+						<Input placeholder="Nhập email của bạn" autoFocus />
 					</Form.Item>
-					<Form.Item<FieldType> name="password" label="Mật khẩu" rules={[{ required: true, message: "" }]}>
+					<Form.Item<SigninFieldType> name="password" label="Mật khẩu" rules={[{ required: true, message: "" }]}>
 						<Input.Password placeholder="Nhập mật khẩu của bạn" />
 					</Form.Item>
 					<Form.Item>
@@ -68,11 +68,11 @@ const SigninForm = (props: SigninFormProps) => {
 				</Form>
 			</Flex>
 			<Typography.Text style={{ color: token.colorTextSecondary }}>
-				<Link href="/account-recovery">Quên mật khẩu</Link>
+				<Link href={PagePath.accountRecovery}>Quên mật khẩu?</Link>
 			</Typography.Text>
 			<Typography.Text style={{ color: token.colorTextSecondary }}>
 				Bạn không có tài khoản?&nbsp;
-				<Link href="/signup">Đăng ký</Link>
+				<Link href={PagePath.signup}>Đăng ký</Link>.
 			</Typography.Text>
 		</Flex>
 	);

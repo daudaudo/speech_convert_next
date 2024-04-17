@@ -1,8 +1,7 @@
 import React from "react";
-import DefaultLayout from "~/layouts/DefaultLayout";
 
-const Index = async () => {
-	return <DefaultLayout>This is index page</DefaultLayout>;
+const Index = () => {
+	return <div>This is index page</div>;
 };
 
 export default Index;
