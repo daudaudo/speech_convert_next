@@ -16,10 +16,7 @@ interface ThemeContextStore {
 }
 const ThemeContext = createContext<ThemeContextStore>({} as ThemeContextStore);
 
-interface ThemeProviderProps {
-	children?: React.ReactNode;
-}
-const ThemeProvider = ({ children }: ThemeProviderProps) => {
+const ThemeProvider = ({ children }: React.PropsWithChildren) => {
 	const [cache] = useState(createCache);
 	const alreadyInserted = useRef(new Set<string>());
 
@@ -79,9 +76,7 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
 const useTheme = () => {
 	const context = useContext(ThemeContext);
 	const { token } = themeAntd.useToken();
-	if (!context) {
-		throw new ContextError("useTheme");
-	}
+	if (!context) throw new ContextError("useTheme");
 	return {
 		token: token,
 		isDark: context.isDark,

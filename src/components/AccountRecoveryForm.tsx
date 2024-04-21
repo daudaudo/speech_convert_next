@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeftOutlined, UserAddOutlined } from "@ant-design/icons";
+import { ArrowLeftOutlined } from "@ant-design/icons";
 import { Button, Flex, Form, Input, Typography } from "antd";
 import Link from "next/link";
 import React, { useCallback } from "react";
@@ -30,6 +30,7 @@ const AccountRecoveryForm = () => {
 				backgroundColor: token.colorBgContainer,
 				borderRadius: token.borderRadiusSM,
 				boxShadow: token.boxShadowSecondary,
+				// opacity: token.opacityLoading,
 			}}
 		>
 			<Typography.Title level={3} style={{ color: token.blue }}>
