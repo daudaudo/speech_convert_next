@@ -1,24 +1,26 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { ThemeProvider } from "~/contexts/themeContext";
+import { AuthProvider } from "~/contexts/authContext";
+import NoSSR from "~/components/NoSSR";
 import "~/styles/global.scss";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
 	title: "Speech Convert",
 	description: "Speech Convert App",
 };
 
-interface Props {
-	children?: React.ReactNode;
-}
-
-const RootLayout = ({ children }: Props) => {
+const RootLayout = ({ children }: React.PropsWithChildren) => {
 	return (
-		<html lang="en">
-			<body className={inter.className}>{children}</body>
-		</html>
+		<NoSSR>
+			<ThemeProvider>
+				<AuthProvider>
+					<html lang="en">
+						<body>{children}</body>
+					</html>
+				</AuthProvider>
+			</ThemeProvider>
+		</NoSSR>
 	);
 };
 
