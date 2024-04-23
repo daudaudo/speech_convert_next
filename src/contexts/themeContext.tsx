@@ -17,8 +17,8 @@ interface ThemeContextStore {
 const ThemeContext = createContext<ThemeContextStore>({} as ThemeContextStore);
 
 const ThemeProvider = ({ children }: React.PropsWithChildren) => {
-	const [cache] = useState(createCache);
-	const alreadyInserted = useRef(new Set<string>());
+	// const [cache] = useState(createCache);
+	// const alreadyInserted = useRef(new Set<string>());
 
 	const [dark, setDark] = useLocalStorage(storageKey.DarkMode, false);
 	const [compact, setCompact] = useLocalStorage(storageKey.CompactMode, false);
@@ -26,18 +26,18 @@ const ThemeProvider = ({ children }: React.PropsWithChildren) => {
 	// Clear cache when server inserted HTML
 	// Issue: cssinjs breaks by streaming mode
 	// See more: https://github.com/ant-design/ant-design/issues/45955
-	useServerInsertedHTML(() => {
-		if (cache.cache.size === 0) return;
-		for (const key of alreadyInserted.current.keys()) {
-			cache.cache.delete(key);
-		}
-		const html = extractStyle(cache, true);
-		for (const key of cache.cache.keys()) {
-			alreadyInserted.current.add(key);
-		}
-		cache.cache.clear();
-		return <style dangerouslySetInnerHTML={{ __html: html }} className="antd" />;
-	});
+	// useServerInsertedHTML(() => {
+	// 	if (cache.cache.size === 0) return;
+	// 	for (const key of alreadyInserted.current.keys()) {
+	// 		cache.cache.delete(key);
+	// 	}
+	// 	const html = extractStyle(cache, true);
+	// 	for (const key of cache.cache.keys()) {
+	// 		alreadyInserted.current.add(key);
+	// 	}
+	// 	cache.cache.clear();
+	// 	return <style dangerouslySetInnerHTML={{ __html: html }} className="antd" />;
+	// });
 
 	const toggleDark = useCallback(() => {
 		setDark((prev) => !prev);
@@ -55,21 +55,16 @@ const ThemeProvider = ({ children }: React.PropsWithChildren) => {
 	}, [dark, compact]);
 
 	const store = useMemo(
-		() => ({
-			isDark: dark,
-			toggleDark,
-			isCompact: compact,
-			toggleCompact,
-		}),
+		() => ({ isDark: dark, toggleDark, isCompact: compact, toggleCompact }),
 		[dark, toggleDark, compact, toggleCompact],
 	);
 
 	return (
+		// <StyleProvider cache={cache} hashPriority="high">
 		<ThemeContext.Provider value={store}>
-			<StyleProvider cache={cache} hashPriority="high">
-				<AntdProvider theme={theme}>{children}</AntdProvider>
-			</StyleProvider>
+			<AntdProvider theme={theme}>{children}</AntdProvider>
 		</ThemeContext.Provider>
+		// </StyleProvider>
 	);
 };
 

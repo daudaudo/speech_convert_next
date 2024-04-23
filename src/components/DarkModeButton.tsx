@@ -6,8 +6,7 @@ import { Moon, PartlySunny } from "react-ionicons";
 import { useTheme } from "~/contexts/themeContext";
 
 const DarkModeButton = () => {
-	const { token } = useTheme();
-	const { isDark, toggleDark } = useTheme();
+	const { token, isDark, toggleDark } = useTheme();
 
 	const Icon = useMemo(() => (isDark ? PartlySunny : Moon), [isDark]);
 

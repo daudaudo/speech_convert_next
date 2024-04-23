@@ -1,11 +1,8 @@
 import React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "~/styles/global.scss";
 import { ThemeProvider } from "~/contexts/themeContext";
-// import AuthProvider from "~/contexts/auth/anthProvider";
-
-const inter = Inter({ subsets: ["latin"] });
+import { AuthProvider } from "~/contexts/authContext";
+import "~/styles/global.scss";
 
 export const metadata: Metadata = {
 	title: "Speech Convert",
@@ -14,11 +11,13 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: React.PropsWithChildren) => {
 	return (
-		<html lang="en">
-			<body className={inter.className}>
-				<ThemeProvider>{children}</ThemeProvider>
-			</body>
-		</html>
+		<ThemeProvider>
+			<AuthProvider>
+				<html lang="en">
+					<body>{children}</body>
+				</html>
+			</AuthProvider>
+		</ThemeProvider>
 	);
 };
 
