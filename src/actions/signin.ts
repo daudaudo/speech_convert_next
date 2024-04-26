@@ -1,14 +1,13 @@
 import { redirect } from "next/navigation";
 import { callApiAction } from "./utils";
 import { RequestMethod } from "~/types/request";
-import { PagePath } from "~/enums/path";
-import { SignupFormSchema, SignupFormState } from "~/definitions/signup";
 import { createSession } from "~/utils/section";
+import { PagePath } from "~/enums/path";
+import { SigninFormSchema, SigninFormState } from "~/definitions/signin";
 
-export async function signup(state: SignupFormState, formData: FormData) {
+export async function signin(state: SigninFormState, formData: FormData) {
 	// handle form validation
-	const validatedFields = SignupFormSchema.safeParse({
-		username: formData.get("username"),
+	const validatedFields = SigninFormSchema.safeParse({
 		email: formData.get("email"),
 		password: formData.get("password"),
 	});
@@ -19,19 +18,11 @@ export async function signup(state: SignupFormState, formData: FormData) {
 	}
 
 	// handle form submission
-	const { username, email, password } = validatedFields.data;
-	const resRegister = await callApiAction("auth/register", RequestMethod.POST, { username, email, password });
-	if (!resRegister.success) {
-		return {
-			message: resRegister.message,
-		};
-	}
-
-	// handle session creation
+	const { email, password } = validatedFields.data;
 	const resLogin = await callApiAction("auth/login", RequestMethod.POST, { email, password });
 	if (!resLogin.success) {
 		return {
-			message: resRegister.message,
+			message: resLogin.message,
 		};
 	}
 	const token = resLogin?.data?.access_token;
