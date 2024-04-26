@@ -1,8 +1,3 @@
-enum storageKey {
-	// Theme keys
-	DarkMode = "darkMode",
-	EffectMode = "effectMode",
-	CompactMode = "compactMode",
-}
+enum storageKey {}
 
 export default storageKey;

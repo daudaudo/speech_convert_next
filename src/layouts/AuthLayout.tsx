@@ -1,39 +1,26 @@
-"use client";
-
-import React from "react";
 import Link from "next/link";
-import { Button, Flex, Layout, Typography } from "antd";
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import DarkModeButton from "~/components/DarkModeButton";
-import { useTheme } from "~/contexts/themeContext";
-const { Header, Content } = Layout;
+import React from "react";
+import { PagePath } from "~/enums/path";
 
-const AuthLayout = ({ children }: React.PropsWithChildren) => {
-	const { token } = useTheme();
+interface Props {
+	children: React.ReactNode;
+}
 
+const AuthLayout = ({ children }: Props) => {
 	return (
-		<Flex style={{ height: "100vh", flexDirection: "column", backgroundColor: token.colorBgBase }}>
-			<Header style={{ backgroundColor: token.colorBgBase }}>
-				<Flex justify="space-between" align="center">
-					<Link href="/">
-						<Button type="text" icon={<ArrowLeftOutlined color={token.colorTextSecondary} />}>
-							<Typography.Text style={{ color: token.colorTextSecondary, fontWeight: 700 }}>
-								Quay về trang chủ
-							</Typography.Text>
-						</Button>
-					</Link>
-					<Flex gap={token.marginXS}>
-						<DarkModeButton />
-						{/* Todo TruongNBN: Add select language here later  */}
-					</Flex>
-				</Flex>
-			</Header>
-			<Content style={{ flex: 1, minHeight: "max-content" }}>
-				<Flex justify="center" align="middle">
-					{children}
-				</Flex>
-			</Content>
-		</Flex>
+		<div className="w-full">
+			<header className="flex justify-between h-16">
+				<Link
+					href={PagePath.home}
+					className="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-full text-sm gap-x-2 px-3 py-2 text-gray-900 dark:text-white underline-offset-4 hover:underline focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 flex items-center flex-row absolute top-5 left-10"
+				>
+					{/* <SCIcon name="arrow-left" /> */}
+					<span>Quay về trang chủ</span>
+				</Link>
+				<div />
+			</header>
+			<div className="h-screen flex pt-20 justify-center overlay w-full">{children}</div>
+		</div>
 	);
 };
 

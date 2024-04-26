@@ -1,8 +1,12 @@
 import React from "react";
 import AuthLayout from "~/layouts/AuthLayout";
 
-const SignupLayout = ({ children }: React.PropsWithChildren) => {
+interface Props {
+	children?: React.ReactNode;
+}
+
+const SignUpLayout: React.FC<Props> = ({ children }: Props) => {
 	return <AuthLayout>{children}</AuthLayout>;
 };
 
-export default SignupLayout;
+export default SignUpLayout;
