@@ -1,15 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useCallback } from "react";
 import { useFormState } from "react-dom";
 import { signup } from "~/actions/signup";
+import { SignupFields, SignupFormState } from "~/definitions/signup";
 import { PagePath } from "~/enums/path";
 
 interface Props {}
 
 const SignUpForm: React.FC<Props> = () => {
-	const [state, action] = useFormState(signup, undefined);
+	const [state, action] = useFormState<SignupFormState, FormData>(signup, undefined);
+
+	const renderWarning = useCallback(() => {
+		const message = state?.message;
+		if (!message) return null;
+		return (
+			<div className="bg-yellow-200 text-yellow-800 p-4 rounded-lg">
+				<p className="text-sm font-medium">Đăng kí không thành công</p>
+				<p className="text-sm font-normal">{message}</p>
+			</div>
+		);
+	}, [state]);
+
+	const renderError = useCallback(
+		(field: SignupFields) => {
+			if (!state?.errors) return null;
+			const error = state.errors[field];
+			if (!error) return null;
+			return <p className="text-red-500 text-xs">{error}</p>;
+		},
+		[state?.errors],
+	);
 
 	return (
 		<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -17,25 +39,20 @@ const SignUpForm: React.FC<Props> = () => {
 				<h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					Đăng kí
 				</h1>
-				{state?.message && (
-					<div className="bg-yellow-200 text-yellow-800 p-4 rounded-lg">
-						<p className="text-sm font-medium">Đăng kí không thành công.</p>
-						<p className="text-sm font-normal">{state.message}</p>
-					</div>
-				)}
-				<form action={action} className="space-y-4 md:space-y-6">
+				{renderWarning()}
+				<form action={action} noValidate className="space-y-4 md:space-y-6">
 					<div>
 						<label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
 							Tên của bạn
 						</label>
 						<input
 							type="text"
-							name="username"
-							id="username"
+							name={SignupFields.username}
+							id={SignupFields.username}
 							className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${state?.errors?.username ? "border-red-500" : ""}`}
 							placeholder="Tên của bạn"
 						/>
-						{state?.errors?.username && <p className="text-red-500 text-xs">{state.errors.username}</p>}
+						{renderError(SignupFields.username)}
 					</div>
 					<div>
 						<label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -43,12 +60,12 @@ const SignUpForm: React.FC<Props> = () => {
 						</label>
 						<input
 							type="email"
-							name="email"
-							id="email"
+							name={SignupFields.email}
+							id={SignupFields.email}
 							className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${state?.errors?.email ? "border-red-500" : ""}`}
 							placeholder="example@gmail.com"
 						/>
-						{state?.errors?.email && <p className="text-red-500 text-xs">{state.errors.email}</p>}
+						{renderError(SignupFields.email)}
 					</div>
 					<div>
 						<label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -56,12 +73,13 @@ const SignUpForm: React.FC<Props> = () => {
 						</label>
 						<input
 							type="password"
-							name="password"
-							id="password"
+							name={SignupFields.password}
+							id={SignupFields.password}
 							placeholder="••••••••"
+							autoComplete="new-password"
 							className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${state?.errors?.password ? "border-red-500" : ""}`}
 						/>
-						{state?.errors?.password && <p className="text-red-500 text-xs">{state.errors.password}</p>}
+						{renderError(SignupFields.password)}
 					</div>
 					<div>
 						<label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -69,14 +87,13 @@ const SignUpForm: React.FC<Props> = () => {
 						</label>
 						<input
 							type="password"
-							name="confirm-password"
-							id="confirm-password"
+							name={SignupFields.confirmPassword}
+							id={SignupFields.confirmPassword}
 							placeholder="••••••••"
+							autoComplete="new-password"
 							className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 }`}
 						/>
-						{/* {state?.errors?.["confirm-password"] && (
-							<p className="text-red-500 text-xs">{state.errors["confirm-password"]}</p>
-						)} */}
+						{/* {renderError(SignupFields.confirmPassword)} */}
 					</div>
 					{/* <div className="flex items-start">
 						<div className="flex items-center h-5">

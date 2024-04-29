@@ -1,42 +1,40 @@
+"use server";
+
 import { redirect } from "next/navigation";
 import { callApiAction } from "./utils";
-import { RequestMethod } from "~/types/request";
+import { RequestMethod, RequestUrl } from "~/enums/request";
 import { PagePath } from "~/enums/path";
-import { SignupFormSchema, SignupFormState } from "~/definitions/signup";
+import { SignupFields, SignupFormSchema, SignupFormState } from "~/definitions/signup";
 import { createSession } from "~/utils/section";
 
 export async function signup(state: SignupFormState, formData: FormData) {
 	// handle form validation
 	const validatedFields = SignupFormSchema.safeParse({
-		username: formData.get("username"),
-		email: formData.get("email"),
-		password: formData.get("password"),
+		username: formData.get(SignupFields.username),
+		email: formData.get(SignupFields.email),
+		password: formData.get(SignupFields.password),
 	});
 	if (!validatedFields.success) {
-		return {
-			errors: validatedFields.error.flatten().fieldErrors,
-		};
+		return { errors: validatedFields.error.flatten().fieldErrors };
 	}
-
 	// handle form submission
 	const { username, email, password } = validatedFields.data;
-	const resRegister = await callApiAction("auth/register", RequestMethod.POST, { username, email, password });
-	if (!resRegister.success) {
-		return {
-			message: resRegister.message,
-		};
-	}
-
-	// handle session creation
-	const resLogin = await callApiAction("auth/login", RequestMethod.POST, { email, password });
-	if (!resLogin.success) {
-		return {
-			message: resRegister.message,
-		};
-	}
-	const token = resLogin?.data?.access_token;
-	createSession(token);
-
-	// redirect to home page
-	redirect(PagePath.home);
+	return callApiAction(RequestUrl.signup, RequestMethod.POST, { username, email, password })
+		.then((resRegister) => {
+			if (!resRegister.success) {
+				return { message: resRegister.message as string };
+			}
+			return callApiAction(RequestUrl.signin, RequestMethod.POST, { email, password });
+		})
+		.then((resLogin) => {
+			if (!resLogin.success) {
+				return { message: resLogin.message as string };
+			}
+			const token = resLogin?.data?.access_token;
+			createSession(token);
+			redirect(PagePath.home);
+		})
+		.catch((error) => {
+			return { message: "Lỗi mạng. Thử lại sau!" };
+		});
 }

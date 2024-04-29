@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { createContext, useContext } from "react";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-import ContextError from "~/errors/contextError";
+import ContextError from "~/errors/context";
 import { CookieKey } from "~/enums/cookieKey";
 import { PagePath } from "~/enums/path";
 

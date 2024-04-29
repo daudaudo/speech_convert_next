@@ -12,7 +12,9 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
 	return (
 		<AuthProvider>
 			<html lang="en">
-				<body>{children}</body>
+				<body>
+					<div className="w-full min-h-screen bg-gray-100 dark:bg-gray-900">{children}</div>
+				</body>
 			</html>
 		</AuthProvider>
 	);

@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-enum SigninFields {
+export enum SigninFields {
 	email = "email",
 	password = "password",
 }

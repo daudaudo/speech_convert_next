@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-enum SignupFields {
+export enum SignupFields {
 	username = "username",
 	email = "email",
 	password = "password",

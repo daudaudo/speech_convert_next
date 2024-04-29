@@ -1,33 +1,33 @@
+"use server";
+
 import { redirect } from "next/navigation";
 import { callApiAction } from "./utils";
-import { RequestMethod } from "~/types/request";
+import { RequestMethod, RequestUrl } from "~/enums/request";
 import { createSession } from "~/utils/section";
 import { PagePath } from "~/enums/path";
-import { SigninFormSchema, SigninFormState } from "~/definitions/signin";
+import { SigninFields, SigninFormSchema, SigninFormState } from "~/definitions/signin";
 
 export async function signin(state: SigninFormState, formData: FormData) {
 	// handle form validation
 	const validatedFields = SigninFormSchema.safeParse({
-		email: formData.get("email"),
-		password: formData.get("password"),
+		email: formData.get(SigninFields.email),
+		password: formData.get(SigninFields.password),
 	});
 	if (!validatedFields.success) {
-		return {
-			errors: validatedFields.error.flatten().fieldErrors,
-		};
+		return { errors: validatedFields.error.flatten().fieldErrors };
 	}
-
 	// handle form submission
 	const { email, password } = validatedFields.data;
-	const resLogin = await callApiAction("auth/login", RequestMethod.POST, { email, password });
-	if (!resLogin.success) {
-		return {
-			message: resLogin.message,
-		};
-	}
-	const token = resLogin?.data?.access_token;
-	createSession(token);
-
-	// redirect to home page
-	redirect(PagePath.home);
+	return callApiAction(RequestUrl.signin, RequestMethod.POST, { email, password })
+		.then((resLogin) => {
+			if (!resLogin.success) {
+				return { message: resLogin.message };
+			}
+			const token = resLogin?.data?.access_token;
+			createSession(token);
+			redirect(PagePath.home);
+		})
+		.catch((error) => {
+			return { message: "Lỗi mạng. Thử lại sau!" };
+		});
 }
