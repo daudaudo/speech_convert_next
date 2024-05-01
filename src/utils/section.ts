@@ -24,3 +24,11 @@ export async function createSession(token: string, dueTime?: number) {
 		path: "/",
 	});
 }
+
+export async function deleteSession() {
+	cookies().delete(CookieKey.token);
+}
+
+export async function updateSession(token: string) {
+	cookies().set(CookieKey.token, token);
+}
