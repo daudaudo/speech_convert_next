@@ -22,19 +22,17 @@ export async function signup(state: SignupFormState, formData: FormData) {
 	return callApiAction(RequestUrl.signup, RequestMethod.POST, { username, email, password })
 		.then((resRegister) => {
 			if (!resRegister.success) {
-				return { message: resRegister.message as string };
+				return { message: resRegister.message };
 			}
 			return callApiAction(RequestUrl.signin, RequestMethod.POST, { email, password });
 		})
 		.then((resLogin) => {
 			if (!resLogin.success) {
-				return { message: resLogin.message as string };
+				return { message: resLogin.message };
 			}
 			const token = resLogin?.data?.access_token;
 			createSession(token);
 			redirect(PagePath.home);
 		})
-		.catch((error) => {
-			return { message: "Lỗi mạng. Thử lại sau!" };
-		});
+		.catch(() => ({ message: "Lỗi điều hướng trang" }));
 }

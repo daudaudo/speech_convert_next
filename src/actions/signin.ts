@@ -27,7 +27,5 @@ export async function signin(state: SigninFormState, formData: FormData) {
 			createSession(token);
 			redirect(PagePath.home);
 		})
-		.catch((error) => {
-			return { message: "Lỗi mạng. Thử lại sau!" };
-		});
+		.catch(() => ({ message: "Lỗi điều hướng trang" }));
 }
