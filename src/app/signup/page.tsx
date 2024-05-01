@@ -1,8 +1,10 @@
 import React from "react";
-import SignupForm from "~/components/SignupForm";
+import SignUpForm from "~/components/SignUpForm";
 
-const SignupPage = () => {
-	return <SignupForm />;
+interface Props {}
+
+const SignOutPage: React.FC<Props> = () => {
+	return <SignUpForm />;
 };
 
-export default SignupPage;
+export default SignOutPage;
