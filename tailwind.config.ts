@@ -2,12 +2,7 @@ import type { Config } from "tailwindcss";
 
 const config: Config = {
 	darkMode: "media",
-	content: [
-		"./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-		"./src/layouts/**/*.{js,ts,jsx,tsx,mdx}",
-	],
+	content: ["./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
 	theme: {
 		extend: {
 			colors: {
@@ -32,7 +27,7 @@ const config: Config = {
 		},
 		fontFamily: {
 			body: [
-				"Inter",
+				"Open Sans",
 				"ui-sans-serif",
 				"system-ui",
 				"-apple-system",
@@ -49,7 +44,7 @@ const config: Config = {
 				"Noto Color Emoji",
 			],
 			sans: [
-				"Inter",
+				"Open Sans",
 				"ui-sans-serif",
 				"system-ui",
 				"-apple-system",
