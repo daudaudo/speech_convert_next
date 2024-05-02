@@ -15,18 +15,27 @@ const callApi = async (url: RequestUrl, method: RequestMethod, body: object | un
 			"Content-Type": "application/json",
 			Authorization: `Bearer ${token}`,
 		},
+		mode: "cors",
 		body: JSON.stringify(body ?? {}),
 	});
 	return res.json();
 };
 
-const TIMEOUT = 30000; // 30 seconds
-export const callApiAction = async (url: RequestUrl, method: RequestMethod, body: object | undefined) => {
+type OptionsType = {
+	timeout: number;
+};
+export const callApiAction = async (
+	url: RequestUrl,
+	method: RequestMethod,
+	body: object | undefined,
+	options?: OptionsType,
+) => {
 	try {
+		const timeout = options?.timeout ?? 30000; // 30s
 		const timeoutPromise = new Promise((_, reject) => {
 			setTimeout(() => {
 				reject(new RequestError("Request timed out"));
-			}, TIMEOUT);
+			}, timeout);
 		});
 		const apiPromise = callApi(url, method, body);
 		const res = await Promise.race([timeoutPromise, apiPromise]);
