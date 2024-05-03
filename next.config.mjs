@@ -4,7 +4,7 @@ export default (phase, { defaultConfig }) => {
 			return [
 				{
 					source: '/',
-					destination: '/sound',
+					destination: '/text-to-speech',
 					permanent: true,
 				},
 			]
