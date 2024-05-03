@@ -1,13 +1,9 @@
-import React from "react";
-import Header from "@sc-components/Header";
+import { useRouter } from "next/navigation";
+import { PagePath } from "~/enums/path";
 
 const Index = () => {
-	return (
-		<>
-			<Header />
-			<div className="flex pt-4 justify-center overlay w-full">This is the index page</div>
-		</>
-	);
+	const router = useRouter();
+	router.push(PagePath.sound);
 };
 
 export default Index;

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: React.PropsWithChildren) => {
 	return (
 		<html lang="en">
-			<body>
-				<div className="w-full min-h-screen bg-gray-100 dark:bg-gray-900">{children}</div>
+			<body className="bg-gray-50 dark:bg-slate-950 max-w-screen overflow-x-hidden">
+				<div className="min-h-screen md:max-w-screen-xl mx-auto flex flex-col">{children}</div>
 			</body>
 		</html>
 	);

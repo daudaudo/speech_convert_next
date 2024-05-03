@@ -9,7 +9,7 @@ const UserLayout = ({ children }: Props) => {
 	return (
 		<>
 			<Header />
-			<div className="flex pt-4 justify-center overlay w-full">{children}</div>
+			<div className="flex-1 flex pt-4 justify-center overlay w-full">{children}</div>
 		</>
 	);
 };
