@@ -1,35 +1,33 @@
 "use client";
 
 import React from "react";
-import { useTextToSpeech } from "~/contexts/TextToSpeechContext";
+import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 
-// Để tạm ở đây, sau này sẽ chuyển sang dùng biến từ context
-const maxTextLength = 200;
 const TextInput = () => {
-	const { text, onChangeText } = useTextToSpeech();
+	const { input, onChangeInput, config } = useConvertToSpeech();
 
 	const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-		onChangeText(e.target.value);
+		onChangeInput(e.target.value);
 	};
 
 	const onClearText = () => {
-		onChangeText("");
+		onChangeInput("");
 	};
 
 	return (
-		<div className="relative flex flex-1 flex-col justify-between">
+		<div className="relative flex flex-1">
 			<textarea
 				id="text-to-speech-input"
 				placeholder="Nhập văn bản cần chuyển đổi"
 				required
-				maxLength={maxTextLength}
+				maxLength={config.maxTextLength}
 				onChange={handleTextChange}
-				value={text}
-				className="scrollbar-thin w-full md:pl-4 md:pr-2 resize-none overflow-y-auto h-full min-h-[210px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-900 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none py-3"
+				value={input}
+				className="w-full md:pl-4 md:pr-2 resize-none overflow-y-auto h-full min-h-[210px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-900 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none py-3"
 			/>
 			<div className="absolute bottom-[10px] right-3 text-right text-xs font-thin dark:text-gray-300 flex flex-row space-x-4 items-center">
 				<div>
-					{text.length} / {maxTextLength}
+					{input.length} / {config.maxTextLength}
 				</div>
 				<button
 					type="button"

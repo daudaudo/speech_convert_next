@@ -2,7 +2,7 @@
 
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import RequestError from "~/errors/request";
-import { getSessionToken } from "~/utils/section";
+import { getSessionToken } from "~/utils/session";
 
 const DOMAIN = process.env.DOMAIN;
 const API_VERSION = process.env.API_VERSION;

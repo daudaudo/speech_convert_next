@@ -6,7 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PagePath } from "~/enums/path";
 
-const ConvertToSpeechNavbar = () => {
+const CTSNavbar = () => {
 	const pathname = usePathname();
 
 	const navItems = [
@@ -19,11 +19,11 @@ const ConvertToSpeechNavbar = () => {
 		const isActive = pathname === item.path;
 
 		return (
-			<li className="min-w-0">
+			<li key={item.path} className="min-w-0">
 				<Link
 					href={item.path}
 					key={item.path}
-					className={`relative w-full flex items-center gap-1.5 px-2.5 py-3.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75 ${isActive ? "text-gray-900 dark:text-white rounded-full" : "hover:text-gray-900 dark:hover:text-white text-gray-500 dark:text-gray-400 !hover:text-gray-600 !dark:hover:text-white"}`}
+					className={`w-full flex items-center gap-1.5 px-2.5 py-3.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75 ${isActive ? "text-gray-900 dark:text-white rounded-full" : "hover:text-gray-900 dark:hover:text-white text-gray-500 dark:text-gray-400 !hover:text-gray-600 !dark:hover:text-white"}`}
 				>
 					{item.icon}
 					{item.label}
@@ -39,4 +39,4 @@ const ConvertToSpeechNavbar = () => {
 	);
 };
 
-export default ConvertToSpeechNavbar;
+export default CTSNavbar;
