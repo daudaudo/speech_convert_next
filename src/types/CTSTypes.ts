@@ -40,7 +40,7 @@ const CTSVoices: CTSVoice[] = [
 ];
 
 // Config types for the ConvertToSpeech
-type CTSSpeed = 0.25 | 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.5 | 3 | 3.5 | 4;
+type CTSSpeed = 0.25 | 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.25 | 2.5 | 2.75 | 3 | 3.25 | 3.5 | 3.75 | 4;
 type CTSConfig = {
 	maxTextLength?: number;
 	model: CTSModel;

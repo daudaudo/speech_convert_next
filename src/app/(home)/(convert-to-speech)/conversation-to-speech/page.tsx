@@ -1,7 +1,7 @@
 import React from "react";
 
 const ConversationToSpeechPage = () => {
-	return <>ConversationToSpeechPage</>;
+	return <></>;
 };
 
 export default ConversationToSpeechPage;

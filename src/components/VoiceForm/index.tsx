@@ -4,13 +4,17 @@ import React from "react";
 import VoiceFormDetail from "./VoiceFormDetail";
 import VoiceFormCollapse from "./VoiceFormCollapse";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
-import { OpenAITTSModel } from "~/types/CTSTypes";
+import { CTSSpeed, OpenAITTSModel } from "~/types/CTSTypes";
 
 const VoiceForm = () => {
-	const { onChangeModel, voiceId, chooseVoice, config, convertToSpeech } = useConvertToSpeech();
+	const { onChangeModel, voiceId, chooseVoice, config, onChangeSpeed, convertToSpeech } = useConvertToSpeech();
 
 	const toggleHD = (value: boolean) => {
 		onChangeModel(value ? OpenAITTSModel.TTS1HD : OpenAITTSModel.TTS1);
+	};
+
+	const _onChangeSpeed = (speed: number) => {
+		onChangeSpeed(speed as CTSSpeed);
 	};
 
 	return (
@@ -21,6 +25,8 @@ const VoiceForm = () => {
 					toggleHD={toggleHD}
 					voiceId={voiceId}
 					chooseVoice={chooseVoice}
+					speed={config.speed}
+					onChangeSpeed={_onChangeSpeed}
 					submit={convertToSpeech}
 				/>
 			</div>

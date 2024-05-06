@@ -1,7 +1,7 @@
 import React from "react";
 
 const DocumentToSpeechPage = () => {
-	return <>DocumentToSpeechPage</>;
+	return <></>;
 };
 
 export default DocumentToSpeechPage;

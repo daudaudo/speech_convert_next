@@ -8,7 +8,7 @@ export enum PagePath {
 	// Change this in file next.config.mjs
 	home = "/",
 
-	// Convert to  Pages
+	// Convert to Speech Pages
 	textToSpeech = "/text-to-speech",
 	documentToSpeech = "/document-to-speech",
 	conversationToSpeech = "/conversation-to-speech",
