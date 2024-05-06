@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "@sc-components/Header";
 import { ConvertToSpeechProvider } from "~/contexts/ConvertToSpeechContext";
+import AudioDrawer from "~/components/AudioDrawer";
 
 interface Props {
 	children: React.ReactNode;
@@ -16,6 +17,7 @@ const UserLayout = ({ children }: Props) => {
 				<div className="flex-1 w-full md:max-w-screen-xl">{children}</div>
 				{/* <div className="md:shrink-0 hidden md:block">Footer</div> */}
 			</div>
+			<AudioDrawer />
 		</ConvertToSpeechProvider>
 	);
 };

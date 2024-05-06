@@ -23,6 +23,7 @@ type Store = {
 	onChangeSpeed: (speed: CTSSpeed) => void;
 	onChangeModel: (model: CTSModel) => void;
 	convertToSpeech: () => void;
+	validate: () => boolean;
 	response: CTSResponse[];
 };
 const DefaultStore: Store = {
@@ -34,6 +35,7 @@ const DefaultStore: Store = {
 	onChangeSpeed: () => {},
 	onChangeModel: () => {},
 	convertToSpeech: () => {},
+	validate: () => true,
 	response: [],
 };
 
@@ -64,6 +66,13 @@ const Provider = ({ children }: Props) => {
 		setConfig((prev) => ({ ...prev, model }));
 	};
 
+	const validate = () => {
+		if (input === "") {
+			return false;
+		}
+		return true;
+	};
+
 	const convertToSpeech_ = async () => {
 		const res = await convertToSpeech(input, voiceId, config.model, config.speed);
 		if (res) {
@@ -80,6 +89,7 @@ const Provider = ({ children }: Props) => {
 		onChangeSpeed,
 		onChangeModel,
 		convertToSpeech: convertToSpeech_,
+		validate,
 		response: response,
 	};
 

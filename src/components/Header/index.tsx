@@ -1,9 +1,9 @@
 "use client";
 
 import React from "react";
-import Logo from "@sc-components/utils/Logo";
-import SigninButton from "@sc-components/utils/SigninButton";
-import NavBar from "@sc-components/utils/NavBar";
+import Logo from "./Logo";
+import SigninButton from "./SigninButton";
+import NavBar from "./NavBar";
 
 const Header = () => {
 	return (

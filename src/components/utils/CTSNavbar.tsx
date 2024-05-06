@@ -10,7 +10,7 @@ const CTSNavbar = () => {
 	const pathname = usePathname();
 
 	const navItems = [
-		{ path: PagePath.textToSpeech, label: "Văn bản nhập vào", icon: <LanguageIcon className="h-4 w-4" /> },
+		{ path: PagePath.textToSpeech, label: "Văn bản", icon: <LanguageIcon className="h-4 w-4" /> },
 		{ path: PagePath.documentToSpeech, label: "Tài liệu", icon: <DocumentIcon className="h-4 w-4" /> },
 		{ path: PagePath.conversationToSpeech, label: "Hội thoại", icon: <ChatBubbleLeftRightIcon className="h-4 w-4" /> },
 	];
