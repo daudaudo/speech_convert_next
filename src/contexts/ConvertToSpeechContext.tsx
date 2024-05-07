@@ -43,13 +43,7 @@ const DefaultStore: Store = {
 	onChangeModel: () => {},
 	convertToSpeech: () => {},
 	validate: () => true,
-	output: [
-		{
-			id: "1",
-			streamUrl: "",
-			downloadUrl: "",
-		},
-	],
+	output: [],
 	resultShowed: false,
 	toggleShowResult: () => {},
 };

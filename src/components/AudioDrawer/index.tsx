@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import Drawer from "@sc-components/base/Drawer";
 import { ChevronDoubleUpIcon, PlayPauseIcon } from "@heroicons/react/24/solid";
+import { Drawer } from "@material-tailwind/react";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { CTSOutput } from "~/types/CTSTypes";
 import Audio from "./Audio";
@@ -24,6 +24,8 @@ const AudioDrawer = () => {
 			/>
 		);
 	};
+
+	if (output.length === 0) return null;
 
 	return (
 		<>
@@ -52,7 +54,7 @@ const AudioDrawer = () => {
 					</div>
 				</div>
 			</Drawer>
-			{!resultShowed && output.length > 0 && (
+			{!resultShowed && (
 				<button
 					onClick={toggleShowResult}
 					className="hidden md:block fixed z-50 bottom-0 left-1/2 p-3 dark:bg-gray-800 rounded-t-full border-t border-l border-r dark:border-gray-700 hover:pb-4 cursor-pointer transition-all duration-200"

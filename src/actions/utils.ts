@@ -13,7 +13,7 @@ const callApi = async (url: RequestUrl, method: RequestMethod, body: object | un
 		method,
 		headers: {
 			"Content-Type": "application/json",
-			Authorization: `Bearer ${token}`,
+			Authorization: token ? `Bearer ${token}` : "",
 		},
 		mode: "cors",
 		body: JSON.stringify(body ?? {}),

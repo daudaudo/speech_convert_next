@@ -17,7 +17,6 @@ const TextInput = () => {
 	return (
 		<div className="relative flex flex-1">
 			<textarea
-				id="text-to-speech-input"
 				placeholder="Nhập văn bản cần chuyển đổi"
 				required
 				maxLength={config.maxTextLength}

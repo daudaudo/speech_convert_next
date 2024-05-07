@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { ChevronDoubleUpIcon, SpeakerWaveIcon, XCircleIcon } from "@heroicons/react/24/solid";
-import Dialog from "@sc-components/base/Dialog";
-import SelectSpeed from "./SelectSpeed";
+import { Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
+import SelectSpeed from "./SelectSpeed";
 import SelectVoice from "./SelectVoice";
 
 interface Props {
@@ -70,20 +70,20 @@ const VoiceFormCollapse = (props: Props) => {
 				</button>
 			</div>
 			<Dialog open={openSelectVoice} handler={onToggleSelectVoice} className="bg-white dark:bg-gray-900">
-				<Dialog.Body className="relative">
+				<DialogBody className="relative">
 					<SelectVoice HD={HD} toggleHD={toggleHD} voiceId={voiceId} chooseVoice={chooseVoice} />
 					<button onClick={onToggleSelectVoice} className="absolute right-6 top-6">
 						<XCircleIcon className="h-5 w-5" />
 					</button>
-				</Dialog.Body>
-				<Dialog.Footer>
+				</DialogBody>
+				<DialogFooter>
 					<button
 						onClick={onToggleSelectVoice}
 						className="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-full text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center w-32 justify-center"
 					>
 						Lưu
 					</button>
-				</Dialog.Footer>
+				</DialogFooter>
 			</Dialog>
 		</>
 	);

@@ -1,11 +1,11 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { callApiAction } from "./utils";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { PagePath } from "~/enums/path";
 import { SignupFields, SignupFormSchema, SignupFormState } from "~/definitions/signup";
 import { createSession } from "~/utils/session";
+import { callApiAction } from "./utils";
 
 export async function signup(state: SignupFormState, formData: FormData) {
 	try {

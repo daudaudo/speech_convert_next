@@ -1,7 +1,7 @@
 import React from "react";
-import AudioDrawer from "~/components/AudioDrawer";
-import CTSNavbar from "~/components/utils/CTSNavbar";
-import VoiceForm from "~/components/VoiceForm";
+import AudioDrawer from "@sc-components/AudioDrawer";
+import CTSNavbar from "@sc-components/utils/CTSNavbar";
+import VoiceForm from "@sc-components/VoiceForm";
 import { ConvertToSpeechProvider } from "~/contexts/ConvertToSpeechContext";
 
 interface Props {

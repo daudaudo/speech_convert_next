@@ -35,7 +35,6 @@ const SelectSpeed = (props: Props) => {
 		<>
 			<select
 				name="speed"
-				id="speed"
 				value={value || 1}
 				onChange={onSelectChange}
 				style={{ appearance: "none" }}
