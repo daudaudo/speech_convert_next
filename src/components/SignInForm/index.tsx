@@ -6,6 +6,7 @@ import { useFormState } from "react-dom";
 import { PagePath } from "~/enums/path";
 import { signin } from "~/actions/signin";
 import { SigninFields, SigninFormState } from "~/definitions/signin";
+import SubmitButton from "./SubmitButton";
 
 interface Props {}
 
@@ -84,19 +85,8 @@ const SignInForm: React.FC<Props> = () => {
 								</label>
 							</div>
 						</div>
-						{/* <Link
-							href={PagePath.accountRecovery}
-							className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
-						>
-							Quên mật khẩu?
-						</Link> */}
 					</div>
-					<button
-						type="submit"
-						className="w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-					>
-						Đăng nhập
-					</button>
+					<SubmitButton />
 					<p className="text-sm font-light text-gray-500 dark:text-gray-400">
 						Bạn chưa có tài khoản?&nbsp;
 						<Link href={PagePath.signup} className="font-medium text-primary-600 hover:underline dark:text-primary-500">

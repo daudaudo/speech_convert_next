@@ -7,8 +7,8 @@ const NavBar = () => {
 	const pathname = usePathname();
 
 	const navItems = [
-		{ path: PagePath.sound, label: "Âm thanh" },
-		{ path: PagePath.conversation, label: "Hội thoại" },
+		{ path: PagePath.textToSpeech, label: "Âm thanh" },
+		{ path: PagePath.speechToText, label: "Văn bản" },
 		{ path: PagePath.history, label: "Lịch sử" },
 	];
 

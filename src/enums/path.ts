@@ -4,9 +4,18 @@ export enum PagePath {
 	signup = "/signup",
 	accountRecovery = "/account-recovery",
 
-	// User Pages
-	home = "/", // Home page = text-to-speech
-	sound = "/sound",
-	conversation = "/conversation",
+	// Home Pages: auto navigate to /text-to-speech
+	// Change this in file next.config.mjs
+	home = "/",
+
+	// Convert to Speech Pages
+	textToSpeech = "/text-to-speech",
+	documentToSpeech = "/document-to-speech",
+	conversationToSpeech = "/conversation-to-speech",
+
+	// Convert to Text Pages
+	speechToText = "/speech-to-text",
+
+	// History Page
 	history = "/history",
 }

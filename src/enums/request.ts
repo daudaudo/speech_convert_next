@@ -7,8 +7,11 @@ enum RequestMethod {
 }
 
 enum RequestUrl {
+	home = "/",
 	signin = "auth/login",
 	signup = "auth/register",
+	convertToSpeech = "/audio/speech",
+	convertToText = "/audio/transcriptions",
 }
 
 export { RequestMethod, RequestUrl };
