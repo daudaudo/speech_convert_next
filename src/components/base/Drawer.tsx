@@ -1,9 +1,7 @@
 import React from "react";
-import { Drawer, DrawerProps } from "@material-tailwind/react";
+import { DrawerProps, Drawer as MuiDrawer } from "@material-tailwind/react";
 
 // override Drawer component.
-const DrawerBase = (props: DrawerProps) => (
-	<Drawer {...props} placeholder={undefined} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined} />
-);
+const Drawer = (props: DrawerProps) => <MuiDrawer {...props} />;
 
-export default DrawerBase;
+export default Drawer;

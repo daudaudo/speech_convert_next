@@ -43,22 +43,21 @@ const CTSVoices: CTSVoice[] = [
 type CTSSpeed = 0.25 | 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.25 | 2.5 | 2.75 | 3 | 3.25 | 3.5 | 3.75 | 4;
 type CTSConfig = {
 	maxTextLength?: number;
-	model: CTSModel;
-	speed: CTSSpeed;
 };
 const CTSDefaultConfig: CTSConfig = {
 	maxTextLength: 200,
-	model: OpenAITTSModel.TTS1,
-	speed: 1,
 };
 
 // CTS response
-type CTSResponse = {
+type CTSOutput = {
 	id: string;
-	input: string;
-	stream: string;
-	download: string;
+	input?: string;
+	streamUrl: string;
+	downloadUrl: string;
+	voiceId?: CTSVoiceId;
+	model?: CTSModel;
+	speed?: CTSSpeed;
 };
 
 export { OpenAITTSModel, OpenAIVoiceId, GoogleVoiceId, CTSDefaultConfig, CTSVoices };
-export type { CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSResponse };
+export type { CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput };

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { ThemeProvider } from "@material-tailwind/react";
+// import { ThemeProvider } from "@material-tailwind/react";
 import ContextError from "~/errors/context";
 
 type Store = {
@@ -26,11 +26,7 @@ const Provider = ({ children }: Props) => {
 		setTheme((prev) => (prev === "light" ? "dark" : "light"));
 	};
 
-	return (
-		<Context.Provider value={{ theme, toggleTheme }}>
-			<ThemeProvider>{children}</ThemeProvider>
-		</Context.Provider>
-	);
+	return <Context.Provider value={{ theme, toggleTheme }}>{children}</Context.Provider>;
 };
 
 const useContext = () => {

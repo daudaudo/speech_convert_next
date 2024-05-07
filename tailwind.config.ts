@@ -2,7 +2,7 @@ import type { Config } from "tailwindcss";
 import withMT from "@material-tailwind/react/utils/withMT";
 
 const config = withMT({
-	darkMode: "class",
+	darkMode: "media",
 	content: [
 		"./src/components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./src/app/**/*.{js,ts,jsx,tsx,mdx}",

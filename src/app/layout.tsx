@@ -10,13 +10,13 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: React.PropsWithChildren) => {
 	return (
-		<html lang="vi">
-			<ThemeProvider>
-				<body className="bg-gray-50 dark:bg-slate-950 overflow-x-hidden">
+		<ThemeProvider>
+			<html lang="vi">
+				<body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
 					<div className="h-screen md:max-w-screen-xl mx-auto">{children}</div>
 				</body>
-			</ThemeProvider>
-		</html>
+			</html>
+		</ThemeProvider>
 	);
 };
 

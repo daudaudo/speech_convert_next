@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { SpeakerWaveIcon, XCircleIcon } from "@heroicons/react/24/solid";
+import { ChevronDoubleUpIcon, SpeakerWaveIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import Dialog from "@sc-components/base/Dialog";
 import SelectSpeed from "./SelectSpeed";
 import { CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
@@ -16,19 +16,17 @@ interface Props {
 	onChangeSpeed: (speed: number) => void;
 	submit: () => void;
 	validated?: boolean;
+	hasResult?: boolean;
+	toggleShowResult?: () => void;
 }
 const VoiceFormCollapse = (props: Props) => {
-	const { HD, toggleHD, voiceId, chooseVoice, speed, onChangeSpeed, submit, validated } = props;
+	const { HD, toggleHD, voiceId, chooseVoice, speed, onChangeSpeed, submit, validated, hasResult, toggleShowResult } =
+		props;
 
 	const [openSelectVoice, setOpenSelectVoice] = useState(false);
 
 	const onToggleSelectVoice = () => {
 		setOpenSelectVoice((prev) => !prev);
-	};
-
-	const onChooseVoice = (voiceId: CTSVoiceId) => {
-		chooseVoice(voiceId);
-		setOpenSelectVoice(false);
 	};
 
 	const onSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -40,7 +38,13 @@ const VoiceFormCollapse = (props: Props) => {
 
 	return (
 		<>
-			<div className="bg-transparent flex flex-row justify-between space-x-1 w-full">
+			<div className="bg-transparent flex flex-row justify-between w-full">
+				<button
+					onClick={toggleShowResult}
+					className={`${hasResult ? "" : "hidden"} flex px-4 items-center justify-center p-3 dark:bg-gray-800 rounded-l-full border border-gray-300 border-r-0 dark:border-gray-700 hover:bottom-0 cursor-pointer transition-all duration-200`}
+				>
+					<ChevronDoubleUpIcon className="h-6 w-6 text-gray-700 dark:text-gray-200" />
+				</button>
 				<div className="relative w-fit inline-flex flex-1">
 					<SelectSpeed value={speed} onChange={onChangeSpeed} />
 				</div>
@@ -65,13 +69,21 @@ const VoiceFormCollapse = (props: Props) => {
 					<div className="w-4" />
 				</button>
 			</div>
-			<Dialog open={openSelectVoice} handler={onToggleSelectVoice}>
+			<Dialog open={openSelectVoice} handler={onToggleSelectVoice} className="bg-white dark:bg-gray-900">
 				<Dialog.Body className="relative">
-					<SelectVoice HD={HD} toggleHD={toggleHD} voiceId={voiceId} chooseVoice={onChooseVoice} />
+					<SelectVoice HD={HD} toggleHD={toggleHD} voiceId={voiceId} chooseVoice={chooseVoice} />
 					<button onClick={onToggleSelectVoice} className="absolute right-6 top-6">
 						<XCircleIcon className="h-5 w-5" />
 					</button>
 				</Dialog.Body>
+				<Dialog.Footer>
+					<button
+						onClick={onToggleSelectVoice}
+						className="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-full text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center w-32 justify-center"
+					>
+						Lưu
+					</button>
+				</Dialog.Footer>
 			</Dialog>
 		</>
 	);

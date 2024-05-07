@@ -1,44 +1,66 @@
 "use client";
 
-import React, { useState } from "react";
-import DrawerBase from "@sc-components/base/Drawer";
+import React from "react";
+import Drawer from "@sc-components/base/Drawer";
+import { ChevronDoubleUpIcon, PlayPauseIcon } from "@heroicons/react/24/solid";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
-import { CTSResponse } from "~/types/CTSTypes";
+import { CTSOutput } from "~/types/CTSTypes";
+import Audio from "./Audio";
 
 const AudioDrawer = () => {
-	const { response } = useConvertToSpeech();
-	const [open, setOpen] = useState(true);
+	const { output, resultShowed, toggleShowResult } = useConvertToSpeech();
 
-	const toggleOpen = () => {
-		setOpen((prev) => !prev);
-	};
-
-	const renderAudio = (audio: CTSResponse, index: number) => {
-		const { id, input, stream, download } = audio;
+	const renderAudio = (audio: CTSOutput) => {
+		const { id, input, streamUrl, downloadUrl, voiceId, speed, model } = audio;
 		return (
-			<audio key={id} controls className="w-full">
-				<source src={stream} type="audio/mpeg" />
-				Your browser does not support the audio element.
-			</audio>
+			<Audio
+				key={id}
+				input={input}
+				streamUrl={streamUrl}
+				downloadUrl={downloadUrl}
+				voiceId={voiceId}
+				model={model}
+				speed={speed}
+			/>
 		);
 	};
 
 	return (
-		<DrawerBase
-			size={300}
-			placement="bottom"
-			open={response.length > 0}
-			onClose={toggleOpen}
-			transition={{ type: "tween" }}
-		>
-			<button onClick={toggleOpen} className="cursor-pointer hover:bg-gray-50 py-2 px-4 dark:hover:bg-gray-800">
-				<span className="absolute w-8 h-1 -translate-x-1/2 bg-gray-300 rounded-lg top-3 left-1/2 dark:bg-gray-600" />
-				<h5 className="inline-flex items-center text-base text-gray-500 dark:text-gray-400 font-medium">
-					Audio Player
-				</h5>
-			</button>
-			{response.map(renderAudio)}
-		</DrawerBase>
+		<>
+			<Drawer
+				placement="bottom"
+				open={resultShowed}
+				onClose={toggleShowResult}
+				transition={{ type: "tween" }}
+				overlayProps={{ className: "backdrop-blur-none" }}
+				className="bg-opacity-0"
+			>
+				<div className="w-full h-full md:w-3/4 mx-auto max-w-4xl flex flex-col items-end">
+					<button onClick={toggleShowResult} className="flex-1 w-full cursor-default" />
+					<div className="relative w-full overflow-x-hidden bg-white border shadow-xl border-gray-200 rounded-t-lg dark:border-gray-700 dark:bg-gray-900">
+						<button
+							onClick={toggleShowResult}
+							className="inline-flex items-center cursor-pointer hover:bg-gray-50 py-2 px-4 dark:hover:bg-gray-800 w-full"
+						>
+							<span className="absolute w-8 h-1 -translate-x-1/2 bg-gray-300 rounded-lg top-3 left-1/2 dark:bg-gray-600" />
+							<h5 className="inline-flex items-center text-base text-gray-700 dark:text-gray-200 font-medium">
+								<PlayPauseIcon className="h-5 w-5 mr-1" />
+								Audio Player
+							</h5>
+						</button>
+						{output.map(renderAudio)}
+					</div>
+				</div>
+			</Drawer>
+			{!resultShowed && output.length > 0 && (
+				<button
+					onClick={toggleShowResult}
+					className="hidden md:block fixed z-50 bottom-0 left-1/2 p-3 dark:bg-gray-800 rounded-t-full border-t border-l border-r dark:border-gray-700 hover:pb-4 cursor-pointer transition-all duration-200"
+				>
+					<ChevronDoubleUpIcon className="h-8 w-8 text-gray-700 dark:text-gray-200" />
+				</button>
+			)}
+		</>
 	);
 };
 
