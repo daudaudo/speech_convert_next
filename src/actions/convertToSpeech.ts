@@ -8,10 +8,10 @@ const convertToSpeech = async (input: string, voice: string, model: string, spee
 			throw new Error(res.message);
 		}
 		return {
-			id: res.data._id,
-			input: res.data.input,
-			streamUrl: res.data.stream_url,
-			downloadUrl: res.data.download_url,
+			id: res.data?._id,
+			input: res.data?.input,
+			streamUrl: res.data?.stream_url,
+			downloadUrl: res.data?.download_url,
 			voiceId: res.data?.voice ?? voice,
 			model: res.data?.model ?? model,
 			speed: res.data?.speed ?? speed,

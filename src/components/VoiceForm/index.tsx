@@ -1,24 +1,16 @@
 "use client";
 
 import React from "react";
-import VoiceFormDetail from "./VoiceFormDetail";
-import VoiceFormCollapse from "./VoiceFormCollapse";
+import { useFormStatus } from "react-dom";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { CTSSpeed, OpenAITTSModel } from "~/types/CTSTypes";
+import VoiceFormDetail from "./VoiceFormDetail";
+import VoiceFormCollapse from "./VoiceFormCollapse";
 
 const VoiceForm = () => {
-	const {
-		onChangeModel,
-		voiceId,
-		chooseVoice,
-		speed,
-		onChangeSpeed,
-		model,
-		convertToSpeech,
-		validate,
-		output,
-		toggleShowResult,
-	} = useConvertToSpeech();
+	const { onChangeModel, voiceId, chooseVoice, speed, onChangeSpeed, model, validate, output, toggleShowResult } =
+		useConvertToSpeech();
+	const { pending } = useFormStatus();
 
 	const toggleHD = (value: boolean) => {
 		onChangeModel(value ? OpenAITTSModel.TTS1HD : OpenAITTSModel.TTS1);
@@ -40,8 +32,8 @@ const VoiceForm = () => {
 					chooseVoice={chooseVoice}
 					speed={speed}
 					onChangeSpeed={_onChangeSpeed}
-					submit={convertToSpeech}
 					validated={validated}
+					pending={pending}
 				/>
 			</div>
 			<div className="flex md:hidden flex-1 flex-col h-full max-h-full pb-0.5 space-y-6">
@@ -53,10 +45,10 @@ const VoiceForm = () => {
 						chooseVoice={chooseVoice}
 						speed={speed}
 						onChangeSpeed={_onChangeSpeed}
-						submit={convertToSpeech}
 						validated={validated}
 						hasResult={output.length > 0}
 						toggleShowResult={toggleShowResult}
+						pending={pending}
 					/>
 				</div>
 			</div>

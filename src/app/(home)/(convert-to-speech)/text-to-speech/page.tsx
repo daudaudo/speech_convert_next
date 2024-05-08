@@ -1,5 +1,5 @@
 import React from "react";
-import TextInput from "@sc-components/utils/TextInput";
+import TextInput from "@sc-components/CTS/TextInput";
 
 const TextToSpeechPage = () => {
 	return <TextInput />;
