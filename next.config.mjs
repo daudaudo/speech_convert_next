@@ -1,4 +1,5 @@
 export default (phase, { defaultConfig }) => {
+	/** @type {import('next').NextConfig} */
 	const nextConfig = {
 		async redirects() {
 			return [
@@ -10,5 +11,6 @@ export default (phase, { defaultConfig }) => {
 			]
 		},
 	}
+
 	return nextConfig
-  }
+}
