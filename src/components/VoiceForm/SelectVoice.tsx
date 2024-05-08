@@ -21,6 +21,7 @@ const SelectVoice = (props: Props) => {
 		return (
 			<button
 				key={id}
+				type="button"
 				onClick={() => chooseVoice(id)}
 				className={`inline-flex items-center cursor-pointer pr-6 pl-4 py-2 border-t dark:border-t-gray-800 dark:hover:bg-gray-800 ${selected ? "bg-gray-100/80 hover:bg-gray-100 dark:bg-gray-800 border-l-2 border-l-primary-600 rounded-l-lg" : ""}`}
 			>
@@ -40,7 +41,10 @@ const SelectVoice = (props: Props) => {
 	return (
 		<>
 			<nav className="w-full flex items-center justify-between border-b border-gray-200 dark:border-gray-800">
-				<button className="flex items-center gap-1.5 px-2.5 py-3.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75 hover:text-gray-900 dark:hover:text-white text-gray-500 dark:text-gray-400 !hover:text-gray-600 !dark:hover:text-white">
+				<button
+					type="button"
+					className="flex items-center gap-1.5 px-2.5 py-3.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75 hover:text-gray-900 dark:hover:text-white text-gray-500 dark:text-gray-400 !hover:text-gray-600 !dark:hover:text-white"
+				>
 					<SpeakerWaveIcon className="h-4 w-4" />
 					Cài đặt âm thanh
 				</button>

@@ -1,6 +1,6 @@
 import React from "react";
+import CTSNavbar from "@sc-components/CTS/CTSNavbar";
 import AudioDrawer from "@sc-components/AudioDrawer";
-import CTSNavbar from "@sc-components/utils/CTSNavbar";
 import VoiceForm from "@sc-components/VoiceForm";
 import { ConvertToSpeechProvider } from "~/contexts/ConvertToSpeechContext";
 

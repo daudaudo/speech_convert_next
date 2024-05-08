@@ -25,7 +25,6 @@ type Store = {
 	onChangeSpeed: (speed: CTSSpeed) => void;
 	model: CTSModel;
 	onChangeModel: (model: CTSModel) => void;
-	convertToSpeech: () => void;
 	validate: () => boolean;
 	output: CTSOutput[];
 	resultShowed: boolean;
@@ -41,7 +40,6 @@ const DefaultStore: Store = {
 	onChangeSpeed: () => {},
 	model: OpenAITTSModel.TTS1,
 	onChangeModel: () => {},
-	convertToSpeech: () => {},
 	validate: () => true,
 	output: [],
 	resultShowed: false,
@@ -92,10 +90,10 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 		});
 	};
 
-	const convertToSpeech_ = async () => {
+	const action = async () => {
 		const res = await convertToSpeech(input, voiceId, model, speed);
 		if (res) {
-			setOutput((prev) => [...prev, res]);
+			setOutput([res]);
 		}
 	};
 
@@ -109,14 +107,19 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 		onChangeSpeed,
 		model,
 		onChangeModel,
-		convertToSpeech: convertToSpeech_,
 		validate,
 		output,
 		resultShowed,
 		toggleShowResult,
 	};
 
-	return <Context.Provider value={store}>{children}</Context.Provider>;
+	return (
+		<Context.Provider value={store}>
+			<form action={action} className="h-full w-full">
+				{children}
+			</form>
+		</Context.Provider>
+	);
 };
 
 const useContext = (): Store => {
