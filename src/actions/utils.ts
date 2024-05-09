@@ -11,13 +11,15 @@ const callApi = async (url: RequestUrl, method: RequestMethod, body: FormData | 
 	const { token } = await getSessionToken();
 	const isFormData = typeof body === "object" && body instanceof FormData;
 	console.log(">>> Call Api", { url, method, body, isFormData, token });
+	const headers: HeadersInit = {
+		Authorization: token ? `Bearer ${token}` : "",
+	};
+	if (!isFormData) {
+		headers["Content-Type"] = "application/json";
+	}
 	const res = await fetch(`${DOMAIN}/${API_VERSION}/${url}`, {
 		method,
-		headers: {
-			"Content-Type": isFormData ? "multipart/form-data" : "application/json",
-			Authorization: token ? `Bearer ${token}` : "",
-		},
-		mode: "cors",
+		headers: headers,
 		body: isFormData ? body : JSON.stringify(body ?? {}),
 	});
 	return res.json();

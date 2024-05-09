@@ -1,24 +1,24 @@
 "use client";
 
 import { CloudArrowUpIcon } from "@heroicons/react/24/outline";
-import { DocumentIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { DocumentIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 
 const FileInput = () => {
-	const { input, onChangeInput, config } = useConvertToSpeech();
+	const { input, changeInput, config } = useConvertToSpeech();
 
-	const { fileAccept = [] } = config;
+	const { fileAccept = [], maxFileSize = 0 } = config;
 
-	const handleTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const onInputFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files && e.target.files.length > 0) {
-			onChangeInput(e.target.files[0]);
+			changeInput(e.target.files[0]);
 		}
 	};
 
 	const onClickClearFile = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		onChangeInput(null);
-		e.stopPropagation();
+		changeInput(null);
+		e.preventDefault();
 	};
 
 	const renderFile = () => {
@@ -31,7 +31,10 @@ const FileInput = () => {
 						<span className="font-semibold">Nhấp để tải lên</span>
 						<br />
 					</p>
-					<div className="text-xs text-gray-500 dark:text-gray-400">{fileAccept.join(", ")} được hỗ trợ</div>
+					<div className="text-xs text-gray-500 dark:text-gray-400">Hỗ trợ tệp: {fileAccept.join(", ")}</div>
+					<div className="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">
+						Kích thước tệp tối đa là {maxFileSize / (1024 * 1024)} MB
+					</div>
 				</div>
 			);
 		return (
@@ -60,8 +63,16 @@ const FileInput = () => {
 						</button>
 					)}
 					{renderFile()}
-					<input type="file" accept={fileAccept.join(",")} onChange={handleTextChange} className="hidden" />
+					<input type="file" accept={fileAccept.join(",")} onChange={onInputFileChange} className="hidden" />
 				</label>
+			</div>
+			<div className="flex flex-col w-full px-6 text-sm0">
+				<div className="flex flex-row items-center gap-1 text-primary-500">
+					<InformationCircleIcon className="h-4 w-4" />
+					<div>
+						Sau khi tệp được tải lên, chúng tôi sẽ bắt đầu tạo bài phát biểu của bạn. Điều này có thể mất vài phút.
+					</div>
+				</div>
 			</div>
 		</div>
 	);

@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Audio = (props: Props) => {
-	const { input, streamUrl, downloadUrl, voiceId, model, speed } = props;
+	const { input, streamUrl, downloadUrl, voiceId } = props;
 	const voice = CTSVoices.find((v) => v.id === voiceId);
 	const downLoadName = `${input?.slice(0, 10)}.mp3`;
 	return (

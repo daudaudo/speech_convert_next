@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import { useFormStatus } from "react-dom";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { CTSSpeed, OpenAITTSModel } from "~/types/CTSTypes";
 import VoiceFormDetail from "./VoiceFormDetail";
@@ -19,8 +18,8 @@ const VoiceForm = () => {
 		output,
 		toggleShowResult,
 		requestCreateSpeech,
+		pending,
 	} = useConvertToSpeech();
-	const { pending } = useFormStatus();
 
 	const toggleHD = (value: boolean) => {
 		setModel(value ? OpenAITTSModel.TTS1HD : OpenAITTSModel.TTS1);

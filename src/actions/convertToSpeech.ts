@@ -5,11 +5,7 @@ import { callApiAction } from "./utils";
 
 const convertToSpeech = async (formData: FormData) => {
 	try {
-		const input = formData.get("input");
-		const voice = formData.get("voice");
-		const model = formData.get("model");
-		const speed = formData.get("speed");
-		const res = await callApiAction(RequestUrl.convertToSpeech, RequestMethod.POST, { input, voice, model, speed });
+		const res = await callApiAction(RequestUrl.convertToSpeech, RequestMethod.POST, formData);
 		if (!res.success) {
 			return { error: res.message };
 		}

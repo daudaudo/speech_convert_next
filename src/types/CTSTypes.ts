@@ -51,12 +51,12 @@ type CTSConfig = {
 	maxFileSize?: number;
 };
 const CTSDefaultConfig: CTSConfig = {
-	maxTextLength: 200,
+	maxTextLength: 2048,
+	maxFileSize: 2 * 1024 * 1024, // 2MB
 	fileAccept: [".txt"],
-	maxFileSize: 1 * 1024 * 1024, // 1MB
 };
 
-// CTS response
+// Output types for the ConvertToSpeech
 type CTSOutput = {
 	id: string;
 	input?: string;
@@ -67,19 +67,9 @@ type CTSOutput = {
 	speed?: CTSSpeed;
 };
 
-type CTSResponse =
-	| {
-			id: string;
-			input: string;
-			streamUrl: string;
-			downloadUrl: string;
-			voiceId?: CTSVoiceId;
-			model?: CTSModel;
-			speed?: CTSSpeed;
-	  }
-	| {
-			error: string;
-	  };
+type CTSError = {
+	[key in CTSType]?: string;
+};
 
 export { OpenAITTSModel, OpenAIVoiceId, GoogleVoiceId, CTSDefaultConfig, CTSVoices };
-export type { CTSType, CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput, CTSResponse };
+export type { CTSType, CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput, CTSError };
