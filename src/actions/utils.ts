@@ -7,16 +7,20 @@ import { getSessionToken } from "~/utils/session";
 const DOMAIN = process.env.DOMAIN;
 const API_VERSION = process.env.API_VERSION;
 
-const callApi = async (url: RequestUrl, method: RequestMethod, body: object | undefined) => {
+const callApi = async (url: RequestUrl, method: RequestMethod, body: FormData | object | undefined) => {
 	const { token } = await getSessionToken();
+	const isFormData = typeof body === "object" && body instanceof FormData;
+	console.log(">>> Call Api", { url, method, body, isFormData, token });
+	const headers: HeadersInit = {
+		Authorization: token ? `Bearer ${token}` : "",
+	};
+	if (!isFormData) {
+		headers["Content-Type"] = "application/json";
+	}
 	const res = await fetch(`${DOMAIN}/${API_VERSION}/${url}`, {
 		method,
-		headers: {
-			"Content-Type": "application/json",
-			Authorization: token ? `Bearer ${token}` : "",
-		},
-		mode: "cors",
-		body: JSON.stringify(body ?? {}),
+		headers: headers,
+		body: isFormData ? body : JSON.stringify(body ?? {}),
 	});
 	return res.json();
 };

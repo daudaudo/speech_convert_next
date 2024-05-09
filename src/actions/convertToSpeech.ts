@@ -1,20 +1,22 @@
+"use server";
+
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { callApiAction } from "./utils";
 
-const convertToSpeech = async (input: string, voice: string, model: string, speed: number) => {
+const convertToSpeech = async (formData: FormData) => {
 	try {
-		const res = await callApiAction(RequestUrl.convertToSpeech, RequestMethod.POST, { input, voice, model, speed });
+		const res = await callApiAction(RequestUrl.convertToSpeech, RequestMethod.POST, formData);
 		if (!res.success) {
-			throw new Error(res.message);
+			return { error: res.message };
 		}
 		return {
 			id: res.data?._id,
 			input: res.data?.input,
 			streamUrl: res.data?.stream_url,
 			downloadUrl: res.data?.download_url,
-			voiceId: res.data?.voice ?? voice,
-			model: res.data?.model ?? model,
-			speed: res.data?.speed ?? speed,
+			voiceId: res.data?.voice,
+			model: res.data?.model,
+			speed: res.data?.speed,
 		};
 	} catch (error) {
 		throw error;

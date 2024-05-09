@@ -19,7 +19,7 @@ const ConvertToSpeechLayout = ({ children }: Props) => {
 									<div className="relative px-0 rounded-lg h-full">
 										<div className="flex flex-col h-full">
 											<CTSNavbar />
-											{children}
+											<div className="flex-1">{children}</div>
 										</div>
 									</div>
 								</div>

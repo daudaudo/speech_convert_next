@@ -1,5 +1,9 @@
+type CTSType = "text" | "document" | "conversation";
 // Input types for the ConvertToSpeech
-type CTSInput = string;
+type CTSInput = {
+	text: string;
+	file?: File | null;
+};
 
 // Model types for the ConvertToSpeech
 enum OpenAITTSModel {
@@ -43,12 +47,16 @@ const CTSVoices: CTSVoice[] = [
 type CTSSpeed = 0.25 | 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.25 | 2.5 | 2.75 | 3 | 3.25 | 3.5 | 3.75 | 4;
 type CTSConfig = {
 	maxTextLength?: number;
+	fileAccept?: string[];
+	maxFileSize?: number;
 };
 const CTSDefaultConfig: CTSConfig = {
-	maxTextLength: 200,
+	maxTextLength: 2048,
+	maxFileSize: 2 * 1024 * 1024, // 2MB
+	fileAccept: [".txt"],
 };
 
-// CTS response
+// Output types for the ConvertToSpeech
 type CTSOutput = {
 	id: string;
 	input?: string;
@@ -59,5 +67,9 @@ type CTSOutput = {
 	speed?: CTSSpeed;
 };
 
+type CTSError = {
+	[key in CTSType]?: string;
+};
+
 export { OpenAITTSModel, OpenAIVoiceId, GoogleVoiceId, CTSDefaultConfig, CTSVoices };
-export type { CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput };
+export type { CTSType, CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput, CTSError };

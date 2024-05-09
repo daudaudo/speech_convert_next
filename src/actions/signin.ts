@@ -1,3 +1,5 @@
+"use server";
+
 import { redirect } from "next/navigation";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { createSession } from "~/utils/session";
