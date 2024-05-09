@@ -8,16 +8,26 @@ import VoiceFormDetail from "./VoiceFormDetail";
 import VoiceFormCollapse from "./VoiceFormCollapse";
 
 const VoiceForm = () => {
-	const { onChangeModel, voiceId, chooseVoice, speed, onChangeSpeed, model, validate, output, toggleShowResult } =
-		useConvertToSpeech();
+	const {
+		setModel,
+		voiceId,
+		setVoiceId,
+		speed,
+		setSpeed,
+		model,
+		validate,
+		output,
+		toggleShowResult,
+		requestCreateSpeech,
+	} = useConvertToSpeech();
 	const { pending } = useFormStatus();
 
 	const toggleHD = (value: boolean) => {
-		onChangeModel(value ? OpenAITTSModel.TTS1HD : OpenAITTSModel.TTS1);
+		setModel(value ? OpenAITTSModel.TTS1HD : OpenAITTSModel.TTS1);
 	};
 
-	const _onChangeSpeed = (speed: number) => {
-		onChangeSpeed(speed as CTSSpeed);
+	const onChangeSpeed = (speed: number) => {
+		setSpeed(speed as CTSSpeed);
 	};
 
 	const validated = validate();
@@ -29,11 +39,12 @@ const VoiceForm = () => {
 					HD={model === OpenAITTSModel.TTS1HD}
 					toggleHD={toggleHD}
 					voiceId={voiceId}
-					chooseVoice={chooseVoice}
+					setVoiceId={setVoiceId}
 					speed={speed}
-					onChangeSpeed={_onChangeSpeed}
+					onChangeSpeed={onChangeSpeed}
 					validated={validated}
 					pending={pending}
+					onCreateSpeech={requestCreateSpeech}
 				/>
 			</div>
 			<div className="flex md:hidden flex-1 flex-col h-full max-h-full pb-0.5 space-y-6">
@@ -42,13 +53,14 @@ const VoiceForm = () => {
 						HD={model === OpenAITTSModel.TTS1HD}
 						toggleHD={toggleHD}
 						voiceId={voiceId}
-						chooseVoice={chooseVoice}
+						setVoiceId={setVoiceId}
 						speed={speed}
-						onChangeSpeed={_onChangeSpeed}
+						onChangeSpeed={onChangeSpeed}
 						validated={validated}
 						hasResult={output.length > 0}
 						toggleShowResult={toggleShowResult}
 						pending={pending}
+						onCreateSpeech={requestCreateSpeech}
 					/>
 				</div>
 			</div>

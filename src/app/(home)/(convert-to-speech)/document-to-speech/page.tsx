@@ -1,7 +1,8 @@
 import React from "react";
+import FileInput from "@sc-components/CTS/FileInput";
 
 const DocumentToSpeechPage = () => {
-	return <></>;
+	return <FileInput />;
 };
 
 export default DocumentToSpeechPage;
