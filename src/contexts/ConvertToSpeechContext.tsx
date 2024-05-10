@@ -130,7 +130,9 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 				const res = await convertToSpeech(formData);
 				if (res.error) {
 					setError((prev) => ({ ...prev, [type]: res.error }));
+					setOutput([]);
 				} else {
+					clearError();
 					setOutput([res as CTSOutput]);
 				}
 			}

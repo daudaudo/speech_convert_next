@@ -51,7 +51,7 @@ const FileInput = () => {
 	};
 
 	return (
-		<div className="w-full h-full">
+		<div className="flex-1">
 			<div className="relative flex items-center justify-center w-full p-6">
 				<label className="flex flex-col items-center rounded-lg justify-center w-full h-64 cursor-pointer border-2 border-dashed dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
 					{!!input.file && (

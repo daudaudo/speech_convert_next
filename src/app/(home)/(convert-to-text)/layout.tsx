@@ -1,7 +1,8 @@
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import CTTNavbar from "~/components/CTT/CTTNavbar";
-import SelectLanguage from "~/components/CTT/SelectLanguage";
+import CTTOutput from "~/components/CTT/CTTOutput";
+import CTTSelectLanguage from "~/components/CTT/SelectLanguage";
 import CTTSubmitButton from "~/components/CTT/SubmitButton";
 import { ConvertToTextProvider } from "~/contexts/ConvertToTextContext";
 
@@ -23,19 +24,23 @@ const ConvertToTextLayout = ({ children }: Props) => {
 								<ChevronDoubleRightIcon className="h-6 w-6" />
 							</div>
 						</div>
-						<div className="flex-1 text-end">
-							<SelectLanguage />
+						<div className="flex-1 items-end">
+							<CTTSelectLanguage />
 						</div>
 					</div>
 				</div>
-				<div className="flex-1 pb-44 md:pb-0">
+				<div className="flex-1">
 					<div className="relative flex-1 h-full grid grid-cols-1 md:grid-cols-2 gap-3 content-stretch">
 						<div className="flex flex-col h-full border border-gray-200 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600">
 							{children}
 						</div>
 						<CTTSubmitButton />
 						<div className="relative flex-grow h-full">
-							<div className="flex flex-col h-full max-h-full md:pt-2 px-4 pl-8 bg-gray-100 border border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-600 text-sm text-gray-900 dark:text-gray-100" />
+							<div className="flex flex-col h-full max-h-full md:pt-2 px-4 pl-8 bg-gray-100 border border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-600 text-sm text-gray-900 dark:text-gray-100">
+								<div className="flex-1 md:pl-4">
+									<CTTOutput />
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

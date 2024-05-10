@@ -19,7 +19,7 @@ type Store = {
 	output: CTTOutput[];
 	requestCreateText: () => void;
 	pending?: boolean;
-	error?: CTTError;
+	error?: string;
 	clearError?: () => void;
 };
 
@@ -101,7 +101,9 @@ const Provider = ({ children, config = CTTDefaultConfig }: Props) => {
 				const res = await convertToText(formData);
 				if (res.error) {
 					setError((prev) => ({ ...prev, [type]: res.error }));
+					setOutput([]);
 				} else {
+					clearError();
 					setOutput([res as CTTOutput]);
 				}
 			}
@@ -118,7 +120,7 @@ const Provider = ({ children, config = CTTDefaultConfig }: Props) => {
 		output,
 		requestCreateText,
 		pending,
-		error,
+		error: error?.[type],
 		clearError,
 	};
 
