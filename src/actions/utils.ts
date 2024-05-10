@@ -4,20 +4,18 @@ import { RequestMethod, RequestUrl } from "~/enums/request";
 import RequestError from "~/errors/request";
 import { getSessionToken } from "~/utils/session";
 
-const DOMAIN = process.env.DOMAIN;
-const API_VERSION = process.env.API_VERSION;
+const BASE_API_URL = process.env.BASE_API_URL;
 
 const callApi = async (url: RequestUrl, method: RequestMethod, body: FormData | object | undefined) => {
 	const { token } = await getSessionToken();
 	const isFormData = typeof body === "object" && body instanceof FormData;
-	console.log(">>> Call Api", { url, method, body, isFormData, token });
 	const headers: HeadersInit = {
 		Authorization: token ? `Bearer ${token}` : "",
 	};
 	if (!isFormData) {
 		headers["Content-Type"] = "application/json";
 	}
-	const res = await fetch(`${DOMAIN}/${API_VERSION}/${url}`, {
+	const res = await fetch(`${BASE_API_URL}/${url}`, {
 		method,
 		headers: headers,
 		body: isFormData ? body : JSON.stringify(body ?? {}),
