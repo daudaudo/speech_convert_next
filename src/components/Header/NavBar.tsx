@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
-import { PagePath } from "~/enums/path";
+import { isCTSPage, isCTTPage, isHistoryPage, PagePath } from "~/enums/path";
 
 const NavBar = () => {
 	const pathname = usePathname();
@@ -13,15 +13,28 @@ const NavBar = () => {
 	];
 
 	const renderNavItem = (item: { path: string; label: string }) => {
-		const isActive = pathname === item.path;
+		const { path, label } = item;
+		let isActive = false;
+		switch (path) {
+			case PagePath.textToSpeech:
+				isActive = isCTSPage(pathname);
+				break;
+			case PagePath.speechToText:
+				isActive = isCTTPage(pathname);
+				break;
+			case PagePath.history:
+				isActive = isHistoryPage(pathname);
+			default:
+				break;
+		}
 
 		return (
 			<Link
-				href={item.path}
-				key={item.path}
+				href={path}
+				key={path}
 				className={`text-sm/6 flex items-center gap-1 py-2 px-4 font-medium transition-colors relative after:absolute after:-bottom-px after:inset-x-2 after:h-px after:rounded-full after:opacity-0 after:bg-primary-600 dark:after:bg-white after:transition-opacity ${isActive ? "text-primary-600 dark:text-white after:opacity-100" : "text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"}`}
 			>
-				{item.label}
+				{label}
 			</Link>
 		);
 	};

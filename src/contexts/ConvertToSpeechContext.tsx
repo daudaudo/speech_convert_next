@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import React, { createContext, useMemo, useState, useTransition } from "react";
 import convertToSpeech from "~/actions/convertToSpeech";
+import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import { PagePath } from "~/enums/path";
 import ContextError from "~/errors/context";
 import {
@@ -14,8 +15,6 @@ import {
 	CTSOutput,
 	CTSSpeed,
 	CTSVoiceId,
-	OpenAITTSModel,
-	OpenAIVoiceId,
 } from "~/types/CTSTypes";
 
 type Store = {
@@ -122,23 +121,25 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 
 	const requestCreateSpeech = async () => {
 		startTransition(async () => {
-			const formData = new FormData();
-			formData.append("voice", voiceId);
-			formData.append("model", model);
-			formData.append("speed", speed.toString());
-			formData.append("input", requestInput);
-			const res = await convertToSpeech(formData);
-			if (res.error) {
-				setError((prev) => ({ ...prev, [type]: res.error }));
-			} else {
-				setOutput([res as CTSOutput]);
+			if (validate()) {
+				const formData = new FormData();
+				formData.append("voice", voiceId);
+				formData.append("model", model);
+				formData.append("speed", speed.toString());
+				formData.append("input", requestInput);
+				const res = await convertToSpeech(formData);
+				if (res.error) {
+					setError((prev) => ({ ...prev, [type]: res.error }));
+				} else {
+					setOutput([res as CTSOutput]);
+				}
 			}
 		});
 	};
 
 	const store: Store = {
 		input,
-		changeInput: changeInput,
+		changeInput,
 		voiceId,
 		setVoiceId,
 		config,
