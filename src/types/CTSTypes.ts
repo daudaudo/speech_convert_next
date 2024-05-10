@@ -1,3 +1,5 @@
+import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
+
 type CTSType = "text" | "document" | "conversation";
 // Input types for the ConvertToSpeech
 type CTSInput = {
@@ -6,26 +8,10 @@ type CTSInput = {
 };
 
 // Model types for the ConvertToSpeech
-enum OpenAITTSModel {
-	TTS1 = "tts-1",
-	TTS1HD = "tts-1-hd",
-}
 type CTSModel = OpenAITTSModel;
 
 // Voice types for the ConvertToSpeech
-enum OpenAIVoiceId {
-	Alloy = "alloy",
-	Echo = "echo",
-	Fable = "fable",
-	Onyx = "onyx",
-	Nova = "nova",
-	Shimmer = "shimmer",
-}
-enum GoogleVoiceId {
-	Standard = "standard",
-	WaveNet = "wavenet",
-}
-type CTSVoiceId = OpenAIVoiceId | GoogleVoiceId;
+type CTSVoiceId = OpenAIVoiceId;
 
 // Voice data for the ConvertToSpeech
 // Get it from api later
@@ -71,5 +57,5 @@ type CTSError = {
 	[key in CTSType]?: string;
 };
 
-export { OpenAITTSModel, OpenAIVoiceId, GoogleVoiceId, CTSDefaultConfig, CTSVoices };
+export { CTSDefaultConfig, CTSVoices };
 export type { CTSType, CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput, CTSError };
