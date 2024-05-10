@@ -95,7 +95,7 @@ const Provider = ({ children, config = CTTDefaultConfig }: Props) => {
 		startTransition(async () => {
 			if (validate()) {
 				const formData = new FormData();
-				formData.append("language", language);
+				formData.append("language_code", language);
 				formData.append("model", OpenAITranscriptionModel.Whisper1);
 				formData.append("file", input.file as File);
 				const res = await convertToText(formData);

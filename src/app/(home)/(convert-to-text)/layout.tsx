@@ -24,7 +24,7 @@ const ConvertToTextLayout = ({ children }: Props) => {
 								<ChevronDoubleRightIcon className="h-6 w-6" />
 							</div>
 						</div>
-						<div className="flex-1 items-end">
+						<div className="flex-1 flex justify-end w-full">
 							<CTTSelectLanguage />
 						</div>
 					</div>

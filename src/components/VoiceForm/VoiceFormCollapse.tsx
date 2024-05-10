@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { ChevronDoubleUpIcon, SpeakerWaveIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import { Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
 import SelectSpeed from "./SelectSpeed";
 import SelectVoice from "./SelectVoice";
@@ -59,9 +60,9 @@ const VoiceFormCollapse = (props: Props) => {
 					<button
 						onClick={onCreateSpeech}
 						disabled={!validated || pending}
-						className={`focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 w-20 h-20 font-medium rounded-full text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center justify-center ${pending ? "animate-spin" : ""}`}
+						className="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 w-20 h-20 font-medium rounded-full text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center justify-center"
 					>
-						<SpeakerWaveIcon className="h-4 w-4" />
+						{pending ? <ArrowPathIcon className="h-6 w-6 animate-spin" /> : <SpeakerWaveIcon className="h-4 w-4" />}
 					</button>
 				</div>
 				<button

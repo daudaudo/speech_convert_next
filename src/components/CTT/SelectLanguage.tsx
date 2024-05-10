@@ -33,22 +33,17 @@ const SelectLanguage = () => {
 	};
 
 	return (
-		<Select
-			size="md"
-			variant="static"
-			value={language}
-			selected={renderSelectOptions}
-			onChange={onSelectChange}
-			className="flex items-center gap-2 border-none pb-4"
-		>
-			{options.map(({ value, label }) => (
-				<Option key={value} value={value}>
-					<span className="w-full flex items-center gap-1.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75">
-						{label}
-					</span>
-				</Option>
-			))}
-		</Select>
+		<div className="w-56">
+			<Select size="md" variant="static" value={language} selected={renderSelectOptions} onChange={onSelectChange}>
+				{options.map(({ value, label }) => (
+					<Option key={value} value={value}>
+						<span className="w-full flex items-center gap-1.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75">
+							{label}
+						</span>
+					</Option>
+				))}
+			</Select>
+		</div>
 	);
 };
 

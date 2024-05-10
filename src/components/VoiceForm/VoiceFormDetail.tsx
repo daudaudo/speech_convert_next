@@ -2,6 +2,7 @@
 
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import React from "react";
+import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { CTSVoiceId } from "~/types/CTSTypes";
 import SelectSpeed from "./SelectSpeed";
 import SelectVoice from "./SelectVoice";
@@ -35,8 +36,8 @@ const VoiceFormDetail = (props: Props) => {
 						disabled={!validated || pending}
 						className="focus:outline-none disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 w-full h-full font-medium rounded-full rounded-l-none text-base gap-x-2.5 px-3.5 py-2.5 shadow-sm text-white dark:text-gray-900 bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500 dark:bg-primary-400 dark:hover:bg-primary-500 dark:disabled:bg-primary-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-500 dark:focus-visible:outline-primary-400 inline-flex items-center justify-between"
 					>
-						<div className="truncate">{pending ? "Đang tạo âm thanh" : "Tạo âm thanh"}</div>
-						<SpeakerWaveIcon className="h-4 w-4" />
+						<div className="truncate">Tạo âm thanh</div>
+						{pending ? <ArrowPathIcon className="h-6 w-6 animate-spin" /> : <SpeakerWaveIcon className="h-4 w-4" />}
 					</button>
 				</div>
 			</div>
