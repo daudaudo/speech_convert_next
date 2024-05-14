@@ -1,7 +1,7 @@
 "use client";
 
-import { XCircleIcon } from "@heroicons/react/24/outline";
-import { ClipboardDocumentIcon } from "@heroicons/react/24/outline";
+import { CheckIcon, DocumentDuplicateIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import { IconButton } from "@material-tailwind/react";
 import React from "react";
 import { useCopyToClipboard } from "usehooks-ts";
 import { useConvertToText } from "~/contexts/ConvertToTextContext";
@@ -9,17 +9,21 @@ import { useConvertToText } from "~/contexts/ConvertToTextContext";
 const CTTOutput = () => {
 	const { output, error, clearError } = useConvertToText();
 	const [, copyToClipboard] = useCopyToClipboard();
+	const [copied, setCopied] = React.useState(false);
 	const displayOutput = output[0];
 
 	const onCopyOutput = () => {
 		if (displayOutput?.text) {
-			copyToClipboard("displayOutput.text");
-			// .then(() => {
-			// 	console.log("Copied!", {});
-			// })
-			// .catch((error) => {
-			// 	console.error("Failed to copy!", error);
-			// });
+			copyToClipboard(displayOutput.text)
+				.then(() => {
+					setCopied(true);
+					setTimeout(() => {
+						setCopied(false);
+					}, 3000);
+				})
+				.catch((error) => {
+					throw error;
+				});
 		}
 	};
 
@@ -47,15 +51,17 @@ const CTTOutput = () => {
 				<div className="relative w-full h-full">
 					<textarea
 						readOnly
-						value={displayOutput.text}
+						value={displayOutput?.text}
 						className="w-full pb-6 pt-1 resize-none overflow-y-auto md:h-full min-h-[238px] px-0 text-sm text-gray-900 bg-gray-100 border-0 dark:bg-gray-800 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none"
 					/>
 				</div>
 			</div>
-			{displayOutput.text && (
-				<button onClick={onCopyOutput} className="shrink-0 pb-1 flex justify-end">
-					<ClipboardDocumentIcon className="h-6 w-6" />
-				</button>
+			{displayOutput?.text && (
+				<div className="shrink-0 pb-1 flex justify-end">
+					<IconButton variant="text" onMouseLeave={() => setCopied(false)} onClick={onCopyOutput}>
+						{copied ? <CheckIcon className="h-5 w-5" /> : <DocumentDuplicateIcon className="h-5 w-5" />}
+					</IconButton>
+				</div>
 			)}
 		</div>
 	);

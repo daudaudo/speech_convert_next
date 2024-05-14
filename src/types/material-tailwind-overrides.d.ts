@@ -11,6 +11,7 @@ import {
 	DialogHeaderProps as OriginalDialogHeaderProps,
 	DialogProps as OriginalDialogProps,
 	DrawerProps as OriginalDrawerProps,
+	IconButtonProps as OriginalIconButtonProps,
 	InputProps as OriginalInputProps,
 	SelectProps as OriginalSelectProps,
 } from "@material-tailwind/react";
@@ -24,6 +25,7 @@ type MuiOverrideProps = {
 declare module "@material-tailwind/react" {
 	// Button, Input, Select
 	export interface ButtonProps extends OriginalButtonProps, MuiOverrideProps {}
+	export interface IconButtonProps extends OriginalIconButtonProps, MuiOverrideProps {}
 	export interface InputProps extends OriginalInputProps, MuiOverrideProps {}
 	export interface SelectProps extends OriginalSelectProps, MuiOverrideProps {}
 	// Drawer

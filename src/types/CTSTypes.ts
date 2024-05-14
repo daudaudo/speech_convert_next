@@ -21,12 +21,12 @@ type CTSVoice = {
 	description: string;
 };
 const CTSVoices: CTSVoice[] = [
-	{ id: OpenAIVoiceId.Alloy, name: "Giọng pha", description: "Trung lập, chuyên nghiệp và rõ ràng" },
-	{ id: OpenAIVoiceId.Echo, name: "Giọng vang", description: "Ấm áp, thân thiện và hấp dẫn" },
-	{ id: OpenAIVoiceId.Fable, name: "Giọng ngụ ngôn", description: "Năng động, biểu cảm và hấp dẫn" },
-	{ id: OpenAIVoiceId.Onyx, name: "Giọng chín chắn", description: "Lớn tuổi, chín chắn, và có kinh nghiệm" },
-	{ id: OpenAIVoiceId.Nova, name: "Giọng năng động", description: "Trẻ, năng động và cuốn hút" },
-	{ id: OpenAIVoiceId.Shimmer, name: "Giọng sáng tạo", description: "Sống động, sôi nổi và năng động" },
+	{ id: OpenAIVoiceId.Alloy, name: "Chuyên nghiệp", description: "Trung lập, chuyên nghiệp và rõ ràng" },
+	{ id: OpenAIVoiceId.Echo, name: "Thân thiện", description: "Ấm áp, thân thiện và hấp dẫn" },
+	{ id: OpenAIVoiceId.Fable, name: "Biểu cảm", description: "Năng động, biểu cảm và hấp dẫn" },
+	{ id: OpenAIVoiceId.Onyx, name: "Chín chắn", description: "Lớn tuổi, chín chắn, và có kinh nghiệm" },
+	{ id: OpenAIVoiceId.Nova, name: "Năng động", description: "Trẻ, năng động và cuốn hút" },
+	{ id: OpenAIVoiceId.Shimmer, name: "Sáng tạo", description: "Sống động, sôi nổi và năng động" },
 ];
 
 // Config types for the ConvertToSpeech

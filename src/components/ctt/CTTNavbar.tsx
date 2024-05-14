@@ -10,14 +10,23 @@ const CTTNavbar = () => {
 	const pathname = usePathname();
 
 	const navItems = [
-		{ path: PagePath.speechToText, label: "Ghi âm", icon: <MicrophoneIcon className="h-4 w-4" /> },
-		{ path: PagePath.documentToText, label: "Tài liệu", icon: <DocumentIcon className="h-4 w-4" /> },
-		{ path: PagePath.textToText, label: "Dịch thuật", icon: <LanguageIcon className="h-4 w-4" /> },
+		{ path: PagePath.speechToText, label: "Ghi âm", icon: MicrophoneIcon },
+		{ path: PagePath.documentToText, label: "Tài liệu", icon: DocumentIcon },
+		{ path: PagePath.textToText, label: "Dịch thuật", icon: LanguageIcon },
 	];
 
-	const renderNavItem = (item: { path: string; label: string; icon: React.JSX.Element }) => {
+	const renderNavItem = (item: {
+		path: string;
+		label: string;
+		icon: React.ForwardRefExoticComponent<
+			Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
+				title?: string | undefined;
+				titleId?: string | undefined;
+			} & React.RefAttributes<SVGSVGElement>
+		>;
+	}) => {
 		const isActive = pathname === item.path;
-
+		const Icon = item.icon;
 		return (
 			<li key={item.path} className="min-w-0">
 				<Link
@@ -25,8 +34,8 @@ const CTTNavbar = () => {
 					key={item.path}
 					className={`w-full flex items-center gap-1.5 px-2.5 py-3.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75 ${isActive ? "text-gray-900 dark:text-white rounded-full" : "hover:text-gray-900 dark:hover:text-white text-gray-500 dark:text-gray-400 !hover:text-gray-600 !dark:hover:text-white"}`}
 				>
-					{item.icon}
-					{item.label}
+					<Icon className="h-6 w-6 md:h-6 md:w-4" title={item.label} />
+					<span className=" hidden md:block">{item.label}</span>
 				</Link>
 			</li>
 		);

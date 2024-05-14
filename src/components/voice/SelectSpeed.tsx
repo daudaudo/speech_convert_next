@@ -9,22 +9,18 @@ interface Props {
 const SelectSpeed = (props: Props) => {
 	const { value, onChange } = props;
 	const options = [
-		{ value: 0.25, label: "0.25x" },
-		{ value: 0.5, label: "0.5x" },
-		{ value: 0.75, label: "0.75x" },
-		{ value: 1, label: "Bình thường" },
-		{ value: 1.25, label: "1.25x" },
-		{ value: 1.5, label: "1.5x" },
-		{ value: 1.75, label: "1.75x" },
-		{ value: 2, label: "2x" },
-		{ value: 2.25, label: "2.25x" },
-		{ value: 2.5, label: "2.5x" },
-		{ value: 2.75, label: "2.75x" },
-		{ value: 3, label: "3x" },
-		{ value: 3.25, label: "3.25x" },
-		{ value: 3.5, label: "3.5x" },
-		{ value: 3.75, label: "3.75x" },
-		{ value: 4, label: "4x" },
+		{ value: 0.25, label: "0.25" },
+		{ value: 0.5, label: "0.5" },
+		{ value: 0.75, label: "0.75" },
+		{ value: 1, label: "1.0" },
+		{ value: 1.25, label: "1.25" },
+		{ value: 1.5, label: "1.5" },
+		{ value: 1.75, label: "1.75" },
+		{ value: 2, label: "2.0" },
+		{ value: 2.5, label: "2.5" },
+		{ value: 3, label: "3.0" },
+		{ value: 3.5, label: "3.5" },
+		{ value: 4, label: "4.0" },
 	];
 
 	const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -44,7 +40,11 @@ const SelectSpeed = (props: Props) => {
 					Chọn tốc độ
 				</option>
 				{options.map((option) => (
-					<option key={option.value} value={option.value}>
+					<option
+						key={option.value}
+						value={option.value}
+						className="relative md:before:content-['Tốc độ:'] before:text-red-500 before:content-none"
+					>
 						{option.label}
 					</option>
 				))}

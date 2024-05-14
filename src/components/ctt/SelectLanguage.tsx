@@ -33,7 +33,7 @@ const SelectLanguage = () => {
 	};
 
 	return (
-		<div className="w-56">
+		<div className="min-w-[200px]">
 			<Select size="md" variant="static" value={language} selected={renderSelectOptions} onChange={onSelectChange}>
 				{options.map(({ value, label }) => (
 					<Option key={value} value={value}>

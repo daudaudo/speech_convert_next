@@ -20,7 +20,7 @@ const ConvertToTextLayout = ({ children }: Props) => {
 							<CTTNavbar />
 						</div>
 						<div className="shrink-0">
-							<div className="inline-flex justify-center p-2 text-gray-500 rounded-full cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
+							<div className="relative inline-flex justify-center p-2 text-gray-500 rounded-full cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
 								<ChevronDoubleRightIcon className="h-6 w-6" />
 							</div>
 						</div>
