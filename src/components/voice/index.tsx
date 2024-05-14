@@ -57,7 +57,7 @@ const VoiceForm = () => {
 						speed={speed}
 						onChangeSpeed={onChangeSpeed}
 						validated={validated}
-						hasResult={output.length > 0}
+						hasResult={!!output}
 						toggleShowResult={toggleShowResult}
 						pending={pending}
 						onCreateSpeech={requestCreateSpeech}

@@ -1,4 +1,4 @@
-import { ArrowTrendingUpIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ArrowTrendingUpIcon, ChartBarIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
 interface Props {
@@ -40,17 +40,13 @@ const SelectSpeed = (props: Props) => {
 					Chọn tốc độ
 				</option>
 				{options.map((option) => (
-					<option
-						key={option.value}
-						value={option.value}
-						className="relative md:before:content-['Tốc độ:'] before:text-red-500 before:content-none"
-					>
-						{option.label}
+					<option key={option.value} value={option.value} className="md:after:content-['Tốcđộ:'] after:text-red-500">
+						Tốc độ {option.label}
 					</option>
 				))}
 			</select>
 			<span className="absolute inset-y-0 start-0 flex items-center pointer-events-none px-3.5">
-				<ArrowTrendingUpIcon className="h-4 w-4 text-gray-900 dark:text-white" />
+				<ChartBarIcon className="h-6 w-6 text-gray-900 dark:text-white" />
 			</span>
 			<span className="absolute inset-y-0 end-0 flex items-center pointer-events-none px-3.5">
 				<ChevronDownIcon className="h-4 w-4 text-gray-900 dark:text-white" />

@@ -28,7 +28,7 @@ type Store = {
 	model: CTSModel;
 	setModel: (model: CTSModel) => void;
 	validate: () => boolean;
-	output: CTSOutput[];
+	output?: CTSOutput;
 	resultShowed: boolean;
 	toggleShowResult: () => void;
 	requestCreateSpeech: () => void;
@@ -47,7 +47,6 @@ const DefaultStore: Store = {
 	model: OpenAITTSModel.TTS1,
 	setModel: () => {},
 	validate: () => true,
-	output: [],
 	resultShowed: false,
 	toggleShowResult: () => {},
 	requestCreateSpeech: () => {},
@@ -82,7 +81,7 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 	const [voiceId, setVoiceId] = useState<CTSVoiceId>(DefaultStore.voiceId);
 	const [speed, setSpeed] = useState<CTSSpeed>(DefaultStore.speed);
 	const [model, setModel] = useState<CTSModel>(DefaultStore.model);
-	const [output, setOutput] = useState<CTSOutput[]>(DefaultStore.output);
+	const [output, setOutput] = useState<CTSOutput | undefined>(undefined);
 	const [resultShowed, setResultShowed] = useState<boolean>(DefaultStore.resultShowed);
 
 	const changeInput = (value: string | File | null) => {
@@ -114,7 +113,7 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 
 	const toggleShowResult = () => {
 		setResultShowed((prev) => {
-			if (output.length === 0) return false;
+			if (!output) return false;
 			return !prev;
 		});
 	};
@@ -127,13 +126,13 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 				formData.append("model", model);
 				formData.append("speed", speed.toString());
 				formData.append("input", requestInput);
+				setOutput(undefined);
 				const res = await convertToSpeech(formData);
 				if (res.error) {
 					setError((prev) => ({ ...prev, [type]: res.error }));
-					setOutput([]);
 				} else {
 					clearError();
-					setOutput([res as CTSOutput]);
+					setOutput(res as CTSOutput);
 				}
 			}
 		});

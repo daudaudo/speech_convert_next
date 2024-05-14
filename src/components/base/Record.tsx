@@ -33,7 +33,7 @@ const Record = (props: Props) => {
 			};
 			mediaRecorderRef.current.onstop = () => {
 				const audioBlob = new Blob(audioChunksRef.current, { type: "audio/wav" });
-				const audioFile = new File([audioBlob], `${Date.now()}.wav`);
+				const audioFile = new File([audioBlob], `${Date.now()}.wav`, { type: "audio/wav" });
 				createRecordCallback(audioFile);
 				const audioUrl = URL.createObjectURL(audioBlob);
 				setAudioURL(audioUrl);

@@ -4,28 +4,12 @@ import React from "react";
 import { ChevronDoubleUpIcon, PlayPauseIcon } from "@heroicons/react/24/solid";
 import { Drawer } from "@material-tailwind/react";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
-import { CTSOutput } from "~/types/CTSTypes";
 import Audio from "./Audio";
 
 const AudioDrawer = () => {
 	const { output, resultShowed, toggleShowResult } = useConvertToSpeech();
 
-	const renderAudio = (audio: CTSOutput) => {
-		const { id, input, streamUrl, downloadUrl, voiceId, speed, model } = audio;
-		return (
-			<Audio
-				key={id}
-				input={input}
-				streamUrl={streamUrl}
-				downloadUrl={downloadUrl}
-				voiceId={voiceId}
-				model={model}
-				speed={speed}
-			/>
-		);
-	};
-
-	if (output.length === 0) return null;
+	if (!output) return null;
 
 	return (
 		<>
@@ -50,7 +34,15 @@ const AudioDrawer = () => {
 								Audio Player
 							</h5>
 						</button>
-						{output.map(renderAudio)}
+						<Audio
+							key={output.id}
+							input={output.input}
+							streamUrl={output.streamUrl}
+							downloadUrl={output.downloadUrl}
+							voiceId={output.voiceId}
+							model={output.model}
+							speed={output.speed}
+						/>
 					</div>
 				</div>
 			</Drawer>

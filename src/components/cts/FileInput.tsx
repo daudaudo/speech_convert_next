@@ -1,9 +1,11 @@
 "use client";
 
+import React from "react";
 import { CloudArrowUpIcon } from "@heroicons/react/24/outline";
 import { DocumentIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
-import React from "react";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
+import { FileSizeUnit } from "~/enums/file";
+import { convertBytes } from "~/utils/file";
 
 const FileInput = () => {
 	const { input, changeInput, config } = useConvertToSpeech();
@@ -33,7 +35,7 @@ const FileInput = () => {
 					</p>
 					<div className="text-xs text-gray-500 dark:text-gray-400">Hỗ trợ tệp: {fileAccept.join(", ")}</div>
 					<div className="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">
-						Kích thước tệp tối đa là {maxFileSize / (1024 * 1024)} MB
+						Kích thước tệp tối đa là {convertBytes(maxFileSize, FileSizeUnit.MEGABYTE)} MB
 					</div>
 				</div>
 			);
