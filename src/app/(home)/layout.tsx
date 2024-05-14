@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "@sc-components/Header";
+import Header from "~/components/header";
 
 interface Props {
 	children: React.ReactNode;

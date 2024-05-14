@@ -1,5 +1,5 @@
 import React from "react";
-import CTTFileInput from "~/components/CTT/FileInput";
+import CTTFileInput from "~/components/ctt/FileInput";
 
 const DocumentToTextPage = () => {
 	return <CTTFileInput />;

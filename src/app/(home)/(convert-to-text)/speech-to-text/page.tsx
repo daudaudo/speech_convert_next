@@ -1,7 +1,8 @@
 import React from "react";
+import RecordInput from "~/components/ctt/RecordInput";
 
 const SpeechToTextPage = () => {
-	return <></>;
+	return <RecordInput />;
 };
 
 export default SpeechToTextPage;

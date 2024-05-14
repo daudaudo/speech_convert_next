@@ -1,5 +1,5 @@
 import React from "react";
-import SignInForm from "@sc-components/SignInForm";
+import SignInForm from "~/components/signin";
 
 interface Props {}
 

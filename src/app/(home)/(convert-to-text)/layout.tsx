@@ -1,9 +1,9 @@
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import React from "react";
-import CTTNavbar from "~/components/CTT/CTTNavbar";
-import CTTOutput from "~/components/CTT/CTTOutput";
-import CTTSelectLanguage from "~/components/CTT/SelectLanguage";
-import CTTSubmitButton from "~/components/CTT/SubmitButton";
+import CTTNavbar from "~/components/ctt/CTTNavbar";
+import CTTOutput from "~/components/ctt/CTTOutput";
+import CTTSelectLanguage from "~/components/ctt/SelectLanguage";
+import CTTSubmitButton from "~/components/ctt/SubmitButton";
 import { ConvertToTextProvider } from "~/contexts/ConvertToTextContext";
 
 interface Props {
@@ -36,11 +36,7 @@ const ConvertToTextLayout = ({ children }: Props) => {
 						</div>
 						<CTTSubmitButton />
 						<div className="relative flex-grow h-full">
-							<div className="flex flex-col h-full max-h-full md:pt-2 px-4 pl-8 bg-gray-100 border border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-600 text-sm text-gray-900 dark:text-gray-100">
-								<div className="flex-1 md:pl-4">
-									<CTTOutput />
-								</div>
-							</div>
+							<CTTOutput />
 						</div>
 					</div>
 				</div>

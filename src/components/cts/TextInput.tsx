@@ -2,12 +2,13 @@
 
 import { XCircleIcon } from "@heroicons/react/24/outline";
 import React from "react";
-import { useConvertToText } from "~/contexts/ConvertToTextContext";
+import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 
-const CTTTextInput = () => {
-	const { input, changeInput, config, error, clearError } = useConvertToText();
+const TextInput = () => {
+	const { input, changeInput, config, error, clearError } = useConvertToSpeech();
 
 	const { maxTextLength } = config;
+	const textError = error?.text;
 
 	const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
 		changeInput(e.target.value);
@@ -18,8 +19,8 @@ const CTTTextInput = () => {
 	};
 
 	return (
-		<div className="w-full h-full">
-			{error && (
+		<div className="relative w-full h-full">
+			{textError && (
 				<div className="text-red-500 p-4 text-sm">
 					<div className="flex flex-row gap-2 items-center">
 						<button
@@ -28,20 +29,20 @@ const CTTTextInput = () => {
 						>
 							<XCircleIcon className="h-4 w-4" />
 						</button>
-						<span>Lỗi: {error}</span>
+						<span>Lỗi: {textError}</span>
 					</div>
 				</div>
 			)}
 			<textarea
-				placeholder="Nhập văn bản cần dịch"
+				placeholder="Nhập văn bản cần chuyển đổi"
 				required
 				maxLength={maxTextLength}
 				onChange={handleTextChange}
 				value={input.text}
-				className={`${error ? "hidden" : ""} w-full pl-4 pr-2 resize-none overflow-y-auto h-full min-h-[210px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-900 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none py-3`}
+				className={`${textError ? "hidden" : ""} w-full pl-4 pr-2 resize-none overflow-y-auto h-full min-h-[210px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-900 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none py-3`}
 			/>
 			<div
-				className={`${error ? "hidden" : ""} absolute bottom-[10px] right-3 text-right text-xs font-thin dark:text-gray-300 flex flex-row space-x-4 items-center`}
+				className={`${textError ? "hidden" : ""} absolute bottom-[10px] right-3 text-right text-xs font-thin dark:text-gray-300 flex flex-row space-x-4 items-center`}
 			>
 				<div>
 					{input.text.length} / {maxTextLength}
@@ -57,4 +58,4 @@ const CTTTextInput = () => {
 	);
 };
 
-export default CTTTextInput;
+export default TextInput;
