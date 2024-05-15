@@ -1,17 +1,20 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@material-tailwind/react";
+import { useLocalStorage } from "usehooks-ts";
 import ContextError from "~/errors/context";
+import storageKey from "~/enums/storageKey";
+import { muiCustomTheme } from "~/utils/theme";
 
 type Store = {
 	theme: "light" | "dark";
-	toggleTheme: () => void;
+	toggleDarkMode: () => void;
 };
 
 const DefaultStore: Store = {
-	theme: "light",
-	toggleTheme: () => {},
+	theme: "dark",
+	toggleDarkMode: () => {},
 };
 
 const Context = React.createContext<Store>(DefaultStore);
@@ -20,16 +23,20 @@ interface Props {
 	children: React.ReactNode;
 }
 const Provider = ({ children }: Props) => {
-	const [theme, setTheme] = React.useState<Store["theme"]>(DefaultStore.theme);
+	const [theme, setTheme] = useLocalStorage(storageKey.theme, DefaultStore.theme);
 
-	const toggleTheme = () => {
+	const toggleDarkMode = () => {
 		setTheme((prev) => (prev === "light" ? "dark" : "light"));
 	};
 
-	const store: Store = { theme, toggleTheme };
+	useEffect(() => {
+		document.documentElement.classList.add(theme);
+	}, [theme]);
+
+	const store: Store = { theme, toggleDarkMode };
 
 	return (
-		<MuiThemeProvider value={{}}>
+		<MuiThemeProvider value={muiCustomTheme}>
 			<Context.Provider value={store}>{children}</Context.Provider>
 		</MuiThemeProvider>
 	);

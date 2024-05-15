@@ -3,9 +3,11 @@
 import Link from "next/link";
 import React, { useCallback } from "react";
 import { useFormState } from "react-dom";
+import { Button } from "@material-tailwind/react";
 import { PagePath } from "~/enums/path";
 import { signin } from "~/actions/signin";
 import { SigninFields, SigninFormState } from "~/definitions/signin";
+import { navigateSigninByGoogleCallback } from "~/actions/signinGoogle";
 import SubmitButton from "./SubmitButton";
 
 interface Props {}
@@ -87,13 +89,27 @@ const SignInForm: React.FC<Props> = () => {
 						</div>
 					</div>
 					<SubmitButton />
-					<p className="text-sm font-light text-gray-500 dark:text-gray-400">
-						Bạn chưa có tài khoản?&nbsp;
-						<Link href={PagePath.signup} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-							Đăng ký
-						</Link>
-					</p>
 				</form>
+				<div className="flex items-center my-4">
+					<div className="flex-grow border-t border-gray-300 dark:border-gray-700" />
+					<span className="px-4 text-gray-500">Hoặc</span>
+					<div className="flex-grow border-t border-gray-300 dark:border-gray-700" />
+				</div>
+				<form action={navigateSigninByGoogleCallback} noValidate>
+					<Button
+						type="submit"
+						variant="outlined"
+						className="w-full text-white hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium text-sm dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+					>
+						Đăng nhập với google
+					</Button>
+				</form>
+				<p className="text-sm font-light text-gray-500 dark:text-gray-400">
+					Bạn chưa có tài khoản?&nbsp;
+					<Link href={PagePath.signup} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
+						Đăng ký
+					</Link>
+				</p>
 			</div>
 		</div>
 	);

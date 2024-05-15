@@ -35,7 +35,7 @@ const FileInput = () => {
 					</p>
 					<div className="text-xs text-gray-500 dark:text-gray-400">Hỗ trợ tệp: {fileAccept.join(", ")}</div>
 					<div className="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">
-						Kích thước tệp tối đa là {convertBytes(maxFileSize, FileSizeUnit.MEGABYTE)} MB
+						Kích thước tệp tối đa là {convertBytes(maxFileSize, FileSizeUnit.MEGABYTE)}
 					</div>
 				</div>
 			);

@@ -1,3 +1,5 @@
-enum storageKey {}
+enum storageKey {
+	theme = "theme",
+}
 
 export default storageKey;

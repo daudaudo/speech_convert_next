@@ -10,6 +10,9 @@ enum RequestUrl {
 	home = "/",
 	signin = "auth/login",
 	signup = "auth/register",
+	signinGoogleCallback = "auth/google/callback",
+	signinGoogle = "/auth/google/login",
+	//
 	convertToSpeech = "audio/speech",
 	convertToText = "audio/transcriptions",
 }

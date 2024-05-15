@@ -47,7 +47,7 @@ const DefaultStore: Store = {
 	model: OpenAITTSModel.TTS1,
 	setModel: () => {},
 	validate: () => true,
-	resultShowed: false,
+	resultShowed: true,
 	toggleShowResult: () => {},
 	requestCreateSpeech: () => {},
 	pending: false,
@@ -133,6 +133,7 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 				} else {
 					clearError();
 					setOutput(res as CTSOutput);
+					setResultShowed(true);
 				}
 			}
 		});

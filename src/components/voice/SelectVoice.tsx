@@ -48,7 +48,7 @@ const SelectVoice = (props: Props) => {
 					Cài đặt âm thanh
 				</button>
 			</nav>
-			<div className="py-4 pb-10 h-full overflow-y-auto max-h-[calc(100vh-250px)] flex flex-col space-y-4 scrollbar-thin">
+			<div className="py-4 pb-10 h-full overflow-y-auto max-h-[calc(100vh-250px)] flex flex-col space-y-4">
 				<div className="flex px-4">
 					<ButtonGroup
 						fullWidth
