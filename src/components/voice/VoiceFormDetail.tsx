@@ -3,13 +3,13 @@
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import { CTSVoiceId } from "~/types/CTSTypes";
+import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
 import SelectSpeed from "./SelectSpeed";
 import SelectVoice from "./SelectVoice";
 
 interface Props {
 	HD: boolean;
-	toggleHD: (value: boolean) => void;
+	setModel: (value: CTSModel) => void;
 	voiceId: CTSVoiceId;
 	setVoiceId: (voiceId: CTSVoiceId) => void;
 	speed: number;
@@ -19,12 +19,12 @@ interface Props {
 	onCreateSpeech: () => void;
 }
 const VoiceFormDetail = (props: Props) => {
-	const { HD, toggleHD, voiceId, setVoiceId, speed, onChangeSpeed, validated, pending, onCreateSpeech } = props;
+	const { HD, setModel, voiceId, setVoiceId, speed, onChangeSpeed, validated, pending, onCreateSpeech } = props;
 
 	return (
 		<div className="flex w-full h-full flex-col space-y-6">
 			<div className="flex-1 rounded-lg divide-gray-200 dark:divide-gray-800 ring-1 ring-gray-200 dark:ring-gray-800 shadow bg-white dark:bg-gray-900">
-				<SelectVoice HD={HD} toggleHD={toggleHD} voiceId={voiceId} setVoiceId={setVoiceId} />
+				<SelectVoice HD={HD} setModel={setModel} voiceId={voiceId} setVoiceId={setVoiceId} />
 			</div>
 			<div className="bg-transparent flex flex-row justify-between space-x-1 w-full">
 				<div className="relative w-fit inline-flex flex-none">

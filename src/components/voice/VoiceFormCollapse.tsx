@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import { ChevronDoubleUpIcon, SpeakerWaveIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import { Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
-import { CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
+import { CTSModel, CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
 import SelectSpeed from "./SelectSpeed";
 import SelectVoice from "./SelectVoice";
 
 interface Props {
 	HD: boolean;
-	toggleHD: (value: boolean) => void;
+	setModel: (value: CTSModel) => void;
 	voiceId: CTSVoiceId;
 	setVoiceId: (voiceId: CTSVoiceId) => void;
 	speed: number;
@@ -24,7 +24,7 @@ interface Props {
 const VoiceFormCollapse = (props: Props) => {
 	const {
 		HD,
-		toggleHD,
+		setModel,
 		voiceId,
 		setVoiceId,
 		speed,
@@ -79,7 +79,7 @@ const VoiceFormCollapse = (props: Props) => {
 			</div>
 			<Dialog open={openSelectVoice} handler={onToggleSelectVoice} className="bg-white dark:bg-gray-900">
 				<DialogBody className="relative">
-					<SelectVoice HD={HD} toggleHD={toggleHD} voiceId={voiceId} setVoiceId={setVoiceId} />
+					<SelectVoice HD={HD} setModel={setModel} voiceId={voiceId} setVoiceId={setVoiceId} />
 					<button onClick={onToggleSelectVoice} className="absolute right-6 top-6">
 						<XCircleIcon className="h-5 w-5" />
 					</button>

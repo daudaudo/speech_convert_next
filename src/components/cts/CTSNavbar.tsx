@@ -5,6 +5,7 @@ import { ChatBubbleLeftRightIcon, DocumentIcon, LanguageIcon } from "@heroicons/
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { PagePath } from "~/enums/path";
+import { SpeechConvertIcon } from "~/types/icon";
 
 const CTSNavbar = () => {
 	const pathname = usePathname();
@@ -15,16 +16,7 @@ const CTSNavbar = () => {
 		{ path: PagePath.conversationToSpeech, label: "Hội thoại", icon: ChatBubbleLeftRightIcon },
 	];
 
-	const renderNavItem = (item: {
-		path: string;
-		label: string;
-		icon: React.ForwardRefExoticComponent<
-			Omit<React.SVGProps<SVGSVGElement>, "ref"> & {
-				title?: string | undefined;
-				titleId?: string | undefined;
-			} & React.RefAttributes<SVGSVGElement>
-		>;
-	}) => {
+	const renderNavItem = (item: { path: string; label: string; icon: SpeechConvertIcon }) => {
 		const isActive = pathname === item.path;
 		const Icon = item.icon;
 		return (

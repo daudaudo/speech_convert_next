@@ -1,18 +1,24 @@
 import React from "react";
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
-import { CTSVoice, CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
+import { Button, ButtonGroup } from "@material-tailwind/react";
+import { CTSModel, CTSVoice, CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
+import { OpenAITTSModel } from "~/enums/openAi";
 
 interface Props {
 	HD: boolean;
-	toggleHD: (value: boolean) => void;
+	setModel: (value: CTSModel) => void;
 	voiceId: CTSVoiceId;
 	setVoiceId: (voiceId: CTSVoiceId) => void;
 }
 const SelectVoice = (props: Props) => {
-	const { voiceId, setVoiceId, HD, toggleHD } = props;
+	const { voiceId, setVoiceId, HD, setModel } = props;
 
-	const onToggleHD = (e: React.ChangeEvent<HTMLInputElement>) => {
-		toggleHD(e.target.checked);
+	const setHDModel = () => {
+		setModel(OpenAITTSModel.TTS1HD);
+	};
+
+	const setHighModel = () => {
+		setModel(OpenAITTSModel.TTS1);
 	};
 
 	const renderVoice = (voice: CTSVoice) => {
@@ -29,9 +35,6 @@ const SelectVoice = (props: Props) => {
 						<span className="text-sm font-semibold text-gray-900 dark:text-white">{name}</span>
 						<span className="text-xs font-normal text-gray-500 dark:text-gray-400">{description}</span>
 					</div>
-					{/* <div className="relative inline-flex items-center justify-center flex-shrink-0 transition-all duration-200 group-hover:scale-125">
-						Avatar
-					</div> */}
 				</div>
 			</button>
 		);
@@ -47,13 +50,20 @@ const SelectVoice = (props: Props) => {
 			</nav>
 			<div className="py-4 pb-10 h-full overflow-y-auto max-h-[calc(100vh-250px)] flex flex-col space-y-4 scrollbar-thin">
 				<div className="flex px-4">
-					<label className="inline-flex items-center cursor-pointer">
-						<input type="checkbox" value="" className="sr-only peer" onChange={onToggleHD} />
-						<div className="relative w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600" />
-						<span className="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">
-							{HD ? "Chất lượng HD" : "Chất lượng cao"}
-						</span>
-					</label>
+					<ButtonGroup
+						fullWidth
+						variant="text"
+						size="sm"
+						ripple={false}
+						className="bg-gray-100 dark:bg-gray-800 rounded-lg p-1"
+					>
+						<Button className={`${!HD ? "bg-primary-500" : "bg-gray-200"}`} onClick={setHighModel}>
+							Chất lượng cao
+						</Button>
+						<Button className={`${HD ? "bg-primary-500" : "bg-gray-200"}`} onClick={setHDModel}>
+							Chất lượng HD
+						</Button>
+					</ButtonGroup>
 				</div>
 				<div className="flex flex-col py-2">
 					<div className="flex content-center items-center justify-between px-4 text-sm">
