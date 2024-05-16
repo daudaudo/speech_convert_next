@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import "~/styles/global.scss";
+import Script from "next/script";
 import { ThemeProvider } from "~/contexts/ThemeContext";
 
 export const metadata: Metadata = {
@@ -17,6 +18,18 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
 					<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 					<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 					<link rel="manifest" href="/site.webmanifest" />
+					<Script async src="https://www.googletagmanager.com/gtag/js?id=G-NW2E273HT2" />
+					<Script
+						id={"gtag"}
+						dangerouslySetInnerHTML={{
+							__html: `
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'G-NW2E273HT2');
+              `,
+						}}
+					/>
 				</head>
 				<body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
 					<div className="h-screen md:max-w-screen-xl mx-auto">{children}</div>
