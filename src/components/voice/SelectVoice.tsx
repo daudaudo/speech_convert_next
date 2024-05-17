@@ -50,17 +50,11 @@ const SelectVoice = (props: Props) => {
 			</nav>
 			<div className="py-4 pb-10 h-full overflow-y-auto max-h-[calc(100vh-250px)] flex flex-col space-y-4">
 				<div className="flex px-4">
-					<ButtonGroup
-						fullWidth
-						variant="text"
-						size="sm"
-						ripple={false}
-						className="bg-gray-100 dark:bg-gray-800 rounded-lg p-1"
-					>
-						<Button className={`${!HD ? "bg-primary-500" : "bg-gray-200"}`} onClick={setHighModel}>
+					<ButtonGroup fullWidth variant="text" size="sm" className="bg-gray-100 dark:bg-gray-800 rounded-lg p-1">
+						<Button className={`${!HD ? "bg-primary-500" : "bg-gray-200 dark:bg-gray-800"}`} onClick={setHighModel}>
 							Chất lượng cao
 						</Button>
-						<Button className={`${HD ? "bg-primary-500" : "bg-gray-200"}`} onClick={setHDModel}>
+						<Button className={`${HD ? "bg-primary-500" : "bg-gray-200 dark:bg-gray-800"}`} onClick={setHDModel}>
 							Chất lượng HD
 						</Button>
 					</ButtonGroup>

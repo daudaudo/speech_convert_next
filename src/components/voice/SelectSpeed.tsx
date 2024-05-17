@@ -1,4 +1,4 @@
-import { ArrowTrendingUpIcon, ChartBarIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChartBarIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import React from "react";
 
 interface Props {

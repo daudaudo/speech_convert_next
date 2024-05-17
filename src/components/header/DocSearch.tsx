@@ -11,7 +11,6 @@ import {
 import {
 	Dialog,
 	DialogBody,
-	DialogHeader,
 	IconButton,
 	List,
 	ListItem,
