@@ -1,5 +1,5 @@
 export const muiCustomTheme = {
-	buttom: {
+	button: {
 		styles: {
 			base: {
 				initial: {

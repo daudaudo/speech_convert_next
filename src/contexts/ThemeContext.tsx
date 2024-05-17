@@ -6,14 +6,15 @@ import { useLocalStorage } from "usehooks-ts";
 import ContextError from "~/errors/context";
 import storageKey from "~/enums/storageKey";
 import { muiCustomTheme } from "~/utils/theme";
+import { ThemeMode } from "~/enums/theme";
 
 type Store = {
-	theme: "light" | "dark";
+	themeMode: ThemeMode;
 	toggleDarkMode: () => void;
 };
 
 const DefaultStore: Store = {
-	theme: "dark",
+	themeMode: ThemeMode.light,
 	toggleDarkMode: () => {},
 };
 
@@ -23,17 +24,18 @@ interface Props {
 	children: React.ReactNode;
 }
 const Provider = ({ children }: Props) => {
-	const [theme, setTheme] = useLocalStorage(storageKey.theme, DefaultStore.theme);
+	const [themeMode, setTheme] = useLocalStorage(storageKey.theme, DefaultStore.themeMode);
 
 	const toggleDarkMode = () => {
-		setTheme((prev) => (prev === "light" ? "dark" : "light"));
+		setTheme((prev) => (prev === ThemeMode.light ? ThemeMode.dark : ThemeMode.light));
 	};
 
 	useEffect(() => {
-		document.documentElement.classList.add(theme);
-	}, [theme]);
+		document.documentElement.classList.remove(ThemeMode.light, ThemeMode.dark);
+		document.documentElement.classList.add(themeMode);
+	}, [themeMode]);
 
-	const store: Store = { theme, toggleDarkMode };
+	const store: Store = { themeMode, toggleDarkMode };
 
 	return (
 		<MuiThemeProvider value={muiCustomTheme}>

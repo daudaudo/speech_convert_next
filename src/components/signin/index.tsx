@@ -99,7 +99,7 @@ const SignInForm: React.FC<Props> = () => {
 					<Button
 						type="submit"
 						variant="outlined"
-						className="w-full text-white hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium text-sm dark:hover:bg-gray-700 dark:focus:ring-gray-800"
+						className="w-full text-gray-800 dark:text-gray-50 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium text-sm dark:hover:bg-gray-700 dark:focus:ring-gray-800"
 					>
 						Đăng nhập với google
 					</Button>
