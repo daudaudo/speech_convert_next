@@ -9,7 +9,6 @@ import { callApiAction } from "./utils";
 export async function navigateSigninByGoogleCallback() {
 	try {
 		const res = await callApiAction(RequestUrl.signinGoogleCallback, RequestMethod.GET);
-		console.log(res);
 		if (!res.success) {
 			return { message: res.message };
 		}
@@ -23,7 +22,6 @@ export async function navigateSigninByGoogleCallback() {
 export async function signinByGoogle(code: string) {
 	try {
 		const res = await callApiAction(RequestUrl.signinGoogle, RequestMethod.GET, undefined, { code });
-		console.log(res);
 		if (!res.success) {
 			return { message: res.message };
 		}
