@@ -1,7 +1,7 @@
 import React from "react";
-import CTSNavbar from "@sc-components/CTS/CTSNavbar";
-import AudioDrawer from "@sc-components/AudioDrawer";
-import VoiceForm from "@sc-components/VoiceForm";
+import CTSNavbar from "~/components/cts/CTSNavbar";
+import AudioDrawer from "~/components/audioDrawer";
+import VoiceForm from "~/components/voice";
 import { ConvertToSpeechProvider } from "~/contexts/ConvertToSpeechContext";
 
 interface Props {
@@ -31,7 +31,6 @@ const ConvertToSpeechLayout = ({ children }: Props) => {
 					</div>
 				</div>
 			</div>
-
 			<AudioDrawer />
 		</ConvertToSpeechProvider>
 	);

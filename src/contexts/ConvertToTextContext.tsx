@@ -16,7 +16,7 @@ type Store = {
 	language: CTTLanguage;
 	setLanguage: (language: CTTLanguage) => void;
 	validate: () => boolean;
-	output: CTTOutput[];
+	output?: CTTOutput;
 	requestCreateText: () => void;
 	pending?: boolean;
 	error?: string;
@@ -30,7 +30,6 @@ const DefaultStore: Store = {
 	language: LanguageCode.Vietnamese,
 	setLanguage: () => {},
 	validate: () => true,
-	output: [],
 	requestCreateText: () => {},
 };
 
@@ -60,7 +59,7 @@ const Provider = ({ children, config = CTTDefaultConfig }: Props) => {
 
 	const [input, setInput] = useState<CTTInput>(DefaultStore.input);
 	const [language, setLanguage] = useState<CTTLanguage>(DefaultStore.language);
-	const [output, setOutput] = useState<CTTOutput[]>(DefaultStore.output);
+	const [output, setOutput] = useState<CTTOutput | undefined>();
 
 	const changeInput = (value: string | File | null) => {
 		switch (type) {
@@ -98,13 +97,13 @@ const Provider = ({ children, config = CTTDefaultConfig }: Props) => {
 				formData.append("language_code", language);
 				formData.append("model", OpenAITranscriptionModel.Whisper1);
 				formData.append("file", input.file as File);
+				setOutput(undefined);
 				const res = await convertToText(formData);
 				if (res.error) {
 					setError((prev) => ({ ...prev, [type]: res.error }));
-					setOutput([]);
 				} else {
 					clearError();
-					setOutput([res as CTTOutput]);
+					setOutput(res as CTTOutput);
 				}
 			}
 		});

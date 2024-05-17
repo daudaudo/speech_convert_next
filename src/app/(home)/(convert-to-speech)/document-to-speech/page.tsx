@@ -1,5 +1,5 @@
 import React from "react";
-import FileInput from "@sc-components/CTS/FileInput";
+import FileInput from "~/components/cts/FileInput";
 
 const DocumentToSpeechPage = () => {
 	return <FileInput />;

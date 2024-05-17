@@ -1,9 +1,9 @@
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import React from "react";
-import CTTNavbar from "~/components/CTT/CTTNavbar";
-import CTTOutput from "~/components/CTT/CTTOutput";
-import CTTSelectLanguage from "~/components/CTT/SelectLanguage";
-import CTTSubmitButton from "~/components/CTT/SubmitButton";
+import CTTNavbar from "~/components/ctt/CTTNavbar";
+import CTTOutput from "~/components/ctt/CTTOutput";
+import CTTSelectLanguage from "~/components/ctt/SelectLanguage";
+import CTTSubmitButton from "~/components/ctt/SubmitButton";
 import { ConvertToTextProvider } from "~/contexts/ConvertToTextContext";
 
 interface Props {
@@ -20,8 +20,11 @@ const ConvertToTextLayout = ({ children }: Props) => {
 							<CTTNavbar />
 						</div>
 						<div className="shrink-0">
-							<div className="inline-flex justify-center p-2 text-gray-500 rounded-full cursor-pointer dark:text-gray-400 dark:hover:text-white hover:text-gray-900 hover:bg-gray-100 dark:hover:bg-gray-600">
+							<div className="hidden md:inline-flex justify-center p-2 text-gray-500 rounded-full dark:text-gray-400">
 								<ChevronDoubleRightIcon className="h-6 w-6" />
+							</div>
+							<div className="block md:hidden">
+								<CTTSubmitButton />
 							</div>
 						</div>
 						<div className="flex-1 flex justify-end w-full">
@@ -34,13 +37,11 @@ const ConvertToTextLayout = ({ children }: Props) => {
 						<div className="flex flex-col h-full border border-gray-200 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600">
 							{children}
 						</div>
-						<CTTSubmitButton />
+						<div className="hidden md:block z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-center w-20 h-20 rounded-full bg-gray-50 border border-gray-200 dark:bg-gray-900 dark:border-gray-600 cursor-pointer disabled:cursor-not-allowed">
+							<CTTSubmitButton />
+						</div>
 						<div className="relative flex-grow h-full">
-							<div className="flex flex-col h-full max-h-full md:pt-2 px-4 pl-8 bg-gray-100 border border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-600 text-sm text-gray-900 dark:text-gray-100">
-								<div className="flex-1 md:pl-4">
-									<CTTOutput />
-								</div>
-							</div>
+							<CTTOutput />
 						</div>
 					</div>
 				</div>

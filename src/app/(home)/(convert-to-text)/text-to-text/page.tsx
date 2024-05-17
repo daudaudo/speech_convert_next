@@ -1,5 +1,5 @@
 import React from "react";
-import CTTTextInput from "~/components/CTT/TextInput";
+import CTTTextInput from "~/components/ctt/TextInput";
 
 const TextToTextPage = () => {
 	return <CTTTextInput />;

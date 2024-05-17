@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "@sc-components/Header";
+import Header from "~/components/header";
 
 interface Props {
 	children: React.ReactNode;
@@ -7,7 +7,7 @@ interface Props {
 
 const UserLayout = ({ children }: Props) => {
 	return (
-		<div className="h-screen w-screen">
+		<div className="h-full w-full">
 			<div className="flex flex-col h-full w-full md:max-w-screen-xl">
 				<div className="shrink-0 ">
 					<Header />

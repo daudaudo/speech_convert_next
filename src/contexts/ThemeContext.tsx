@@ -1,17 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import { ThemeProvider as MuiThemeProvider } from "@material-tailwind/react";
+import { useLocalStorage } from "usehooks-ts";
 import ContextError from "~/errors/context";
+import storageKey from "~/enums/storageKey";
+import { muiCustomTheme } from "~/utils/theme";
+import { ThemeMode } from "~/enums/theme";
 
 type Store = {
-	theme: "light" | "dark";
-	toggleTheme: () => void;
+	themeMode: ThemeMode;
+	toggleDarkMode: () => void;
 };
 
 const DefaultStore: Store = {
-	theme: "light",
-	toggleTheme: () => {},
+	themeMode: ThemeMode.light,
+	toggleDarkMode: () => {},
 };
 
 const Context = React.createContext<Store>(DefaultStore);
@@ -20,16 +24,21 @@ interface Props {
 	children: React.ReactNode;
 }
 const Provider = ({ children }: Props) => {
-	const [theme, setTheme] = React.useState<Store["theme"]>(DefaultStore.theme);
+	const [themeMode, setTheme] = useLocalStorage(storageKey.theme, DefaultStore.themeMode);
 
-	const toggleTheme = () => {
-		setTheme((prev) => (prev === "light" ? "dark" : "light"));
+	const toggleDarkMode = () => {
+		setTheme((prev) => (prev === ThemeMode.light ? ThemeMode.dark : ThemeMode.light));
 	};
 
-	const store: Store = { theme, toggleTheme };
+	useEffect(() => {
+		document.documentElement.classList.remove(ThemeMode.light, ThemeMode.dark);
+		document.documentElement.classList.add(themeMode);
+	}, [themeMode]);
+
+	const store: Store = { themeMode, toggleDarkMode };
 
 	return (
-		<MuiThemeProvider value={{}}>
+		<MuiThemeProvider value={muiCustomTheme}>
 			<Context.Provider value={store}>{children}</Context.Provider>
 		</MuiThemeProvider>
 	);

@@ -1,6 +1,7 @@
 import React from "react";
 import type { Metadata } from "next";
 import "~/styles/global.scss";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "~/contexts/ThemeContext";
 
 export const metadata: Metadata = {
@@ -21,6 +22,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
 				<body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
 					<div className="h-screen md:max-w-screen-xl mx-auto">{children}</div>
 				</body>
+				<GoogleAnalytics gaId="G-NW2E273HT2" />
 			</html>
 		</ThemeProvider>
 	);

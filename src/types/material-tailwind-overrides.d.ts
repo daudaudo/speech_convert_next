@@ -5,13 +5,20 @@
  */
 
 import {
+	ButtonGroupProps as OriginalButtonGroupProps,
 	ButtonProps as OriginalButtonProps,
+	CardProps as OriginalCardProps,
 	DialogBodyProps as OriginalDialogBodyProps,
 	DialogFooterProps as OriginalDialogFooterProps,
 	DialogHeaderProps as OriginalDialogHeaderProps,
 	DialogProps as OriginalDialogProps,
 	DrawerProps as OriginalDrawerProps,
+	IconButtonProps as OriginalIconButtonProps,
 	InputProps as OriginalInputProps,
+	ListItemPrefixProps as OriginalListItemPrefixProps,
+	ListItemProps as OriginalListItemProps,
+	ListItemSuffixProps as OriginalListItemSuffixProps,
+	ListProps as OriginalListProps,
 	SelectProps as OriginalSelectProps,
 } from "@material-tailwind/react";
 
@@ -22,8 +29,11 @@ type MuiOverrideProps = {
 };
 
 declare module "@material-tailwind/react" {
-	// Button, Input, Select
+	// Button
 	export interface ButtonProps extends OriginalButtonProps, MuiOverrideProps {}
+	export interface ButtonGroupProps extends OriginalButtonGroupProps, MuiOverrideProps {}
+	// Input, Select
+	export interface IconButtonProps extends OriginalIconButtonProps, MuiOverrideProps {}
 	export interface InputProps extends OriginalInputProps, MuiOverrideProps {}
 	export interface SelectProps extends OriginalSelectProps, MuiOverrideProps {}
 	// Drawer
@@ -33,4 +43,11 @@ declare module "@material-tailwind/react" {
 	export interface DialogHeaderProps extends OriginalDialogHeaderProps, MuiOverrideProps {}
 	export interface DialogBodyProps extends OriginalDialogBodyProps, MuiOverrideProps {}
 	export interface DialogFooterProps extends OriginalDialogFooterProps, MuiOverrideProps {}
+	// Card
+	export interface CardProps extends OriginalCardProps, MuiOverrideProps {}
+	// List
+	export interface ListProps extends OriginalListProps, MuiOverrideProps {}
+	export interface ListItemProps extends OriginalListItemProps, MuiOverrideProps {}
+	export interface ListItemSuffixProps extends OriginalListItemSuffixProps, MuiOverrideProps {}
+	export interface ListItemPrefixProps extends OriginalListItemPrefixProps, MuiOverrideProps {}
 }
