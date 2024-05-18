@@ -68,7 +68,7 @@ const Provider = ({ children, config = CTTDefaultConfig }: Props) => {
 				break;
 			case "speech":
 			case "document":
-				setInput((prev) => ({ ...prev, file: value as File }));
+				setInput((prev) => ({ ...prev, file: value as File | null }));
 				break;
 			default:
 				break;
@@ -81,7 +81,7 @@ const Provider = ({ children, config = CTTDefaultConfig }: Props) => {
 		switch (type) {
 			case "speech":
 			case "document":
-				return input.file as File;
+				return input.file as File | null;
 			case "text":
 			default:
 				return input.text;

@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 
 interface Props {
-	createRecordCallback: (file: File) => void;
+	createRecordCallback: (file: File | null) => void;
 }
 
 const Record = (props: Props) => {
@@ -26,6 +26,7 @@ const Record = (props: Props) => {
 	const startRecording = async () => {
 		try {
 			setError("");
+			if (audioURL) setAudioURL("");
 			const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
 			mediaRecorderRef.current = new MediaRecorder(stream);
 			mediaRecorderRef.current.ondataavailable = (event: BlobEvent) => {
@@ -54,7 +55,7 @@ const Record = (props: Props) => {
 	};
 
 	return (
-		<div className="p-4 w-full h-full">
+		<div className="p-6 w-full h-full">
 			<div className="flex w-full items-center gap-2 h-14">
 				{isRecording ? (
 					<button

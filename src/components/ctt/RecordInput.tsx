@@ -5,7 +5,7 @@ import { useConvertToText } from "~/contexts/ConvertToTextContext";
 import Record from "../base/Record";
 
 const RecordInput = () => {
-	const { changeInput } = useConvertToText();
+	const { changeInput, input } = useConvertToText();
 
 	return <Record createRecordCallback={changeInput} />;
 };

@@ -12,7 +12,7 @@ enum RequestUrl {
 	signin = "auth/login",
 	signup = "auth/register",
 	signinGoogleCallback = "oauth/google/callback",
-	signinGoogle = "/oauth/google/login",
+	signinGoogle = "oauth/google/login",
 	// user
 	getUser = "user",
 	// converter

@@ -30,8 +30,13 @@ export const CTSPaths = [PagePath.textToSpeech, PagePath.documentToSpeech, PageP
 export const CTTPaths = [PagePath.speechToText, PagePath.documentToText, PagePath.textToText];
 export const HistoryPaths = [PagePath.history];
 
-export const isAuthPage = (pathname: string) => AuthPaths.some((pagePath) => pagePath.startsWith(pathname));
-export const isHomePage = (pathname: string) => HomePaths.some((pagePath) => pagePath.startsWith(pathname));
-export const isCTSPage = (pathname: string) => CTSPaths.some((pagePath) => pagePath.startsWith(pathname));
-export const isCTTPage = (pathname: string) => CTTPaths.some((pagePath) => pagePath.startsWith(pathname));
-export const isHistoryPage = (pathname: string) => HistoryPaths.some((pagePath) => pagePath.startsWith(pathname));
+export const isAuthPage = (pathname: string) =>
+	pathname === PagePath.home ? false : AuthPaths.some((pagePath) => pagePath.startsWith(pathname));
+export const isHomePage = (pathname: string) =>
+	pathname === PagePath.home ? false : HomePaths.some((pagePath) => pagePath.startsWith(pathname));
+export const isCTSPage = (pathname: string) =>
+	pathname === PagePath.home ? false : CTSPaths.some((pagePath) => pagePath.startsWith(pathname));
+export const isCTTPage = (pathname: string) =>
+	pathname === PagePath.home ? false : CTTPaths.some((pagePath) => pagePath.startsWith(pathname));
+export const isHistoryPage = (pathname: string) =>
+	pathname === PagePath.home ? false : HistoryPaths.some((pagePath) => pagePath.startsWith(pathname));
