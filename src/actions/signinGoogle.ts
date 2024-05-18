@@ -21,7 +21,7 @@ export async function navigateSigninByGoogleCallback() {
 
 export async function signinByGoogle(code: string) {
 	try {
-		const res = await callApiAction(RequestUrl.signinGoogle, RequestMethod.POST, undefined, { code });
+		const res = await callApiAction(RequestUrl.signinGoogle, RequestMethod.POST, { code });
 		if (!res.success) {
 			return { message: res.message };
 		}

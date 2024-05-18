@@ -19,7 +19,7 @@ const callApi = async (
 		Authorization: token ? `Bearer ${token}` : "",
 	};
 	const parseBody = () => {
-		if (method !== RequestMethod.GET && method !== RequestMethod.DELETE) {
+		if (method === RequestMethod.GET || method === RequestMethod.DELETE) {
 			return null;
 		}
 
