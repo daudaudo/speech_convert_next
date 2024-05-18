@@ -11,8 +11,8 @@ enum RequestUrl {
 	// authen
 	signin = "auth/login",
 	signup = "auth/register",
-	signinGoogleCallback = "auth/google/callback",
-	signinGoogle = "/auth/google/login",
+	signinGoogleCallback = "oauth/google/callback",
+	signinGoogle = "/oauth/google/login",
 	// user
 	getUser = "user",
 	// converter

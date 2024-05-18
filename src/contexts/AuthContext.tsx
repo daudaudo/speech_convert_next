@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useTransition } from "react";
+import React, { useEffect, useRef, useState, useTransition } from "react";
 import { getMeUser } from "~/actions/getMeUser";
 import ContextError from "~/errors/context";
 import { deleteSession } from "~/utils/session";
@@ -27,7 +27,9 @@ const Context = React.createContext<Store>(DefaultStore);
 interface Props {
 	children: React.ReactNode;
 }
+
 const AuthProvider = ({ children }: Props) => {
+	const initRef = useRef(false);
 	const [pending, startTransition] = useTransition();
 	const [authencated, setAuthencated] = useState(DefaultStore.authencated);
 	const [user, setUser] = useState(DefaultStore.user);
@@ -48,6 +50,10 @@ const AuthProvider = ({ children }: Props) => {
 	};
 
 	useEffect(() => {
+		if (initRef.current) {
+			return;
+		}
+
 		startTransition(async () => {
 			try {
 				const res = await getMeUser();
@@ -62,6 +68,10 @@ const AuthProvider = ({ children }: Props) => {
 				setAuthencated(false);
 			}
 		});
+
+		return () => {
+			initRef.current = true;
+		};
 	}, []);
 
 	const store: Store = { pending, authencated, user, signout, showedUser, toggleShowedUser };

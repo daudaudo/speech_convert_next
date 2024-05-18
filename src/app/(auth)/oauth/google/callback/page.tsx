@@ -6,8 +6,9 @@ interface Props {
 		[key: string]: string | undefined;
 	};
 }
-const oOuthPage = ({ searchParams }: Props) => {
+
+const Page = ({ searchParams }: Props) => {
 	return <SigninByGoogle code={searchParams.code} />;
 };
 
-export default oOuthPage;
+export default Page;

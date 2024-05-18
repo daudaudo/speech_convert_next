@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import RequestError from "~/errors/request";
 import { getSession } from "~/utils/session";
@@ -17,8 +18,31 @@ const callApi = async (
 	const headers: HeadersInit = {
 		Authorization: token ? `Bearer ${token}` : "",
 	};
+	const parseBody = () => {
+		if (method !== RequestMethod.GET && method !== RequestMethod.DELETE) {
+			return null;
+		}
+
+		if (isFormData) {
+			return body;
+		}
+
+		if (body) {
+			return JSON.stringify(body);
+		}
+
+		return body;
+	};
+
 	if (!isFormData) {
 		headers["Content-Type"] = "application/json";
+	}
+
+	const ip = await getRealIP();
+
+	if (ip) {
+		headers["X-Forwarded-For"] = ip;
+		headers["X-Real-IP"] = ip;
 	}
 
 	const queryParams = new URLSearchParams(params).toString();
@@ -27,12 +51,7 @@ const callApi = async (
 	const fetchInit = {
 		method,
 		headers: headers,
-		body:
-			method !== RequestMethod.GET && method !== RequestMethod.DELETE
-				? isFormData
-					? body
-					: JSON.stringify(body ?? {})
-				: null,
+		body: parseBody(),
 	};
 	const res = await fetch(apiUrl, fetchInit);
 	return res.json();
@@ -61,4 +80,9 @@ export const callApiAction = async (
 	} catch (error) {
 		return error;
 	}
+};
+
+export const getRealIP = async () => {
+	const ip = headers().get("x-forwarded-for");
+	return ip;
 };
