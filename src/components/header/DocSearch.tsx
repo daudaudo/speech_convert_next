@@ -40,8 +40,8 @@ const convertToSpeechItems: ListItem[] = [
 
 const convertToTextItems: ListItem[] = [
 	{ path: PagePath.speechToText, label: "Chuyển đổi ghi âm thành văn bản", PreIcon: MicrophoneIcon },
-	{ path: PagePath.speechToText, label: "Chuyển đổi tệp thành văn bản", PreIcon: DocumentIcon },
-	{ path: PagePath.speechToText, label: "Dịch văn bản", PreIcon: LanguageIcon },
+	{ path: PagePath.documentToText, label: "Chuyển đổi tệp thành văn bản", PreIcon: DocumentIcon },
+	{ path: PagePath.textToText, label: "Dịch văn bản", PreIcon: LanguageIcon },
 ];
 
 const supportUserItems: ListItem[] = [{ path: PagePath.history, label: "Lịch sử chuyển đổi" }];

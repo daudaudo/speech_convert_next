@@ -8,7 +8,7 @@ interface Session {
 	id: string; // User ID
 }
 
-export async function getSessionToken(): Promise<Session> {
+export async function getSession(): Promise<Session> {
 	const token = cookies().get(CookieKey.token)?.value || "";
 	const id = cookies().get(CookieKey.id)?.value || "";
 	return { token, id };

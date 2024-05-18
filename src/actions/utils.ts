@@ -2,7 +2,7 @@
 
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import RequestError from "~/errors/request";
-import { getSessionToken } from "~/utils/session";
+import { getSession } from "~/utils/session";
 
 const BASE_API_URL = process.env.BASE_API_URL;
 
@@ -12,7 +12,7 @@ const callApi = async (
 	body: FormData | object | undefined,
 	params: Record<string, string> = {}, // Thêm đối số params mặc định là một đối tượng trống
 ) => {
-	const { token } = await getSessionToken();
+	const { token } = await getSession();
 	const isFormData = typeof body === "object" && body instanceof FormData;
 	const headers: HeadersInit = {
 		Authorization: token ? `Bearer ${token}` : "",
