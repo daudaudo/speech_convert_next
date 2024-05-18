@@ -1,11 +1,12 @@
 "use client";
 
 import React from "react";
+import dynamic from "next/dynamic";
 import Logo from "./Logo";
-import SigninButton from "./SigninButton";
+import UserButton from "./UserButton";
 import NavBar from "./NavBar";
 import DocSearch from "./DocSearch";
-import DarkModeButton from "./DarkModeButton";
+const DarkModeButton = dynamic(() => import("./DarkModeButton"), { ssr: false });
 
 const Header = () => {
 	return (
@@ -20,7 +21,7 @@ const Header = () => {
 				</div>
 				<div className="flex flex-row items-center gap-1">
 					<DarkModeButton />
-					<SigninButton />
+					<UserButton />
 				</div>
 			</div>
 		</header>

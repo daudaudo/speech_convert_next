@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "~/components/header";
+import UserDrawer from "~/components/userDrawer";
 
 interface Props {
 	children: React.ReactNode;
@@ -15,6 +16,7 @@ const UserLayout = ({ children }: Props) => {
 				<div className="flex-1">{children}</div>
 				<div className="footer shrink-0 p-4 h-5" />
 			</div>
+			<UserDrawer />
 		</div>
 	);
 };

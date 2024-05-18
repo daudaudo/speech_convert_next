@@ -1,8 +1,9 @@
-import Link from "next/link";
 import React from "react";
+import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
+import dynamic from "next/dynamic";
 import { PagePath } from "~/enums/path";
-import DarkModeButton from "~/components/header/DarkModeButton";
+const DarkModeButton = dynamic(() => import("~/components/header/DarkModeButton"), { ssr: false });
 
 interface Props {
 	children: React.ReactNode;

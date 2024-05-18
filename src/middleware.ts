@@ -1,11 +1,17 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 import { getMeUser } from "~/actions/getMeUser";
-import { PagePath } from "~/enums/path";
+import { isAuthPage, PagePath } from "~/enums/path";
 import { getSession } from "~/utils/session";
 
 export const middleware = async (request: NextRequest) => {
 	try {
+		const { pathname } = request.nextUrl;
+		// Handle auth pages
+		if (isAuthPage(pathname)) {
+			return NextResponse.next();
+		}
+
 		const { token } = await getSession();
 		if (!token) {
 			return NextResponse.redirect(new URL(PagePath.signin, request.url));
@@ -14,6 +20,7 @@ export const middleware = async (request: NextRequest) => {
 		if (!user.success) {
 			return NextResponse.redirect(new URL(PagePath.signin, request.url));
 		}
+		return NextResponse.next();
 	} catch (error) {
 		return NextResponse.next();
 	}
@@ -21,8 +28,10 @@ export const middleware = async (request: NextRequest) => {
 
 export const config = {
 	matcher: [
-		{ source: "/text-to-speech" },
-		{ source: "/text-to-speech" },
+		// { source: "/oauth/google/callback" },
+		{ source: "/signin" },
+		{ source: "/signup" },
+		{ source: "/" },
 		{ source: "/text-to-speech" },
 		{ source: "/document-to-speech" },
 		{ source: "/conversation-to-speech" },

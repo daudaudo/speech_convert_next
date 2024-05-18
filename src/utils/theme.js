@@ -8,4 +8,13 @@ export const muiCustomTheme = {
 			},
 		},
 	},
+	select: {
+		styles: {
+			base: {
+				container: {
+					minWidth: "min-w-[50px]",
+				},
+			},
+		},
+	},
 };
