@@ -27,7 +27,7 @@ const CTTOutput = () => {
 	};
 
 	return (
-		<div className="flex flex-col h-full max-h-full p-6 bg-white border border-gray-200 rounded-md dark:bg-gray-800 dark:border-gray-600 text-sm text-gray-900 dark:text-gray-100">
+		<div className="flex flex-col h-full max-h-full p-6 bg-white border border-gray-200 rounded-md dark:bg-gray-700 dark:border-gray-600 text-sm text-gray-900 dark:text-gray-100">
 			{!!output && (
 				<>
 					<div className="flex-1">
