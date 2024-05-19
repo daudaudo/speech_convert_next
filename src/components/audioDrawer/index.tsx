@@ -49,9 +49,9 @@ const AudioDrawer = () => {
 			{!resultShowed && (
 				<button
 					onClick={toggleShowResult}
-					className="hidden md:block fixed z-50 bottom-0 left-1/2 p-3 dark:bg-gray-800 rounded-t-full border-t border-l border-r dark:border-gray-700 hover:pb-4 cursor-pointer transition-all duration-200"
+					className="hidden md:block fixed z-50 bottom-0 left-1/2 p-3 pt-5 hover:pb-5 dark:bg-gray-800 rounded-t-full border-t border-l border-r dark:border-primary-700 border-primary-200 cursor-pointer transition-all duration-200 text-primary-700 dark:text-primary-200"
 				>
-					<ChevronDoubleUpIcon className="h-8 w-8 text-gray-700 dark:text-gray-200" />
+					<ChevronDoubleUpIcon className="h-8 w-8 animate-bounce-t-3" />
 				</button>
 			)}
 		</>

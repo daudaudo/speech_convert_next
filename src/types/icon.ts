@@ -5,6 +5,12 @@ type HeroIconType = React.ForwardRefExoticComponent<
 	} & React.RefAttributes<SVGSVGElement>
 >;
 
+type SvgProps = {
+	width?: number | string;
+	height?: number | string;
+	color?: string;
+};
+
 type SpeechConvertIcon = HeroIconType;
 
-export type { SpeechConvertIcon, HeroIconType };
+export type { SpeechConvertIcon, SvgProps };

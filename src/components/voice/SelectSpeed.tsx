@@ -1,5 +1,6 @@
 import { ChartBarIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import React from "react";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 interface Props {
 	value: number;
@@ -9,18 +10,18 @@ interface Props {
 const SelectSpeed = (props: Props) => {
 	const { value, onChange } = props;
 	const options = [
-		{ value: 0.25, label: "0.25" },
-		{ value: 0.5, label: "0.5" },
-		{ value: 0.75, label: "0.75" },
-		{ value: 1, label: "1.0" },
-		{ value: 1.25, label: "1.25" },
-		{ value: 1.5, label: "1.5" },
-		{ value: 1.75, label: "1.75" },
-		{ value: 2, label: "2.0" },
-		{ value: 2.5, label: "2.5" },
-		{ value: 3, label: "3.0" },
-		{ value: 3.5, label: "3.5" },
-		{ value: 4, label: "4.0" },
+		{ value: 0.25, label: "0.25x" },
+		{ value: 0.5, label: "0.5x" },
+		{ value: 0.75, label: "0.75x" },
+		{ value: 1, label: "1.0x" },
+		{ value: 1.25, label: "1.25x" },
+		{ value: 1.5, label: "1.5x" },
+		{ value: 1.75, label: "1.75x" },
+		{ value: 2, label: "2.0x" },
+		{ value: 2.5, label: "2.5x" },
+		{ value: 3, label: "3.0x" },
+		{ value: 3.5, label: "3.5x" },
+		{ value: 4, label: "4.0x" },
 	];
 
 	const onSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -40,16 +41,16 @@ const SelectSpeed = (props: Props) => {
 					Chọn tốc độ
 				</option>
 				{options.map((option) => (
-					<option key={option.value} value={option.value} className="md:after:content-['Tốcđộ:'] after:text-red-500">
-						Tốc độ {option.label}
+					<option key={option.value} value={option.value}>
+						{option.label}
 					</option>
 				))}
 			</select>
-			<span className="absolute inset-y-0 start-0 flex items-center pointer-events-none px-3.5">
-				<ChartBarIcon className="h-6 w-6 text-gray-900 dark:text-white" />
+			<span className="absolute inset-y-0 start-0 flex items-center pointer-events-none px-3.5 text-gray-800 dark:text-gray-100">
+				<SvgIcon type="outline" name="gauge" width={20} height={20} />
 			</span>
-			<span className="absolute inset-y-0 end-0 flex items-center pointer-events-none px-3.5">
-				<ChevronDownIcon className="h-4 w-4 text-gray-900 dark:text-white" />
+			<span className="absolute inset-y-0 end-0 flex items-center pointer-events-none px-3.5 text-gray-800 dark:text-gray-100">
+				<ChevronDownIcon className="h-4 w-4" />
 			</span>
 		</>
 	);

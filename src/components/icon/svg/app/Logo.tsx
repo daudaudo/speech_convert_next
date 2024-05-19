@@ -1,20 +1,9 @@
 import React from "react";
+import type { SvgProps } from "~/types/icon";
 
-interface LogoSVGProps {
-	className?: string;
-	size?: number;
-}
-const LogoSVG = (props: LogoSVGProps) => {
-	const { className, size = 45 } = props;
+const Logo = ({ width, height }: SvgProps) => {
 	return (
-		<svg
-			style={{ width: size, height: size }}
-			width="70"
-			height="70"
-			viewBox="0 0 70 70"
-			fill="none"
-			className={className}
-		>
+		<svg style={{ width, height }} width="70" height="70" viewBox="0 0 70 70" fill="none">
 			<rect y="17" width="5" height="47" rx="2.5" fill="url(#paint0_linear_1102_465)" />
 			<rect x="13" y="37" width="5" height="27" rx="2.5" fill="url(#paint1_linear_1102_465)" />
 			<rect x="26" y="26" width="5" height="38" rx="2.5" fill="url(#paint2_linear_1102_465)" />
@@ -51,4 +40,4 @@ const LogoSVG = (props: LogoSVGProps) => {
 	);
 };
 
-export default LogoSVG;
+export default Logo;

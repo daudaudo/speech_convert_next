@@ -1,0 +1,47 @@
+
+@for $i from 1 through 10 {
+  .animate-bounce-t-#{$i} {
+    animation: bounce-up-down-#{$i} 1s infinite;
+    @keyframes bounce-up-down-#{$i} {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-#{$i / 4}rem);
+      }
+    }
+  }
+  .animate-bounce-l-#{$i} {
+    animation: bounce-left-right-#{$i} 1s infinite;
+    @keyframes bounce-left-right-#{$i} {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(-#{$i / 4}rem);
+      }
+    }
+  }
+  .animate-bounce-r-#{$i} {
+    animation: bounce-right-left-#{$i} 1s infinite;
+    @keyframes bounce-right-left-#{$i} {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(#{$i / 4}rem);
+      }
+    }
+  }
+  .animate-bounce-b-#{$i} {
+    animation: bounce-down-up-#{$i} 1s infinite;
+    @keyframes bounce-down-up-#{$i} {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(#{$i / 4}rem);
+      }
+    }
+  }
+}

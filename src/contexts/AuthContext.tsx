@@ -13,8 +13,6 @@ type Store = {
 		id: string;
 		email?: string;
 	};
-	showedUser?: boolean;
-	toggleShowedUser?: () => void;
 };
 
 const DefaultStore: Store = {
@@ -33,11 +31,6 @@ const AuthProvider = ({ children }: Props) => {
 	const [pending, startTransition] = useTransition();
 	const [authencated, setAuthencated] = useState(DefaultStore.authencated);
 	const [user, setUser] = useState(DefaultStore.user);
-	const [showedUser, setShowedUser] = useState(false);
-
-	const toggleShowedUser = (showed?: boolean) => {
-		setShowedUser(showed === undefined ? !showedUser : showed);
-	};
 
 	const signout = async () => {
 		try {
@@ -74,7 +67,7 @@ const AuthProvider = ({ children }: Props) => {
 		};
 	}, []);
 
-	const store: Store = { pending, authencated, user, signout, showedUser, toggleShowedUser };
+	const store: Store = { pending, authencated, user, signout };
 
 	return <Context.Provider value={store}>{children}</Context.Provider>;
 };
