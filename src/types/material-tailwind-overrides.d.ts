@@ -19,6 +19,7 @@ import {
 	ListItemProps as OriginalListItemProps,
 	ListItemSuffixProps as OriginalListItemSuffixProps,
 	ListProps as OriginalListProps,
+	NavbarProps as OriginalNavbarProps,
 	PopoverContentProps as OriginalPopoverContentProps,
 	SelectProps as OriginalSelectProps,
 } from "@material-tailwind/react";
@@ -53,4 +54,6 @@ declare module "@material-tailwind/react" {
 	export interface ListItemPrefixProps extends OriginalListItemPrefixProps, MuiOverrideProps {}
 	// Popover
 	export interface PopoverContentProps extends OriginalPopoverContentProps, MuiOverrideProps {}
+	// Navbar
+	export interface NavbarProps extends OriginalNavbarProps, MuiOverrideProps {}
 }

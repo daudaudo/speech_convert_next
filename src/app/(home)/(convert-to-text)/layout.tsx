@@ -1,5 +1,5 @@
-import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import React from "react";
+import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import CTTNavbar from "~/components/ctt/CTTNavbar";
 import CTTOutput from "~/components/ctt/CTTOutput";
 import CTTSelectLanguage from "~/components/ctt/SelectLanguage";

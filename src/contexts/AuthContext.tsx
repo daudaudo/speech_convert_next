@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef, useState, useTransition } from "react";
-import { getMeUser } from "~/actions/getMeUser";
+import { getCurrentUser } from "~/actions/getCurrentUser";
 import ContextError from "~/errors/context";
 import { deleteSession } from "~/utils/session";
 
@@ -49,7 +49,7 @@ const AuthProvider = ({ children }: Props) => {
 
 		startTransition(async () => {
 			try {
-				const res = await getMeUser();
+				const res = await getCurrentUser();
 				if (res.success) {
 					setAuthencated(true);
 					setUser({
