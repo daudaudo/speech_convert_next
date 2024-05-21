@@ -21,9 +21,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
 						<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 						<link rel="manifest" href="/site.webmanifest" />
 					</head>
-					<body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
-						<div className="h-screen md:max-w-screen-xl mx-auto">{children}</div>
-					</body>
+					<body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">{children}</body>
 					{process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-NW2E273HT2" />}
 				</html>
 			</AuthProvider>

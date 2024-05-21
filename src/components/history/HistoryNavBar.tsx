@@ -14,7 +14,7 @@ const HistoryNavBar = () => {
 			return (
 				<Button
 					onClick={() => onChangeType(itemType)}
-					className={`${isActive ? "bg-primary-200" : ""} text-gray-700 dark:text-gray-200`}
+					className={`${isActive ? "bg-primary-200 dark:bg-primary-700" : ""} text-gray-700 dark:text-gray-200`}
 				>
 					{label}
 				</Button>
