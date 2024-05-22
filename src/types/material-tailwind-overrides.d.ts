@@ -8,6 +8,7 @@ import {
 	ButtonGroupProps as OriginalButtonGroupProps,
 	ButtonProps as OriginalButtonProps,
 	CardProps as OriginalCardProps,
+	CarouselProps as OriginalCarouselProps,
 	DialogBodyProps as OriginalDialogBodyProps,
 	DialogFooterProps as OriginalDialogFooterProps,
 	DialogHeaderProps as OriginalDialogHeaderProps,
@@ -19,8 +20,10 @@ import {
 	ListItemProps as OriginalListItemProps,
 	ListItemSuffixProps as OriginalListItemSuffixProps,
 	ListProps as OriginalListProps,
+	NavbarProps as OriginalNavbarProps,
 	PopoverContentProps as OriginalPopoverContentProps,
 	SelectProps as OriginalSelectProps,
+	TextareaProps as OriginalTextareaProps,
 } from "@material-tailwind/react";
 
 type MuiOverrideProps = {
@@ -53,4 +56,10 @@ declare module "@material-tailwind/react" {
 	export interface ListItemPrefixProps extends OriginalListItemPrefixProps, MuiOverrideProps {}
 	// Popover
 	export interface PopoverContentProps extends OriginalPopoverContentProps, MuiOverrideProps {}
+	// Navbar
+	export interface NavbarProps extends OriginalNavbarProps, MuiOverrideProps {}
+	// Carousel
+	export interface CarouselProps extends OriginalCarouselProps, MuiOverrideProps {}
+	// Textarea
+	export interface TextareaProps extends OriginalTextareaProps, MuiOverrideProps {}
 }

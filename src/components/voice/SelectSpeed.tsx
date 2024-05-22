@@ -1,4 +1,4 @@
-import { ChartBarIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
+import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import SvgIcon from "~/components/icon/SvgIcon";
 

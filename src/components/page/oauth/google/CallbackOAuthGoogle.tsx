@@ -20,7 +20,7 @@ const CallbackOAuthGoogle = ({}: Props) => {
 		} else {
 			signinByGoogle(code)
 				.then(() => {
-					window.location.href = PagePath.textToSpeech;
+					router.replace(PagePath.home);
 				})
 				.catch(() => {
 					router.replace(PagePath.signin);

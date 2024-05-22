@@ -1,7 +1,8 @@
 import React from "react";
+import ListHistory from "~/components/history/HistoryPage";
 
 const HistoryPage = () => {
-	return <div className="flex pt-4 justify-center overlay w-full" />;
+	return <ListHistory />;
 };
 
 export default HistoryPage;
