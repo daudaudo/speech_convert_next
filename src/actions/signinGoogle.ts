@@ -2,8 +2,8 @@
 
 import { redirect } from "next/navigation";
 import { RequestMethod, RequestUrl } from "~/enums/request";
+import { login } from "~/data/oauth/google";
 import { createSession } from "~/utils/session";
-import { PagePath } from "~/enums/path";
 import { callApiAction } from "./utils";
 
 export async function navigateSigninByGoogleCallback() {
@@ -19,17 +19,7 @@ export async function navigateSigninByGoogleCallback() {
 	}
 }
 
-export async function signinByGoogle(code: string) {
-	try {
-		const res = await callApiAction(RequestUrl.signinGoogle, RequestMethod.POST, { code });
-		if (!res.success) {
-			return { message: res.message };
-		}
-		const token = res?.data?.access_token;
-		const id = res?.data?._id;
-		createSession(token, id);
-		redirect(PagePath.home);
-	} catch (error) {
-		throw error;
-	}
-}
+export const signinByGoogle = async (code: string) => {
+	const { access_token, _id } = await login({ code });
+	await createSession(access_token, _id);
+};
