@@ -1,5 +1,5 @@
 import React from "react";
-import HistoryNavBar from "~/components/history/HistoryNavBar";
+import HistoryNavBar from "~/components/page/history/HistoryNavBar";
 import { HistoryProvider } from "~/contexts/HistoryContext";
 
 interface Props {

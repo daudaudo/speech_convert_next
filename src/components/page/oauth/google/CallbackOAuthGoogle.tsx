@@ -14,7 +14,6 @@ const CallbackOAuthGoogle = ({}: Props) => {
 
 	useEffect(() => {
 		const code = searchParams.get("code");
-
 		if (!code || !code.trim().length) {
 			router.replace(PagePath.signin);
 		} else {
