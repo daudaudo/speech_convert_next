@@ -18,6 +18,9 @@ enum RequestUrl {
 	// converter
 	convertToSpeech = "audio/speech",
 	convertToText = "audio/transcriptions",
+	// history
+	CTSHistory = "audio/speech/history",
+	CTTHistory = "audio/transcriptions/history",
 }
 
 export { RequestMethod, RequestUrl };

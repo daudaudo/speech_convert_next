@@ -11,8 +11,8 @@ const HistoryLayout = ({ children }: Props) => {
 		<HistoryProvider>
 			<div className="h-full w-full flex flex-col">
 				<HistoryNavBar />
+				<div className="flex-1 w-full">{children}</div>
 			</div>
-			<div className="flex-1 w-full">{children}</div>
 		</HistoryProvider>
 	);
 };
