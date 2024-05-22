@@ -2,6 +2,7 @@
 
 import { callApiAction } from "~/actions/utils";
 import { RequestMethod, RequestUrl } from "~/enums/request";
+import { CTTHistory } from "~/types/HistoryTypes";
 
 export async function getCTTHistory(limit: number, page: number) {
 	try {
@@ -10,9 +11,9 @@ export async function getCTTHistory(limit: number, page: number) {
 			page: page.toString(),
 		});
 		if (!res.success) {
-			return { message: res.message };
+			return { error: res.message };
 		}
-		return res.data?.items;
+		return res.data?.items as CTTHistory[];
 	} catch (error) {
 		throw error;
 	}

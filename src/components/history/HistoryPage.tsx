@@ -1,21 +1,14 @@
 "use client";
 
 import React from "react";
-import CTSHistory from "~/components/history/CTSHistory";
-import CTTHistory from "~/components/history/CTTHistory";
-import { useHistory } from "~/contexts/HistoryContext";
+// import { useHistory } from "~/contexts/HistoryContext";
 
 const ListHistory = () => {
-	const { type } = useHistory();
-
-	switch (type) {
-		case "ctt":
-			return <CTTHistory />;
-		case "cts":
-			return <CTSHistory />;
-		default:
-			return <CTSHistory />;
-	}
+	// const { historys, pending, error } = useHistory();
+	// if (pending) return <div>Loading...</div>;
+	// if (error) return <div>{error}</div>;
+	// return <div>{JSON.stringify(historys)}</div>;
+	return <></>;
 };
 
 export default ListHistory;

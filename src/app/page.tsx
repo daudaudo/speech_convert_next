@@ -5,7 +5,7 @@ const Page = () => {
 	return (
 		<div className="h-screen mx-auto">
 			{/* <HomePage /> */}
-			Đây là trang chính
+			Home
 		</div>
 	);
 };

@@ -1,7 +1,7 @@
 import React from "react";
 import ListHistory from "~/components/history/HistoryPage";
 
-const HistoryPage = async () => {
+const HistoryPage = () => {
 	return <ListHistory />;
 };
 
