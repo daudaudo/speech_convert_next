@@ -2,7 +2,7 @@
 
 import { headers } from "next/headers";
 import { RequestMethod, RequestUrl } from "~/enums/request";
-import RequestError from "~/errors/request";
+import { FailedRequestError } from "~/errors/request";
 import { getSession } from "~/utils/session";
 
 const BASE_API_URL = process.env.BASE_API_URL;
@@ -71,7 +71,7 @@ export const callApiAction = async (
 		const timeout = options?.timeout ?? 30000; // 30s
 		const timeoutPromise = new Promise((_, reject) => {
 			setTimeout(() => {
-				reject(new RequestError("Request timed out"));
+				reject(new FailedRequestError("Request timed out"));
 			}, timeout);
 		});
 		const apiPromise = callApi(url, method, body, params);

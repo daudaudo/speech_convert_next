@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { addWeeks } from "date-fns/addWeeks";
 import { CookieKey } from "~/enums/cookieKey";
 
 interface Session {
@@ -15,8 +16,7 @@ export async function getSession(): Promise<Session> {
 }
 
 export async function createSession(token: string, id: string, dueTime?: number) {
-	const _dueTime = dueTime ?? 30 * 24 * 60 * 60 * 1000; // 7 days
-	const expiresAt = new Date(Date.now() + _dueTime);
+	const expiresAt = addWeeks(new Date(), 1);
 	cookies().set(CookieKey.token, token, {
 		httpOnly: true,
 		secure: true,
@@ -24,13 +24,13 @@ export async function createSession(token: string, id: string, dueTime?: number)
 		sameSite: "lax",
 		path: "/",
 	});
-	cookies().set(CookieKey.id, id, {
-		httpOnly: true,
-		secure: true,
-		expires: expiresAt,
-		sameSite: "lax",
-		path: "/",
-	});
+	// cookies().set(CookieKey.id, id, {
+	// 	httpOnly: true,
+	// 	secure: true,
+	// 	expires: expiresAt,
+	// 	sameSite: "lax",
+	// 	path: "/",
+	// });
 }
 
 export async function deleteSession() {
