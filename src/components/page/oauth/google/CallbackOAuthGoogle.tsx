@@ -5,10 +5,11 @@ import React, { useEffect } from "react";
 import { signinByGoogle } from "~/actions/signinGoogle";
 import Loading from "~/components/animations/Loading";
 import { PagePath } from "~/enums/path";
+import withSuspense from "~/hocs/withSuspense";
 
 interface Props {}
 
-const CallbackOAuthGoogle = ({}: Props) => {
+const CallbackOAuthGoogleView = ({}: Props) => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 
@@ -33,5 +34,7 @@ const CallbackOAuthGoogle = ({}: Props) => {
 		</div>
 	);
 };
+
+const CallbackOAuthGoogle = withSuspense(CallbackOAuthGoogleView);
 
 export default CallbackOAuthGoogle;
