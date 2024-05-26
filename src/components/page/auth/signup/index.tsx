@@ -8,7 +8,7 @@ import { SignupFields, SignupFormSchema, SignupFormState } from "~/definitions/s
 import { PagePath } from "~/enums/path";
 import { register } from "~/actions/usecase/auth";
 import { useAuth } from "~/contexts/auth/AuthContext";
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "~/components/page/auth/signup/SubmitButton";
 
 interface Props {}
 

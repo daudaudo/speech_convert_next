@@ -7,6 +7,7 @@ import { CTSHistory, CTTHistory, HistoryType } from "~/types/HistoryTypes";
 import { PagePath } from "~/enums/path";
 import { getCTSHistory } from "~/actions/getCTSHistory";
 import { getCTTHistory } from "~/actions/getCTTHistory";
+import withSuspense from "~/hocs/withSuspense";
 
 type Store = {
 	historys: (CTSHistory | CTTHistory)[];
@@ -29,13 +30,13 @@ const DefaultStore: Store = {
 	onChangePage: () => {},
 };
 
+const Context = React.createContext<Store>(DefaultStore);
+
 interface Props {
 	children: React.ReactNode;
 }
 
-const Context = React.createContext<Store>(DefaultStore);
-
-const HistoryProvider = ({ children }: Props) => {
+const Provider = ({ children }: Props) => {
 	const params = useSearchParams();
 	const router = useRouter();
 	const initRef = useRef(false);
@@ -80,7 +81,6 @@ const HistoryProvider = ({ children }: Props) => {
 
 	const requestGetHistory = useCallback(() => {
 		const requestFunc = type === "cts" ? getCTSHistory : getCTTHistory;
-
 		startTransition(async () => {
 			const res = await requestFunc(limit, page);
 			if ("error" in res) {
@@ -114,5 +114,7 @@ const useHistory = () => {
 	}
 	return context;
 };
+
+const HistoryProvider = withSuspense(Provider);
 
 export { HistoryProvider, useHistory };

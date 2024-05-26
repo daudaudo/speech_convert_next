@@ -7,10 +7,11 @@ import Loading from "~/components/animations/Loading";
 import { useAuth } from "~/contexts/auth/AuthContext";
 import { useToastMessage } from "~/contexts/toast/ToastWrapper";
 import { PagePath } from "~/enums/path";
+import withSuspense from "~/hocs/withSuspense";
 
 interface Props {}
 
-const CallbackOAuthGoogle = ({}: Props) => {
+const CallbackOAuthGoogleView = ({}: Props) => {
 	const toast = useToastMessage();
 	const router = useRouter();
 	const searchParams = useSearchParams();
@@ -18,7 +19,6 @@ const CallbackOAuthGoogle = ({}: Props) => {
 
 	useEffect(() => {
 		const code = searchParams.get("code");
-
 		if (!code || !code.trim().length) {
 			router.replace(PagePath.signin);
 			toast.error("Đăng nhập Google thất bại. Vui lòng thử lại.");
@@ -43,5 +43,7 @@ const CallbackOAuthGoogle = ({}: Props) => {
 		</div>
 	);
 };
+
+const CallbackOAuthGoogle = withSuspense(CallbackOAuthGoogleView);
 
 export default CallbackOAuthGoogle;

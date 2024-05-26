@@ -1,16 +1,12 @@
-// import React from "react";
-import { redirect } from "next/navigation";
-import { PagePath } from "~/enums/path";
-// import HomePage from "~/components/home/HomePage";
+import React from "react";
+import HomePage from "~/components/page/home";
 
 const Page = async () => {
-	redirect(PagePath.textToSpeech);
-	// return (
-	// 	<div className="h-screen mx-auto">
-	// 		{/* <HomePage /> */}
-	// 		Home
-	// 	</div>
-	// );
+	return (
+		<div className="h-screen mx-auto">
+			<HomePage />
+		</div>
+	);
 };
 
 export default Page;

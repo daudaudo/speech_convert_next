@@ -5,6 +5,8 @@
  */
 
 import {
+	AccordionHeaderProps as OriginalAccordionHeaderProps,
+	AccordionProps as OriginalAccordionProps,
 	ButtonGroupProps as OriginalButtonGroupProps,
 	ButtonProps as OriginalButtonProps,
 	CardProps as OriginalCardProps,
@@ -62,4 +64,7 @@ declare module "@material-tailwind/react" {
 	export interface CarouselProps extends OriginalCarouselProps, MuiOverrideProps {}
 	// Textarea
 	export interface TextareaProps extends OriginalTextareaProps, MuiOverrideProps {}
+	// Accordion
+	export interface AccordionProps extends OriginalAccordionProps, MuiOverrideProps {}
+	export interface AccordionHeaderProps extends OriginalAccordionHeaderProps, MuiOverrideProps {}
 }

@@ -5,19 +5,17 @@ import React, { useCallback, useMemo } from "react";
 import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
-import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { login } from "~/actions/usecase/auth";
 import { SigninFields, SigninFormSchema, SigninFormState } from "~/definitions/signin";
 import { navigateSigninByGoogleCallback } from "~/actions/signinGoogle";
 import { useAuth } from "~/contexts/auth/AuthContext";
 import { useToastMessage } from "~/contexts/toast/ToastWrapper";
-import SubmitButton from "./SubmitButton";
+import SubmitButton from "~/components/page/auth/signin/SubmitButton";
 
 interface Props {}
 
 const SignInForm = ({}: Props) => {
-	const translate = useTranslations();
 	const router = useRouter();
 	const auth = useAuth();
 	const toast = useToastMessage();

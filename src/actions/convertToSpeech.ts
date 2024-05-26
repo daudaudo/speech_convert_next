@@ -1,7 +1,7 @@
 "use server";
 
+import { callApiAction } from "~/actions/utils";
 import { RequestMethod, RequestUrl } from "~/enums/request";
-import { callApiAction } from "./utils";
 
 const convertToSpeech = async (formData: FormData) => {
 	try {

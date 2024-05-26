@@ -3,10 +3,10 @@
 import React from "react";
 import dynamic from "next/dynamic";
 import UserButton from "~/components/header/UserButton";
-import Logo from "./Logo";
-import NavBar from "./NavBar";
-import DocSearch from "./DocSearch";
-const DarkModeButton = dynamic(() => import("./DarkModeButton"), { ssr: false });
+import DocSearch from "~/components/header/DocSearch";
+import Logo from "~/components/header/Logo";
+import NavBar from "~/components/header/NavBar";
+const DarkModeButton = dynamic(() => import("~/components/header/DarkModeButton"), { ssr: false });
 
 const Header = () => {
 	return (
