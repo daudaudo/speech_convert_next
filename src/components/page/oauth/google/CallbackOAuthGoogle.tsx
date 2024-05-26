@@ -4,6 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { signinByGoogle } from "~/actions/signinGoogle";
 import Loading from "~/components/animations/Loading";
+import { useAuth } from "~/contexts/auth/AuthContext";
 import { PagePath } from "~/enums/path";
 
 interface Props {}
@@ -11,6 +12,7 @@ interface Props {}
 const CallbackOAuthGoogle = ({}: Props) => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
+	const { signin } = useAuth();
 
 	useEffect(() => {
 		const code = searchParams.get("code");
@@ -18,13 +20,19 @@ const CallbackOAuthGoogle = ({}: Props) => {
 		if (!code || !code.trim().length) {
 			router.replace(PagePath.signin);
 		} else {
-			signinByGoogle(code)
-				.then(() => {
-					router.replace(PagePath.home);
-				})
-				.catch(() => {
+			(async () => {
+				try {
+					await signinByGoogle(code);
+					if (signin) {
+						await signin();
+						router.replace(PagePath.textToSpeech);
+					} else {
+						window.location.href = PagePath.textToSpeech;
+					}
+				} catch {
 					router.replace(PagePath.signin);
-				});
+				}
+			})();
 		}
 	}, []);
 

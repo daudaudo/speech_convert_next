@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import "~/styles/global.scss";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { ThemeProvider } from "~/contexts/ThemeContext";
-import { AuthProvider } from "~/contexts/AuthContext";
+import AuthWrapper from "~/contexts/auth/AuthWrapper";
 
 export const metadata: Metadata = {
 	title: "Speech Convert",
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: React.PropsWithChildren) => {
 	return (
 		<ThemeProvider>
-			<AuthProvider>
+			<AuthWrapper>
 				<html lang="vi">
 					<head>
 						<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
@@ -24,7 +24,7 @@ const RootLayout = ({ children }: React.PropsWithChildren) => {
 					<body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">{children}</body>
 					{process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-NW2E273HT2" />}
 				</html>
-			</AuthProvider>
+			</AuthWrapper>
 		</ThemeProvider>
 	);
 };

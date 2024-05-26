@@ -3,15 +3,47 @@
 import Link from "next/link";
 import React, { useCallback } from "react";
 import { useFormState } from "react-dom";
-import { signup } from "~/actions/signup";
-import { SignupFields, SignupFormState } from "~/definitions/signup";
+import { useRouter } from "next/navigation";
+import { SignupFields, SignupFormSchema, SignupFormState } from "~/definitions/signup";
 import { PagePath } from "~/enums/path";
+import { register } from "~/actions/usecase/auth";
+import { useAuth } from "~/contexts/auth/AuthContext";
 import SubmitButton from "./SubmitButton";
 
 interface Props {}
 
-const SignUpForm: React.FC<Props> = () => {
-	const [state, action] = useFormState<SignupFormState, FormData>(signup, undefined);
+const SignUpForm = ({}: Props) => {
+	const router = useRouter();
+	const auth = useAuth();
+	const [state, action] = useFormState<SignupFormState, FormData>(
+		async (currentState: SignupFormState, formData: FormData) => {
+			try {
+				const username = formData.get(SignupFields.username) as string;
+				const email = formData.get(SignupFields.email) as string;
+				const password = formData.get(SignupFields.password) as string;
+
+				const validatedFields = SignupFormSchema.safeParse({ username, email, password });
+				if (!validatedFields.success) {
+					return { errors: validatedFields.error.flatten().fieldErrors };
+				}
+
+				await register({ username, email, password });
+
+				if (auth.signin) {
+					await auth.signin();
+				} else {
+					window.location.href = PagePath.home;
+				}
+
+				router.replace(PagePath.home);
+			} catch (error: unknown) {
+				if (error instanceof Error) {
+					return { message: error.message };
+				}
+			}
+		},
+		undefined,
+	);
 
 	const renderWarning = useCallback(() => {
 		const message = state?.message;

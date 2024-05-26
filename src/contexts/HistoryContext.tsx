@@ -80,7 +80,7 @@ const HistoryProvider = ({ children }: Props) => {
 
 	const requestGetHistory = useCallback(() => {
 		const requestFunc = type === "cts" ? getCTSHistory : getCTTHistory;
-		console.log(">>>", { limit, page, type });
+
 		startTransition(async () => {
 			const res = await requestFunc(limit, page);
 			if ("error" in res) {

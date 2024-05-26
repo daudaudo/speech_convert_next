@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { RequestMethod, RequestUrl } from "~/enums/request";
-import { login } from "~/data/oauth/google";
+import { login } from "~/actions/data/oauth/google";
 import { createSession } from "~/utils/session";
 import { callApiAction } from "./utils";
 

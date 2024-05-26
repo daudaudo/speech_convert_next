@@ -1,30 +1,64 @@
 "use client";
 
 import Link from "next/link";
-import React, { useCallback } from "react";
-import { useFormState } from "react-dom";
+import React, { useCallback, useMemo } from "react";
 import { Button } from "@material-tailwind/react";
+import { useRouter } from "next/navigation";
+import { useFormState } from "react-dom";
 import { PagePath } from "~/enums/path";
-import { signin } from "~/actions/signin";
-import { SigninFields, SigninFormState } from "~/definitions/signin";
+import { login } from "~/actions/usecase/auth";
+import { SigninFields, SigninFormSchema, SigninFormState } from "~/definitions/signin";
 import { navigateSigninByGoogleCallback } from "~/actions/signinGoogle";
+import { useAuth } from "~/contexts/auth/AuthContext";
 import SubmitButton from "./SubmitButton";
 
 interface Props {}
 
-const SignInForm: React.FC<Props> = () => {
-	const [state, action] = useFormState<SigninFormState, FormData>(signin, undefined);
+const SignInForm = ({}: Props) => {
+	const router = useRouter();
+	const auth = useAuth();
+	const [state, action] = useFormState<SigninFormState, FormData>(
+		async (currentState: SigninFormState, formData: FormData) => {
+			try {
+				const email = formData.get(SigninFields.email) as string;
+				const password = formData.get(SigninFields.password) as string;
+				const validatedFields = SigninFormSchema.safeParse({
+					email,
+					password,
+				});
+				if (!validatedFields.success) {
+					return { errors: validatedFields.error.flatten().fieldErrors };
+				}
 
-	const renderWarning = useCallback(() => {
+				await login(email, password);
+				if (auth.signin) {
+					await auth.signin();
+				}
+
+				router.replace(PagePath.home);
+			} catch (error: unknown) {
+				if (error instanceof Error) {
+					return { message: error.message };
+				}
+			}
+			return undefined;
+		},
+		undefined,
+	);
+
+	const Warning = useMemo(() => {
 		const message = state?.message;
-		if (!message) return null;
+		if (!message) {
+			return null;
+		}
+
 		return (
 			<div className="bg-yellow-200 text-yellow-800 p-4 rounded-lg">
 				<p className="text-sm font-medium">Đăng nhập không thành công</p>
 				<p className="text-sm font-normal">{message}</p>
 			</div>
 		);
-	}, [state]);
+	}, [state?.message]);
 
 	const renderError = useCallback(
 		(field: SigninFields) => {
@@ -42,7 +76,7 @@ const SignInForm: React.FC<Props> = () => {
 				<h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					Đăng nhập
 				</h1>
-				{renderWarning()}
+				{Warning}
 				<form action={action} noValidate className="space-y-4 md:space-y-6">
 					<div>
 						<label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">

@@ -1,10 +1,10 @@
 import React from "react";
-import SignUpForm from "~/components/signup";
+import SignUpForm from "~/components/page/auth/signup";
 
 interface Props {}
 
-const SignOutPage: React.FC<Props> = () => {
+const Page = ({}: Props) => {
 	return <SignUpForm />;
 };
 
-export default SignOutPage;
+export default Page;
