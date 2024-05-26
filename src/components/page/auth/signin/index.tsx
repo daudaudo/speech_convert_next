@@ -5,18 +5,22 @@ import React, { useCallback, useMemo } from "react";
 import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
+import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { login } from "~/actions/usecase/auth";
 import { SigninFields, SigninFormSchema, SigninFormState } from "~/definitions/signin";
 import { navigateSigninByGoogleCallback } from "~/actions/signinGoogle";
 import { useAuth } from "~/contexts/auth/AuthContext";
+import { useToastMessage } from "~/contexts/toast/ToastWrapper";
 import SubmitButton from "./SubmitButton";
 
 interface Props {}
 
 const SignInForm = ({}: Props) => {
+	const translate = useTranslations();
 	const router = useRouter();
 	const auth = useAuth();
+	const toast = useToastMessage();
 	const [state, action] = useFormState<SigninFormState, FormData>(
 		async (currentState: SigninFormState, formData: FormData) => {
 			try {
@@ -31,10 +35,9 @@ const SignInForm = ({}: Props) => {
 				}
 
 				await login(email, password);
-				if (auth.signin) {
-					await auth.signin();
-				}
+				await auth.signin();
 
+				toast.show("Đăng nhập thành công");
 				router.replace(PagePath.home);
 			} catch (error: unknown) {
 				if (error instanceof Error) {

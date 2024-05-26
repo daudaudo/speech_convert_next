@@ -1,6 +1,8 @@
 @import 'tailwindcss/base';
 @import 'tailwindcss/components'; 
 @import 'tailwindcss/utilities';
+@import 'react-toastify/dist/ReactToastify.css';
+
 @import './animate.scss';
 @import './background.scss';
 @import './text.scss';
@@ -8,8 +10,13 @@
 body {
   margin: 0;
   padding: 0;
+  font-family: "Open_Sans", sans-serif;
 }
-/* Custom scrollbar styles */
+
+* {
+  font-family: "Open_Sans", sans-serif;
+}
+
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -25,4 +32,12 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background-color: #555;
+}
+
+.Toastify {
+  &__toast-body {
+    font-family: "Open_Sans", sans-serif;
+    font-weight: 400;
+    @apply text-gray-800;
+  }
 }

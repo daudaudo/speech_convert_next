@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { match } from "path-to-regexp";
 import { PagePath } from "~/enums/path";
 import { RequestMethod } from "~/enums/request";
-import { auth } from "~/middlewares.ts/auth";
+import { auth } from "~/middlewares/auth";
 
 export const map = async (request: NextRequest, response: NextResponse) => {
 	if (request.method !== RequestMethod.GET) {

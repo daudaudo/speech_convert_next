@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PagePath } from "~/enums/path";
 import { UnauthorizedError } from "~/errors/logic/auth";
-import { map } from "~/middlewares.ts";
+import { map } from "~/middlewares";
 
 export const middleware = async (request: NextRequest) => {
 	try {

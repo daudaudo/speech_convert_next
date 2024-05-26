@@ -14,7 +14,7 @@ export class MissingTokenInCookieError extends UnauthorizedError {
 	}
 }
 
-export class MissingJWTInCookieError extends UnauthorizedError {
+export class MissingJWTInHeaderError extends UnauthorizedError {
 	public constructor(message?: string) {
 		super(message);
 		this.name = "missing_jwt_in_cookie_error";
