@@ -2,8 +2,8 @@
 
 import React from "react";
 import dynamic from "next/dynamic";
+import UserButton from "~/components/header/UserButton";
 import Logo from "./Logo";
-import UserButton from "./UserButton";
 import NavBar from "./NavBar";
 import DocSearch from "./DocSearch";
 const DarkModeButton = dynamic(() => import("./DarkModeButton"), { ssr: false });

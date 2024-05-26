@@ -1,6 +1,6 @@
 "use server";
 
-import { request } from "~/data";
+import { request } from "~/actions/data";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { LoginResponseData } from "~/types/response/auth";
 

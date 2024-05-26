@@ -10,9 +10,10 @@ const BASE_API_URL = process.env.BASE_API_URL;
 export type RequestData = Record<string, string> | FormData | string | null | undefined;
 
 export type RequestOptions = {
-	method: RequestMethod;
-	data: RequestData;
+	method?: RequestMethod;
+	data?: RequestData;
 	timeout?: number;
+	bearer?: string;
 };
 
 const getRealIP = async () => {
@@ -36,13 +37,18 @@ const buildBody = async (method: RequestMethod, data: RequestData) => {
 	return data;
 };
 
-const buildHeaders = async (method: RequestMethod, data: RequestData) => {
+const buildHeaders = async (options: { method: RequestMethod; data: RequestData; bearer?: string }) => {
+	const { method, data, bearer } = options;
 	const headers: HeadersInit = {};
 
 	const ip = await getRealIP();
 	if (ip) {
 		headers["X-Forwarded-For"] = ip;
 		headers["X-Real-IP"] = ip;
+	}
+
+	if (bearer && bearer.length) {
+		headers["Authorization"] = `Bearer ${bearer}`;
 	}
 
 	if ([RequestMethod.GET, RequestMethod.PATCH, RequestMethod.DELETE].includes(method)) {
@@ -82,11 +88,11 @@ const createTimeOutPromise = (timeout: number) => {
 };
 
 export const request = async <DataType = any>(name: RequestUrl, options: RequestOptions) => {
-	const { method = RequestMethod.GET, data, timeout } = options;
+	const { method = RequestMethod.GET, data, timeout, bearer } = options;
 
 	const init: RequestInit = {
 		method,
-		headers: await buildHeaders(method, data),
+		headers: await buildHeaders({ method, data, bearer }),
 		body: await buildBody(method, data),
 	};
 
@@ -107,7 +113,7 @@ export const request = async <DataType = any>(name: RequestUrl, options: Request
 	});
 
 	if (!response || !response.success) {
-		throw new FailedRequestError();
+		throw new FailedRequestError(response.message ?? undefined);
 	}
 
 	return response;
