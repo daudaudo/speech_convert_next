@@ -1,10 +1,10 @@
 import React from "react";
-import SignInForm from "~/components/signin";
+import SignInForm from "~/components/page/auth/signin";
 
 interface Props {}
 
-const SignInPage: React.FC<Props> = () => {
+const Page = async ({}: Props) => {
 	return <SignInForm />;
 };
 
-export default SignInPage;
+export default Page;

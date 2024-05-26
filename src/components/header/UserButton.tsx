@@ -2,21 +2,18 @@
 
 import React from "react";
 import Link from "next/link";
-import { ArrowPathIcon, UserCircleIcon } from "@heroicons/react/24/solid";
+import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { Button, IconButton, Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react";
 import { PagePath } from "~/enums/path";
-import { useAuth } from "~/contexts/AuthContext";
+import { useAuth } from "~/contexts/auth/AuthContext";
 import SvgIcon from "~/components/icon/SvgIcon";
 
 const UserButton = () => {
-	const { pending, authencated, user, signout } = useAuth();
+	const { user, signout } = useAuth();
 
 	return (
 		<div className="w-10 h-10">
-			<div className={`${pending ? "block" : "hidden"} p-0 rounded-full text-gray-800 dark:text-gray-200`}>
-				<ArrowPathIcon className="h-8 w-8 animate-spin" />
-			</div>
-			{authencated && (
+			{!!user && (
 				<Popover placement="bottom" animate={{ mount: { scale: 1, y: 0 }, unmount: { scale: 0, y: 25 } }}>
 					<PopoverHandler>
 						<div className="w-full h-full bg-primary-200 dark:bg-primary-800 p-0 rounded-full text-gray-800 dark:text-gray-200 flex justify-center items-center">
@@ -42,7 +39,7 @@ const UserButton = () => {
 					</PopoverContent>
 				</Popover>
 			)}
-			<Link href={PagePath.signin} className={`${authencated || pending ? "hidden" : "block"}`}>
+			<Link href={PagePath.signin} className={`${!!user ? "hidden" : "block"}`}>
 				<IconButton
 					variant="text"
 					className="bg-primary-200 dark:bg-primary-800 p-0 rounded-full text-gray-800 dark:text-gray-200"
