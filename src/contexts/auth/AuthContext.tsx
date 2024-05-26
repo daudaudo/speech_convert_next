@@ -4,14 +4,18 @@ import React, { useState } from "react";
 import { getAuthUserByTokenCookie } from "~/actions/usecase/auth/user";
 import { removeToken } from "~/actions/cookies/auth";
 import { AuthenticatedUser } from "~/types/auth";
+import { NotImplementedLogicError } from "~/errors/logic";
 
 type AuthContext = {
-	signout?(): Promise<any>;
-	signin?(): Promise<any>;
+	signout(): Promise<any>;
+	signin(): Promise<any>;
 	user?: AuthenticatedUser;
 };
 
-const Context = React.createContext<AuthContext>({});
+const Context = React.createContext<AuthContext>({
+	signin: () => Promise.reject(new NotImplementedLogicError()),
+	signout: () => Promise.reject(new NotImplementedLogicError()),
+});
 
 interface Props {
 	children: React.ReactNode;

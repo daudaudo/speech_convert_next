@@ -4,7 +4,7 @@ import { jwtVerify, SignJWT } from "jose";
 import { headers } from "next/headers";
 import { getToken } from "~/actions/cookies/auth";
 import { getAuthUser } from "~/actions/data/auth/user";
-import { MissingJWTInCookieError, MissingTokenInCookieError } from "~/errors/logic/auth";
+import { MissingJWTInHeaderError, MissingTokenInCookieError } from "~/errors/logic/auth";
 import { AuthenticatedUser } from "~/types/auth";
 
 const secret = new TextEncoder().encode(process.env.APP_JWT_SECRET);
@@ -22,7 +22,7 @@ export const getAuthUserUseJwtHeader = async (): Promise<AuthenticatedUser> => {
 	const jwt = headers().get("X-AUTH-JWT");
 
 	if (!jwt || !jwt.length) {
-		throw new MissingJWTInCookieError();
+		throw new MissingJWTInHeaderError();
 	}
 
 	return await verifyJWTAuthenticatedUser(jwt);

@@ -5,11 +5,13 @@ import React, { useEffect } from "react";
 import { signinByGoogle } from "~/actions/signinGoogle";
 import Loading from "~/components/animations/Loading";
 import { useAuth } from "~/contexts/auth/AuthContext";
+import { useToastMessage } from "~/contexts/toast/ToastWrapper";
 import { PagePath } from "~/enums/path";
 
 interface Props {}
 
 const CallbackOAuthGoogle = ({}: Props) => {
+	const toast = useToastMessage();
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const { signin } = useAuth();
@@ -19,18 +21,17 @@ const CallbackOAuthGoogle = ({}: Props) => {
 
 		if (!code || !code.trim().length) {
 			router.replace(PagePath.signin);
+			toast.error("Đăng nhập Google thất bại. Vui lòng thử lại.");
 		} else {
 			(async () => {
 				try {
 					await signinByGoogle(code);
-					if (signin) {
-						await signin();
-						router.replace(PagePath.textToSpeech);
-					} else {
-						window.location.href = PagePath.textToSpeech;
-					}
+					await signin();
+					router.replace(PagePath.home);
+					toast.info("Đăng nhập bằng Google thành công.", { autoClose: 3000 });
 				} catch {
 					router.replace(PagePath.signin);
+					toast.error("Đăng nhập Google thất bại. Vui lòng thử lại.");
 				}
 			})();
 		}
