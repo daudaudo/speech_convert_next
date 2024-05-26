@@ -5,8 +5,8 @@ import { ChevronDoubleUpIcon, SpeakerWaveIcon, XCircleIcon } from "@heroicons/re
 import { Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { CTSModel, CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
-import SelectSpeed from "./SelectSpeed";
-import SelectVoice from "./SelectVoice";
+import SelectSpeed from "~/components/voice/SelectSpeed";
+import SelectVoice from "~/components/voice/SelectVoice";
 
 interface Props {
 	HD: boolean;

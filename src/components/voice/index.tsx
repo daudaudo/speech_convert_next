@@ -4,8 +4,8 @@ import React from "react";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { CTSSpeed } from "~/types/CTSTypes";
 import { OpenAITTSModel } from "~/enums/openAi";
-import VoiceFormDetail from "./VoiceFormDetail";
-import VoiceFormCollapse from "./VoiceFormCollapse";
+import VoiceFormDetail from "~/components/voice/VoiceFormDetail";
+import VoiceFormCollapse from "~/components/voice/VoiceFormCollapse";
 
 const VoiceForm = () => {
 	const {

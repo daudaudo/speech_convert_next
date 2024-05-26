@@ -4,8 +4,8 @@ import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import React from "react";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
-import SelectSpeed from "./SelectSpeed";
-import SelectVoice from "./SelectVoice";
+import SelectVoice from "~/components/voice/SelectVoice";
+import SelectSpeed from "~/components/voice/SelectSpeed";
 
 interface Props {
 	HD: boolean;

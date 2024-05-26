@@ -1,5 +1,5 @@
 import React from "react";
-import HomePage from "~/components/page/home/HomePage";
+import HomePage from "~/components/page/home";
 
 const Page = async () => {
 	return (

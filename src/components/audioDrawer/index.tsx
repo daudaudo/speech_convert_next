@@ -4,7 +4,7 @@ import React from "react";
 import { ChevronDoubleUpIcon, PlayPauseIcon } from "@heroicons/react/24/solid";
 import { Drawer } from "@material-tailwind/react";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
-import Audio from "./Audio";
+import Audio from "~/components/audioDrawer/Audio";
 
 const AudioDrawer = () => {
 	const { output, resultShowed, toggleShowResult } = useConvertToSpeech();

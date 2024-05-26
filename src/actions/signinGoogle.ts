@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { login } from "~/actions/data/oauth/google";
 import { createSession } from "~/utils/session";
-import { callApiAction } from "./utils";
+import { callApiAction } from "~/actions/utils";
 
 export async function navigateSigninByGoogleCallback() {
 	try {

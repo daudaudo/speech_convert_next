@@ -1,4 +1,4 @@
-import { AppError } from "./app";
+import { AppError } from "~/errors/app";
 
 class ContextError extends AppError {
 	constructor(name?: string) {

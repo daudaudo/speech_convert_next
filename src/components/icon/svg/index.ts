@@ -1,7 +1,8 @@
 import type { SvgProps } from "~/types/icon";
-import Logo from "./app/Logo";
-import ArrowRightToBracket from "./outline/ArrowRightToBracket";
-import Gauge from "./outline/Gauge";
+import Logo from "~/components/icon/svg/app/Logo";
+import ArrowRightToBracket from "~/components/icon/svg/outline/ArrowRightToBracket";
+import Gauge from "~/components/icon/svg/outline/Gauge";
+import Text from "~/components/icon/svg/outline/Text";
 
 const IconsMap = {
 	app: {
@@ -10,6 +11,7 @@ const IconsMap = {
 	outline: {
 		"arrow-right-to-bracket": ArrowRightToBracket,
 		gauge: Gauge,
+		text: Text,
 	},
 	solid: {},
 };
