@@ -12,6 +12,8 @@ type CTSHistory = {
 	owner: string;
 	stream_url: string;
 	download_url: string;
+	created_at: string;
+	update_at: string;
 };
 
 type CTTHistory = {
@@ -22,6 +24,8 @@ type CTTHistory = {
 	text: string;
 	segments: { start: number; end: number; text: string; _id: number }[];
 	input_stream_url: string;
+	created_at: string;
+	update_at: string;
 };
 
 export type { HistoryType, CTSHistory, CTTHistory };

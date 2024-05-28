@@ -4,7 +4,7 @@ import { callApiAction } from "~/actions/utils";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { CTTHistory } from "~/types/HistoryTypes";
 
-export async function getCTTHistory(limit: number, page: number) {
+export async function getCTTHistory(limit: number | string, page: number | string) {
 	try {
 		const res = await callApiAction(RequestUrl.CTTHistory, RequestMethod.GET, undefined, {
 			limit: limit.toString(),

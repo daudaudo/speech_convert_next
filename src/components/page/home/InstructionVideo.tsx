@@ -9,7 +9,7 @@ interface Props {
 }
 
 const InstructionVideo = (props: Props) => {
-	const { width = 560, height = 315 } = props;
+	const { width = 400, height = 315 } = props;
 
 	return (
 		<div className="flex flex-col gap-2">

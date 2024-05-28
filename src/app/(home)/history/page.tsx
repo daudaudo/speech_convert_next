@@ -1,8 +1,8 @@
 import React from "react";
-import ListHistory from "~/components/page/history/HistoryPage";
+import HistoryPage from "~/components/page/history";
 
-const HistoryPage = () => {
-	return <ListHistory />;
+const Page = () => {
+	return <HistoryPage />;
 };
 
-export default HistoryPage;
+export default Page;
