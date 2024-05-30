@@ -3,7 +3,7 @@ import { CTTLanguage, CTTModel } from "~/types/CTTTypes";
 
 type HistoryType = "cts" | "ctt";
 
-type CTSHistory = {
+type CTSHistoryType = {
 	_id: string;
 	input: string;
 	voice: CTSVoiceId;
@@ -16,7 +16,7 @@ type CTSHistory = {
 	update_at: string;
 };
 
-type CTTHistory = {
+type CTTHistoryType = {
 	_id: string;
 	model: CTTModel;
 	language: CTTLanguage;
@@ -28,4 +28,4 @@ type CTTHistory = {
 	update_at: string;
 };
 
-export type { HistoryType, CTSHistory, CTTHistory };
+export type { HistoryType, CTSHistoryType, CTTHistoryType };

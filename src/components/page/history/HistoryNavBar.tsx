@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { Button, ButtonGroup } from "@material-tailwind/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import type { HistoryType } from "~/types/HistoryTypes";
@@ -11,10 +11,7 @@ const NavBar = () => {
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
 
-	const [type, setType] = useState<HistoryType>((searchParams.get("type") ?? "cts") as HistoryType);
-
 	const onSelect = (type: HistoryType) => {
-		setType(type);
 		const current = new URLSearchParams(Array.from(searchParams.entries()));
 		current.set("type", type);
 		const search = current.toString();
@@ -24,7 +21,7 @@ const NavBar = () => {
 
 	const renderNavButton = useCallback(
 		(itemType: HistoryType, label: string) => {
-			const isActive = itemType === type;
+			const isActive = itemType === searchParams.get("type");
 			return (
 				<Button
 					onClick={() => onSelect(itemType)}
@@ -34,7 +31,7 @@ const NavBar = () => {
 				</Button>
 			);
 		},
-		[type],
+		[searchParams],
 	);
 
 	return (

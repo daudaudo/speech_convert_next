@@ -3,18 +3,26 @@
 import { ArrowDownIcon, ArrowDownTrayIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Card, IconButton } from "@material-tailwind/react";
 import React from "react";
-import type { CTSHistory } from "~/types/HistoryTypes";
+import Pagination from "~/components/base/Pagination";
+import type { CTSHistoryType } from "~/types/HistoryTypes";
+import formatDate from "~/utils/date";
 
 interface Props {
-	history: CTSHistory[];
+	history: CTSHistoryType[];
+	currentPage: number;
+	lastPage: number;
+	onChangePage: (page: number) => void;
+	from: number;
+	to: number;
+	total: number;
 }
 
 const CTSListHistory = (props: Props) => {
-	const { history } = props;
+	const { history, currentPage, lastPage, onChangePage, from, to, total } = props;
 
 	const deleteHistory = () => {};
 
-	const renderHistoryItem = (h: CTSHistory) => {
+	const renderHistoryItem = (h: CTSHistoryType) => {
 		const { _id, input, voice, download_url, stream_url, model, speed, created_at } = h;
 		return (
 			<Card key={_id} className="p-4 bg-gray-100 dark:bg-gray-800 rounded-md flex flex-col gap-2">
@@ -43,12 +51,26 @@ const CTSListHistory = (props: Props) => {
 						</a>
 					</div>
 				</div>
-				<div className="flex w-full justify-end text-xs text-gray-800 dark:text-gray-100">{created_at}</div>
+				<div className="flex w-full justify-end text-xs text-gray-800 dark:text-gray-100">{formatDate(created_at)}</div>
 			</Card>
 		);
 	};
 
-	return <div className="w-full h-full flex flex-col gap-4 py-2">{history.map(renderHistoryItem)}</div>;
+	return (
+		<div className="w-full h-full flex flex-col gap-4 py-2">
+			<div className="flex justify-between px-2">
+				{from !== to ? (
+					<span className="inline-flex font-semibold text-gray-500 items-center ">
+						{from} - {to} / {total}
+					</span>
+				) : (
+					<div />
+				)}
+				<Pagination size={lastPage} initPage={currentPage} onChange={onChangePage} />
+			</div>
+			{history.map(renderHistoryItem)}
+		</div>
+	);
 };
 
 export default CTSListHistory;

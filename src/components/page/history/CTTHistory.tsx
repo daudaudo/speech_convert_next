@@ -1,20 +1,28 @@
 "use client";
 
-import { ArrowDownIcon, ArrowDownTrayIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ArrowDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Card, IconButton } from "@material-tailwind/react";
 import React from "react";
-import type { CTTHistory } from "~/types/HistoryTypes";
+import Pagination from "~/components/base/Pagination";
+import type { CTTHistoryType } from "~/types/HistoryTypes";
+import formatDate from "~/utils/date";
 
 interface Props {
-	history: CTTHistory[];
+	history: CTTHistoryType[];
+	currentPage: number;
+	lastPage: number;
+	onChangePage: (page: number) => void;
+	from: number;
+	to: number;
+	total: number;
 }
 
 const CTTListHistory = (props: Props) => {
-	const { history } = props;
+	const { history, currentPage, lastPage, onChangePage, from, to, total } = props;
 
 	const deleteHistory = () => {};
 
-	const renderHistoryItem = (h: CTTHistory) => {
+	const renderHistoryItem = (h: CTTHistoryType) => {
 		const { _id, text, language, input_stream_url, model, created_at } = h;
 		return (
 			<Card key={_id} className="p-4 bg-gray-100 dark:bg-gray-800 rounded-md flex flex-col gap-2">
@@ -39,12 +47,24 @@ const CTTListHistory = (props: Props) => {
 						</audio>
 					</div>
 				</div>
-				<div className="flex w-full justify-end text-xs text-gray-800 dark:text-gray-100">{created_at}</div>
+				<div className="flex w-full justify-end text-xs text-gray-800 dark:text-gray-100">{formatDate(created_at)}</div>
 			</Card>
 		);
 	};
 
-	return <div className="w-full h-full flex flex-col gap-4 py-2">{history.map(renderHistoryItem)}</div>;
+	return (
+		<div className="w-full h-full flex flex-col gap-4 py-2">
+			<div className="flex justify-between items-center py-2">
+				{total > 1 && (
+					<span className="inline-flex text-gray-600 dark:text-gray-300 items-center ">
+						{from} - {to} / {total}
+					</span>
+				)}
+				<Pagination size={lastPage} initPage={currentPage} onChange={onChangePage} />
+			</div>
+			{history.map(renderHistoryItem)}
+		</div>
+	);
 };
 
 export default CTTListHistory;
