@@ -29,7 +29,7 @@ const frequentQuestions: {
 	},
 	{
 		question: "Làm thế nào để liên hệ với hỗ trợ khách hàng?",
-		answer: "Bạn có thể liên hệ với chúng tôi qua email support@example.com hoặc gọi đến số hotline 123-456-789.",
+		answer: "Bạn có thể liên hệ với chúng tôi qua email contact@speechconvert.com.",
 	},
 ];
 

@@ -28,7 +28,7 @@ const Feature = () => {
 					))}
 				</div>
 			)}
-			className="relative h-auto min-h-96 max-w-screen-xl bg-gray-200 dark:bg-gray-800 md:rounded-lg md:m-4"
+			className="relative h-auto min-h-96 bg-gray-200 dark:bg-gray-800 md:rounded-lg md:m-4"
 		>
 			<div className="px-16 py-2 flex flex-col gap-8 h-full justify-center">
 				<header className="flex items-center gap-2 text-primary-500 text-xl font-bold">

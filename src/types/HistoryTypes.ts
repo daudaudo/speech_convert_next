@@ -3,7 +3,7 @@ import { CTTLanguage, CTTModel } from "~/types/CTTTypes";
 
 type HistoryType = "cts" | "ctt";
 
-type CTSHistory = {
+type CTSHistoryType = {
 	_id: string;
 	input: string;
 	voice: CTSVoiceId;
@@ -12,9 +12,11 @@ type CTSHistory = {
 	owner: string;
 	stream_url: string;
 	download_url: string;
+	created_at: string;
+	update_at: string;
 };
 
-type CTTHistory = {
+type CTTHistoryType = {
 	_id: string;
 	model: CTTModel;
 	language: CTTLanguage;
@@ -22,6 +24,8 @@ type CTTHistory = {
 	text: string;
 	segments: { start: number; end: number; text: string; _id: number }[];
 	input_stream_url: string;
+	created_at: string;
+	update_at: string;
 };
 
-export type { HistoryType, CTSHistory, CTTHistory };
+export type { HistoryType, CTSHistoryType, CTTHistoryType };
