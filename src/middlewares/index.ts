@@ -14,7 +14,7 @@ export const map = async (request: NextRequest, response: NextResponse) => {
 	const pathname = request.nextUrl.pathname;
 
 	if (match(PagePath.history)(pathname)) {
-		await auth(request, response, false);
+		await auth(request, response, true);
 	} else {
 		await auth(request, response, false);
 	}
