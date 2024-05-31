@@ -1,8 +1,9 @@
 import React from "react";
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { Button, ButtonGroup } from "@material-tailwind/react";
-import { CTSModel, CTSVoice, CTSVoiceId, CTSVoices } from "~/types/CTSTypes";
-import { OpenAITTSModel } from "~/enums/openAi";
+import { useTranslations } from "next-intl";
+import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
+import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 
 interface Props {
 	HD: boolean;
@@ -11,6 +12,7 @@ interface Props {
 	setVoiceId: (voiceId: CTSVoiceId) => void;
 }
 const SelectVoice = (props: Props) => {
+	const t = useTranslations("cts.voice");
 	const { voiceId, setVoiceId, HD, setModel } = props;
 
 	const setHDModel = () => {
@@ -21,8 +23,9 @@ const SelectVoice = (props: Props) => {
 		setModel(OpenAITTSModel.TTS1);
 	};
 
-	const renderVoice = (voice: CTSVoice) => {
-		const { id, name, description } = voice;
+	const renderVoice = (id: CTSVoiceId) => {
+		const name = t(`openAIVoice.${id}.name`);
+		const description = t(`openAIVoice.${id}.description`);
 		const selected = id === voiceId;
 		return (
 			<button
@@ -45,7 +48,7 @@ const SelectVoice = (props: Props) => {
 			<nav className="w-full flex items-center justify-between border-b border-gray-200 dark:border-gray-800">
 				<button className="flex items-center gap-1.5 px-2.5 py-3.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75 hover:text-gray-900 dark:hover:text-white text-gray-500 dark:text-gray-400 !hover:text-gray-600 !dark:hover:text-white">
 					<SpeakerWaveIcon className="h-4 w-4" />
-					Cài đặt âm thanh
+					{t("selectVoice")}
 				</button>
 			</nav>
 			<div className="py-4 pb-10 h-full overflow-y-auto max-h-[calc(100vh-250px)] flex flex-col space-y-4">
@@ -55,23 +58,28 @@ const SelectVoice = (props: Props) => {
 							className={`${!HD ? "bg-primary-500" : "bg-gray-200 dark:bg-gray-800"} text-gray-800 dark:text-gray-100`}
 							onClick={setHighModel}
 						>
-							Chất lượng cao
+							{t("highQuality")}
 						</Button>
 						<Button
 							className={`${HD ? "bg-primary-500" : "bg-gray-200 dark:bg-gray-800"} text-gray-800 dark:text-gray-100`}
 							onClick={setHDModel}
 						>
-							Chất lượng HD
+							{t("HDQuality")}
 						</Button>
 					</ButtonGroup>
 				</div>
 				<div className="flex flex-col py-2">
 					<div className="flex content-center items-center justify-between px-4 text-sm">
 						<label className="block font-medium text-gray-700 dark:text-gray-200 after:content-['*'] after:ms-0.5 after:text-red-500 dark:after:text-red-400">
-							Giọng nói
+							{t("voice")}
 						</label>
 					</div>
-					{CTSVoices.map(renderVoice)}
+					{renderVoice(OpenAIVoiceId.Alloy)}
+					{renderVoice(OpenAIVoiceId.Echo)}
+					{renderVoice(OpenAIVoiceId.Fable)}
+					{renderVoice(OpenAIVoiceId.Onyx)}
+					{renderVoice(OpenAIVoiceId.Nova)}
+					{renderVoice(OpenAIVoiceId.Shimmer)}
 				</div>
 			</div>
 		</>

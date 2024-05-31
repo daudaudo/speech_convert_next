@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 
 const Record = (props: Props) => {
 	const { createRecordCallback } = props;
+	const t = useTranslations("components.Record");
 
 	const [isRecording, setIsRecording] = useState<boolean>(false);
 	const [audioURL, setAudioURL] = useState<string>("");
@@ -43,7 +45,7 @@ const Record = (props: Props) => {
 			mediaRecorderRef.current.start();
 			setIsRecording(true);
 		} catch (err) {
-			setError("Lỗi kết nối thiết bị");
+			setError(t("connectError"));
 		}
 	};
 
@@ -62,21 +64,21 @@ const Record = (props: Props) => {
 						onClick={stopRecording}
 						className="font-medium bg-red-500 text-white dark:text-black py-2 px-4 rounded-lg"
 					>
-						Dừng
+						{t("stop")}
 					</button>
 				) : (
 					<button
 						onClick={startRecording}
 						className="font-medium bg-green-500 text-white dark:text-black py-2 px-4 rounded-lg"
 					>
-						{audioURL ? "Ghi lại" : "Bắt đầu"}
+						{audioURL ? t("Re-record") : t("record")}
 					</button>
 				)}
 				<div className="flex-1">
 					{audioURL ? (
 						<audio controls src={audioURL} className="w-full" />
 					) : (
-						<p className="w-full text-sm text-gray-600 dark:text-gray-400">Ghi âm</p>
+						<p className="w-full text-sm text-gray-600 dark:text-gray-400">{t("recordDescription")}</p>
 					)}
 				</div>
 			</div>

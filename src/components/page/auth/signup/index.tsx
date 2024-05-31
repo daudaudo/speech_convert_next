@@ -1,20 +1,24 @@
 "use client";
 
-import Link from "next/link";
 import React, { useCallback } from "react";
+import Link from "next/link";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { SignupFields, SignupFormSchema, SignupFormState } from "~/definitions/signup";
 import { PagePath } from "~/enums/path";
 import { register } from "~/actions/usecase/auth";
 import { useAuth } from "~/contexts/auth/AuthContext";
 import SubmitButton from "~/components/page/auth/signup/SubmitButton";
+import { useToastMessage } from "~/contexts/toast/ToastWrapper";
 
 interface Props {}
 
 const SignUpForm = ({}: Props) => {
 	const router = useRouter();
 	const auth = useAuth();
+	const toast = useToastMessage();
+	const t = useTranslations("auth");
 	const [state, action] = useFormState<SignupFormState, FormData>(
 		async (currentState: SignupFormState, formData: FormData) => {
 			try {
@@ -31,7 +35,9 @@ const SignUpForm = ({}: Props) => {
 
 				if (auth.signin) {
 					await auth.signin();
+					toast.show(t("signupSuccess"));
 				} else {
+					toast.show(t("signupError"));
 					window.location.href = PagePath.home;
 				}
 
@@ -50,7 +56,7 @@ const SignUpForm = ({}: Props) => {
 		if (!message) return null;
 		return (
 			<div className="bg-yellow-200 text-yellow-800 p-4 rounded-lg">
-				<p className="text-sm font-medium">Đăng kí không thành công</p>
+				<p className="text-sm font-semibold">{t("signupErrorTitle")}</p>
 				<p className="text-sm font-normal">{message}</p>
 			</div>
 		);
@@ -70,26 +76,26 @@ const SignUpForm = ({}: Props) => {
 		<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
 			<div className="p-4 space-y-4 md:space-y-6">
 				<h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-					Đăng kí
+					{t("signup")}
 				</h1>
 				{renderWarning()}
 				<form action={action} noValidate className="space-y-4 md:space-y-6">
 					<div>
 						<label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-							Tên của bạn
+							{t("username")}
 						</label>
 						<input
 							type="text"
 							name={SignupFields.username}
 							id={SignupFields.username}
 							className={`bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${state?.errors?.username ? "border-red-500" : ""}`}
-							placeholder="Tên của bạn"
+							placeholder={t("usernamePlaceholder")}
 						/>
 						{renderError(SignupFields.username)}
 					</div>
 					<div>
 						<label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-							Email
+							{t("email")}
 						</label>
 						<input
 							type="email"
@@ -103,7 +109,7 @@ const SignUpForm = ({}: Props) => {
 					</div>
 					<div>
 						<label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-							Mật khẩu
+							{t("password")}
 						</label>
 						<input
 							type="password"
@@ -117,7 +123,7 @@ const SignUpForm = ({}: Props) => {
 					</div>
 					<div>
 						<label htmlFor="confirm-password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-							Xác nhận mật khẩu
+							{t("confirmPassword")}
 						</label>
 						<input
 							type="password"
@@ -131,9 +137,9 @@ const SignUpForm = ({}: Props) => {
 					</div>
 					<SubmitButton />
 					<p className="text-sm font-light text-gray-500 dark:text-gray-400">
-						Bạn đã có tài khoản?&nbsp;
+						{t("haveAccount")}&nbsp;
 						<Link href={PagePath.signin} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-							Đăng nhập
+							{t("signin")}
 						</Link>
 					</p>
 				</form>

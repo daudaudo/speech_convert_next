@@ -4,16 +4,18 @@ import React from "react";
 import { DocumentIcon, LanguageIcon, MicrophoneIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { SpeechConvertIcon } from "~/types/icon";
 
 const CTTNavbar = () => {
+	const t = useTranslations("ctt");
 	const pathname = usePathname();
 
 	const navItems = [
-		{ path: PagePath.speechToText, label: "Ghi âm", icon: MicrophoneIcon },
-		{ path: PagePath.documentToText, label: "Tài liệu", icon: DocumentIcon },
-		{ path: PagePath.textToText, label: "Dịch thuật", icon: LanguageIcon },
+		{ path: PagePath.speechToText, label: t("record"), icon: MicrophoneIcon },
+		{ path: PagePath.documentToText, label: t("document"), icon: DocumentIcon },
+		{ path: PagePath.textToText, label: t("translation"), icon: LanguageIcon },
 	];
 
 	const renderNavItem = (item: { path: string; label: string; icon: SpeechConvertIcon }) => {

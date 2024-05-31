@@ -1,4 +1,5 @@
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 import React from "react";
 import SvgIcon from "~/components/icon/SvgIcon";
 
@@ -8,6 +9,7 @@ interface Props {
 }
 
 const SelectSpeed = (props: Props) => {
+	const t = useTranslations("cts.voice");
 	const { value, onChange } = props;
 	const options = [
 		{ value: 0.25, label: "0.25x" },
@@ -38,7 +40,7 @@ const SelectSpeed = (props: Props) => {
 				className="relative block w-full disabled:cursor-not-allowed disabled:opacity-75 focus:outline-none border-0 form-select rounded-none md:rounded-l-full text-xs md:text-base px-3.5 py-2.5 shadow-sm bg-white dark:bg-gray-900 text-gray-900 dark:text-white ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 ps-12 pe-12"
 			>
 				<option value={0} disabled>
-					Chọn tốc độ
+					{t("selectSpeed")}
 				</option>
 				{options.map((option) => (
 					<option key={option.value} value={option.value}>

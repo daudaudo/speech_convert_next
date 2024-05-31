@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { signinByGoogle } from "~/actions/signinGoogle";
@@ -15,23 +16,24 @@ const CallbackOAuthGoogleView = ({}: Props) => {
 	const toast = useToastMessage();
 	const router = useRouter();
 	const searchParams = useSearchParams();
+	const t = useTranslations("auth");
 	const { signin } = useAuth();
 
 	useEffect(() => {
 		const code = searchParams.get("code");
 		if (!code || !code.trim().length) {
 			router.replace(PagePath.signin);
-			toast.error("Đăng nhập Google thất bại. Vui lòng thử lại.");
+			toast.error(t("signinGoogleError"));
 		} else {
 			(async () => {
 				try {
 					await signinByGoogle(code);
 					await signin();
 					router.replace(PagePath.home);
-					toast.info("Đăng nhập bằng Google thành công.", { autoClose: 3000 });
+					toast.info(t("signinGoogleSuccess"), { autoClose: 3000 });
 				} catch {
 					router.replace(PagePath.signin);
-					toast.error("Đăng nhập Google thất bại. Vui lòng thử lại.");
+					toast.error(t("signinGoogleError"));
 				}
 			})();
 		}

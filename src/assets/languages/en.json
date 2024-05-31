@@ -1,5 +1,189 @@
 {
-	"errors": {
-		"auth": {}
-	}
+  "errors": {
+    "auth": {}
+  },
+  "app": {
+    "title": "Speech Convert"
+  },
+  "header": {
+    "speech": "Speech",
+    "text": "Text",
+    "history": "History",
+    "signout": "Sign out",
+    "directional": {
+      "createSpeech": "Create speech",
+      "createText": "Create text",
+      "supportUser": "Support",
+      "convertTextToSpeech": "Convert text to speech",
+      "convertDocumentToSpeech": "Convert files to speech",
+      "convertConversationToSpeech": "Convert conversation to speech",
+      "convertSpeechToText": "Convert speech to text",
+      "convertDocumentToText": "Convert files to text",
+      "convertTextToText": "Translate text",
+      "history": "History"
+    }
+  },
+  "footer": {},
+  "home": {
+    "welcome": "Welcome to",
+    "createSpeech": "Create a speech",
+    "speechTranslater": "Speech translater",
+    "tryFree": "Try it for FREE",
+    "userManual": "User manual",
+    "description": "Welcome to SpeechConvert - where you can switch between text and speech in just a few simple steps. With our application, you can quickly and conveniently convert text into speech and vice versa.",
+    "featureTitle": "Features and Functions:",
+    "features": {
+      "feature1": {
+        "title": "Convert Text to Speech",
+        "description": "Enter the text you want to convert and choose the voice you want to use, then press the \"Convert\" button - and immediately, you will have an audio file with the automatically generated voice."
+      },
+      "feature2": {
+        "title": "Convert Speech to Text",
+        "description": "Record or upload an audio file and select your language, then press the \"Convert\" button - and you will receive accurate text from the speech."
+      },
+      "feature3": {
+        "title": "Multilingual and Multiple Voices",
+        "description": "Supports multiple languages and voices, allowing you to customize the conversion experience to your preference."
+      },
+      "feature4": {
+        "title": "Simple and Easy",
+        "description": "SpeechConvert is designed to make the process of converting between text and speech as simple and easy as possible. With a user-friendly interface and customizable features, you can create high-quality audio and text files in just a few simple steps."
+      },
+      "feature5": {
+        "title": "Free and No Registration Required",
+        "description": "SpeechConvert is a free service and does not require registration. You can use our features without creating an account, saving you time and providing the most convenient user experience for everyone."
+      }
+    },
+    "getStarted": "Experience the power of converting between text and speech quickly and easily with SpeechConvert. Try it today!",
+    "frequentQuestionTitle": "Frequently Asked Questions",
+    "frequentQuestions": {
+      "question1": {
+        "question": "What is Text to Speech?",
+        "answer": "Text to Speech (TTS) is a technology that converts text into speech, allowing users to listen to the content instead of reading it."
+      },
+      "question2": {
+        "question": "How do I use the text-to-speech feature?",
+        "answer": "You simply enter or paste the text into the input field and press the 'Convert' button to hear the text read aloud."
+      },
+      "question3": {
+        "question": "Can dialogue be converted to speech?",
+        "answer": "Yes, you can enter the dialogue into the input field, and the system will convert it into corresponding speech."
+      },
+      "question4": {
+        "question": "Does this feature support multiple languages?",
+        "answer": "Currently, we support multiple languages, including English, Vietnamese, and many others."
+      },
+      "question5": {
+        "question": "Is there a fee to use this service?",
+        "answer": "We offer some features for free. However, to access advanced features, you may need to subscribe to our service plans."
+      },
+      "question6": {
+        "question": "How can I contact customer support?",
+        "answer": "You can contact us via email at {email}."
+      }
+    }
+  },
+  "auth": {
+    "signin": "Sign in",
+    "signup": "Sign up",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "remember": "Remember me",
+    "or": "or",
+    "createAccount": "Create an account",
+    "signinWithGoogle": "Login with Google",
+    "dontHaveAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?",
+    "signinPending": "Logging in...",
+    "signinSuccess": "Logged in successfully!",
+    "signinErrorTitle": "Error logging in",
+    "signupPending": "Creating account...",
+    "signupSuccess": "Account created successfully!",
+    "signupErrorTitle": "Error creating account",
+    "signupError": "Error creating account!",
+    "signinGoogleError": "Logging in with Google failed! Please try again.",
+    "signinGoogleSuccess": "Logged in with Google successfully!",
+    "backToHome": "Back to Home page"
+  },
+  "history": {
+    "history": "History",
+    "convertToSpeech": "Convert to speech",
+    "convertToText": "Convert to text",
+    "countDisplay": "{from} - {to} / {total}"
+  },
+  "cts": {
+    "text": "Text",
+    "document": "Document",
+    "conversation": "Conversation",
+    "textError": "Error: {error}",
+    "textPlaceholder": "Enter text to convert",
+    "clearText": "Clear text",
+    "upload": "Upload",
+    "fileAccept": "Accept file: {value}",
+    "maxFileSize": "Maximum file size is {value}",
+    "fileInputInfo": "Once the file is uploaded, we'll start creating your speech. This may take several minutes.",
+    "voice": {
+      "selectSpeed": "Select speed",
+      "selectVoice": "Sound settings",
+      "highQuality": "High quality",
+      "HDQuality": "HD quality",
+      "voice": "Voice",
+      "save": "Save",
+      "openAIVoice": {
+        "alloy": {
+          "name": "Alloy",
+          "description": "Male, Neutral, Professional, and Clear"
+        },
+        "echo": {
+          "name": "Echo",
+          "description": "Male, Warm, Friendly, and Engaging"
+        },
+        "fable": {
+          "name": "Fable",
+          "description": "Male, Dynamic, Expressive, and Captivating"
+        },
+        "onyx": {
+          "name": "Onyx",
+          "description": "Male, Older, Mature, and Experienced"
+        },
+        "nova": {
+          "name": "Nova",
+          "description": "Female, Young, Energetic, and Attractive"
+        },
+        "shimmer": {
+          "name": "Shimmer",
+          "description": "Female, Lively, Bubbly, and Energetic"
+        }
+      }
+    }
+  },
+  "ctt": {
+    "record": "Record",
+    "document": "Document",
+    "translation": "Translation",
+    "outputError": "Error: {error}",
+    "upload": "Upload",
+    "fileAccept": "Accept file: {value}",
+    "maxFileSize": "Maximum file size is {value}",
+    "fileInputInfo": "Once the file is uploaded, we'll start creating your text. This may take several minutes.",
+    "textError": "Error: {error}",
+    "textPlaceholder": "Enter the text to be translated",
+    "clearText": "Clear text"
+  },
+  "components": {
+    "Pagination": {
+      "prev": "Prev",
+      "next": "Next"
+    },
+    "Record": {
+      "connectError": "Device connection error",
+      "stop": "Stop",
+      "record": "Record",
+      "Re-record": "Re-record",
+      "recordDescription": "Record to get an mp3 file"
+    }
+  }
 }

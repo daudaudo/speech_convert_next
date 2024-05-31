@@ -2,11 +2,13 @@
 
 import { CheckIcon, DocumentDuplicateIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { IconButton } from "@material-tailwind/react";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { useCopyToClipboard } from "usehooks-ts";
 import { useConvertToText } from "~/contexts/ConvertToTextContext";
 
 const CTTOutput = () => {
+	const t = useTranslations("ctt");
 	const { output, error, clearError } = useConvertToText();
 	const [, copyToClipboard] = useCopyToClipboard();
 	const [copied, setCopied] = React.useState(false);
@@ -55,7 +57,7 @@ const CTTOutput = () => {
 						>
 							<XCircleIcon className="h-4 w-4 text-red-500" />
 						</button>
-						<span>Lỗi: {error}</span>
+						<span>{t("outputError", { error })}</span>
 					</div>
 				</div>
 			)}

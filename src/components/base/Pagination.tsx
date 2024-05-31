@@ -4,6 +4,7 @@ import React, { useMemo, useState } from "react";
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { Button, IconButton } from "@material-tailwind/react";
+import { useTranslations } from "next-intl";
 
 interface Props {
 	initPage?: number;
@@ -12,6 +13,7 @@ interface Props {
 }
 
 const Pagination = (props: Props) => {
+	const t = useTranslations("components.Pagination");
 	const { initPage = 1, size, onChange } = props;
 	const [active, setActive] = useState<number>(initPage);
 
@@ -49,7 +51,7 @@ const Pagination = (props: Props) => {
 				disabled={active === 1}
 			>
 				<ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
-				Trước
+				{t("prev")}
 			</Button>
 			<div className="flex items-center gap-2">
 				{pagesData.map(({ key, value }) => (
@@ -71,7 +73,7 @@ const Pagination = (props: Props) => {
 				onClick={next}
 				disabled={active === size}
 			>
-				Tiếp
+				{t("next")}
 				<ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
 			</Button>
 		</div>

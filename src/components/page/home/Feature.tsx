@@ -4,9 +4,11 @@ import React from "react";
 import { Button, Carousel, Textarea } from "@material-tailwind/react";
 import { ChevronDoubleRightIcon, MicrophoneIcon, SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 
 const Feature = () => {
+	const t = useTranslations("home");
 	return (
 		<Carousel
 			loop
@@ -33,7 +35,7 @@ const Feature = () => {
 			<div className="px-16 py-2 flex flex-col gap-8 h-full justify-center">
 				<header className="flex items-center gap-2 text-primary-500 text-xl font-bold">
 					<SpeakerWaveIcon className="h-8 w-8" />
-					<span>Tạo giọng nói</span>
+					<span>{t("createSpeech")}</span>
 				</header>
 				<Textarea
 					readOnly
@@ -51,7 +53,7 @@ const Feature = () => {
 				<div className="flex justify-end m-8">
 					<Link href={PagePath.textToSpeech} className="">
 						<Button variant="filled" className="bg-primary-500 flex items-center gap-2 text-xl font-semibolds">
-							Thử miễn phí
+							{t("tryFree")}
 							<ChevronDoubleRightIcon className="h-4 w-6 animate-bounce-r-2" />
 						</Button>
 					</Link>
@@ -60,7 +62,7 @@ const Feature = () => {
 			<div className="px-16 py-2 flex flex-col gap-8 h-full justify-center">
 				<header className="flex items-center gap-2 text-primary-500 text-xl font-bold">
 					<SpeakerWaveIcon className="h-8 w-8" />
-					<span>Dịch âm thanh</span>
+					<span>{t("speechTranslater")}</span>
 				</header>
 				<div className="inline-flex">
 					<Button variant="text" className="text-gray-700 dark:text-gray-200">
@@ -78,7 +80,7 @@ const Feature = () => {
 				<div className="flex justify-end m-8">
 					<Link href={PagePath.speechToText} className="">
 						<Button variant="filled" className="bg-primary-500 flex items-center gap-2 text-xl font-semibolds">
-							Thử miễn phí
+							{t("tryFree")}
 							<ChevronDoubleRightIcon className="h-4 w-6 animate-bounce-r-2" />
 						</Button>
 					</Link>

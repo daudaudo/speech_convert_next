@@ -1,15 +1,17 @@
+import React from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React from "react";
 import { isCTSPage, isCTTPage, isHistoryPage, PagePath } from "~/enums/path";
 
 const NavBar = () => {
+	const t = useTranslations("header");
 	const pathname = usePathname();
 
 	const navItems = [
-		{ path: PagePath.textToSpeech, label: "Âm thanh" },
-		{ path: PagePath.speechToText, label: "Văn bản" },
-		{ path: PagePath.history, label: "Lịch sử" },
+		{ path: PagePath.textToSpeech, label: t("speech") },
+		{ path: PagePath.speechToText, label: t("text") },
+		{ path: PagePath.history, label: t("history") },
 	];
 
 	const renderNavItem = (item: { path: string; label: string }) => {
