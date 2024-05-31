@@ -18,6 +18,7 @@ import {
 	ListItemSuffix,
 } from "@material-tailwind/react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { SpeechConvertIcon } from "~/types/icon";
 
@@ -28,30 +29,31 @@ type ListItem = {
 	SufIcon?: SpeechConvertIcon;
 };
 
-const convertToSpeechItems: ListItem[] = [
-	{ path: PagePath.textToSpeech, label: "Chuyển đổi văn bản thành giọng nói", PreIcon: LanguageIcon },
-	{ path: PagePath.documentToSpeech, label: "Chuyển đổi tệp thành giọng nói", PreIcon: DocumentIcon },
-	{
-		path: PagePath.conversationToSpeech,
-		label: "Chuyển đổi hội thoại thành giọng nói",
-		PreIcon: ChatBubbleLeftRightIcon,
-	},
-];
-
-const convertToTextItems: ListItem[] = [
-	{ path: PagePath.speechToText, label: "Chuyển đổi ghi âm thành văn bản", PreIcon: MicrophoneIcon },
-	{ path: PagePath.documentToText, label: "Chuyển đổi tệp thành văn bản", PreIcon: DocumentIcon },
-	{ path: PagePath.textToText, label: "Dịch văn bản", PreIcon: LanguageIcon },
-];
-
-const supportUserItems: ListItem[] = [{ path: PagePath.history, label: "Lịch sử chuyển đổi" }];
-
 const DocSearch = () => {
+	const t = useTranslations("header.directional");
 	const [open, setOpen] = useState<boolean>(false);
 
 	const toggleOpen = useCallback(() => {
 		setOpen((prev) => !prev);
 	}, []);
+
+	const convertToSpeechItems: ListItem[] = [
+		{ path: PagePath.textToSpeech, label: t("convertTextToSpeech"), PreIcon: LanguageIcon },
+		{ path: PagePath.documentToSpeech, label: t("convertDocumentToSpeech"), PreIcon: DocumentIcon },
+		{
+			path: PagePath.conversationToSpeech,
+			label: t("convertConversationToSpeech"),
+			PreIcon: ChatBubbleLeftRightIcon,
+		},
+	];
+
+	const convertToTextItems: ListItem[] = [
+		{ path: PagePath.speechToText, label: t("convertSpeechToText"), PreIcon: MicrophoneIcon },
+		{ path: PagePath.documentToText, label: t("convertDocumentToText"), PreIcon: DocumentIcon },
+		{ path: PagePath.textToText, label: t("convertTextToText"), PreIcon: LanguageIcon },
+	];
+
+	const supportUserItems: ListItem[] = [{ path: PagePath.history, label: t("history") }];
 
 	const renderList = useCallback(
 		(items: ListItem[], label?: string) => {
@@ -100,9 +102,9 @@ const DocSearch = () => {
 			<Dialog size="xl" open={open} handler={toggleOpen} className="bg-white dark:bg-gray-900">
 				{/* <DialogHeader className="text-gray-800 dark:text-gray-100">header</DialogHeader> */}
 				<DialogBody className="max-h-[80vh] overflow-y-auto">
-					{renderList(convertToSpeechItems, "Tạo giọng nói")}
-					{renderList(convertToTextItems, "Tạo văn bản")}
-					{renderList(supportUserItems, "Hỗ trợ người dùng")}
+					{renderList(convertToSpeechItems, t("createSpeech"))}
+					{renderList(convertToTextItems, t("createText"))}
+					{renderList(supportUserItems, t("supportUser"))}
 				</DialogBody>
 			</Dialog>
 		</>

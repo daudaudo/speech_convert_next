@@ -44,7 +44,7 @@ const History = () => {
 	const requestGetHistory = useCallback(() => {
 		const type: HistoryType = (searchParams.get("type") ?? "cts") as HistoryType;
 		const page = searchParams.get("page") ?? 1;
-		const limit = searchParams.get("limit") ?? 2;
+		const limit = searchParams.get("limit") ?? 10;
 		const requestFunc = type === "cts" ? getCTSHistory : getCTTHistory;
 		startTransition(async () => {
 			const res = await requestFunc(limit, page);

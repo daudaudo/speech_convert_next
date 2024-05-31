@@ -1,10 +1,12 @@
 "use client";
 
 import { XCircleIcon } from "@heroicons/react/24/outline";
+import { useTranslations } from "next-intl";
 import React from "react";
 import { useConvertToText } from "~/contexts/ConvertToTextContext";
 
 const CTTTextInput = () => {
+	const t = useTranslations("ctt");
 	const { input, changeInput, config, error, clearError } = useConvertToText();
 
 	const { maxTextLength } = config;
@@ -28,12 +30,12 @@ const CTTTextInput = () => {
 						>
 							<XCircleIcon className="h-4 w-4" />
 						</button>
-						<span>Lỗi: {error}</span>
+						<span>{t("textError", { error })}</span>
 					</div>
 				</div>
 			)}
 			<textarea
-				placeholder="Nhập văn bản cần dịch"
+				placeholder={t("textPlaceholder")}
 				required
 				maxLength={maxTextLength}
 				onChange={handleTextChange}
@@ -50,7 +52,7 @@ const CTTTextInput = () => {
 					onClick={onClearText}
 					className="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-full text-sm gap-x-2 text-red-500 hover:text-red-600 disabled:text-red-500 dark:text-red-400 dark:hover:text-red-500 dark:disabled:text-red-400 underline-offset-4 hover:underline focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-red-500 dark:focus-visible:ring-red-400 inline-flex items-center"
 				>
-					<span>Xoá văn bản</span>
+					<span>{t("clearText")}</span>
 				</button>
 			</div>
 		</div>

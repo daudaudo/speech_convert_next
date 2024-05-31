@@ -20,14 +20,6 @@ type CTSVoice = {
 	name: string;
 	description: string;
 };
-const CTSVoices: CTSVoice[] = [
-	{ id: OpenAIVoiceId.Alloy, name: "Alloy", description: "Nam, Trung lập, chuyên nghiệp và rõ ràng" },
-	{ id: OpenAIVoiceId.Echo, name: "Echo", description: "Nam, Ấm áp, thân thiện và hấp dẫn" },
-	{ id: OpenAIVoiceId.Fable, name: "Fable", description: "Nam, Năng động, biểu cảm và hấp dẫn" },
-	{ id: OpenAIVoiceId.Onyx, name: "Onyx", description: "Nam, Lớn tuổi, chín chắn, và có kinh nghiệm" },
-	{ id: OpenAIVoiceId.Nova, name: "Nova", description: "Nữ, Trẻ, năng động và cuốn hút" },
-	{ id: OpenAIVoiceId.Shimmer, name: "Shimmer", description: "Nữ, Sống động, sôi nổi và năng động" },
-];
 
 // Config types for the ConvertToSpeech
 type CTSSpeed = 0.25 | 0.5 | 0.75 | 1 | 1.25 | 1.5 | 1.75 | 2 | 2.25 | 2.5 | 2.75 | 3 | 3.25 | 3.5 | 3.75 | 4;
@@ -57,5 +49,5 @@ type CTSError = {
 	[key in CTSType]?: string;
 };
 
-export { CTSDefaultConfig, CTSVoices };
+export { CTSDefaultConfig };
 export type { CTSType, CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput, CTSError };

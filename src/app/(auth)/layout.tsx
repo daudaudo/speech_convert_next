@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 const DarkModeButton = dynamic(() => import("~/components/header/DarkModeButton"), { ssr: false });
 
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const AuthLayout = ({ children }: Props) => {
+	const t = useTranslations("auth");
 	return (
 		<div className="h-screen bg-gradient-primary">
 			<div className="h-full md:max-w-screen-xl mx-auto">
@@ -20,7 +22,7 @@ const AuthLayout = ({ children }: Props) => {
 					>
 						<span className="flex items-center gap-1">
 							<ArrowLeftIcon className="h-4 w-4" />
-							Quay về trang chủ
+							{t("backToHome")}
 						</span>
 					</Link>
 					<DarkModeButton />

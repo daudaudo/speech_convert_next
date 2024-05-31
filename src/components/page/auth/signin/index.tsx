@@ -5,6 +5,7 @@ import React, { useCallback, useMemo } from "react";
 import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
+import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { login } from "~/actions/usecase/auth";
 import { SigninFields, SigninFormSchema, SigninFormState } from "~/definitions/signin";
@@ -19,6 +20,7 @@ const SignInForm = ({}: Props) => {
 	const router = useRouter();
 	const auth = useAuth();
 	const toast = useToastMessage();
+	const t = useTranslations("auth");
 	const [state, action] = useFormState<SigninFormState, FormData>(
 		async (currentState: SigninFormState, formData: FormData) => {
 			try {
@@ -35,7 +37,7 @@ const SignInForm = ({}: Props) => {
 				await login(email, password);
 				await auth.signin();
 
-				toast.show("Đăng nhập thành công");
+				toast.show(t("signinSuccess"));
 				router.replace(PagePath.home);
 			} catch (error: unknown) {
 				if (error instanceof Error) {
@@ -52,10 +54,9 @@ const SignInForm = ({}: Props) => {
 		if (!message) {
 			return null;
 		}
-
 		return (
 			<div className="bg-yellow-200 text-yellow-800 p-4 rounded-lg">
-				<p className="text-sm font-medium">Đăng nhập không thành công</p>
+				<p className="text-sm font-semibold">{t("signinErrorTitle")}</p>
 				<p className="text-sm font-normal">{message}</p>
 			</div>
 		);
@@ -75,13 +76,13 @@ const SignInForm = ({}: Props) => {
 		<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
 			<div className="p-4 space-y-4 md:space-y-6 sm:p-6">
 				<h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-					Đăng nhập
+					{t("signin")}
 				</h1>
 				{Warning}
 				<form action={action} noValidate className="space-y-4 md:space-y-6">
 					<div>
 						<label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-							Email
+							{t("email")}
 						</label>
 						<input
 							id={SigninFields.email}
@@ -95,7 +96,7 @@ const SignInForm = ({}: Props) => {
 					</div>
 					<div>
 						<label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-							Mật khẩu
+							{t("password")}
 						</label>
 						<input
 							id={SigninFields.password}
@@ -118,7 +119,7 @@ const SignInForm = ({}: Props) => {
 							</div>
 							<div className="ml-3 text-sm">
 								<label htmlFor="remember" className="text-gray-500 dark:text-gray-300">
-									Ghi nhớ
+									{t("remember")}
 								</label>
 							</div>
 						</div>
@@ -127,7 +128,7 @@ const SignInForm = ({}: Props) => {
 				</form>
 				<div className="flex items-center my-4">
 					<div className="flex-grow border-t border-gray-300 dark:border-gray-700" />
-					<span className="px-4 text-gray-500">Hoặc</span>
+					<span className="px-4 text-gray-500">{t("or")}</span>
 					<div className="flex-grow border-t border-gray-300 dark:border-gray-700" />
 				</div>
 				<form action={navigateSigninByGoogleCallback} noValidate>
@@ -136,13 +137,13 @@ const SignInForm = ({}: Props) => {
 						variant="outlined"
 						className="w-full text-gray-800 dark:text-gray-50 hover:bg-gray-300 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium text-sm dark:hover:bg-gray-700 dark:focus:ring-gray-800"
 					>
-						Đăng nhập với google
+						{t("signinWithGoogle")}
 					</Button>
 				</form>
 				<p className="text-sm font-light text-gray-500 dark:text-gray-400">
-					Bạn chưa có tài khoản?&nbsp;
+					{t("dontHaveAccount")}&nbsp;
 					<Link href={PagePath.signup} className="font-medium text-primary-600 hover:underline dark:text-primary-500">
-						Đăng ký
+						{t("signup")}
 					</Link>
 				</p>
 			</div>

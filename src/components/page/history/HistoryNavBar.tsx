@@ -3,6 +3,7 @@
 import React, { useCallback } from "react";
 import { Button, ButtonGroup } from "@material-tailwind/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import type { HistoryType } from "~/types/HistoryTypes";
 import withSuspense from "~/hocs/withSuspense";
 
@@ -10,6 +11,7 @@ const NavBar = () => {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
+	const t = useTranslations("history");
 
 	const onSelect = (type: HistoryType) => {
 		const current = new URLSearchParams(Array.from(searchParams.entries()));
@@ -38,8 +40,8 @@ const NavBar = () => {
 		<div className="w-full px-4 border-b-2">
 			<div className="rounded-lg max-w-96 min-w-80 mx-auto">
 				<ButtonGroup fullWidth variant="text" size="sm" className="divide-x-0 text-gray-800 dark:text-gray-100">
-					{renderNavButton("cts", "Chuyển đổi thành Âm thanh")}
-					{renderNavButton("ctt", "Chuyển đổi thành Văn bản")}
+					{renderNavButton("cts", t("convertToSpeech"))}
+					{renderNavButton("ctt", t("convertToText"))}
 				</ButtonGroup>
 			</div>
 		</div>

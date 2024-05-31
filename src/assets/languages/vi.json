@@ -1,0 +1,189 @@
+{
+  "errors": {
+    "auth": {}
+  },
+  "app": {
+    "title": "Speech Convert"
+  },
+  "header": {
+    "speech": "Giọng nói",
+    "text": "Văn bản",
+    "history": "Lịch sử",
+    "signout": "Đăng xuất",
+    "directional": {
+      "createSpeech": "Tạo giọng nói",
+      "createText": "Tạo văn bản",
+      "supportUser": "Hỗ trợ",
+      "convertTextToSpeech": "Chuyển văn bản thành giọng nói",
+      "convertDocumentToSpeech": "Chuyển đổi tệp thành giọng nói",
+      "convertConversationToSpeech": "Chuyển đổi cuộc hội thoại thành giọng nói",
+      "convertSpeechToText": "Chuyển giọng nói thành văn bản",
+      "convertDocumentToText": "Chuyển đổi tệp thành văn bản",
+      "convertTextToText": "Dịch văn bản",
+      "history": "Lịch sử"
+    }
+  },
+  "footer": {},
+  "home": {
+    "welcome": "Chào mừng đến với",
+    "createSpeech": "Tạo giọng nói",
+    "speechTranslater": "Dịch giọng nói",
+    "tryFree": "Thử miễn phí",
+    "userManual": "Hướng dẫn sử dụng",
+    "description": "Chào mừng đến với SpeechConvert - nơi bạn có thể chuyển đổi giữa văn bản và giọng nói chỉ trong vài bước đơn giản. Với ứng dụng của chúng tôi, bạn có thể nhanh chóng và tiện lợi chuyển đổi văn bản thành giọng nói và ngược lại.",
+    "featureTitle": "Tính năng và Chức năng:",
+    "features": {
+      "feature1": {
+        "title": "Chuyển Văn Bản thành Giọng Nói",
+        "description": "Nhập văn bản bạn muốn chuyển đổi và chọn giọng nói bạn muốn sử dụng, sau đó nhấn nút \"Chuyển đổi\" - và ngay lập tức, bạn sẽ có được một file âm thanh với giọng nói được tạo tự động."
+      },
+      "feature2": {
+        "title": "Chuyển Giọng Nói thành Văn Bản",
+        "description": "Ghi âm hoặc tải lên một file âm thanh và chọn ngôn ngữ của bạn, sau đó nhấn nút \"Chuyển đổi\" - và bạn sẽ nhận được văn bản chính xác từ giọng nói."
+      },
+      "feature3": {
+        "title": "Đa Ngôn Ngữ và Giọng Đọc",
+        "description": "Hỗ trợ nhiều ngôn ngữ và giọng đọc, cho phép bạn tùy chỉnh trải nghiệm chuyển đổi theo ý thích của mình."
+      },
+      "feature4": {
+        "title": "Đơn Giản và Dễ Dàng",
+        "description": "SpeechConvert được thiết kế để làm cho quá trình chuyển đổi giữa văn bản và giọng nói trở nên đơn giản và dễ dàng nhất có thể. Với giao diện thân thiện và tính năng tùy chỉnh, bạn có thể tạo ra những file âm thanh và văn bản chất lượng cao chỉ trong vài bước đơn giản."
+      },
+      "feature5": {
+        "title": "Miễn Phí và Không Cần Đăng Ký",
+        "description": "SpeechConvert là một dịch vụ miễn phí và không yêu cầu đăng ký. Bạn có thể sử dụng các tính năng của chúng tôi mà không cần tạo tài khoản, giúp tiết kiệm thời gian và tạo ra trải nghiệm người dùng thuận tiện nhất cho mọi người."
+      }
+    },
+    "getStarted": "Trải nghiệm sức mạnh của việc chuyển đổi giữa văn bản và giọng nói một cách nhanh chóng và dễ dàng với SpeechConvert. Hãy thử ngay hôm nay!",
+    "frequentQuestionTitle": "Câu Hỏi Thường Gặp",
+    "frequentQuestions": {
+      "question1": {
+        "question": "Text to Speech là gì?",
+        "answer": "Text to Speech (TTS) là công nghệ chuyển đổi văn bản thành giọng nói, giúp người dùng nghe được nội dung thay vì đọc."
+      },
+      "question2": {
+        "question": "Làm thế nào để sử dụng chức năng chuyển văn bản thành giọng nói?",
+        "answer": "Bạn chỉ cần nhập hoặc dán văn bản vào khung nhập liệu và nhấn nút 'Chuyển đổi' để nghe văn bản được đọc bằng giọng nói."
+      },
+      "question3": {
+        "question": "Có thể chuyển đổi hội thoại thành giọng nói không?",
+        "answer": "Có, bạn có thể nhập đoạn hội thoại vào khung nhập liệu và hệ thống sẽ chuyển đổi thành giọng nói tương ứng."
+      },
+      "question4": {
+        "question": "Chức năng này có hỗ trợ nhiều ngôn ngữ không?",
+        "answer": "Hiện tại, chúng tôi hỗ trợ nhiều ngôn ngữ khác nhau bao gồm tiếng Anh, tiếng Việt và nhiều ngôn ngữ khác."
+      },
+      "question5": {
+        "question": "Có phí sử dụng dịch vụ này không?",
+        "answer": "Chúng tôi cung cấp một số tính năng miễn phí. Tuy nhiên, để sử dụng các tính năng nâng cao, bạn có thể cần đăng ký các gói dịch vụ của chúng tôi."
+      },
+      "question6": {
+        "question": "Làm thế nào để liên hệ với hỗ trợ khách hàng?",
+        "answer": "Bạn có thể liên hệ với chúng tôi qua email tại {email}."
+      }
+    }
+  },
+  "auth": {
+    "signin": "Đăng nhập",
+    "signup": "Đăng ký",
+    "username": "Tên người dùng",
+    "usernamePlaceholder": "Nhập tên người dùng của bạn",
+    "email": "Email",
+    "password": "Mật khẩu",
+    "confirmPassword": "Xác nhận mật khẩu",
+    "remember": "Nhớ mật khẩu",
+    "or": "hoặc",
+    "createAccount": "Tạo tài khoản",
+    "signinWithGoogle": "Đăng nhập với Google",
+    "dontHaveAccount": "Chưa có tài khoản?",
+    "haveAccount": "Đã có tài khoản?",
+    "signinPending": "Đang đăng nhập...",
+    "signinSuccess": "Đăng nhập thành công!",
+    "signinErrorTitle": "Lỗi đăng nhập",
+    "signupPending": "Đang tạo tài khoản...",
+    "signupSuccess": "Tạo tài khoản thành công!",
+    "signupErrorTitle": "Lỗi tạo tài khoản",
+    "signupError": "Lỗi tạo tài khoản!",
+    "signinGoogleError": "Đăng nhập với Google thất bại! Vui lòng thử lại.",
+    "signinGoogleSuccess": "Đăng nhập với Google thành công!",
+    "backToHome": "Trở lại trang chủ"
+  },
+  "history": {
+    "history": "Lịch sử",
+    "convertToSpeech": "Chuyển thành giọng nói",
+    "convertToText": "Chuyển thành văn bản",
+    "countDisplay": "{from} - {to} / {total}"
+  },
+  "cts": {
+    "text": "Văn bản",
+    "document": "Tài liệu",
+    "conversation": "Cuộc hội thoại",
+    "textError": "Lỗi: {error}",
+    "textPlaceholder": "Nhập văn bản để chuyển đổi",
+    "clearText": "Xóa văn bản",
+    "upload": "Tải lên",
+    "fileAccept": "Chấp nhận tệp: {value}",
+    "maxFileSize": "Kích thước tệp tối đa là {value}",
+    "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo giọng nói của bạn. Điều này có thể mất vài phút.",
+    "voice": {
+      "selectSpeed": "Chọn tốc độ",
+      "selectVoice": "Cài đặt âm thanh",
+      "highQuality": "Chất lượng cao",
+      "HDQuality": "Chất lượng HD",
+      "voice": "Giọng",
+      "save": "Lưu",
+      "openAIVoice": {
+        "alloy": {
+          "name": "Alloy",
+          "description": "Nam, Trung lập, Chuyên nghiệp, và Rõ ràng"
+        },
+        "echo": {
+          "name": "Echo",
+          "description": "Nam, Ấm áp, Thân thiện, và Hấp dẫn"
+        },
+        "fable": {
+          "name": "Fable",
+          "description": "Nam, Năng động, Biểu cảm, và Hấp dẫn"
+        },
+        "onyx": {
+          "name": "Onyx",
+          "description": "Nam, Lớn tuổi, Chín chắn, và Có kinh nghiệm"
+        },
+        "nova": {
+          "name": "Nova",
+          "description": "Nữ, Trẻ, Năng động, và Cuốn hút"
+        },
+        "shimmer": {
+          "name": "Shimmer",
+          "description": "Nữ, Sống động, Sôi nổi, và Năng động"
+        }
+      }
+    }
+  },
+  "ctt": {
+    "record": "Ghi âm",
+    "document": "Tài liệu",
+    "translation": "Dịch",
+    "outputError": "Lỗi: {error}",
+    "upload": "Tải lên",
+    "fileAccept": "Chấp nhận tệp: {value}",
+    "maxFileSize": "Kích thước tệp tối đa là {value}",
+    "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo văn bản của bạn. Điều này có thể mất vài phút.",
+    "textError": "Lỗi: {error}",
+    "textPlaceholder": "Nhập văn bản để dịch",
+    "clearText": "Xóa văn bản"
+  },
+  "components": {
+    "Pagination": {
+      "prev": "Trước",
+      "next": "Tiếp"
+    },
+    "Record": {
+      "connectError": "Lỗi kết nối thiết bị",
+      "stop": "Dừng",
+      "record": "Ghi âm",
+      "Re-record": "Ghi âm lại",
+      "recordDescription": "Ghi âm để có file mp3"
+    }
+  }
+}

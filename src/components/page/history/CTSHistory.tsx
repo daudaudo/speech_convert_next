@@ -2,6 +2,7 @@
 
 import { ArrowDownIcon, ArrowDownTrayIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Card, IconButton } from "@material-tailwind/react";
+import { useTranslations } from "next-intl";
 import React from "react";
 import Pagination from "~/components/base/Pagination";
 import type { CTSHistoryType } from "~/types/HistoryTypes";
@@ -19,6 +20,7 @@ interface Props {
 
 const CTSListHistory = (props: Props) => {
 	const { history, currentPage, lastPage, onChangePage, from, to, total } = props;
+	const t = useTranslations("history");
 
 	const deleteHistory = () => {};
 
@@ -59,9 +61,9 @@ const CTSListHistory = (props: Props) => {
 	return (
 		<div className="w-full h-full flex flex-col gap-4 py-2">
 			<div className="flex justify-between px-2">
-				{from !== to ? (
+				{from !== to && total > 1 ? (
 					<span className="inline-flex font-semibold text-gray-500 items-center ">
-						{from} - {to} / {total}
+						{t("countDisplay", { from, to, total })}
 					</span>
 				) : (
 					<div />

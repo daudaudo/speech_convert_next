@@ -3,11 +3,13 @@
 import React from "react";
 import { CloudArrowUpIcon } from "@heroicons/react/24/outline";
 import { DocumentIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { useTranslations } from "next-intl";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { FileSizeUnit } from "~/enums/file";
 import { convertBytes } from "~/utils/file";
 
 const FileInput = () => {
+	const t = useTranslations("cts");
 	const { input, changeInput, config } = useConvertToSpeech();
 
 	const { fileAccept = [], maxFileSize = 0 } = config;
@@ -30,12 +32,14 @@ const FileInput = () => {
 				<div className="flex flex-col items-center justify-center pt-5 pb-6">
 					<CloudArrowUpIcon className="h-8 w-8 text-gray-400 dark:text-gray-300" />
 					<p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
-						<span className="font-semibold">Nhấp để tải lên</span>
+						<span className="font-semibold">{t("upload")}</span>
 						<br />
 					</p>
-					<div className="text-xs text-gray-500 dark:text-gray-400">Hỗ trợ tệp: {fileAccept.join(", ")}</div>
+					<div className="text-xs text-gray-500 dark:text-gray-400">
+						{t("fileAccept", { value: fileAccept.join(", ") })}
+					</div>
 					<div className="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">
-						Kích thước tệp tối đa là {convertBytes(maxFileSize, FileSizeUnit.MEGABYTE)}
+						{t("maxFileSize", { value: convertBytes(maxFileSize, FileSizeUnit.MEGABYTE) })}
 					</div>
 				</div>
 			);
@@ -71,9 +75,7 @@ const FileInput = () => {
 			<div className="flex flex-col w-full px-6 text-sm0">
 				<div className="flex flex-row items-center gap-1 text-primary-500">
 					<InformationCircleIcon className="h-4 w-4" />
-					<div>
-						Sau khi tệp được tải lên, chúng tôi sẽ bắt đầu tạo bài phát biểu của bạn. Điều này có thể mất vài phút.
-					</div>
+					<div>{t("fileInputInfo")}</div>
 				</div>
 			</div>
 		</div>

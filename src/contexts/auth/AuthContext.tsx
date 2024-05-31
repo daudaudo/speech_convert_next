@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { createContext, useContext, useState } from "react";
 import { getAuthUserByTokenCookie } from "~/actions/usecase/auth/user";
 import { removeToken } from "~/actions/cookies/auth";
 import { AuthenticatedUser } from "~/types/auth";
@@ -12,7 +12,7 @@ type AuthContext = {
 	user?: AuthenticatedUser;
 };
 
-const Context = React.createContext<AuthContext>({
+const Context = createContext<AuthContext>({
 	signin: () => Promise.reject(new NotImplementedLogicError()),
 	signout: () => Promise.reject(new NotImplementedLogicError()),
 });
@@ -43,7 +43,7 @@ export const AuthProvider = ({ children, user: initUser }: Props) => {
 };
 
 export const useAuth = () => {
-	const context = React.useContext(Context);
+	const context = useContext(Context);
 
 	return context;
 };

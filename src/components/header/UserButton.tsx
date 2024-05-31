@@ -4,11 +4,13 @@ import React from "react";
 import Link from "next/link";
 import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { Button, IconButton, Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react";
+import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { useAuth } from "~/contexts/auth/AuthContext";
 import SvgIcon from "~/components/icon/SvgIcon";
 
 const UserButton = () => {
+	const t = useTranslations("header");
 	const { user, signout } = useAuth();
 
 	return (
@@ -33,7 +35,7 @@ const UserButton = () => {
 								size="lg"
 								className="w-full p-2 bg-gray-200 dark:bg-gray-800 rounded-lg text-gray-800 dark:text-gray-200"
 							>
-								Đăng xuất
+								{t("signout")}
 							</Button>
 						</div>
 					</PopoverContent>

@@ -1,7 +1,7 @@
 "use client";
 
-import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import React from "react";
+import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { ArrowPathIcon } from "@heroicons/react/24/outline";
 import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
 import SelectVoice from "~/components/voice/SelectVoice";

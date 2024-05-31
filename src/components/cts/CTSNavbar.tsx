@@ -4,16 +4,18 @@ import React from "react";
 import { ChatBubbleLeftRightIcon, DocumentIcon, LanguageIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { SpeechConvertIcon } from "~/types/icon";
 
 const CTSNavbar = () => {
+	const t = useTranslations("cts");
 	const pathname = usePathname();
 
 	const navItems = [
-		{ path: PagePath.textToSpeech, label: "Văn bản", icon: LanguageIcon },
-		{ path: PagePath.documentToSpeech, label: "Tài liệu", icon: DocumentIcon },
-		{ path: PagePath.conversationToSpeech, label: "Hội thoại", icon: ChatBubbleLeftRightIcon },
+		{ path: PagePath.textToSpeech, label: t("text"), icon: LanguageIcon },
+		{ path: PagePath.documentToSpeech, label: t("document"), icon: DocumentIcon },
+		{ path: PagePath.conversationToSpeech, label: t("conversation"), icon: ChatBubbleLeftRightIcon },
 	];
 
 	const renderNavItem = (item: { path: string; label: string; icon: SpeechConvertIcon }) => {
