@@ -8,7 +8,7 @@ export default getRequestConfig(async () => {
 	const _locale = locales.includes(locale as string) ? locale : "en";
 
 	return {
-		locale,
+		locale: _locale,
 		messages: (await import(`./assets/languages/${_locale}.json`)).default,
 	};
 });
