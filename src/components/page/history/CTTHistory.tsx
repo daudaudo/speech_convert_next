@@ -22,8 +22,6 @@ const CTTListHistory = (props: Props) => {
 	const { history, currentPage, lastPage, onChangePage, from, to, total } = props;
 	const t = useTranslations("history");
 
-	const deleteHistory = () => {};
-
 	const renderHistoryItem = (h: CTTHistoryType) => {
 		const { _id, text, language, input_stream_url, model, created_at } = h;
 		return (
@@ -33,9 +31,6 @@ const CTTListHistory = (props: Props) => {
 						<span className="bg-pink-100 px-3 py-1 rounded-full text-gray-800">{language}</span>
 						<span className="bg-green-100 px-3 py-1 rounded-full text-gray-800">{model}</span>
 					</div>
-					<IconButton variant="text" onClick={deleteHistory} className="rounded-full text-gray-800 dark:text-gray-100">
-						<XMarkIcon className="h-5 w-5" />
-					</IconButton>
 				</div>
 				<div className="p-2 bg-gray-300 dark:bg-gray-600 rounded-lg text-gray-800 dark:text-gray-100">{text}</div>
 				<div className="w-full flex justify-center text-primary-500">

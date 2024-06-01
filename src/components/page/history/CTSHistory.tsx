@@ -22,8 +22,6 @@ const CTSListHistory = (props: Props) => {
 	const { history, currentPage, lastPage, onChangePage, from, to, total } = props;
 	const t = useTranslations("history");
 
-	const deleteHistory = () => {};
-
 	const renderHistoryItem = (h: CTSHistoryType) => {
 		const { _id, input, voice, download_url, stream_url, model, speed, created_at } = h;
 		return (
@@ -34,9 +32,6 @@ const CTSListHistory = (props: Props) => {
 						<span className="bg-green-100 px-3 py-1 rounded-full text-gray-800">{model}</span>
 						<span className="bg-blue-100 px-3 py-1 rounded-full text-gray-800">{speed}x</span>
 					</div>
-					<IconButton variant="text" onClick={deleteHistory} className="rounded-full text-gray-800 dark:text-gray-100">
-						<XMarkIcon className="h-5 w-5" />
-					</IconButton>
 				</div>
 				<div className="p-2 bg-gray-300 dark:bg-gray-600 rounded-lg text-gray-800 dark:text-gray-100">{input}</div>
 				<div className="w-full flex justify-center text-primary-500">
