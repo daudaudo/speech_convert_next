@@ -95,7 +95,17 @@ const History = () => {
 				onChangePage={onChangePage}
 			/>
 		);
-	return;
+	return (
+		<CTSListHistory
+			history={history as CTSHistoryType[]}
+			currentPage={pageState.currentPage}
+			lastPage={pageState.lastPage}
+			from={pageState.from}
+			to={pageState.to}
+			total={pageState.total}
+			onChangePage={onChangePage}
+		/>
+	);
 };
 
 const HistoryPage = withSuspense(History, <Loading />);

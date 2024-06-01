@@ -23,7 +23,8 @@ const NavBar = () => {
 
 	const renderNavButton = useCallback(
 		(itemType: HistoryType, label: string) => {
-			const isActive = itemType === searchParams.get("type");
+			const searcchParamType = searchParams.get("type") ?? "cts";
+			const isActive = itemType === searcchParamType;
 			return (
 				<Button
 					onClick={() => onSelect(itemType)}
