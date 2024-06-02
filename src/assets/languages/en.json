@@ -20,7 +20,10 @@
       "convertSpeechToText": "Convert speech to text",
       "convertDocumentToText": "Convert files to text",
       "convertTextToText": "Translate text",
-      "history": "History"
+      "history": "History",
+      "theme": "Theme",
+      "lightMode": "Light mode",
+      "darkMode": "Dark mode"
     }
   },
   "footer": {},

@@ -34,7 +34,6 @@ const LanguageProvider = ({ children, messages, initLocale = LanguageCode.Englis
 			try {
 				setLocaleState(locale);
 				await setLocaleCookies(locale);
-				window.location.reload();
 			} catch (error) {
 				console.log(error);
 			}

@@ -11,11 +11,13 @@ import { ThemeMode } from "~/enums/theme";
 type Store = {
 	themeMode: ThemeMode;
 	toggleDarkMode: () => void;
+	setThemeMode: (themeMode: ThemeMode) => void;
 };
 
 const DefaultStore: Store = {
 	themeMode: ThemeMode.light,
 	toggleDarkMode: () => {},
+	setThemeMode: () => {},
 };
 
 const Context = React.createContext<Store>(DefaultStore);
@@ -30,12 +32,16 @@ const Provider = ({ children }: Props) => {
 		setTheme((prev) => (prev === ThemeMode.light ? ThemeMode.dark : ThemeMode.light));
 	};
 
+	const setThemeMode = (themeMode: ThemeMode) => {
+		setTheme(themeMode);
+	};
+
 	useEffect(() => {
 		document.documentElement.classList.remove(ThemeMode.light, ThemeMode.dark);
 		document.documentElement.classList.add(themeMode);
 	}, [themeMode]);
 
-	const store: Store = { themeMode, toggleDarkMode };
+	const store: Store = { themeMode, toggleDarkMode, setThemeMode };
 
 	return (
 		<MuiThemeProvider value={muiCustomTheme}>

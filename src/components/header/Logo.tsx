@@ -7,9 +7,12 @@ import { PagePath } from "~/enums/path";
 const Logo = () => {
 	const t = useTranslations();
 	return (
-		<Link href={PagePath.home} className="flex items-center gap-2 self-center text-xl font-semibold whitespace-nowrap">
+		<Link
+			href={PagePath.home}
+			className="flex items-end gap-2 self-center text-sm font-extrabold uppercase whitespace-nowrap"
+		>
 			<SvgIcon name="logo" width={30} height={30} />
-			<span className="text-primary-600">{t("app.title")}</span>
+			<span className="text-gray-800 dark:text-gray-200">{t("app.title")}</span>
 		</Link>
 	);
 };

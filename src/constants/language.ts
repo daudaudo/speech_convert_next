@@ -1,6 +1,9 @@
 import { LanguageCode } from "~/enums/language";
+import type { Languages } from "~/types/language";
 
-const Languages = {
+const supportedLanguages: LanguageCode[] = [LanguageCode.Vietnamese, LanguageCode.English, LanguageCode.Chinese];
+
+const Languages: Languages = {
 	[LanguageCode.Vietnamese]: {
 		code: LanguageCode.Vietnamese,
 		name: "Tiếng Việt",
@@ -18,4 +21,4 @@ const Languages = {
 	},
 };
 
-export { Languages };
+export { Languages, supportedLanguages };

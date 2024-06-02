@@ -20,7 +20,10 @@
       "convertSpeechToText": "将语音转换为文本",
       "convertDocumentToText": "将文件转换为文本",
       "convertTextToText": "翻译文本",
-      "history": "历史"
+      "history": "历史",
+      "theme": "主题",
+      "lightMode": "浅色模式",
+      "darkMode": "深色模式"
     }
   },
   "footer": {},

@@ -25,8 +25,6 @@ const Pagination = (props: Props) => {
 		return rs;
 	}, []);
 
-	if (typeof size !== "number" || size <= 1) return null;
-
 	const changeActive = (act: number) => {
 		setActive(act);
 		onChange(act);
@@ -43,10 +41,10 @@ const Pagination = (props: Props) => {
 	};
 
 	return (
-		<div className="flex items-center gap-4">
+		<div className="flex items-center gap-2">
 			<Button
 				variant="text"
-				className="flex items-center gap-2 rounded-full font-bold text-gray-800 dark:text-gray-100"
+				className="flex items-center gap-2 rounded-full font-bold text-gray-800 dark:text-gray-100 px-2"
 				onClick={prev}
 				disabled={active === 1}
 			>
@@ -69,7 +67,7 @@ const Pagination = (props: Props) => {
 			</div>
 			<Button
 				variant="text"
-				className="flex items-center gap-2 rounded-full font-bold text-gray-800 dark:text-gray-100"
+				className="flex items-center gap-2 rounded-full font-bold text-gray-800 dark:text-gray-100 px-2"
 				onClick={next}
 				disabled={active === size}
 			>

@@ -62,7 +62,7 @@ const Feature = () => {
 					<span>{t("speechTranslater")}</span>
 				</header>
 				<div className="inline-flex">
-					<audio controls src={"/demo/speech-input.mp3"} className="flex-1" />
+					<audio controls src={"/demo/speech-input.mp3"} controlsList="" className="flex-1" />
 				</div>
 				<Textarea
 					readOnly

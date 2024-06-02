@@ -5,8 +5,9 @@ import { Open_Sans } from "next/font/google";
 import { ThemeProvider } from "~/contexts/ThemeContext";
 import AuthWrapper from "~/contexts/auth/AuthWrapper";
 import ToastWrapper from "~/contexts/toast/ToastWrapper";
-import "~/styles/global.scss";
 import LanguageWrapper from "~/contexts/language/LanguageWrapper";
+import { supportedLanguages } from "~/constants/language";
+import "~/styles/global.scss";
 
 const inter = Open_Sans({
 	subsets: ["latin", "vietnamese", "latin-ext"],
@@ -28,6 +29,9 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
 						<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 						<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 						<link rel="manifest" href="/site.webmanifest" />
+						{supportedLanguages.map((locale) => (
+							<link key={locale} rel="alternate" hrefLang={locale} href="/" />
+						))}
 					</head>
 					<body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
 						<LanguageWrapper>
