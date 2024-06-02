@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button, Carousel, Textarea } from "@material-tailwind/react";
-import { ChevronDoubleRightIcon, MicrophoneIcon, SpeakerWaveIcon } from "@heroicons/react/24/solid";
+import { ChevronDoubleRightIcon, SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";

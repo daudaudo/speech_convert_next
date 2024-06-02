@@ -15,7 +15,7 @@ export async function getSession(): Promise<Session> {
 	return { token, id };
 }
 
-export async function createSession(token: string, id: string, dueTime?: number) {
+export async function createSession(token: string /*, id: string, dueTime?: number*/) {
 	const expiresAt = addWeeks(new Date(), 1);
 	cookies().set(CookieKey.token, token, {
 		httpOnly: true,
