@@ -22,7 +22,7 @@ const UserButton = () => {
 							<UserCircleIcon className="h-6 w-6" />
 						</div>
 					</PopoverHandler>
-					<PopoverContent className="bg-gray-100 dark:bg-gray-800 border-none flex flex-col items-center gap-2">
+					<PopoverContent className="z-50 bg-gray-100 dark:bg-gray-800 border-none flex flex-col items-center gap-2">
 						<div className="p-0 rounded-full text-primary-200 dark:text-primary-800">
 							<UserCircleIcon className="h-24 w-24" />
 						</div>
