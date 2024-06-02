@@ -20,6 +20,6 @@ export async function navigateSigninByGoogleCallback() {
 }
 
 export const signinByGoogle = async (code: string) => {
-	const { access_token, _id } = await login({ code });
-	await createSession(access_token, _id);
+	const { access_token } = await login({ code });
+	await createSession(access_token);
 };

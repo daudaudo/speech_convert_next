@@ -1,7 +1,7 @@
 "use client";
 
-import { ArrowDownIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Card, IconButton } from "@material-tailwind/react";
+import { ArrowDownIcon } from "@heroicons/react/24/outline";
+import { Card } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
 import React from "react";
 import Pagination from "~/components/base/Pagination";

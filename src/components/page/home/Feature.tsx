@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button, Carousel, Textarea } from "@material-tailwind/react";
-import { ChevronDoubleRightIcon, MicrophoneIcon, SpeakerWaveIcon } from "@heroicons/react/24/solid";
+import { ChevronDoubleRightIcon, SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
@@ -45,9 +45,6 @@ const Feature = () => {
 					className="text-gray-700 dark:text-gray-200 text-xl font-thin"
 				/>
 				<div className="inline-flex">
-					<Button variant="text" className="text-gray-700 dark:text-gray-200">
-						<SpeakerWaveIcon className="h-8 w-8" />
-					</Button>
 					<audio controls src={"/demo/speech-output.mp3"} controlsList="" className="flex-1" />
 				</div>
 				<div className="flex justify-end m-8">
@@ -65,9 +62,6 @@ const Feature = () => {
 					<span>{t("speechTranslater")}</span>
 				</header>
 				<div className="inline-flex">
-					<Button variant="text" className="text-gray-700 dark:text-gray-200">
-						<MicrophoneIcon className="h-8 w-8" />
-					</Button>
 					<audio controls src={"/demo/speech-input.mp3"} className="flex-1" />
 				</div>
 				<Textarea
