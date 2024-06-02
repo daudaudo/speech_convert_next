@@ -2,12 +2,11 @@ import React from "react";
 import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Open_Sans } from "next/font/google";
-import { getLocale, getMessages } from "next-intl/server";
-import { NextIntlClientProvider } from "next-intl";
 import { ThemeProvider } from "~/contexts/ThemeContext";
 import AuthWrapper from "~/contexts/auth/AuthWrapper";
 import ToastWrapper from "~/contexts/toast/ToastWrapper";
 import "~/styles/global.scss";
+import LanguageWrapper from "~/contexts/language/LanguageWrapper";
 
 const inter = Open_Sans({
 	subsets: ["latin", "vietnamese", "latin-ext"],
@@ -20,13 +19,10 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: React.PropsWithChildren) => {
-	const locale = await getLocale();
-	const messages = await getMessages();
-
 	return (
 		<ThemeProvider>
 			<AuthWrapper>
-				<html lang={locale} className={inter.className}>
+				<html className={inter.className}>
 					<head>
 						<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 						<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -34,9 +30,9 @@ const RootLayout = async ({ children }: React.PropsWithChildren) => {
 						<link rel="manifest" href="/site.webmanifest" />
 					</head>
 					<body className="bg-gray-50 dark:bg-gray-900 overflow-x-hidden">
-						<NextIntlClientProvider messages={messages}>
+						<LanguageWrapper>
 							<ToastWrapper>{children}</ToastWrapper>
-						</NextIntlClientProvider>
+						</LanguageWrapper>
 					</body>
 					{process.env.NODE_ENV === "production" && <GoogleAnalytics gaId="G-NW2E273HT2" />}
 				</html>
