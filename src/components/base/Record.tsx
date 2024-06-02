@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import React, { useEffect, useRef, useState } from "react";
+import AudioPlayer from "~/components/base/AudioPlayer";
 
 interface Props {
 	createRecordCallback: (file: File | null) => void;
@@ -75,13 +76,10 @@ const Record = (props: Props) => {
 					</button>
 				)}
 				<div className="flex-1">
-					{audioURL ? (
-						<audio controls src={audioURL} className="w-full" />
-					) : (
-						<p className="w-full text-sm text-gray-600 dark:text-gray-400">{t("recordDescription")}</p>
-					)}
+					<p className="w-full text-sm text-gray-600 dark:text-gray-400">{t("recordDescription")}</p>
 				</div>
 			</div>
+			{audioURL && <AudioPlayer src={audioURL} />}
 			{error && <p className="text-red-500 text-xs px-1">{error}</p>}
 		</div>
 	);

@@ -1,6 +1,7 @@
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
 import React from "react";
+import AudioPlayer from "~/components/base/AudioPlayer";
 import { CTSModel, CTSSpeed, CTSVoiceId } from "~/types/CTSTypes";
 
 interface Props {
@@ -20,10 +21,7 @@ const Audio = (props: Props) => {
 		<div className="px-4 py-5 sm:p-6 text-gray-800 dark:text-gray-100">
 			{voiceId && <div className="text-lg font-semibol">{t(`${voiceId}.name`)}</div>}
 			<div className="flex flex-row items-center gap-2">
-				<audio controls className="w-full" controlsList="nodownload">
-					<source src={downloadUrl} type="audio/mpeg" />
-					Your browser does not support the audio element.
-				</audio>
+				<AudioPlayer src={downloadUrl} />
 				<a href={downloadUrl} download={downLoadName} className="">
 					<ArrowDownTrayIcon className="h-6 w-6 text-black dark:text-white" />
 				</a>
