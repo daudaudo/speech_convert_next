@@ -19,8 +19,11 @@ import {
 } from "@material-tailwind/react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { MoonIcon, SunIcon } from "@heroicons/react/24/solid";
 import { PagePath } from "~/enums/path";
 import { SpeechConvertIcon } from "~/types/icon";
+import { useTheme } from "~/contexts/ThemeContext";
+import { ThemeMode } from "~/enums/theme";
 
 type ListItem = {
 	path?: PagePath;
@@ -31,6 +34,7 @@ type ListItem = {
 
 const DocSearch = () => {
 	const t = useTranslations("header.directional");
+	const { themeMode, setThemeMode } = useTheme();
 	const [open, setOpen] = useState<boolean>(false);
 
 	const toggleOpen = useCallback(() => {
@@ -105,6 +109,31 @@ const DocSearch = () => {
 					{renderList(convertToSpeechItems, t("createSpeech"))}
 					{renderList(convertToTextItems, t("createText"))}
 					{renderList(supportUserItems, t("supportUser"))}
+					<div className="w-full text-gray-800 dark:text-gray-100">
+						<span>{t("theme")}</span>
+						<List>
+							<ListItem
+								disabled={themeMode === ThemeMode.light}
+								onClick={() => setThemeMode(ThemeMode.light)}
+								className="text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800"
+							>
+								<ListItemPrefix>
+									<SunIcon className="h-5 w-5" />
+								</ListItemPrefix>
+								{t("lightMode")}
+							</ListItem>
+							<ListItem
+								disabled={themeMode === ThemeMode.dark}
+								onClick={() => setThemeMode(ThemeMode.dark)}
+								className="text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800"
+							>
+								<ListItemPrefix>
+									<MoonIcon className="h-5 w-5" />
+								</ListItemPrefix>
+								{t("darkMode")}
+							</ListItem>
+						</List>
+					</div>
 				</DialogBody>
 			</Dialog>
 		</>

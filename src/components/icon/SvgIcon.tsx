@@ -17,7 +17,7 @@ const SvgIcon = (props: SvgIconProps) => {
 	const SvgComponent = IconsMap[type][name];
 
 	return (
-		<div className="svg-icon">
+		<div id={name} className="svg-icon">
 			<SvgComponent width={width} height={height} color={color} />
 		</div>
 	);

@@ -13,8 +13,10 @@ const HomePage = () => {
 	const t = useTranslations();
 	return (
 		<>
-			<div className="sticky top-0 w-full h-16 bg-gray-100 dark:bg-gray-800 z-50">
-				<Header />
+			<div className="sticky top-0 w-full h-16 bg-gray-100 dark:bg-gray-800 z-50  border-b-[1px] border-gray-300 dark:border-gray-700">
+				<div className="md:max-w-screen-xl mx-auto px-2 md:px-0">
+					<Header />
+				</div>
 			</div>
 			<div className="max-w-screen-xl mx-auto w-full min-h-full gap-12 pb-10 flex flex-col items-center">
 				<section className="flex flex-col items-center gap-2">

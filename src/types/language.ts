@@ -6,4 +6,8 @@ type Language = {
 	enName: string;
 };
 
-export type { Language };
+type Languages = {
+	[key in LanguageCode]: Language;
+};
+
+export type { Language, Languages };

@@ -6,6 +6,7 @@ import Text from "~/components/icon/svg/outline/Text";
 import EN from "~/components/icon/svg/flag/en";
 import VI from "~/components/icon/svg/flag/vi";
 import ZH from "~/components/icon/svg/flag/zh";
+import Share from "~/components/icon/svg/solid/share";
 
 const IconsMap = {
 	app: {
@@ -21,7 +22,9 @@ const IconsMap = {
 		gauge: Gauge,
 		text: Text,
 	},
-	solid: {},
+	solid: {
+		share: Share,
+	},
 };
 
 type SvgName =

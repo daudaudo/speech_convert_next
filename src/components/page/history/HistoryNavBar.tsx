@@ -39,7 +39,7 @@ const NavBar = () => {
 
 	return (
 		<div className="w-full px-4 border-b-2">
-			<div className="rounded-lg max-w-96 min-w-80 mx-auto">
+			<div className="max-w-96 min-w-80 mx-auto">
 				<ButtonGroup fullWidth variant="text" size="sm" className="divide-x-0 text-gray-800 dark:text-gray-100">
 					{renderNavButton("cts", t("convertToSpeech"))}
 					{renderNavButton("ctt", t("convertToText"))}

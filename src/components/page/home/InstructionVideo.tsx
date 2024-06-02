@@ -10,7 +10,7 @@ interface Props {
 }
 
 const InstructionVideo = (props: Props) => {
-	const { width = 400, height = 315 } = props;
+	const { width = 375, height = 315 } = props;
 	const t = useTranslations("home");
 
 	return (
