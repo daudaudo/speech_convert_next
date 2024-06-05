@@ -160,7 +160,8 @@
           "name": "Shimmer",
           "description": "Female, Lively, Bubbly, and Energetic"
         }
-      }
+      },
+      "selectQuality": "Select quality"
     }
   },
   "ctt": {
