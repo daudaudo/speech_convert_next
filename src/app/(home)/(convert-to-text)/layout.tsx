@@ -2,7 +2,7 @@ import React from "react";
 import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import CTTNavbar from "~/components/ctt/CTTNavbar";
 import CTTOutput from "~/components/ctt/CTTOutput";
-import CTTSelectLanguage from "~/components/ctt/SelectLanguage";
+import CTTSelectLanguage from "~/components/ctt/LanguageSelect";
 import CTTSubmitButton from "~/components/ctt/SubmitButton";
 import { ConvertToTextProvider } from "~/contexts/ConvertToTextContext";
 
