@@ -31,12 +31,7 @@ const LanguageSwitch = () => {
 
 	return (
 		<div className="w-10 h-10">
-			<Popover
-				open={open}
-				handler={setOpen}
-				placement="bottom"
-				animate={{ mount: { scale: 1, y: 0 }, unmount: { scale: 0, y: 25 } }}
-			>
+			<Popover open={open} handler={setOpen} placement="bottom">
 				<PopoverHandler>
 					<Button
 						variant="text"

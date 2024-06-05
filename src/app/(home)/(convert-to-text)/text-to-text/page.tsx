@@ -1,8 +1,10 @@
 import React from "react";
-import CTTTextInput from "~/components/ctt/TextInput";
+import TextToTextPage from "~/components/page/ctt/text";
 
-const TextToTextPage = () => {
-	return <CTTTextInput />;
+interface Props {}
+
+const Page = ({}: Props) => {
+	return <TextToTextPage />;
 };
 
-export default TextToTextPage;
+export default Page;

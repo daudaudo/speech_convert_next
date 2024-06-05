@@ -1,8 +1,10 @@
 import React from "react";
-import TextInput from "~/components/cts/TextInput";
+import TextToSpeechPage from "~/components/page/cts/text";
 
-const TextToSpeechPage = () => {
-	return <TextInput />;
+interface Props {}
+
+const Page = ({}: Props) => {
+	return <TextToSpeechPage />;
 };
 
-export default TextToSpeechPage;
+export default Page;

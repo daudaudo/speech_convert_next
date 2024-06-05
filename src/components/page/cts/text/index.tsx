@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 
-const TextInput = () => {
+const TextToSpeechPage = () => {
 	const t = useTranslations("cts");
 	const { input, changeInput, config, error, clearError } = useConvertToSpeech();
 
@@ -60,4 +60,4 @@ const TextInput = () => {
 	);
 };
 
-export default TextInput;
+export default TextToSpeechPage;

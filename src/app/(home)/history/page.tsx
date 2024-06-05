@@ -1,7 +1,9 @@
 import React from "react";
 import HistoryPage from "~/components/page/history";
 
-const Page = () => {
+interface Props {}
+
+const Page = ({}: Props) => {
 	return <HistoryPage />;
 };
 

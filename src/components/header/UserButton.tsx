@@ -16,7 +16,7 @@ const UserButton = () => {
 	return (
 		<div className="w-10 h-10">
 			{!!user && (
-				<Popover placement="bottom" animate={{ mount: { scale: 1, y: 0 }, unmount: { scale: 0, y: 25 } }}>
+				<Popover placement="bottom">
 					<PopoverHandler>
 						<div className="w-full h-full bg-primary-200 dark:bg-primary-800 p-0 rounded-full text-gray-800 dark:text-gray-200 flex justify-center items-center">
 							<UserCircleIcon className="h-6 w-6" />

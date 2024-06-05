@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import React from "react";
 import { useConvertToText } from "~/contexts/ConvertToTextContext";
 
-const CTTTextInput = () => {
+const TextToTextPage = () => {
 	const t = useTranslations("ctt");
 	const { input, changeInput, config, error, clearError } = useConvertToText();
 
@@ -59,4 +59,4 @@ const CTTTextInput = () => {
 	);
 };
 
-export default CTTTextInput;
+export default TextToTextPage;

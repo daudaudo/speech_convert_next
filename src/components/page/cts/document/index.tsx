@@ -8,7 +8,7 @@ import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { FileSizeUnit } from "~/enums/file";
 import { convertBytes } from "~/utils/file";
 
-const FileInput = () => {
+const DocumentToSpeechPage = () => {
 	const t = useTranslations("cts");
 	const { input, changeInput, config } = useConvertToSpeech();
 
@@ -82,4 +82,4 @@ const FileInput = () => {
 	);
 };
 
-export default FileInput;
+export default DocumentToSpeechPage;

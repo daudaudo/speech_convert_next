@@ -1,7 +1,10 @@
 import React from "react";
+import ConversationToSpeechPage from "~/components/page/cts/conversation";
 
-const ConversationToSpeechPage = () => {
-	return <></>;
+interface Props {}
+
+const Page = ({}: Props) => {
+	return <ConversationToSpeechPage />;
 };
 
-export default ConversationToSpeechPage;
+export default Page;

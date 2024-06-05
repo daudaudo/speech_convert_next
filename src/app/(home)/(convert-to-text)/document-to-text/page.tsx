@@ -1,8 +1,10 @@
 import React from "react";
-import CTTFileInput from "~/components/ctt/FileInput";
+import CTTFileInput from "~/components/page/ctt/document";
 
-const DocumentToTextPage = () => {
+interface Props {}
+
+const Page = ({}: Props) => {
 	return <CTTFileInput />;
 };
 
-export default DocumentToTextPage;
+export default Page;

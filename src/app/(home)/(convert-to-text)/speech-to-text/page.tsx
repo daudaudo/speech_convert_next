@@ -1,8 +1,10 @@
 import React from "react";
-import RecordInput from "~/components/ctt/RecordInput";
+import SpeechToTextPage from "~/components/page/ctt/speech";
 
-const SpeechToTextPage = () => {
-	return <RecordInput />;
+interface Props {}
+
+const Page = ({}: Props) => {
+	return <SpeechToTextPage />;
 };
 
-export default SpeechToTextPage;
+export default Page;

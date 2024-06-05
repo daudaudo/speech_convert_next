@@ -1,8 +1,10 @@
 import React from "react";
-import FileInput from "~/components/cts/FileInput";
+import DocumentToSpeechPage from "~/components/page/cts/document";
 
-const DocumentToSpeechPage = () => {
-	return <FileInput />;
+interface Props {}
+
+const Page = ({}: Props) => {
+	return <DocumentToSpeechPage />;
 };
 
-export default DocumentToSpeechPage;
+export default Page;

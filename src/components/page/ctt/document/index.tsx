@@ -8,7 +8,7 @@ import { useConvertToText } from "~/contexts/ConvertToTextContext";
 import { FileSizeUnit } from "~/enums/file";
 import { convertBytes } from "~/utils/file";
 
-const FileInput = () => {
+const DocumentToTextPage = () => {
 	const t = useTranslations("ctt");
 	const { input, changeInput, config } = useConvertToText();
 
@@ -82,4 +82,4 @@ const FileInput = () => {
 	);
 };
 
-export default FileInput;
+export default DocumentToTextPage;
