@@ -161,7 +161,8 @@
           "description": "女，活泼，生动，充满活力"
         }
       },
-      "selectQuality": "选择品质"
+      "selectQuality": "选择品质",
+      "create": "创造"
     }
   },
   "ctt": {

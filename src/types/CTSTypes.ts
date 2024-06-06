@@ -2,6 +2,13 @@ import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 
 type CTSType = "text" | "document" | "conversation";
 // Input types for the ConvertToSpeech
+type CTSPartial = {
+	text: string;
+	name: string;
+	voice: CTSVoiceId;
+	silent: number;
+};
+
 type CTSInput = {
 	text: string;
 	file?: File | null;
@@ -50,4 +57,4 @@ type CTSError = {
 };
 
 export { CTSDefaultConfig };
-export type { CTSType, CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput, CTSError };
+export type { CTSPartial, CTSType, CTSInput, CTSModel, CTSVoiceId, CTSConfig, CTSSpeed, CTSVoice, CTSOutput, CTSError };

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import ModelSelect from "~/components/cts/ModelSelect";
 import CTSNavbar from "~/components/cts/Navbar";
 import SpeedSelect from "~/components/cts/SpeedSelect";
@@ -11,12 +11,15 @@ import { CTSSpeed } from "~/types/CTSTypes";
 const Header = () => {
 	const { speed, setSpeed, model, setModel, voiceId, setVoiceId } = useConvertToSpeech();
 
-	const onChangeSpeed = (speed: number) => {
-		setSpeed(speed as CTSSpeed);
-	};
+	const onChangeSpeed = useCallback(
+		(speed: number) => {
+			setSpeed(speed as CTSSpeed);
+		},
+		[setSpeed],
+	);
 
 	return (
-		<nav className="w-full flex flex-col md:flex-row md:items-center justify-between border-b py-1 border-gray-200 dark:border-gray-800 px-2">
+		<nav className="w-full flex flex-col md:flex-row md:items-center justify-between border-b py-1 border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-2">
 			<CTSNavbar />
 			<span className="inline-flex gap-1 mt-2 md:mt-0">
 				<SpeedSelect value={speed} onChange={onChangeSpeed} />

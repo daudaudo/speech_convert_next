@@ -161,7 +161,8 @@
           "description": "Nữ, Sống động, Sôi nổi, và Năng động"
         }
       },
-      "selectQuality": "Chọn chất lượng"
+      "selectQuality": "Chọn chất lượng",
+      "create": "Tạo"
     }
   },
   "ctt": {

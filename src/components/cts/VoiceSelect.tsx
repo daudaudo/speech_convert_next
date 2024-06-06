@@ -1,5 +1,6 @@
 "use client";
 
+import { XCircleIcon } from "@heroicons/react/24/outline";
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { Button, Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
@@ -24,7 +25,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 
 	const onClickSave = () => {
 		onChange(voice);
-		onToggleOpen();
+		setOpen(false);
 	};
 
 	const renderVoice = (id: CTSVoiceId) => {
@@ -59,13 +60,12 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 			</Button>
 			<Dialog open={open} handler={onToggleOpen} className="bg-white dark:bg-gray-900">
 				<DialogBody className="relative px-6 py-4 flex flex-col">
-					{/* <IconButton
-						variant="text"
+					<button
 						onClick={onToggleOpen}
 						className="absolute rounded-full right-6 top-6 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
 					>
 						<XCircleIcon className="h-6 w-6" />
-					</IconButton> */}
+					</button>
 					<div className="text-gray-700 dark:text-gray-300 py-4">Select voice</div>
 					{renderVoice(OpenAIVoiceId.Alloy)}
 					{renderVoice(OpenAIVoiceId.Echo)}

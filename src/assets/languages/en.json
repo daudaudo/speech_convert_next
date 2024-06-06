@@ -161,7 +161,8 @@
           "description": "Female, Lively, Bubbly, and Energetic"
         }
       },
-      "selectQuality": "Select quality"
+      "selectQuality": "Select quality",
+      "create": "Create"
     }
   },
   "ctt": {

@@ -1,5 +1,6 @@
 import React from "react";
 import CTSHeader from "~/components/cts/Header";
+import CTSFooter from "~/components/cts/Footer";
 import AudioDrawer from "~/components/audioDrawer";
 import { ConvertToSpeechProvider } from "~/contexts/ConvertToSpeechContext";
 
@@ -14,6 +15,7 @@ const ConvertToSpeechLayout = ({ children }: Props) => {
 				<div className="flex flex-col h-full w-full">
 					<CTSHeader />
 					<div className="flex-1">{children}</div>
+					<CTSFooter />
 				</div>
 			</div>
 			<AudioDrawer />

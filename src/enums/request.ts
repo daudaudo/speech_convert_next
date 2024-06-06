@@ -17,6 +17,7 @@ enum RequestUrl {
 	getUser = "user",
 	// converter
 	convertToSpeech = "audio/speech",
+	convertToConversation = "audio/conversations",
 	convertToText = "audio/transcriptions",
 	// history
 	CTSHistory = "audio/speech/history",
