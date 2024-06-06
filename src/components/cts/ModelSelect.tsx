@@ -20,7 +20,7 @@ const ModelSelect: React.FC<ModelSelectProps> = ({ value, onChange }) => {
 	];
 
 	return (
-		<div className="relative inline-block w-full text-gray-700 dark:text-gray-300">
+		<div className="relative inline-block text-gray-700 dark:text-gray-300">
 			<select
 				value={value}
 				onChange={(e) => onChange(e.target.value as CTSModel)}

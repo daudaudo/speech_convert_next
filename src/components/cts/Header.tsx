@@ -4,11 +4,12 @@ import React from "react";
 import ModelSelect from "~/components/cts/ModelSelect";
 import CTSNavbar from "~/components/cts/Navbar";
 import SpeedSelect from "~/components/cts/SpeedSelect";
+import VoiceSelect from "~/components/cts/VoiceSelect";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { CTSSpeed } from "~/types/CTSTypes";
 
 const Header = () => {
-	const { speed, setSpeed, model, setModel } = useConvertToSpeech();
+	const { speed, setSpeed, model, setModel, voiceId, setVoiceId } = useConvertToSpeech();
 
 	const onChangeSpeed = (speed: number) => {
 		setSpeed(speed as CTSSpeed);
@@ -20,6 +21,7 @@ const Header = () => {
 			<span className="inline-flex gap-1 mt-2 md:mt-0">
 				<SpeedSelect value={speed} onChange={onChangeSpeed} />
 				<ModelSelect value={model} onChange={setModel} />
+				<VoiceSelect value={voiceId} onChange={setVoiceId} />
 			</span>
 		</nav>
 	);
