@@ -115,7 +115,9 @@
     "history": "历史",
     "convertToSpeech": "转换为语音",
     "convertToText": "转换为文本",
-    "countDisplay": "{from} - {to} / {total}"
+    "countDisplay": "{from} - {to} / {total}",
+    "conversation": "",
+    "convertToConversation": "转换为对话"
   },
   "cts": {
     "text": "文本",

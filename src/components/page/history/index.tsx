@@ -33,7 +33,6 @@ const History = () => {
 	});
 
 	const onChangePage = (page: number) => {
-		console.log(">> page", { page });
 		const current = new URLSearchParams(Array.from(searchParams.entries()));
 		current.set("page", page.toString());
 		const search = current.toString();
@@ -75,18 +74,6 @@ const History = () => {
 		return (
 			<CTSListHistory
 				history={history as CTSHistoryType[]}
-				currentPage={pageState.currentPage}
-				lastPage={pageState.lastPage}
-				from={pageState.from}
-				to={pageState.to}
-				total={pageState.total}
-				onChangePage={onChangePage}
-			/>
-		);
-	if (searchParams.get("type") === "ctt")
-		return (
-			<CTTListHistory
-				history={history as CTTHistoryType[]}
 				currentPage={pageState.currentPage}
 				lastPage={pageState.lastPage}
 				from={pageState.from}

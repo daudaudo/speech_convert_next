@@ -11,7 +11,7 @@ import CTSNavbar from "~/components/cts/Navbar";
 import SpeedSelect from "~/components/cts/SpeedSelect";
 import VoiceSelect from "~/components/cts/VoiceSelect";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
-import type { CTSModel, CTSOutput, CTSVoiceId } from "~/types/CTSTypes";
+import type { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import convertToSpeech from "~/actions/convertToSpeech";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
@@ -27,7 +27,7 @@ const DocumentToSpeechPage = () => {
 	const [pending, startTransition] = useTransition();
 	const [, setError] = useState<string>("");
 
-	const [input, setInput] = useState<File | null>(null);
+	const [file, setFile] = useState<File | null>(null);
 	const [voiceId, setVoiceId] = useState<CTSVoiceId>(OpenAIVoiceId.Alloy);
 	const [speed, setSpeed] = useState<number>(1);
 	const [model, setModel] = useState<CTSModel>(OpenAITTSModel.TTS1);
@@ -36,41 +36,43 @@ const DocumentToSpeechPage = () => {
 
 	const onInputFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files && e.target.files.length > 0) {
-			setInput(e.target.files[0]);
+			setFile(e.target.files[0]);
 		}
 	};
 
 	const onClickClearFile = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		setInput(null);
+		setFile(null);
 		e.preventDefault();
 	};
 
 	const validated = useMemo(() => {
-		return !!input;
-	}, [input]);
+		return !!file;
+	}, [file]);
 
 	const onCreateSpeech = useCallback(() => {
 		if (validated) {
 			startTransition(async () => {
-				const formData = new FormData();
-				formData.append("voice", voiceId);
-				formData.append("model", model);
-				formData.append("speed", speed.toString());
-				formData.append("input", input as File);
-				setOutput(undefined);
-				const res = await convertToSpeech(formData);
-				if (res.error) {
-					setError(res.error);
-				} else {
+				try {
+					const formData = new FormData();
+					formData.append("voice", voiceId);
+					formData.append("model", model);
+					formData.append("speed", speed.toString());
+					formData.append("input", file as File);
+					setOutput(undefined);
+					const res = await convertToSpeech(formData);
 					clearError();
-					setOutput(res as CTSOutput);
+					setOutput(res);
+				} catch (error) {
+					if (error instanceof Error) {
+						setError(error.message);
+					}
 				}
 			});
 		}
 	}, [validated, startTransition]);
 
 	const renderFile = () => {
-		if (!input)
+		if (!file)
 			return (
 				<div className="flex flex-col items-center justify-center pt-5 pb-6">
 					<CloudArrowUpIcon className="h-8 w-8 text-gray-400 dark:text-gray-300" />
@@ -92,8 +94,8 @@ const DocumentToSpeechPage = () => {
 					<DocumentIcon className="h-8 w-8 text-gray-500 dark:text-gray-400" />
 				</div>
 				<div className="truncate">
-					<div className="text-nomal text-gray-700 dark:text-gray-300 truncate">{input.name}</div>
-					<div className="text-sm font-thin text-gray-500 dark:text-gray-400">{input.size} bytes</div>
+					<div className="text-nomal text-gray-700 dark:text-gray-300 truncate">{file.name}</div>
+					<div className="text-sm font-thin text-gray-500 dark:text-gray-400">{file.size} bytes</div>
 				</div>
 			</div>
 		);
@@ -112,7 +114,7 @@ const DocumentToSpeechPage = () => {
 			<div className="flex-1 w-full">
 				<div className="relative flex items-center justify-center w-full p-6">
 					<label className="flex flex-col items-center rounded-lg justify-center w-full h-64 cursor-pointer border-2 border-dashed dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
-						{!!input && (
+						{!!file && (
 							<button
 								onClick={onClickClearFile}
 								className="absolute right-8 top-8 cursor-pointer inline-flex justify-center p-2 text-gray-500 rounded-full"

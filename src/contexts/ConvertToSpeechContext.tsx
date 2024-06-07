@@ -1,11 +1,11 @@
 "use client";
 
 import React, { createContext, useEffect, useState } from "react";
-import { CTSOutput } from "~/types/CTSTypes";
+import { ConversationResponseData, SpeechResponseData } from "~/types/response/cts";
 
 type Store = {
-	output?: CTSOutput;
-	setOutput: (output?: CTSOutput) => void;
+	output?: SpeechResponseData | ConversationResponseData;
+	setOutput: (output?: SpeechResponseData | ConversationResponseData) => void;
 	resultShowed: boolean;
 	toggleShowResult: () => void;
 };
@@ -24,7 +24,7 @@ interface Props {
 }
 
 const Provider = ({ children }: Props) => {
-	const [output, setOutput] = useState<CTSOutput | undefined>(undefined);
+	const [output, setOutput] = useState<SpeechResponseData | ConversationResponseData | undefined>(undefined);
 	const [resultShowed, setResultShowed] = useState<boolean>(DefaultStore.resultShowed);
 
 	useEffect(() => {

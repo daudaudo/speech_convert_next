@@ -2,25 +2,16 @@
 
 import { callApiAction } from "~/actions/utils";
 import { RequestMethod, RequestUrl } from "~/enums/request";
-import { CTSPartial, User } from "~/types/CTSTypes";
+import type { CTSPartial } from "~/types/CTSTypes";
+import { ConversationResponseData } from "~/types/response/cts";
 
-const buildPartial = (users: User, text: string) => {
-	//
-	return [];
-};
-
-const convertToConversation = async (users: User, text: string) => {
+const convertToConversation = async (partials: CTSPartial[]) => {
 	try {
-		const partials: CTSPartial[] = buildPartial(users, text);
-		const res = await callApiAction(RequestUrl.convertToConversation, RequestMethod.POST, partials);
+		const res = await callApiAction(RequestUrl.convertToConversation, RequestMethod.POST, { partials });
 		if (!res.success) {
-			return { error: res.message };
+			return { error: res.message as string };
 		}
-		return {
-			id: res.data?._id,
-			partials: res.data?.partials,
-			audioUrl: res.data?.audio_url,
-		};
+		return res.data as ConversationResponseData;
 	} catch (error) {
 		throw error;
 	}

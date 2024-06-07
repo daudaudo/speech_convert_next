@@ -8,7 +8,7 @@ import CTSNavbar from "~/components/cts/Navbar";
 import SpeedSelect from "~/components/cts/SpeedSelect";
 import VoiceSelect from "~/components/cts/VoiceSelect";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
-import type { CTSModel, CTSOutput, CTSVoiceId } from "~/types/CTSTypes";
+import type { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import convertToSpeech from "~/actions/convertToSpeech";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
@@ -46,18 +46,19 @@ const TextToSpeechPage = () => {
 	const onCreateSpeech = useCallback(() => {
 		if (validated) {
 			startTransition(async () => {
-				const formData = new FormData();
-				formData.append("voice", voiceId);
-				formData.append("model", model);
-				formData.append("speed", speed.toString());
-				formData.append("input", text);
-				setOutput(undefined);
-				const res = await convertToSpeech(formData);
-				if (res.error) {
-					setError(res.error);
-				} else {
+				try {
+					const formData = new FormData();
+					formData.append("voice", voiceId);
+					formData.append("model", model);
+					formData.append("speed", speed.toString());
+					formData.append("input", text);
+					const res = await convertToSpeech(formData);
 					clearError();
-					setOutput(res as CTSOutput);
+					setOutput(res);
+				} catch (error) {
+					if (error instanceof Error) {
+						setError(error.message);
+					}
 				}
 			});
 		}

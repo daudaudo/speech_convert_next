@@ -115,7 +115,8 @@
     "history": "History",
     "convertToSpeech": "Convert to speech",
     "convertToText": "Convert to text",
-    "countDisplay": "{from} - {to} / {total}"
+    "countDisplay": "{from} - {to} / {total}",
+    "convertToConversation": "Convert to conversation"
   },
   "cts": {
     "text": "Text",

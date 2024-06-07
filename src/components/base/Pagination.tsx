@@ -31,12 +31,12 @@ const Pagination = (props: Props) => {
 	};
 
 	const prev = () => {
-		if (active === 1) return;
+		if (active <= 1) return;
 		changeActive(active - 1);
 	};
 
 	const next = () => {
-		if (active === size) return;
+		if (active >= size) return;
 		changeActive(active + 1);
 	};
 

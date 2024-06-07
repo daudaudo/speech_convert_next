@@ -115,7 +115,8 @@
     "history": "Lịch sử",
     "convertToSpeech": "Chuyển thành giọng nói",
     "convertToText": "Chuyển thành văn bản",
-    "countDisplay": "{from} - {to} / {total}"
+    "countDisplay": "{from} - {to} / {total}",
+    "convertToConversation": "Chuyển thành hội thoại"
   },
   "cts": {
     "text": "Văn bản",

@@ -17,14 +17,4 @@ type CTSModel = OpenAITTSModel;
 
 type CTSVoiceId = OpenAIVoiceId;
 
-type CTSOutput = {
-	id: string;
-	input?: string;
-	streamUrl: string;
-	downloadUrl: string;
-	voiceId?: CTSVoiceId;
-	model?: CTSModel;
-	speed?: number;
-};
-
-export type { User, CTSPartial, CTSModel, CTSVoiceId, CTSOutput };
+export type { User, CTSPartial, CTSModel, CTSVoiceId };
