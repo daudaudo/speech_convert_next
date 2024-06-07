@@ -12,6 +12,7 @@ type CTSPartial = {
 type CTSInput = {
 	text: string;
 	file?: File | null;
+	partials?: CTSPartial[];
 };
 
 // Model types for the ConvertToSpeech

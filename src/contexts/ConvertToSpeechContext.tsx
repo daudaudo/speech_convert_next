@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import React, { createContext, useMemo, useState, useTransition } from "react";
+import convertToConversation from "~/actions/convertToConversation";
 import convertToSpeech from "~/actions/convertToSpeech";
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import { PagePath } from "~/enums/path";
@@ -13,6 +14,7 @@ import {
 	CTSInput,
 	CTSModel,
 	CTSOutput,
+	CTSPartial,
 	CTSSpeed,
 	CTSVoiceId,
 } from "~/types/CTSTypes";
@@ -37,7 +39,7 @@ type Store = {
 	clearError?: () => void;
 };
 const DefaultStore: Store = {
-	input: { text: "", file: null },
+	input: { text: "", file: null, partials: [] },
 	changeInput: () => {},
 	voiceId: OpenAIVoiceId.Alloy,
 	setVoiceId: () => {},
@@ -84,13 +86,16 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 	const [output, setOutput] = useState<CTSOutput | undefined>(undefined);
 	const [resultShowed, setResultShowed] = useState<boolean>(DefaultStore.resultShowed);
 
-	const changeInput = (value: string | File | null) => {
+	const changeInput = (value: string | File | CTSPartial[] | null) => {
 		switch (type) {
 			case "text":
 				setInput((prev) => ({ ...prev, text: value as string }));
 				break;
 			case "document":
 				setInput((prev) => ({ ...prev, file: value as File }));
+				break;
+			case "conversation":
+				setInput((prev) => ({ ...prev, partials: value as CTSPartial[] }));
 				break;
 			default:
 				break;
@@ -103,6 +108,8 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 		switch (type) {
 			case "document":
 				return input.file as File;
+			case "conversation":
+				return input.partials;
 			case "text":
 			default:
 				return input.text;
@@ -118,23 +125,68 @@ const Provider = ({ children, config = CTSDefaultConfig }: Props) => {
 		});
 	};
 
+	const requestTextToSpeech = async () => {
+		if (!!input.text) {
+			const formData = new FormData();
+			formData.append("voice", voiceId);
+			formData.append("model", model);
+			formData.append("speed", speed.toString());
+			formData.append("input", input.text);
+			setOutput(undefined);
+			const res = await convertToSpeech(formData);
+			if (res.error) {
+				setError((prev) => ({ ...prev, [type]: res.error }));
+			} else {
+				clearError();
+				setOutput(res as CTSOutput);
+				setResultShowed(true);
+			}
+		}
+	};
+
+	const requestDocumentToSpeech = async () => {
+		if (!!input.file) {
+			const formData = new FormData();
+			formData.append("voice", voiceId);
+			formData.append("model", model);
+			formData.append("speed", speed.toString());
+			formData.append("input", input.file);
+			setOutput(undefined);
+			const res = await convertToSpeech(formData);
+			if (res.error) {
+				setError((prev) => ({ ...prev, [type]: res.error }));
+			} else {
+				clearError();
+				setOutput(res as CTSOutput);
+				setResultShowed(true);
+			}
+		}
+	};
+
+	const requestConversationToSpeech = async () => {
+		if (!!input.partials) {
+			setOutput(undefined);
+			const res = await convertToConversation(input.partials);
+			if (res.error) {
+				setError((prev) => ({ ...prev, [type]: res.error }));
+			} else {
+				clearError();
+				// setOutput(res as CTSOutput);
+				setResultShowed(true);
+			}
+		}
+	};
+
 	const requestCreateSpeech = async () => {
 		startTransition(async () => {
-			if (validate()) {
-				const formData = new FormData();
-				formData.append("voice", voiceId);
-				formData.append("model", model);
-				formData.append("speed", speed.toString());
-				formData.append("input", requestInput);
-				setOutput(undefined);
-				const res = await convertToSpeech(formData);
-				if (res.error) {
-					setError((prev) => ({ ...prev, [type]: res.error }));
-				} else {
-					clearError();
-					setOutput(res as CTSOutput);
-					setResultShowed(true);
-				}
+			if (type === "text") {
+				await requestTextToSpeech();
+			}
+			if (type === "document") {
+				await requestDocumentToSpeech();
+			}
+			if (type === "conversation") {
+				await requestConversationToSpeech();
 			}
 		});
 	};
