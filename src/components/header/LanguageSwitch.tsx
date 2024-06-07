@@ -40,7 +40,7 @@ const LanguageSwitch = () => {
 						<SvgIcon type="flag" name={locale} width={24} height={24} />
 					</Button>
 				</PopoverHandler>
-				<PopoverContent className="z-50 bg-gray-100 dark:bg-gray-800 border-none flex flex-col items-center gap-2">
+				<PopoverContent className="z-50 bg-gray-100 dark:bg-gray-800 flex flex-col items-center gap-2">
 					{renderLanguageItem(LanguageCode.English)}
 					{renderLanguageItem(LanguageCode.Vietnamese)}
 					{renderLanguageItem(LanguageCode.Chinese)}

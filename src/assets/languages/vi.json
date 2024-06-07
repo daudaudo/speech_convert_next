@@ -128,6 +128,7 @@
     "fileAccept": "Chấp nhận tệp: {value}",
     "maxFileSize": "Kích thước tệp tối đa là {value}",
     "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo giọng nói của bạn. Điều này có thể mất vài phút.",
+    "conversationPlaceholder": "[Trường]: Chào Thu!\n[Thu]: Chào Trường",
     "voice": {
       "selectSpeed": "Chọn tốc độ",
       "selectVoice": "Chọn giọng",
@@ -162,7 +163,9 @@
         }
       },
       "selectQuality": "Chọn chất lượng",
-      "create": "Tạo"
+      "create": "Tạo",
+      "name": "Tên",
+      "delete": "Xóa"
     }
   },
   "ctt": {

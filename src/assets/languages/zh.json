@@ -162,8 +162,11 @@
         }
       },
       "selectQuality": "选择品质",
-      "create": "创造"
-    }
+      "create": "创造",
+      "name": "姓名",
+      "delete": "删除"
+    },
+    "conversationPlaceholder": "[张三]: 你好，李四！\n[李四]: 你好，张三"
   },
   "ctt": {
     "record": "录音",

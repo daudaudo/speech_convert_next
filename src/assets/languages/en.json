@@ -162,8 +162,11 @@
         }
       },
       "selectQuality": "Select quality",
-      "create": "Create"
-    }
+      "create": "Create",
+      "name": "Name",
+      "delete": "Delete"
+    },
+    "conversationPlaceholder": "[John]: Hello Jane!\n[Jane]: Hello John"
   },
   "ctt": {
     "record": "Record",

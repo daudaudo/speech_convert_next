@@ -1,5 +1,11 @@
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 
+type User = {
+	id: string;
+	name: string;
+	voice: CTSVoiceId;
+};
+
 type CTSPartial = {
 	text: string;
 	name: string;
@@ -21,4 +27,4 @@ type CTSOutput = {
 	speed?: number;
 };
 
-export type { CTSPartial, CTSModel, CTSVoiceId, CTSOutput };
+export type { User, CTSPartial, CTSModel, CTSVoiceId, CTSOutput };

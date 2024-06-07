@@ -1,23 +1,48 @@
 "use client";
 
 import React, { useCallback, useMemo, useState, useTransition } from "react";
+import { useTranslations } from "next-intl";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
 import ModelSelect from "~/components/cts/ModelSelect";
 import CTSNavbar from "~/components/cts/Navbar";
 import { OpenAITTSModel } from "~/enums/openAi";
-import { CTSPartial } from "~/types/CTSTypes";
+import { User } from "~/types/CTSTypes";
+import ConversationUser from "~/components/page/cts/conversation/ConversationUser";
 
 const ConversationToSpeechPage = () => {
+	const t = useTranslations("cts");
+
 	const [model, setModel] = useState(OpenAITTSModel.TTS1);
 
 	const [pending, startTransition] = useTransition();
 	// const [error, setError] = useState<string>("");
 
-	const [partial, setPartial] = useState<CTSPartial[]>([]);
+	const [users, setUsers] = useState<User[]>([]);
+	const [text, setText] = useState<string>("");
+
+	const addUser = useCallback((user: User) => {
+		setUsers((prev) => [...prev, user]);
+	}, []);
+
+	const removeUser = useCallback((id: string) => {
+		setUsers((prev) => prev.filter((user) => user.id !== id));
+	}, []);
+
+	const clearUsers = useCallback(() => {
+		setUsers([]);
+	}, []);
+
+	const updateUser = useCallback((user: User) => {
+		setUsers((prev) => prev.map((u) => (u.id === user.id ? user : u)));
+	}, []);
+
+	const onTextChange = useCallback((e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		setText(e.target.value);
+	}, []);
 
 	const validated = useMemo(() => {
-		return partial.length > 0;
-	}, [partial]);
+		return users.length > 0 && text.length > 0;
+	}, [users]);
 
 	const onCreateSpeech = useCallback(() => {
 		if (validated) {
@@ -35,7 +60,17 @@ const ConversationToSpeechPage = () => {
 					<ModelSelect value={model} onChange={setModel} />
 				</span>
 			</div>
-			<div className="flex-1 w-full">{/* Content */}</div>
+			<div className="flex-1 w-full p-1">
+				<ConversationUser users={users} add={addUser} update={updateUser} remove={removeUser} clear={clearUsers} />
+				<textarea
+					autoFocus
+					required
+					placeholder={t("conversationPlaceholder")}
+					onChange={onTextChange}
+					value={text}
+					className="w-full pt-8 pl-4 pr-2 resize-none overflow-y-auto h-full min-h-[210px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-900 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none py-3"
+				/>
+			</div>
 			<div className="w-full flex justify-end items-center h-12 bg-gray-50 dark:bg-gray-900 px-4">
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>
