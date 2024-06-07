@@ -8,11 +8,14 @@ import CTSNavbar from "~/components/cts/Navbar";
 import { OpenAITTSModel } from "~/enums/openAi";
 import { User } from "~/types/CTSTypes";
 import ConversationUser from "~/components/page/cts/conversation/ConversationUser";
+import CTSConfig from "~/constants/configs";
 
 const ConversationToSpeechPage = () => {
 	const t = useTranslations("cts");
 
 	const [model, setModel] = useState(OpenAITTSModel.TTS1);
+
+	const { maxUserConversation } = CTSConfig;
 
 	const [pending, startTransition] = useTransition();
 	// const [error, setError] = useState<string>("");
@@ -21,7 +24,9 @@ const ConversationToSpeechPage = () => {
 	const [text, setText] = useState<string>("");
 
 	const addUser = useCallback((user: User) => {
-		setUsers((prev) => [...prev, user]);
+		if (users.length < maxUserConversation) {
+			setUsers((prev) => [...prev, user]);
+		}
 	}, []);
 
 	const removeUser = useCallback((id: string) => {
@@ -61,7 +66,14 @@ const ConversationToSpeechPage = () => {
 				</span>
 			</div>
 			<div className="flex-1 w-full p-1">
-				<ConversationUser users={users} add={addUser} update={updateUser} remove={removeUser} clear={clearUsers} />
+				<ConversationUser
+					users={users}
+					add={addUser}
+					update={updateUser}
+					remove={removeUser}
+					clear={clearUsers}
+					maxUser={maxUserConversation}
+				/>
 				<textarea
 					autoFocus
 					required

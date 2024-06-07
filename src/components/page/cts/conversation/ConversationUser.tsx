@@ -33,7 +33,7 @@ const User = ({ user, update, remove }: UserProps) => {
 			<PopoverHandler>
 				<Button
 					variant="text"
-					className="h-full flex flex-row items-center gap-2 border border-gray-500 px-4 py-2 rounded-full"
+					className="h-10 flex flex-row items-center gap-2 border border-gray-500 px-4 py-2 rounded-full"
 				>
 					<span className="font-semibold text-gray-800 dark:text-gray-200">{user.name}</span>
 				</Button>
@@ -51,10 +51,11 @@ interface Props {
 	update: (user: User) => void;
 	remove: (id: string) => void;
 	clear: () => void;
+	maxUser?: number;
 }
 
 const ConversationUser = (props: Props) => {
-	const { users, add, update, remove, clear } = props;
+	const { users, add, update, remove, clear, maxUser } = props;
 
 	const onClickAddUser = () => {
 		add({
@@ -66,11 +67,12 @@ const ConversationUser = (props: Props) => {
 
 	return (
 		<div className="w-full flex flex-row gap-2 border-b-2 border-dashed border-gray-300 dark:border-gray-700 p-4">
-			<div className="flex-1 flex flex-row items-center gap-2">
+			<div className="flex-1 flex flex-wrap items-center gap-2">
 				{users.map((user) => (
 					<User key={user.id} user={user} update={update} remove={remove} />
 				))}
 				<IconButton
+					disabled={!!maxUser && users.length >= maxUser}
 					onClick={onClickAddUser}
 					variant="outlined"
 					className="rounded-full border-gray-600 dark:border-gray-400"

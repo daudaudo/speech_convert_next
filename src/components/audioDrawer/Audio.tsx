@@ -1,6 +1,8 @@
+"use client";
+
+import React from "react";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
-import React from "react";
 import AudioPlayer from "~/components/base/AudioPlayer";
 import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
 
