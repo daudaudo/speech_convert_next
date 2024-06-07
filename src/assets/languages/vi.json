@@ -130,7 +130,7 @@
     "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo giọng nói của bạn. Điều này có thể mất vài phút.",
     "voice": {
       "selectSpeed": "Chọn tốc độ",
-      "selectVoice": "Cài đặt âm thanh",
+      "selectVoice": "Chọn giọng",
       "highQuality": "Chất lượng cao",
       "HDQuality": "Chất lượng HD",
       "voice": "Giọng",

@@ -56,7 +56,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 				className="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-75 flex items-center gap-2"
 			>
 				<SpeakerWaveIcon className="h-6 w-6" />
-				{t(`openAIVoice.${voice}.name`)}
+				{t(`openAIVoice.${value}.name`)}
 			</Button>
 			<Dialog open={open} handler={onToggleOpen} className="bg-white dark:bg-gray-900">
 				<DialogBody className="relative px-6 py-4 flex flex-col">
@@ -66,7 +66,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 					>
 						<XCircleIcon className="h-6 w-6" />
 					</button>
-					<div className="text-gray-700 dark:text-gray-300 py-4">Select voice</div>
+					<div className="text-gray-700 dark:text-gray-300 py-4">{t("selectVoice")}</div>
 					{renderVoice(OpenAIVoiceId.Alloy)}
 					{renderVoice(OpenAIVoiceId.Echo)}
 					{renderVoice(OpenAIVoiceId.Fable)}

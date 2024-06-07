@@ -2,7 +2,7 @@ import { ArrowDownTrayIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
 import React from "react";
 import AudioPlayer from "~/components/base/AudioPlayer";
-import { CTSModel, CTSSpeed, CTSVoiceId } from "~/types/CTSTypes";
+import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
 
 interface Props {
 	input?: string;
@@ -10,7 +10,7 @@ interface Props {
 	downloadUrl: string;
 	voiceId?: CTSVoiceId;
 	model?: CTSModel;
-	speed?: CTSSpeed;
+	speed?: number;
 }
 
 const Audio = (props: Props) => {

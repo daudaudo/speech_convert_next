@@ -130,7 +130,7 @@
     "fileInputInfo": "Once the file is uploaded, we'll start creating your speech. This may take several minutes.",
     "voice": {
       "selectSpeed": "Select speed",
-      "selectVoice": "Sound settings",
+      "selectVoice": "Select voice",
       "highQuality": "High quality",
       "HDQuality": "HD quality",
       "voice": "Voice",

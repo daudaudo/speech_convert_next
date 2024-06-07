@@ -130,7 +130,7 @@
     "fileInputInfo": "文件上传后，我们将开始创建您的语音。这可能需要几分钟。",
     "voice": {
       "selectSpeed": "选择速度",
-      "selectVoice": "声音设置",
+      "selectVoice": "选择语音",
       "highQuality": "高质量",
       "HDQuality": "高清质量",
       "voice": "声音",

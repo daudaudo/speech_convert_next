@@ -7,7 +7,7 @@ import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 
 interface Props {
 	pending?: boolean;
-	onCreateSpeech?: () => void;
+	onCreateSpeech: () => void;
 	disabled?: boolean;
 }
 
