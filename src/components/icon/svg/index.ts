@@ -3,10 +3,12 @@ import Logo from "~/components/icon/svg/app/Logo";
 import ArrowRightToBracket from "~/components/icon/svg/outline/ArrowRightToBracket";
 import Gauge from "~/components/icon/svg/outline/Gauge";
 import Text from "~/components/icon/svg/outline/Text";
+import TrashCan from "~/components/icon/svg/outline/TrashCan";
 import EN from "~/components/icon/svg/flag/en";
 import VI from "~/components/icon/svg/flag/vi";
 import ZH from "~/components/icon/svg/flag/zh";
 import Share from "~/components/icon/svg/solid/share";
+import UserPlus from "~/components/icon/svg/solid/UserPlus";
 
 const IconsMap = {
 	app: {
@@ -21,9 +23,11 @@ const IconsMap = {
 		"arrow-right-to-bracket": ArrowRightToBracket,
 		gauge: Gauge,
 		text: Text,
+		"trash-can": TrashCan,
 	},
 	solid: {
 		share: Share,
+		"user-plus": UserPlus,
 	},
 };
 

@@ -1,7 +1,7 @@
 import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
 import { CTTLanguage, CTTModel } from "~/types/CTTTypes";
 
-type HistoryType = "cts" | "ctt";
+type HistoryType = "cts" | "ctt" | "ctc";
 
 type CTSHistoryType = {
 	_id: string;

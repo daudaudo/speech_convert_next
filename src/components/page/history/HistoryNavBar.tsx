@@ -43,6 +43,7 @@ const NavBar = () => {
 				<ButtonGroup fullWidth variant="text" size="sm" className="divide-x-0 text-gray-800 dark:text-gray-100">
 					{renderNavButton("cts", t("convertToSpeech"))}
 					{renderNavButton("ctt", t("convertToText"))}
+					{renderNavButton("ctc", t("convertToConversation"))}
 				</ButtonGroup>
 			</div>
 		</div>

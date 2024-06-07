@@ -115,7 +115,8 @@
     "history": "Lịch sử",
     "convertToSpeech": "Chuyển thành giọng nói",
     "convertToText": "Chuyển thành văn bản",
-    "countDisplay": "{from} - {to} / {total}"
+    "countDisplay": "{from} - {to} / {total}",
+    "convertToConversation": "Chuyển thành hội thoại"
   },
   "cts": {
     "text": "Văn bản",
@@ -128,9 +129,10 @@
     "fileAccept": "Chấp nhận tệp: {value}",
     "maxFileSize": "Kích thước tệp tối đa là {value}",
     "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo giọng nói của bạn. Điều này có thể mất vài phút.",
+    "conversationPlaceholder": "[Trường]: Chào Thu!\n[Thu]: Chào Trường",
     "voice": {
       "selectSpeed": "Chọn tốc độ",
-      "selectVoice": "Cài đặt âm thanh",
+      "selectVoice": "Chọn giọng",
       "highQuality": "Chất lượng cao",
       "HDQuality": "Chất lượng HD",
       "voice": "Giọng",
@@ -160,7 +162,11 @@
           "name": "Shimmer",
           "description": "Nữ, Sống động, Sôi nổi, và Năng động"
         }
-      }
+      },
+      "selectQuality": "Chọn chất lượng",
+      "create": "Tạo",
+      "name": "Tên",
+      "delete": "Xóa"
     }
   },
   "ctt": {

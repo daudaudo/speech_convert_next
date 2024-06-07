@@ -115,7 +115,9 @@
     "history": "历史",
     "convertToSpeech": "转换为语音",
     "convertToText": "转换为文本",
-    "countDisplay": "{from} - {to} / {total}"
+    "countDisplay": "{from} - {to} / {total}",
+    "conversation": "",
+    "convertToConversation": "转换为对话"
   },
   "cts": {
     "text": "文本",
@@ -130,7 +132,7 @@
     "fileInputInfo": "文件上传后，我们将开始创建您的语音。这可能需要几分钟。",
     "voice": {
       "selectSpeed": "选择速度",
-      "selectVoice": "声音设置",
+      "selectVoice": "选择语音",
       "highQuality": "高质量",
       "HDQuality": "高清质量",
       "voice": "声音",
@@ -160,8 +162,13 @@
           "name": "Shimmer",
           "description": "女，活泼，生动，充满活力"
         }
-      }
-    }
+      },
+      "selectQuality": "选择品质",
+      "create": "创造",
+      "name": "姓名",
+      "delete": "删除"
+    },
+    "conversationPlaceholder": "[张三]: 你好，李四！\n[李四]: 你好，张三"
   },
   "ctt": {
     "record": "录音",

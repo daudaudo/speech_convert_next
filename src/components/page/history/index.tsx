@@ -33,7 +33,6 @@ const History = () => {
 	});
 
 	const onChangePage = (page: number) => {
-		console.log(">> page", { page });
 		const current = new URLSearchParams(Array.from(searchParams.entries()));
 		current.set("page", page.toString());
 		const search = current.toString();

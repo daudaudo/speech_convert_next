@@ -115,7 +115,8 @@
     "history": "History",
     "convertToSpeech": "Convert to speech",
     "convertToText": "Convert to text",
-    "countDisplay": "{from} - {to} / {total}"
+    "countDisplay": "{from} - {to} / {total}",
+    "convertToConversation": "Convert to conversation"
   },
   "cts": {
     "text": "Text",
@@ -130,7 +131,7 @@
     "fileInputInfo": "Once the file is uploaded, we'll start creating your speech. This may take several minutes.",
     "voice": {
       "selectSpeed": "Select speed",
-      "selectVoice": "Sound settings",
+      "selectVoice": "Select voice",
       "highQuality": "High quality",
       "HDQuality": "HD quality",
       "voice": "Voice",
@@ -160,8 +161,13 @@
           "name": "Shimmer",
           "description": "Female, Lively, Bubbly, and Energetic"
         }
-      }
-    }
+      },
+      "selectQuality": "Select quality",
+      "create": "Create",
+      "name": "Name",
+      "delete": "Delete"
+    },
+    "conversationPlaceholder": "[John]: Hello Jane!\n[Jane]: Hello John"
   },
   "ctt": {
     "record": "Record",
