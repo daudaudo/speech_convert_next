@@ -82,6 +82,18 @@ const History = () => {
 				onChangePage={onChangePage}
 			/>
 		);
+	if (searchParams.get("type") === "ctt")
+		return (
+			<CTTListHistory
+				history={history as CTTHistoryType[]}
+				currentPage={pageState.currentPage}
+				lastPage={pageState.lastPage}
+				from={pageState.from}
+				to={pageState.to}
+				total={pageState.total}
+				onChangePage={onChangePage}
+			/>
+		);
 	return (
 		<CTSListHistory
 			history={history as CTSHistoryType[]}
