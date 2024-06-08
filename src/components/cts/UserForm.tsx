@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
 import { v4 as uuidv4 } from "uuid";
 import type { CTSVoiceId, User } from "~/types/CTSTypes";
@@ -11,25 +10,22 @@ import { OpenAIVoiceId } from "~/enums/openAi";
 interface Props {
 	initUser?: User;
 	onSave: (user: User) => void;
-	onDelete?: () => void;
 	editable?: boolean;
 }
 
-const UserForm = ({ onSave, onDelete, initUser, editable = true }: Props) => {
+const UserForm = ({ onSave, initUser, editable = true }: Props) => {
 	const t = useTranslations("cts.voice");
 	const [name, setName] = useState<string>(initUser?.name || "");
 	const [voice, setVoice] = useState<CTSVoiceId>(initUser?.voice || OpenAIVoiceId.Alloy);
 
 	const onNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setName(e.target.value);
+		onSave({ id: initUser?.id ?? uuidv4(), name: e.target.value, voice });
 	};
 
 	const onChangeVoice = (value: CTSVoiceId) => {
 		setVoice(value);
-	};
-
-	const onClickSubmit = () => {
-		onSave({ id: initUser?.id ?? uuidv4(), name, voice });
+		onSave({ id: initUser?.id ?? uuidv4(), name, voice: value });
 	};
 
 	return (
@@ -47,24 +43,6 @@ const UserForm = ({ onSave, onDelete, initUser, editable = true }: Props) => {
 			<div className="flex flex-row items-center justify-between">
 				<span className="block mb-2 text-sm font-bold text-gray-900 dark:text-white">{t("voice")}</span>
 				<VoiceSelect value={voice} onChange={onChangeVoice} />
-			</div>
-			<div className="inline-flex w-full items-center gap-2 justify-end">
-				<Button
-					size="sm"
-					variant="text"
-					onClick={onDelete}
-					className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-sm dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800"
-				>
-					{t("delete")}
-				</Button>
-				<Button
-					size="sm"
-					variant="text"
-					onClick={onClickSubmit}
-					className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium text-sm dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-				>
-					{t("save")}
-				</Button>
 			</div>
 		</div>
 	);

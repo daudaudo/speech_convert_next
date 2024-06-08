@@ -22,7 +22,7 @@ const Pagination = (props: Props) => {
 			rs.push({ key: `pagination-${i}`, value: i + 1 });
 		}
 		return rs;
-	}, []);
+	}, [size]);
 
 	const changeActive = (act: number) => {
 		setActive(act);

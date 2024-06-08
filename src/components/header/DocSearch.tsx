@@ -28,7 +28,7 @@ const DocSearch = () => {
 	}, []);
 
 	const convertToSpeechItems: NavbarItem[] = [
-		{ path: PagePath.textToSpeech, label: t("convertTextToSpeech"), iconName: "language" },
+		{ path: PagePath.textToSpeech, label: t("convertTextToSpeech"), iconName: "text" },
 		{ path: PagePath.documentToSpeech, label: t("convertDocumentToSpeech"), iconName: "file" },
 		{ path: PagePath.conversationToSpeech, label: t("convertConversationToSpeech"), iconName: "messages" },
 	];

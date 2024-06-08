@@ -83,18 +83,14 @@ const ConversationHistoryPage = () => {
 					<SvgIcon name="messages" type="solid" width={24} height={24} />
 				</div>
 				<div className="flex-1 flex flex-col gap-2">
-					<div className="inline-flex justify-between">
-						<div />
-						<div className="inline-flex item-center text-xs text-gray-800 dark:text-gray-100">
-							{formatDate(created_at)}
-						</div>
-					</div>
-					<div className="p-2 flex flex-col gap-2 bg-gray-300 dark:bg-gray-600 rounded-lg text-gray-800 dark:text-gray-100">
+					<div className="p-2 flex flex-col gap-4 bg-gray-300 dark:bg-gray-600 rounded-lg text-gray-800 dark:text-gray-100">
 						{partials.map(({ name, text, audio_url }) => {
 							return (
-								<div key={audio_url.slice(-10)} className="w-full flex flex-row">
-									<span className="p-2 w-24 font-semibold text-gray-800 dark:text-gray-100">{name}</span>
-									<Textarea readOnly value={text} className="text-gray-800 dark:text-gray-100 min-h-0" />
+								<div key={audio_url.slice(-10)} className="w-full grid grid-cols-1 md:grid-cols-12 gap-2">
+									<span className="md:col-span-3 md:p-2 font-semibold text-gray-800 dark:text-gray-100">{name}</span>
+									<span className="md:col-span-9">
+										<Textarea readOnly value={text} className=" text-gray-800 dark:text-gray-100 min-h-0 w-full" />
+									</span>
 								</div>
 							);
 						})}
@@ -113,6 +109,12 @@ const ConversationHistoryPage = () => {
 									<SvgIcon name="arrow-down-to-bracket" width={24} height={24} className="text-black dark:text-white" />
 								</a>
 							</div>
+						</div>
+					</div>
+					<div className="inline-flex justify-between">
+						<div />
+						<div className="inline-flex item-center text-xs text-gray-800 dark:text-gray-100">
+							{formatDate(created_at)}
 						</div>
 					</div>
 				</div>
