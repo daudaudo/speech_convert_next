@@ -13,7 +13,11 @@ export const map = async (request: NextRequest, response: NextResponse) => {
 
 	const pathname = request.nextUrl.pathname;
 
-	if (match(PagePath.history)(pathname)) {
+	if (match(PagePath.speechHistory)(pathname)) {
+		await auth(request, response, true);
+	} else if (match(PagePath.textHistory)(pathname)) {
+		await auth(request, response, true);
+	} else if (match(PagePath.conversationHistory)(pathname)) {
 		await auth(request, response, true);
 	} else {
 		await auth(request, response, false);

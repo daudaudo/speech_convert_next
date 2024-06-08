@@ -11,7 +11,7 @@ const NavBar = () => {
 	const navItems = [
 		{ path: PagePath.textToSpeech, label: t("speech") },
 		{ path: PagePath.speechToText, label: t("text") },
-		{ path: PagePath.history, label: t("history") },
+		{ path: PagePath.speechHistory, label: t("history") },
 	];
 
 	const renderNavItem = (item: { path: string; label: string }) => {
@@ -24,7 +24,7 @@ const NavBar = () => {
 			case PagePath.speechToText:
 				isActive = isCTTPage(pathname);
 				break;
-			case PagePath.history:
+			case PagePath.speechHistory:
 				isActive = isHistoryPage(pathname);
 			default:
 				break;

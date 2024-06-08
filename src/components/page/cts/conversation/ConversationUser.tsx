@@ -12,34 +12,48 @@ import { generateUniqueName } from "~/utils/conversation";
 interface UserProps {
 	user: User;
 	update: (user: User) => void;
-	remove: (name: string) => void;
+	remove: (id: string) => void; // Changed to use `id` for consistency
 }
 
 const User = ({ user, update, remove }: UserProps) => {
-	const [open, setOpen] = useState<boolean>(true);
+	const [open, setOpen] = useState<boolean>(false); // Start with the popover closed
 
 	const updateUser = (newUser: User) => {
-		setOpen(false);
 		update({ ...newUser, id: user.id });
 	};
 
 	const deleteUser = () => {
-		setOpen(false);
 		remove(user.id);
 	};
 
 	return (
 		<Popover open={open} handler={setOpen} placement="bottom-start">
 			<PopoverHandler>
-				<Button
-					variant="text"
-					className="h-10 flex flex-row items-center gap-2 border border-gray-500 px-4 py-2 rounded-full"
-				>
-					<span className="font-semibold text-gray-800 dark:text-gray-200">{user.name}</span>
-				</Button>
+				<div className="relative group">
+					<Button
+						variant="text"
+						className="h-10 flex flex-row items-center gap-2 border border-gray-500 px-4 py-2 rounded-full"
+					>
+						<span className="font-semibold text-gray-800 dark:text-gray-200">{user.name}</span>
+						{!open && (
+							<button
+								onClick={deleteUser}
+								className="p-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full inline-flex items-center justify-center bg-gray-300 dark:bg-gray-700"
+							>
+								<SvgIcon
+									name="circle-x"
+									type="outline"
+									width={12}
+									height={12}
+									className="text-gray-700 dark:text-gray-300"
+								/>
+							</button>
+						)}
+					</Button>
+				</div>
 			</PopoverHandler>
 			<PopoverContent className="z-50 bg-gray-200 dark:bg-gray-800 border-gray-100 dark:border-gray-900 flex flex-col items-center gap-2">
-				<UserForm onSave={updateUser} onDelete={deleteUser} initUser={user} />
+				<UserForm onSave={updateUser} initUser={user} />
 			</PopoverContent>
 		</Popover>
 	);
@@ -71,14 +85,21 @@ const ConversationUser = (props: Props) => {
 				{users.map((user) => (
 					<User key={user.id} user={user} update={update} remove={remove} />
 				))}
-				<IconButton
-					disabled={!!maxUser && users.length >= maxUser}
-					onClick={onClickAddUser}
-					variant="outlined"
-					className="rounded-full border-gray-600 dark:border-gray-400"
-				>
-					<SvgIcon name="user-plus" type="solid" width={24} height={24} className="text-gray-600 dark:text-gray-400" />
-				</IconButton>
+				{(!maxUser || users.length < maxUser) && (
+					<IconButton
+						onClick={onClickAddUser}
+						variant="outlined"
+						className="rounded-full border-gray-600 dark:border-gray-400"
+					>
+						<SvgIcon
+							name="user-plus"
+							type="solid"
+							width={24}
+							height={24}
+							className="text-gray-600 dark:text-gray-400"
+						/>
+					</IconButton>
+				)}
 			</div>
 			<div className="flex flex-row gap-2">
 				<IconButton variant="text" onClick={clear} className="rounded-full">

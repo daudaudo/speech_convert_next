@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
 import { OpenAITTSModel } from "~/enums/openAi";
 import { CTSModel } from "~/types/CTSTypes";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 interface ModelSelectProps {
 	value: CTSModel;
@@ -38,7 +38,7 @@ const ModelSelect: React.FC<ModelSelectProps> = ({ value, onChange }) => {
 				))}
 			</select>
 			<div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-				<ChevronDownIcon className="h-4 w-4" />
+				<SvgIcon name="chevron-down" type="solid" width={16} height={16} />
 			</div>
 		</div>
 	);

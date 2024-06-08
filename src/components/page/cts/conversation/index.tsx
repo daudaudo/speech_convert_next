@@ -2,17 +2,17 @@
 
 import React, { useCallback, useMemo, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
-import { XCircleIcon } from "@heroicons/react/24/outline";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
 import ModelSelect from "~/components/cts/ModelSelect";
 import CTSNavbar from "~/components/cts/Navbar";
 import { OpenAITTSModel } from "~/enums/openAi";
 import type { CTSPartial, User } from "~/types/CTSTypes";
 import ConversationUser from "~/components/page/cts/conversation/ConversationUser";
-import CTSConfig from "~/constants/configs";
+import { CTSConfig } from "~/constants/configs";
 import ConversationInput from "~/components/page/cts/conversation/ConversationInput";
 import convertToConversation from "~/actions/convertToConversation";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 const ConversationToSpeechPage = () => {
 	const t = useTranslations("cts");
@@ -101,7 +101,7 @@ const ConversationToSpeechPage = () => {
 								onClick={clearError}
 								className="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-full text-xs gap-x-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 underline-offset-4 hover:underline focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
 							>
-								<XCircleIcon className="h-4 w-4" />
+								<SvgIcon name="circle-x" type="outline" width={16} height={16} />
 							</button>
 							<span>{t("textError", { error })}</span>
 						</div>

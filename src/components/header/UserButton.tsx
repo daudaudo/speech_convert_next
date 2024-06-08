@@ -2,7 +2,6 @@
 
 import React from "react";
 import Link from "next/link";
-import { UserCircleIcon } from "@heroicons/react/24/solid";
 import { Button, IconButton, Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
@@ -19,12 +18,12 @@ const UserButton = () => {
 				<Popover placement="bottom">
 					<PopoverHandler>
 						<div className="w-full h-full bg-primary-200 dark:bg-primary-800 p-0 rounded-full text-gray-800 dark:text-gray-200 flex justify-center items-center">
-							<UserCircleIcon className="h-6 w-6" />
+							<SvgIcon name="circle-user" type="solid" width={24} height={24} />
 						</div>
 					</PopoverHandler>
 					<PopoverContent className="z-50 bg-gray-100 dark:bg-gray-800 border-none flex flex-col items-center gap-2">
 						<div className="p-0 rounded-full text-primary-200 dark:text-primary-800">
-							<UserCircleIcon className="h-24 w-24" />
+							<SvgIcon name="circle-user" type="solid" width={96} height={96} />
 						</div>
 						{user?.email && <div className="text-sm text-gray-800 dark:text-gray-200">{user.email}</div>}
 						<div className="w-full flex-1 flex flex-col">

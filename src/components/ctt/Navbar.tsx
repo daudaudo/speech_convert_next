@@ -1,35 +1,35 @@
 "use client";
 
 import React from "react";
-import { DocumentIcon, LanguageIcon, MicrophoneIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
-import { SpeechConvertIcon } from "~/types/icon";
+import SvgIcon from "~/components/icon/SvgIcon";
+import { NavbarItem } from "~/types/navbar";
 
-const CTTNavbar = () => {
+const Navbar = () => {
 	const t = useTranslations("ctt");
 	const pathname = usePathname();
 
-	const navItems = [
-		{ path: PagePath.speechToText, label: t("record"), icon: MicrophoneIcon },
-		{ path: PagePath.documentToText, label: t("document"), icon: DocumentIcon },
-		{ path: PagePath.textToText, label: t("translation"), icon: LanguageIcon },
+	const navItems: NavbarItem[] = [
+		{ path: PagePath.speechToText, label: t("record"), iconName: "microphone" },
+		{ path: PagePath.documentToText, label: t("document"), iconName: "file" },
+		{ path: PagePath.textToText, label: t("translation"), iconName: "language" },
 	];
 
-	const renderNavItem = (item: { path: string; label: string; icon: SpeechConvertIcon }) => {
-		const isActive = pathname === item.path;
-		const Icon = item.icon;
+	const renderNavItem = (item: NavbarItem) => {
+		const { path, label, iconName } = item;
+		const isActive = pathname === path;
 		return (
-			<li key={item.path} className="min-w-0">
+			<li key={path} className="min-w-0">
 				<Link
-					href={item.path}
-					key={item.path}
+					href={path}
+					key={path}
 					className={`w-full flex items-center gap-1.5 px-2.5 py-3.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75 ${isActive ? "text-gray-900 dark:text-white rounded-full" : "hover:text-gray-900 dark:hover:text-white text-gray-500 dark:text-gray-400 !hover:text-gray-600 !dark:hover:text-white"}`}
 				>
-					<Icon className="h-6 w-6 md:h-6 md:w-4" title={item.label} />
-					<span className=" hidden md:block">{item.label}</span>
+					{iconName && <SvgIcon name={iconName} type="outline" width={20} height={20} />}
+					<span className="hidden md:block">{label}</span>
 				</Link>
 			</li>
 		);
@@ -42,4 +42,4 @@ const CTTNavbar = () => {
 	);
 };
 
-export default CTTNavbar;
+export default Navbar;

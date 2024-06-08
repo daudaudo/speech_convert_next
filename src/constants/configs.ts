@@ -10,4 +10,12 @@ const CTSConfig: {
 	maxUserConversation: 5,
 };
 
-export default CTSConfig;
+const HistoryConfig: {
+	DEFAULT_PAGE: number;
+	DEFAULT_LIMIT: number;
+} = {
+	DEFAULT_PAGE: 1,
+	DEFAULT_LIMIT: 10,
+};
+
+export { CTSConfig, HistoryConfig };
