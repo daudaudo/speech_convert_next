@@ -73,7 +73,7 @@ const ConversationHistoryPage = () => {
 	}, [searchParams, requestGetHistory]);
 
 	const renderHistoryItem = useCallback((item: ConversationHistoryItemResponseData) => {
-		return <>{JSON.stringify(item)}</>;
+		return <div key={item._id}>{JSON.stringify(item)}</div>;
 	}, []);
 
 	const { currentPage, lastPage, from, to, total } = pageState;

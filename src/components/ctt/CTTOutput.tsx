@@ -5,7 +5,7 @@ import { IconButton } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
 import { useCopyToClipboard } from "usehooks-ts";
 import { useConvertToText } from "~/contexts/ConvertToTextContext";
-import SvgIcon from "../icon/SvgIcon";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 const CTTOutput = () => {
 	const t = useTranslations("ctt");

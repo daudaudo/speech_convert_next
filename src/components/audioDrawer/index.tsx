@@ -5,7 +5,7 @@ import { Drawer } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import AudioPlayer from "~/components/base/AudioPlayer";
-import SvgIcon from "../icon/SvgIcon";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 const AudioDrawer = () => {
 	const t = useTranslations("cts");

@@ -1,5 +1,5 @@
 import React from "react";
-import CTTNavbar from "~/components/ctt/CTTNavbar";
+import CTTNavbar from "~/components/ctt/Navbar";
 import CTTOutput from "~/components/ctt/CTTOutput";
 import CTTSelectLanguage from "~/components/ctt/LanguageSelect";
 import CTTSubmitButton from "~/components/ctt/SubmitButton";

@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslations } from "next-intl";
-import SvgIcon from "../icon/SvgIcon";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 interface Props {
 	pending?: boolean;

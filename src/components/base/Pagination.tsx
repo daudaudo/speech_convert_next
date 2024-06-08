@@ -3,7 +3,7 @@
 import React, { useMemo, useState } from "react";
 import { Button, IconButton } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
-import SvgIcon from "../icon/SvgIcon";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 interface Props {
 	initPage?: number;

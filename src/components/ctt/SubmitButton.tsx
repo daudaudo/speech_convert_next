@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useConvertToText } from "~/contexts/ConvertToTextContext";
-import SvgIcon from "../icon/SvgIcon";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 const CTTSubmitButton = () => {
 	const { requestCreateText, pending, validate } = useConvertToText();

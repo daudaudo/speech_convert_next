@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { OpenAIVoiceId } from "~/enums/openAi";
 import { CTSVoiceId } from "~/types/CTSTypes";
-import SvgIcon from "../icon/SvgIcon";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 interface Props {
 	value: CTSVoiceId;
