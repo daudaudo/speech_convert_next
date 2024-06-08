@@ -21,7 +21,7 @@ import PlayPause from "~/components/icon/svg/solid/PlayPause";
 import ArrowDownToBracket from "~/components/icon/svg/solid/ArrowDownToBracket";
 import ArrowRight from "~/components/icon/svg/solid/ArrowRight";
 import ArrowRotate from "~/components/icon/svg/solid/ArrowRotate";
-import VolumeHigh from "~/components/icon/svg/solid/VolumeHigh";
+import VolumeHighSolid from "~/components/icon/svg/solid/VolumeHigh";
 import ChevronDown from "~/components/icon/svg/solid/ChevronDown";
 import Check from "~/components/icon/svg/solid/Check";
 import Moon from "~/components/icon/svg/solid/Moon";
@@ -38,6 +38,7 @@ import LanguageOutline from "~/components/icon/svg/outline/Language";
 import LanguageSolid from "~/components/icon/svg/solid/Language";
 import BarsOutline from "~/components/icon/svg/outline/Bars";
 import BarsSolid from "~/components/icon/svg/solid/Bars";
+import VolumeHighOutline from "~/components/icon/svg/outline/VolumeHigh";
 
 const IconsMap = {
 	app: {
@@ -61,6 +62,7 @@ const IconsMap = {
 		microphone: MicrophoneOutline,
 		language: LanguageOutline,
 		bars: BarsOutline,
+		"volume-high": VolumeHighOutline,
 	},
 	solid: {
 		share: Share,
@@ -73,7 +75,7 @@ const IconsMap = {
 		"chevron-down": ChevronDown,
 		"play-pause": PlayPause,
 		"arrow-down-to-bracket": ArrowDownToBracket,
-		"volume-high": VolumeHigh,
+		"volume-high": VolumeHighSolid,
 		check: Check,
 		moon: Moon,
 		sun: Sun,

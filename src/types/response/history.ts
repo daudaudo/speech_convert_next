@@ -53,6 +53,8 @@ type TextHistoryResponseData =
 type ConversationHistoryItemResponseData = {
 	_id: string;
 	// other fields
+	partials: { name: string; voice: CTSVoiceId; text: string; silent: number; audio_url: string }[];
+	audio_url: string;
 	created_at: string;
 	update_at: string;
 };

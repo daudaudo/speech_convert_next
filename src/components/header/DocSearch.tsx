@@ -40,9 +40,9 @@ const DocSearch = () => {
 	];
 
 	const historyItems: NavbarItem[] = [
-		{ path: PagePath.speechHistory, label: t("speechHistory") },
-		{ path: PagePath.textHistory, label: t("textHistory") },
-		{ path: PagePath.conversationHistory, label: t("conversationHistory") },
+		{ path: PagePath.speechHistory, label: t("speechHistory"), iconName: "volume-high" },
+		{ path: PagePath.textHistory, label: t("textHistory"), iconName: "text" },
+		{ path: PagePath.conversationHistory, label: t("conversationHistory"), iconName: "messages" },
 	];
 
 	const renderList = useCallback(
