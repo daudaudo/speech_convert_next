@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
+import SvgIcon from "../icon/SvgIcon";
 
 const options: { value: number; label: string }[] = [
 	{ value: 0.25, label: "0.25x" },
@@ -45,7 +45,7 @@ const SpeedSelect: React.FC<SpeedSelectProps> = ({ value, onChange }) => {
 				))}
 			</select>
 			<div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
-				<ChevronDownIcon className="h-4 w-4" />
+				<SvgIcon name="chevron-down" type="solid" width={16} height={16} />
 			</div>
 		</div>
 	);

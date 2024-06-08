@@ -1,12 +1,11 @@
 "use client";
 
 import React from "react";
-import { CloudArrowUpIcon } from "@heroicons/react/24/outline";
-import { DocumentIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
 import { useConvertToText } from "~/contexts/ConvertToTextContext";
 import { FileSizeUnit } from "~/enums/file";
 import { convertBytes } from "~/utils/file";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 const DocumentToTextPage = () => {
 	const t = useTranslations("ctt");
@@ -30,7 +29,7 @@ const DocumentToTextPage = () => {
 		if (!file)
 			return (
 				<div className="flex flex-col items-center justify-center pt-5 pb-6">
-					<CloudArrowUpIcon className="h-8 w-8 text-gray-400 dark:text-gray-300" />
+					<SvgIcon name="cloud-arrow-up" width={32} height={32} className="text-gray-400 dark:text-gray-300" />
 					<p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
 						<span className="font-semibold">{t("upload")}</span>
 						<br />
@@ -46,7 +45,7 @@ const DocumentToTextPage = () => {
 		return (
 			<div className="flex items-center md:min-w-[200px] space-x-3 max-w-sm md:max-w-sm px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 				<div>
-					<DocumentIcon className="h-8 w-8 text-gray-500 dark:text-gray-400" />
+					<SvgIcon name="file" type="solid" width={32} height={32} className="text-gray-500 dark:text-gray-400" />
 				</div>
 				<div className="truncate">
 					<div className="text-nomal text-gray-700 dark:text-gray-300 truncate">{file.name}</div>
@@ -65,7 +64,7 @@ const DocumentToTextPage = () => {
 							onClick={onClickClearFile}
 							className="absolute right-8 top-8 cursor-pointer inline-flex justify-center p-2 text-gray-500 rounded-full"
 						>
-							<XMarkIcon className="h-5 w-5" />
+							<SvgIcon name="x-mark" width={20} height={20} />
 						</button>
 					)}
 					{renderFile()}
@@ -74,7 +73,7 @@ const DocumentToTextPage = () => {
 			</div>
 			<div className="flex flex-col w-full px-6 text-sm0">
 				<div className="flex flex-row items-center gap-1 text-primary-500">
-					<InformationCircleIcon className="h-4 w-4" />
+					<SvgIcon name="circle-info" width={16} height={16} />
 					<div>{t("fileInputInfo")}</div>
 				</div>
 			</div>

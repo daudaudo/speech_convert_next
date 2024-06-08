@@ -1,10 +1,10 @@
 import React from "react";
-import { ChevronDoubleRightIcon } from "@heroicons/react/24/outline";
 import CTTNavbar from "~/components/ctt/CTTNavbar";
 import CTTOutput from "~/components/ctt/CTTOutput";
 import CTTSelectLanguage from "~/components/ctt/LanguageSelect";
 import CTTSubmitButton from "~/components/ctt/SubmitButton";
 import { ConvertToTextProvider } from "~/contexts/ConvertToTextContext";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 interface Props {
 	children: React.ReactNode;
@@ -21,7 +21,7 @@ const ConvertToTextLayout = ({ children }: Props) => {
 						</div>
 						<div className="shrink-0">
 							<div className="hidden md:inline-flex justify-center p-2 text-gray-500 rounded-full dark:text-gray-400">
-								<ChevronDoubleRightIcon className="h-6 w-6" />
+								<SvgIcon name="chevron-double-right" type="solid" width={24} height={24} />
 							</div>
 							<div className="block md:hidden">
 								<CTTSubmitButton />

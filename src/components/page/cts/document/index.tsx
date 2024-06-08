@@ -1,8 +1,6 @@
 "use client";
 
 import React, { useCallback, useMemo, useState, useTransition } from "react";
-import { CloudArrowUpIcon } from "@heroicons/react/24/outline";
-import { DocumentIcon, InformationCircleIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { useTranslations } from "next-intl";
 import { FileSizeUnit } from "~/enums/file";
 import { convertBytes } from "~/utils/file";
@@ -16,6 +14,7 @@ import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import convertToSpeech from "~/actions/convertToSpeech";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { CTSConfig } from "~/constants/configs";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 const DocumentToSpeechPage = () => {
 	const t = useTranslations("cts");
@@ -75,7 +74,13 @@ const DocumentToSpeechPage = () => {
 		if (!file)
 			return (
 				<div className="flex flex-col items-center justify-center pt-5 pb-6">
-					<CloudArrowUpIcon className="h-8 w-8 text-gray-400 dark:text-gray-300" />
+					<SvgIcon
+						name="cloud-arrow-up"
+						type="outline"
+						width={32}
+						height={32}
+						className="text-gray-400 dark:text-gray-300"
+					/>
 					<p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
 						<span className="font-semibold">{t("upload")}</span>
 						<br />
@@ -91,7 +96,7 @@ const DocumentToSpeechPage = () => {
 		return (
 			<div className="flex items-center md:min-w-[200px] space-x-3 max-w-sm md:max-w-sm px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
 				<div>
-					<DocumentIcon className="h-8 w-8 text-gray-500 dark:text-gray-400" />
+					<SvgIcon name="file" type="solid" width={32} height={32} className="text-gray-500 dark:text-gray-400" />
 				</div>
 				<div className="truncate">
 					<div className="text-nomal text-gray-700 dark:text-gray-300 truncate">{file.name}</div>
@@ -119,7 +124,7 @@ const DocumentToSpeechPage = () => {
 								onClick={onClickClearFile}
 								className="absolute right-8 top-8 cursor-pointer inline-flex justify-center p-2 text-gray-500 rounded-full"
 							>
-								<XMarkIcon className="h-5 w-5" />
+								<SvgIcon name="x-mark" type="solid" width={20} height={20} />
 							</button>
 						)}
 						{renderFile()}
@@ -128,7 +133,7 @@ const DocumentToSpeechPage = () => {
 				</div>
 				<div className="flex flex-col w-full px-6 text-sm0">
 					<div className="flex flex-row items-center gap-1 text-primary-500">
-						<InformationCircleIcon className="h-4 w-4" />
+						<SvgIcon name="circle-info" type="solid" width={16} height={16} />
 						<div>{t("fileInputInfo")}</div>
 					</div>
 				</div>

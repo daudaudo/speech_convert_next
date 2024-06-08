@@ -3,8 +3,6 @@
 import React, { useCallback, useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
-import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { Card } from "@material-tailwind/react";
 import getSpeechHistory from "~/actions/getSpeechHistory";
 import Loading from "~/components/animations/Loading";
@@ -83,7 +81,7 @@ const SpeechHistoryPage = () => {
 		return (
 			<Card key={_id} className="p-4 bg-gray-200 dark:bg-gray-800 rounded-md flex flex-row gap-2">
 				<div className="w-10 h-10 rounded-full bg-primary-200 dark:bg-primary-800 inline-flex items-center justify-center text-primary-800 dark:text-primary-200">
-					<SpeakerWaveIcon className="h-6 w-6" />
+					<SvgIcon name="volume-high" type="solid" width={24} height={24} />
 				</div>
 				<div className="flex-1 flex flex-col gap-2">
 					<div className="inline-flex justify-between">
@@ -108,7 +106,7 @@ const SpeechHistoryPage = () => {
 									Your browser does not support the audio element.
 								</audio>
 								<a href={download_url} download={download_url} className="text-gray-800 dark:text-gray-100">
-									<ArrowDownTrayIcon className="h-6 w-6 text-black dark:text-white" />
+									<SvgIcon name="arrow-down-to-bracket" width={24} height={24} className="text-black dark:text-white" />
 								</a>
 							</div>
 						</div>

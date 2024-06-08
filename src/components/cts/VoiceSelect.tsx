@@ -1,12 +1,11 @@
 "use client";
 
-import { XCircleIcon } from "@heroicons/react/24/outline";
-import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { Button, Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
 import { OpenAIVoiceId } from "~/enums/openAi";
 import { CTSVoiceId } from "~/types/CTSTypes";
+import SvgIcon from "../icon/SvgIcon";
 
 interface Props {
 	value: CTSVoiceId;
@@ -55,7 +54,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 				onClick={onToggleOpen}
 				className="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-75 flex items-center gap-2"
 			>
-				<SpeakerWaveIcon className="h-6 w-6" />
+				<SvgIcon name="volume-high" type="solid" width={24} height={24} />
 				{t(`openAIVoice.${value}.name`)}
 			</Button>
 			<Dialog open={open} handler={onToggleOpen} className="bg-white dark:bg-gray-900">
@@ -64,7 +63,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 						onClick={onToggleOpen}
 						className="absolute rounded-full right-6 top-6 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
 					>
-						<XCircleIcon className="h-6 w-6" />
+						<SvgIcon name="circle-x" type="outline" width={24} height={24} />
 					</button>
 					<div className="text-gray-700 dark:text-gray-300 py-4">{t("selectVoice")}</div>
 					{renderVoice(OpenAIVoiceId.Alloy)}

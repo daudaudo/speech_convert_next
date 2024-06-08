@@ -2,10 +2,10 @@
 
 import React from "react";
 import { Button, Carousel, Textarea } from "@material-tailwind/react";
-import { ChevronDoubleRightIcon, SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
+import SvgIcon from "~/components/icon/SvgIcon";
 
 const Feature = () => {
 	const t = useTranslations("home");
@@ -34,7 +34,7 @@ const Feature = () => {
 		>
 			<div className="px-16 py-2 flex flex-col gap-8 h-full justify-center">
 				<header className="flex items-center gap-2 text-primary-500 text-xl font-bold">
-					<SpeakerWaveIcon className="h-8 w-8" />
+					<SvgIcon name="volume-high" type="solid" width={32} height={32} />
 					<span>{t("createSpeech")}</span>
 				</header>
 				<Textarea
@@ -51,14 +51,14 @@ const Feature = () => {
 					<Link href={PagePath.textToSpeech} className="">
 						<Button variant="filled" className="bg-primary-500 flex items-center gap-2 text-xl font-semibolds">
 							{t("tryFree")}
-							<ChevronDoubleRightIcon className="h-4 w-6 animate-bounce-r-2" />
+							<SvgIcon name="chevron-double-right" type="solid" width={24} height={24} className="animate-bounce-r-2" />
 						</Button>
 					</Link>
 				</div>
 			</div>
 			<div className="px-16 py-2 flex flex-col gap-8 h-full justify-center">
 				<header className="flex items-center gap-2 text-primary-500 text-xl font-bold">
-					<SpeakerWaveIcon className="h-8 w-8" />
+					<SvgIcon name="volume-high" type="solid" width={32} height={32} />
 					<span>{t("speechTranslater")}</span>
 				</header>
 				<div className="inline-flex">
@@ -75,7 +75,7 @@ const Feature = () => {
 					<Link href={PagePath.speechToText} className="">
 						<Button variant="filled" className="bg-primary-500 flex items-center gap-2 text-xl font-semibolds">
 							{t("tryFree")}
-							<ChevronDoubleRightIcon className="h-4 w-6 animate-bounce-r-2" />
+							<SvgIcon name="chevron-double-right" type="solid" width={24} height={24} className="animate-bounce-r-2" />
 						</Button>
 					</Link>
 				</div>

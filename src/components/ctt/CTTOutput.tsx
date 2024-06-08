@@ -1,11 +1,11 @@
 "use client";
 
-import { CheckIcon, DocumentDuplicateIcon, XCircleIcon } from "@heroicons/react/24/outline";
+import React from "react";
 import { IconButton } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
-import React from "react";
 import { useCopyToClipboard } from "usehooks-ts";
 import { useConvertToText } from "~/contexts/ConvertToTextContext";
+import SvgIcon from "../icon/SvgIcon";
 
 const CTTOutput = () => {
 	const t = useTranslations("ctt");
@@ -43,7 +43,11 @@ const CTTOutput = () => {
 					</div>
 					<div className="shrink-0 pb-1 flex justify-end">
 						<IconButton variant="text" onClick={onCopyOutput}>
-							{copied ? <CheckIcon className="h-5 w-5" /> : <DocumentDuplicateIcon className="h-5 w-5" />}
+							{copied ? (
+								<SvgIcon name="check" type="solid" width={20} height={20} />
+							) : (
+								<SvgIcon name="clipboard" type="outline" width={20} height={20} />
+							)}
 						</IconButton>
 					</div>
 				</>
@@ -55,7 +59,7 @@ const CTTOutput = () => {
 							onClick={clearError}
 							className="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-full text-xs gap-x-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 underline-offset-4 hover:underline focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
 						>
-							<XCircleIcon className="h-4 w-4 text-red-500" />
+							<SvgIcon name="circle-x" type="outline" width={16} height={16} className="text-red-500" />
 						</button>
 						<span>{t("outputError", { error })}</span>
 					</div>

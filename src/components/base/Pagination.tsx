@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { ArrowLeftIcon } from "@heroicons/react/24/outline";
-import { ArrowRightIcon } from "@heroicons/react/24/solid";
 import { Button, IconButton } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
+import SvgIcon from "../icon/SvgIcon";
 
 interface Props {
 	initPage?: number;
@@ -48,7 +47,7 @@ const Pagination = (props: Props) => {
 				onClick={prev}
 				disabled={active === 1}
 			>
-				<ArrowLeftIcon strokeWidth={2} className="h-4 w-4" />
+				<SvgIcon name="arrow-left" type="solid" width={16} height={16} />
 				{t("prev")}
 			</Button>
 			<div className="flex items-center gap-2">
@@ -72,7 +71,7 @@ const Pagination = (props: Props) => {
 				disabled={active === size}
 			>
 				{t("next")}
-				<ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
+				<SvgIcon name="arrow-right" type="solid" width={16} height={16} />
 			</Button>
 		</div>
 	);
