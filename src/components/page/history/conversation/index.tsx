@@ -13,7 +13,7 @@ import SvgIcon from "~/components/icon/SvgIcon";
 import formatDate from "~/utils/date";
 
 const ConversationHistoryPage = () => {
-	const t = useTranslations("history");
+	const t = useTranslations("");
 
 	const { DEFAULT_PAGE, DEFAULT_LIMIT } = HistoryConfig;
 
@@ -84,12 +84,18 @@ const ConversationHistoryPage = () => {
 				</div>
 				<div className="flex-1 flex flex-col gap-2">
 					<div className="p-2 flex flex-col gap-4 bg-gray-300 dark:bg-gray-600 rounded-lg text-gray-800 dark:text-gray-100">
-						{partials.map(({ name, text, audio_url }) => {
+						{partials.map(({ name, text, silent, voice, audio_url }) => {
 							return (
 								<div key={audio_url.slice(-10)} className="w-full grid grid-cols-1 md:grid-cols-12 gap-2">
 									<span className="md:col-span-3 md:p-2 font-semibold text-gray-800 dark:text-gray-100">{name}</span>
 									<span className="md:col-span-9">
-										<Textarea readOnly value={text} className=" text-gray-800 dark:text-gray-100 min-h-0 w-full" />
+										<Textarea
+											readOnly
+											value={text}
+											label={`${t(`cts.voice.openAIVoice.${voice}.name`)}${silent ? ` +${silent}s` : ""}`}
+											labelProps={{ className: "text-gray-500" }}
+											className="text-gray-800 dark:text-gray-200 !min-h-0 w-full"
+										/>
 									</span>
 								</div>
 							);
@@ -128,7 +134,7 @@ const ConversationHistoryPage = () => {
 			<div className="flex justify-between px-2">
 				{from !== to && total > 1 ? (
 					<span className="inline-flex font-semibold text-gray-500 items-center ">
-						{t("countDisplay", { from, to, total })}
+						{t("history.countDisplay", { from, to, total })}
 					</span>
 				) : (
 					<div />

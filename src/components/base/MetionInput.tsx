@@ -25,6 +25,13 @@ const MentionInput = ({ value, suggestions = [], onChange, placeholder }: Props)
 				className="mentions"
 				displayTransform={(id, display) => `[${display}]`}
 			/>
+			<Mention
+				trigger="#"
+				data={suggestions}
+				appendSpaceOnAdd
+				className="mentions"
+				displayTransform={(id, display) => `[${display}]`}
+			/>
 		</MentionsInput>
 	);
 };

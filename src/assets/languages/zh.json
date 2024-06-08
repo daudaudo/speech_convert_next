@@ -1,7 +1,202 @@
 {
+  "errors": {
+    "auth": {}
+  },
+  "app": {
+    "title": "Speech Convert"
+  },
   "header": {
+    "speech": "语音",
+    "text": "文本",
+    "history": "历史",
+    "signout": "登出",
     "directional": {
-      "conversationHistory": "对话转化历史"
+      "createSpeech": "创建语音",
+      "createText": "创建文本",
+      "supportUser": "支持",
+      "convertTextToSpeech": "将文本转换为语音",
+      "convertDocumentToSpeech": "将文件转换为语音",
+      "convertConversationToSpeech": "将对话转换为语音",
+      "convertSpeechToText": "将语音转换为文本",
+      "convertDocumentToText": "将文件转换为文本",
+      "convertTextToText": "翻译文本",
+      "history": "历史",
+      "theme": "主题",
+      "lightMode": "浅色模式",
+      "darkMode": "深色模式",
+      "conversationHistory": "对话转化历史",
+      "textHistory": "文本转换历史",
+      "speechHistory": "音频转换历史"
+    }
+  },
+  "footer": {},
+  "home": {
+    "welcome": "欢迎来到",
+    "createSpeech": "创建语音",
+    "speechTranslater": "语音翻译",
+    "tryFree": "免费试用",
+    "userManual": "用户手册",
+    "description": "欢迎来到 SpeechConvert - 在这里，您只需几个简单步骤即可在文本和语音之间切换。使用我们的应用程序，您可以快速便捷地将文本转换为语音，反之亦然。",
+    "featureTitle": "功能和特点：",
+    "features": {
+      "feature1": {
+        "title": "将文本转换为语音",
+        "description": "输入您想转换的文本并选择您想使用的语音，然后按下\"转换\"按钮 - 您将立即获得自动生成的语音文件。"
+      },
+      "feature2": {
+        "title": "将语音转换为文本",
+        "description": "录音或上传音频文件并选择您的语言，然后按下\"转换\"按钮 - 您将从语音中获得准确的文本。"
+      },
+      "feature3": {
+        "title": "多语言和多种语音",
+        "description": "支持多种语言和语音，允许您根据个人喜好自定义转换体验。"
+      },
+      "feature4": {
+        "title": "简单易用",
+        "description": "SpeechConvert 旨在使文本和语音之间的转换过程尽可能简单和容易。借助用户友好的界面和可定制的功能，您只需几个简单步骤即可创建高质量的音频和文本文件。"
+      },
+      "feature5": {
+        "title": "免费且无需注册",
+        "description": "SpeechConvert 是一项免费服务，不需要注册。您可以在无需创建帐户的情况下使用我们的功能，节省时间并为所有人提供最方便的用户体验。"
+      }
+    },
+    "getStarted": "体验 SpeechConvert 快速轻松地在文本和语音之间转换的强大功能。今天就试试吧！",
+    "frequentQuestionTitle": "常见问题",
+    "frequentQuestions": {
+      "question1": {
+        "question": "什么是文本转语音？",
+        "answer": "文本转语音（TTS）是一种将文本转换为语音的技术，使用户能够听取内容而不是阅读内容。"
+      },
+      "question2": {
+        "question": "如何使用文本转语音功能？",
+        "answer": "您只需在输入框中输入或粘贴文本，然后按下\"转换\"按钮即可听到文本被朗读出来。"
+      },
+      "question3": {
+        "question": "对话可以转换为语音吗？",
+        "answer": "是的，您可以将对话输入到输入框中，系统会将其转换为相应的语音。"
+      },
+      "question4": {
+        "question": "此功能是否支持多种语言？",
+        "answer": "目前，我们支持多种语言，包括英语、越南语等多种语言。"
+      },
+      "question5": {
+        "question": "使用此服务需要费用吗？",
+        "answer": "我们提供一些免费功能。然而，要访问高级功能，您可能需要订阅我们的服务计划。"
+      },
+      "question6": {
+        "question": "如何联系客户支持？",
+        "answer": "您可以通过电子邮件 {email} 与我们联系。"
+      }
+    }
+  },
+  "auth": {
+    "signin": "登录",
+    "signup": "注册",
+    "username": "用户名",
+    "usernamePlaceholder": "输入您的用户名",
+    "email": "电子邮件",
+    "password": "密码",
+    "confirmPassword": "确认密码",
+    "remember": "记住我",
+    "or": "或",
+    "createAccount": "创建账户",
+    "signinWithGoogle": "使用 Google 登录",
+    "dontHaveAccount": "没有账户？",
+    "haveAccount": "已有账户？",
+    "signinPending": "正在登录...",
+    "signinSuccess": "登录成功！",
+    "signinErrorTitle": "登录错误",
+    "signupPending": "正在创建账户...",
+    "signupSuccess": "账户创建成功！",
+    "signupErrorTitle": "创建账户错误",
+    "signupError": "创建账户时出错！",
+    "signinGoogleError": "使用 Google 登录失败！请重试。",
+    "signinGoogleSuccess": "成功使用 Google 登录！",
+    "backToHome": "返回主页"
+  },
+  "history": {
+    "history": "历史",
+    "convertToSpeech": "转换为语音",
+    "convertToText": "转换为文本",
+    "countDisplay": "{from} - {to} / {total}",
+    "conversation": "",
+    "convertToConversation": "转换为对话"
+  },
+  "cts": {
+    "text": "文本",
+    "document": "文件",
+    "conversation": "对话",
+    "textError": "错误：{error}",
+    "textPlaceholder": "输入要转换的文本",
+    "clearText": "清除文本",
+    "upload": "上传",
+    "fileAccept": "接受文件：{value}",
+    "maxFileSize": "最大文件大小为 {value}",
+    "fileInputInfo": "文件上传后，我们将开始创建您的语音。这可能需要几分钟。",
+    "voice": {
+      "selectSpeed": "选择速度",
+      "selectVoice": "选择语音",
+      "highQuality": "高质量",
+      "HDQuality": "高清质量",
+      "voice": "声音",
+      "save": "保存",
+      "openAIVoice": {
+        "alloy": {
+          "name": "Alloy",
+          "description": "男，中性，专业，清晰"
+        },
+        "echo": {
+          "name": "Echo",
+          "description": "男，温暖，友好，引人入胜"
+        },
+        "fable": {
+          "name": "Fable",
+          "description": "男，动态，富有表现力，引人入胜"
+        },
+        "onyx": {
+          "name": "Onyx",
+          "description": "男，年长，成熟，有经验"
+        },
+        "nova": {
+          "name": "Nova",
+          "description": "女，年轻，精力充沛，吸引人"
+        },
+        "shimmer": {
+          "name": "Shimmer",
+          "description": "女，活泼，生动，充满活力"
+        }
+      },
+      "selectQuality": "选择品质",
+      "create": "创造",
+      "name": "姓名",
+      "delete": "删除"
+    },
+    "conversationPlaceholder": "[张三]: 你好，李四！\n[李四]: 你好，张三"
+  },
+  "ctt": {
+    "record": "录音",
+    "document": "文件",
+    "translation": "翻译",
+    "outputError": "错误：{error}",
+    "upload": "上传",
+    "fileAccept": "接受文件：{value}",
+    "maxFileSize": "最大文件大小为 {value}",
+    "fileInputInfo": "文件上传后，我们将开始创建您的文本。这可能需要几分钟。",
+    "textError": "错误：{error}",
+    "textPlaceholder": "输入要翻译的文本",
+    "clearText": "清除文本"
+  },
+  "components": {
+    "Pagination": {
+      "prev": "上一页",
+      "next": "下一页"
+    },
+    "Record": {
+      "connectError": "设备连接错误",
+      "stop": "停止",
+      "record": "录音",
+      "Re-record": "重新录音",
+      "recordDescription": "录音以获得 mp3 文件"
     }
   }
 }
