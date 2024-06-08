@@ -15,7 +15,7 @@ import type { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import convertToSpeech from "~/actions/convertToSpeech";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
-import CTSConfig from "~/constants/configs";
+import { CTSConfig } from "~/constants/configs";
 
 const DocumentToSpeechPage = () => {
 	const t = useTranslations("cts");

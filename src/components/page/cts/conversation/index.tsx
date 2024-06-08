@@ -9,7 +9,7 @@ import CTSNavbar from "~/components/cts/Navbar";
 import { OpenAITTSModel } from "~/enums/openAi";
 import type { CTSPartial, User } from "~/types/CTSTypes";
 import ConversationUser from "~/components/page/cts/conversation/ConversationUser";
-import CTSConfig from "~/constants/configs";
+import { CTSConfig } from "~/constants/configs";
 import ConversationInput from "~/components/page/cts/conversation/ConversationInput";
 import convertToConversation from "~/actions/convertToConversation";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";

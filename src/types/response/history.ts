@@ -50,9 +50,30 @@ type TextHistoryResponseData =
 	  }
 	| undefined;
 
+type ConversationHistoryItemResponseData = {
+	_id: string;
+	// other fields
+	created_at: string;
+	update_at: string;
+};
+
+type ConversationHistoryResponseData =
+	| {
+			items: ConversationHistoryItemResponseData[];
+			total: number;
+			per_page: number;
+			current_page: number;
+			last_page: number;
+			from: number;
+			to: number;
+	  }
+	| undefined;
+
 export type {
 	SpeechHistoryItemResponseData,
 	SpeechHistoryResponseData,
 	TextHistoryItemResponseData,
 	TextHistoryResponseData,
+	ConversationHistoryItemResponseData,
+	ConversationHistoryResponseData,
 };

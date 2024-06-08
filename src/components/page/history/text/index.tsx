@@ -11,9 +11,12 @@ import Pagination from "~/components/base/Pagination";
 import SvgIcon from "~/components/icon/SvgIcon";
 import formatDate from "~/utils/date";
 import { TextHistoryItemResponseData } from "~/types/response/history";
+import { HistoryConfig } from "~/constants/configs";
 
 const TextHistoryPage = () => {
 	const t = useTranslations("history");
+
+	const { DEFAULT_PAGE, DEFAULT_LIMIT } = HistoryConfig;
 
 	const router = useRouter();
 	const pathname = usePathname();
@@ -29,7 +32,7 @@ const TextHistoryPage = () => {
 		to: number;
 		total: number;
 	}>({
-		currentPage: 1,
+		currentPage: DEFAULT_PAGE,
 		lastPage: 1,
 		from: 0,
 		to: 0,
@@ -45,8 +48,8 @@ const TextHistoryPage = () => {
 	};
 
 	const requestGetHistory = useCallback(() => {
-		const page = searchParams.get("page") ?? 1;
-		const limit = searchParams.get("limit") ?? 10;
+		const page = searchParams.get("page") ?? DEFAULT_PAGE;
+		const limit = searchParams.get("limit") ?? DEFAULT_LIMIT;
 		startTransition(async () => {
 			try {
 				const res = await getTextHistory(limit, page);

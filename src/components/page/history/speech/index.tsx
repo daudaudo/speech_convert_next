@@ -13,9 +13,12 @@ import Pagination from "~/components/base/Pagination";
 import SvgIcon from "~/components/icon/SvgIcon";
 import formatDate from "~/utils/date";
 import { SpeechHistoryItemResponseData } from "~/types/response/history";
+import { HistoryConfig } from "~/constants/configs";
 
 const SpeechHistoryPage = () => {
 	const t = useTranslations("history");
+
+	const { DEFAULT_PAGE, DEFAULT_LIMIT } = HistoryConfig;
 
 	const router = useRouter();
 	const pathname = usePathname();
@@ -31,7 +34,7 @@ const SpeechHistoryPage = () => {
 		to: number;
 		total: number;
 	}>({
-		currentPage: 1,
+		currentPage: DEFAULT_PAGE,
 		lastPage: 1,
 		from: 0,
 		to: 0,
@@ -47,8 +50,8 @@ const SpeechHistoryPage = () => {
 	};
 
 	const requestGetHistory = useCallback(() => {
-		const page = searchParams.get("page") ?? 1;
-		const limit = searchParams.get("limit") ?? 10;
+		const page = searchParams.get("page") ?? DEFAULT_PAGE;
+		const limit = searchParams.get("limit") ?? DEFAULT_LIMIT;
 		startTransition(async () => {
 			try {
 				const res = await getSpeechHistory(limit, page);
@@ -56,8 +59,8 @@ const SpeechHistoryPage = () => {
 					setError(undefined);
 					setHistory(res.items);
 					setPageState({
-						currentPage: res.current_page ?? 0,
-						lastPage: res.last_page ?? 0,
+						currentPage: res.current_page,
+						lastPage: res.last_page,
 						from: res.from,
 						to: res.to,
 						total: res.total,
