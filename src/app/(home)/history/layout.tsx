@@ -1,5 +1,5 @@
 import React from "react";
-import HistoryNavBar from "~/components/page/history/HistoryNavBar";
+import HistoryNavBar from "~/components/history/NavBar";
 
 interface Props {
 	children: React.ReactNode;

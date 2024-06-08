@@ -21,14 +21,16 @@ export enum PagePath {
 	textToText = "/text-to-text",
 
 	// History Page
-	history = "/history",
+	speechHistory = "/history/speech",
+	conversationHistory = "/history/conversation",
+	textHistory = "/history/text",
 }
 
 export const AuthPaths = [PagePath.signin, PagePath.signup];
 export const HomePaths = [PagePath.home];
 export const CTSPaths = [PagePath.textToSpeech, PagePath.documentToSpeech, PagePath.conversationToSpeech];
 export const CTTPaths = [PagePath.speechToText, PagePath.documentToText, PagePath.textToText];
-export const HistoryPaths = [PagePath.history];
+export const HistoryPaths = [PagePath.speechHistory, PagePath.conversationHistory, PagePath.textHistory];
 
 export const isAuthPage = (pathname: string) =>
 	pathname === PagePath.home ? false : AuthPaths.some((pagePath) => pagePath.startsWith(pathname));

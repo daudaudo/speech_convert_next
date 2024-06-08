@@ -20,8 +20,9 @@ enum RequestUrl {
 	convertToConversation = "audio/conversations",
 	convertToText = "audio/transcriptions",
 	// history
-	CTSHistory = "audio/speech/history",
-	CTTHistory = "audio/transcriptions/history",
+	speechHistory = "audio/speech/history",
+	textHistory = "audio/transcriptions/history",
+	conversationHistory = "audio/conversations/history",
 }
 
 export { RequestMethod, RequestUrl };

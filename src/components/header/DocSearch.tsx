@@ -57,7 +57,11 @@ const DocSearch = () => {
 		{ path: PagePath.textToText, label: t("convertTextToText"), PreIcon: LanguageIcon },
 	];
 
-	const supportUserItems: ListItem[] = [{ path: PagePath.history, label: t("history") }];
+	const supportUserItems: ListItem[] = [
+		{ path: PagePath.speechHistory, label: t("speechHistory") },
+		{ path: PagePath.textHistory, label: t("textHistory") },
+		{ path: PagePath.conversationHistory, label: t("conversationHistory") },
+	];
 
 	const renderList = useCallback(
 		(items: ListItem[], label?: string) => {
@@ -108,7 +112,7 @@ const DocSearch = () => {
 				<DialogBody className="max-h-[80vh] overflow-y-auto">
 					{renderList(convertToSpeechItems, t("createSpeech"))}
 					{renderList(convertToTextItems, t("createText"))}
-					{renderList(supportUserItems, t("supportUser"))}
+					{renderList(supportUserItems, t("history"))}
 					<div className="w-full text-gray-800 dark:text-gray-100">
 						<span>{t("theme")}</span>
 						<List>

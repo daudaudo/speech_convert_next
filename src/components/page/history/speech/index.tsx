@@ -1,31 +1,82 @@
 "use client";
 
+import React, { useCallback, useEffect, useState, useTransition } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid";
 import { Card } from "@material-tailwind/react";
-import { useTranslations } from "next-intl";
-import React from "react";
+import getSpeechHistory from "~/actions/getSpeechHistory";
+import Loading from "~/components/animations/Loading";
+import withSuspense from "~/hocs/withSuspense";
 import Pagination from "~/components/base/Pagination";
 import SvgIcon from "~/components/icon/SvgIcon";
-import type { CTSHistoryType } from "~/types/HistoryTypes";
 import formatDate from "~/utils/date";
+import { SpeechHistoryItemResponseData } from "~/types/response/history";
 
-interface Props {
-	history: CTSHistoryType[];
-	currentPage: number;
-	lastPage: number;
-	onChangePage: (page: number) => void;
-	from: number;
-	to: number;
-	total: number;
-}
-
-const CTSListHistory = (props: Props) => {
-	const { history, currentPage, lastPage, onChangePage, from, to, total } = props;
+const SpeechHistoryPage = () => {
 	const t = useTranslations("history");
 
-	const renderHistoryItem = (h: CTSHistoryType) => {
-		const { _id, input, voice, download_url, model, speed, created_at } = h;
+	const router = useRouter();
+	const pathname = usePathname();
+	const searchParams = useSearchParams();
+
+	const [pending, startTransition] = useTransition();
+	const [error, setError] = useState<string | undefined>(undefined);
+	const [history, setHistory] = useState<SpeechHistoryItemResponseData[]>([]);
+	const [pageState, setPageState] = useState<{
+		currentPage: number;
+		lastPage: number;
+		from: number;
+		to: number;
+		total: number;
+	}>({
+		currentPage: 1,
+		lastPage: 1,
+		from: 0,
+		to: 0,
+		total: 0,
+	});
+
+	const onChangePage = (page: number) => {
+		const current = new URLSearchParams(Array.from(searchParams.entries()));
+		current.set("page", page.toString());
+		const search = current.toString();
+		const query = search ? `?${search}` : "";
+		router.push(`${pathname}${query}`);
+	};
+
+	const requestGetHistory = useCallback(() => {
+		const page = searchParams.get("page") ?? 1;
+		const limit = searchParams.get("limit") ?? 10;
+		startTransition(async () => {
+			try {
+				const res = await getSpeechHistory(limit, page);
+				if (res) {
+					setError(undefined);
+					setHistory(res.items);
+					setPageState({
+						currentPage: res.current_page ?? 0,
+						lastPage: res.last_page ?? 0,
+						from: res.from,
+						to: res.to,
+						total: res.total,
+					});
+				}
+			} catch (error) {
+				if (error instanceof Error) {
+					setError(error.message);
+				}
+			}
+		});
+	}, [searchParams]);
+
+	useEffect(() => {
+		if (searchParams) requestGetHistory();
+	}, [searchParams, requestGetHistory]);
+
+	const renderHistoryItem = (item: SpeechHistoryItemResponseData) => {
+		const { _id, input, voice, download_url, model, speed, created_at } = item;
 		return (
 			<Card key={_id} className="p-4 bg-gray-200 dark:bg-gray-800 rounded-md flex flex-row gap-2">
 				<div className="w-10 h-10 rounded-full bg-primary-200 dark:bg-primary-800 inline-flex items-center justify-center text-primary-800 dark:text-primary-200">
@@ -64,6 +115,7 @@ const CTSListHistory = (props: Props) => {
 		);
 	};
 
+	const { currentPage, lastPage, from, to, total } = pageState;
 	return (
 		<div className="w-full h-full flex flex-col gap-4 py-2">
 			<div className="flex justify-between px-2">
@@ -76,9 +128,17 @@ const CTSListHistory = (props: Props) => {
 				)}
 				<Pagination size={lastPage} initPage={currentPage} onChange={onChangePage} />
 			</div>
-			{history.map(renderHistoryItem)}
+			{pending ? (
+				<Loading />
+			) : error ? (
+				<div className="text-red-500 text-center p-4">{error}</div>
+			) : (
+				history.map(renderHistoryItem)
+			)}
 		</div>
 	);
 };
 
-export default CTSListHistory;
+const HistoryPage = withSuspense(SpeechHistoryPage, <Loading />);
+
+export default HistoryPage;
