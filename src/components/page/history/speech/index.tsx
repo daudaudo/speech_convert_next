@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Card } from "@material-tailwind/react";
+import { Card, Textarea } from "@material-tailwind/react";
 import getSpeechHistory from "~/actions/getSpeechHistory";
 import Loading from "~/components/animations/Loading";
 import withSuspense from "~/hocs/withSuspense";

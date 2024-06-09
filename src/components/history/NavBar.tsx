@@ -31,7 +31,7 @@ const NavBar = () => {
 						key={path}
 						className={`w-full flex items-center gap-1.5 px-2.5 py-3.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75 ${isActive ? "text-gray-900 dark:text-white rounded-full" : "hover:text-gray-900 dark:hover:text-white text-gray-500 dark:text-gray-400 !hover:text-gray-600 !dark:hover:text-white"}`}
 					>
-						{iconName && <SvgIcon name={iconName} type="outline" width={16} height={16} />}
+						{iconName && <SvgIcon name={iconName} type="solid" width={16} height={16} />}
 						<span className="hidden md:block">{label}</span>
 					</Link>
 				</li>

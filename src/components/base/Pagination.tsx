@@ -9,20 +9,14 @@ interface Props {
 	initPage?: number;
 	size: number;
 	onChange: (page: number) => void;
+	delta?: number; // Number of pages to show around the current page
+	alwayShowFirstAndLast?: boolean;
 }
 
 const Pagination = (props: Props) => {
 	const t = useTranslations("components.Pagination");
-	const { initPage = 1, size, onChange } = props;
+	const { initPage = 1, size, onChange, delta = 1, alwayShowFirstAndLast = true } = props;
 	const [active, setActive] = useState<number>(initPage);
-
-	const pagesData = useMemo(() => {
-		const rs = [];
-		for (let i = 0; i < size; i++) {
-			rs.push({ key: `pagination-${i}`, value: i + 1 });
-		}
-		return rs;
-	}, [size]);
 
 	const changeActive = (act: number) => {
 		setActive(act);
@@ -39,6 +33,22 @@ const Pagination = (props: Props) => {
 		changeActive(active + 1);
 	};
 
+	const pagesData = useMemo(() => {
+		const pageNumbers: number[] = [];
+		if (alwayShowFirstAndLast) pageNumbers.push(1);
+		for (
+			let i = Math.max(active - delta, alwayShowFirstAndLast ? 2 : 1);
+			i <= Math.min(active + delta, alwayShowFirstAndLast ? size - 1 : size);
+			i++
+		) {
+			pageNumbers.push(i);
+		}
+		if (alwayShowFirstAndLast && size > 1) {
+			pageNumbers.push(size);
+		}
+		return [...new Set(pageNumbers)];
+	}, [active, size]);
+
 	return (
 		<div className="flex items-center gap-2">
 			<Button
@@ -48,20 +58,25 @@ const Pagination = (props: Props) => {
 				disabled={active === 1}
 			>
 				<SvgIcon name="arrow-left" type="solid" width={16} height={16} />
-				{t("prev")}
+				<span className="hidden sm:block">{t("prev")}</span>
 			</Button>
 			<div className="flex items-center gap-2">
-				{pagesData.map(({ key, value }) => (
-					<IconButton
-						key={key}
-						variant="text"
-						onClick={() => {
-							changeActive(value);
-						}}
-						className={`rounded-full font-bold text-gray-800 dark:text-gray-100 ${active === value ? "bg-primary-500" : ""}`}
-					>
-						{value}
-					</IconButton>
+				{pagesData.map((page, index) => (
+					<React.Fragment key={page}>
+						{index > 0 && pagesData[index - 1] + 1 < page && (
+							<span className="px-2 hidden sm:block font-bold text-gray-800 dark:text-gray-100">...</span>
+						)}
+						<IconButton
+							size="sm"
+							variant="text"
+							onClick={() => {
+								changeActive(page);
+							}}
+							className={`rounded-full font-bold text-gray-800 dark:text-gray-100 ${active === page ? "bg-primary-500" : ""}`}
+						>
+							{page}
+						</IconButton>
+					</React.Fragment>
 				))}
 			</div>
 			<Button
@@ -70,7 +85,7 @@ const Pagination = (props: Props) => {
 				onClick={next}
 				disabled={active === size}
 			>
-				{t("next")}
+				<span className="hidden sm:block">{t("next")}</span>
 				<SvgIcon name="arrow-right" type="solid" width={16} height={16} />
 			</Button>
 		</div>

@@ -116,8 +116,8 @@
   },
   "history": {
     "history": "History",
-    "convertToSpeech": "Convert to speech",
-    "convertToText": "Convert to text",
+    "convertToSpeech": "Create speech",
+    "convertToText": "Create text",
     "countDisplay": "{from} - {to} / {total}",
     "convertToConversation": "Convert to conversation"
   },

@@ -116,10 +116,10 @@
   },
   "history": {
     "history": "Lịch sử",
-    "convertToSpeech": "Chuyển thành giọng nói",
-    "convertToText": "Chuyển thành văn bản",
+    "convertToSpeech": "Tạo giọng nói",
+    "convertToText": "Tạo văn bản",
     "countDisplay": "{from} - {to} / {total}",
-    "convertToConversation": "Chuyển thành hội thoại"
+    "convertToConversation": "Tạo hội thoại"
   },
   "cts": {
     "text": "Văn bản",

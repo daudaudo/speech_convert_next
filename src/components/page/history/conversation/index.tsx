@@ -87,14 +87,14 @@ const ConversationHistoryPage = () => {
 						{partials.map(({ name, text, silent, voice, audio_url }) => {
 							return (
 								<div key={audio_url.slice(-10)} className="w-full grid grid-cols-1 md:grid-cols-12 gap-2">
-									<span className="md:col-span-3 md:p-2 font-semibold text-gray-800 dark:text-gray-100">{name}</span>
-									<span className="md:col-span-9">
+									<span className="md:col-span-2 md:p-2 font-semibold text-gray-800 dark:text-gray-100">{name}</span>
+									<span className="md:col-span-10">
 										<Textarea
 											readOnly
 											value={text}
 											label={`${t(`cts.voice.openAIVoice.${voice}.name`)}${silent ? ` +${silent}s` : ""}`}
-											labelProps={{ className: "text-gray-500" }}
-											className="text-gray-800 dark:text-gray-200 !min-h-0 w-full"
+											labelProps={{ className: "text-pink-200" }}
+											className="!min-h-0 w-full text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-800 !cursor-default"
 										/>
 									</span>
 								</div>

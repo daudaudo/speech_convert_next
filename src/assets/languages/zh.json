@@ -116,11 +116,11 @@
   },
   "history": {
     "history": "历史",
-    "convertToSpeech": "转换为语音",
-    "convertToText": "转换为文本",
+    "convertToSpeech": "创建演讲",
+    "convertToText": "创建文本",
     "countDisplay": "{from} - {to} / {total}",
     "conversation": "",
-    "convertToConversation": "转换为对话"
+    "convertToConversation": "创建对话"
   },
   "cts": {
     "text": "文本",
