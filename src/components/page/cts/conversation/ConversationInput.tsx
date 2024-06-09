@@ -7,7 +7,7 @@ import { CTSPartial, User } from "~/types/CTSTypes";
 
 function parseTextWithUsers(text: string, users: User[]): CTSPartial[] {
 	const partials: CTSPartial[] = [];
-	const userRegex = /\[([^\]]+)\]\s*([^[]*)/g;
+	const userRegex = /\[([^\]]+)\]:?\s*([^[]*)/g;
 	const silentRegex = /(\d+)s/;
 	let match;
 
@@ -76,7 +76,12 @@ const ConversationInput = ({ users, onChange, placeholder }: Props) => {
 
 	return (
 		<MentionsInput value={text} onChange={onTextChange} placeholder={placeholder} className="mentions__control">
-			<Mention trigger="@" data={userSuggestions} appendSpaceOnAdd displayTransform={(id, display) => `[${display}]`} />
+			<Mention
+				trigger="@"
+				data={userSuggestions}
+				appendSpaceOnAdd
+				displayTransform={(id, display) => `[${display}]:`}
+			/>
 			<Mention
 				trigger="#"
 				data={silentSuggestions}
