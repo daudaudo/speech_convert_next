@@ -3,9 +3,7 @@
 import React, { useCallback, useMemo, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
-import ModelSelect from "~/components/cts/ModelSelect";
 import CTSNavbar from "~/components/cts/Navbar";
-import { OpenAITTSModel } from "~/enums/openAi";
 import type { CTSPartial, User } from "~/types/CTSTypes";
 import ConversationUser from "~/components/page/cts/conversation/ConversationUser";
 import { CTSConfig } from "~/constants/configs";
@@ -18,8 +16,6 @@ const ConversationToSpeechPage = () => {
 	const t = useTranslations("cts");
 
 	const { setOutput } = useConvertToSpeech();
-
-	const [model, setModel] = useState(OpenAITTSModel.TTS1);
 
 	const { maxUserConversation } = CTSConfig;
 
@@ -82,9 +78,7 @@ const ConversationToSpeechPage = () => {
 		<div className="w-full h-full inline-flex flex-col">
 			<div className="w-full flex flex-col md:flex-row md:items-center justify-between border-b py-1 border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-2">
 				<CTSNavbar />
-				<span className="inline-flex gap-1 mt-2 md:mt-0">
-					<ModelSelect value={model} onChange={setModel} />
-				</span>
+				<span className="inline-flex gap-1 mt-2 md:mt-0" />
 			</div>
 			<ConversationUser
 				users={users}
