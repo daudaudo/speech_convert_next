@@ -11,14 +11,13 @@
     "history": "History",
     "signout": "Sign out",
     "directional": {
-      "createSpeech": "Create speech",
-      "createText": "Create text",
+      "createText": "Convert to text",
       "supportUser": "Support",
-      "convertTextToSpeech": "Convert text to speech",
-      "convertDocumentToSpeech": "Convert files to speech",
-      "convertConversationToSpeech": "Convert conversation to speech",
-      "convertSpeechToText": "Convert speech to text",
-      "convertDocumentToText": "Convert files to text",
+      "convertTextToSpeech": "Text to speech",
+      "convertDocumentToSpeech": "File to speech",
+      "convertConversationToSpeech": "Text to multi-voice-speech",
+      "convertSpeechToText": "Speech to text",
+      "convertDocumentToText": "File to text",
       "convertTextToText": "Translate text",
       "history": "History",
       "theme": "Theme",
@@ -26,7 +25,8 @@
       "darkMode": "Dark mode",
       "speechHistory": "History of conversions to audio",
       "textHistory": "History of conversions to text",
-      "conversationHistory": "History of conversions to conversation"
+      "conversationHistory": "History of conversions to conversation",
+      "convertToSpeech": "Convert to speech"
     }
   },
   "footer": {},
@@ -87,7 +87,8 @@
         "question": "How can I contact customer support?",
         "answer": "You can contact us via email at {email}."
       }
-    }
+    },
+    "instructionVideo": "Instruction video"
   },
   "auth": {
     "signin": "Sign in",

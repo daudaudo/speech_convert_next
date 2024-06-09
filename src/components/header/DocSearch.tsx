@@ -93,7 +93,7 @@ const DocSearch = () => {
 			<Dialog size="xl" open={open} handler={toggleOpen} className="bg-white dark:bg-gray-900">
 				{/* <DialogHeader className="text-gray-800 dark:text-gray-100">header</DialogHeader> */}
 				<DialogBody className="max-h-[80vh] overflow-y-auto">
-					{renderList(convertToSpeechItems, t("createSpeech"))}
+					{renderList(convertToSpeechItems, t("convertToSpeech"))}
 					{renderList(convertToTextItems, t("createText"))}
 					{renderList(historyItems, t("history"))}
 					<div className="w-full text-gray-800 dark:text-gray-100">
@@ -105,7 +105,7 @@ const DocSearch = () => {
 								className="text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800"
 							>
 								<ListItemPrefix>
-									<SvgIcon name="sun" width={20} height={20} />
+									<SvgIcon name="moon" type="solid" width={20} height={20} />
 								</ListItemPrefix>
 								{t("lightMode")}
 							</ListItem>
@@ -115,7 +115,7 @@ const DocSearch = () => {
 								className="text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800"
 							>
 								<ListItemPrefix>
-									<SvgIcon name="moon" width={20} height={20} />
+									<SvgIcon name="sun" type="solid" width={20} height={20} />
 								</ListItemPrefix>
 								{t("darkMode")}
 							</ListItem>

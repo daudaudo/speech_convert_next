@@ -11,14 +11,13 @@
     "history": "历史",
     "signout": "登出",
     "directional": {
-      "createSpeech": "创建语音",
-      "createText": "创建文本",
+      "createText": "转换为文本",
       "supportUser": "支持",
-      "convertTextToSpeech": "将文本转换为语音",
-      "convertDocumentToSpeech": "将文件转换为语音",
-      "convertConversationToSpeech": "将对话转换为语音",
-      "convertSpeechToText": "将语音转换为文本",
-      "convertDocumentToText": "将文件转换为文本",
+      "convertTextToSpeech": "文字转语音",
+      "convertDocumentToSpeech": "文件转语音",
+      "convertConversationToSpeech": "文本转多语音",
+      "convertSpeechToText": "语音转文本",
+      "convertDocumentToText": "文件到文本",
       "convertTextToText": "翻译文本",
       "history": "历史",
       "theme": "主题",
@@ -26,7 +25,8 @@
       "darkMode": "深色模式",
       "conversationHistory": "对话转化历史",
       "textHistory": "文本转换历史",
-      "speechHistory": "音频转换历史"
+      "speechHistory": "音频转换历史",
+      "convertToSpeech": "转换为语音"
     }
   },
   "footer": {},
@@ -87,7 +87,8 @@
         "question": "如何联系客户支持？",
         "answer": "您可以通过电子邮件 {email} 与我们联系。"
       }
-    }
+    },
+    "instructionVideo": "教学视频"
   },
   "auth": {
     "signin": "登录",
