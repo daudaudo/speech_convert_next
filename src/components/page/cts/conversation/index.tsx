@@ -83,7 +83,7 @@ const ConversationToSpeechPage = () => {
 			<div className="w-full flex flex-col md:flex-row md:items-center justify-between border-b py-1 border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-2">
 				<CTSNavbar />
 				<span className="inline-flex gap-1 mt-2 md:mt-0">
-					<ModelSelect value={model} onChange={setModel} />
+					{/* <ModelSelect value={model} onChange={setModel} /> */}
 				</span>
 			</div>
 			<ConversationUser
