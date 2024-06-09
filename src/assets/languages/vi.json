@@ -11,12 +11,11 @@
     "history": "Lịch sử",
     "signout": "Đăng xuất",
     "directional": {
-      "createSpeech": "Tạo giọng nói",
-      "createText": "Tạo văn bản",
+      "createText": "Chuyển thành văn bản",
       "supportUser": "Hỗ trợ",
       "convertTextToSpeech": "Chuyển văn bản thành giọng nói",
       "convertDocumentToSpeech": "Chuyển đổi tệp thành giọng nói",
-      "convertConversationToSpeech": "Chuyển đổi cuộc hội thoại thành giọng nói",
+      "convertConversationToSpeech": "Chuyển văn bản sang giọng nói đa giọng nói",
       "convertSpeechToText": "Chuyển giọng nói thành văn bản",
       "convertDocumentToText": "Chuyển đổi tệp thành văn bản",
       "convertTextToText": "Dịch văn bản",
@@ -26,7 +25,8 @@
       "darkMode": "Chế độ tối",
       "speechHistory": "Lịch sử chuyển đổi sang âm thanh",
       "textHistory": "Lịch sử chuyển đổi sang văn bản",
-      "conversationHistory": "Lịch sử chuyển đổi sang cuộc trò chuyện"
+      "conversationHistory": "Lịch sử chuyển đổi sang cuộc trò chuyện",
+      "convertToSpeech": "Chuyển thành giọng nói"
     }
   },
   "footer": {},
@@ -87,7 +87,8 @@
         "question": "Làm thế nào để liên hệ với hỗ trợ khách hàng?",
         "answer": "Bạn có thể liên hệ với chúng tôi qua email tại {email}."
       }
-    }
+    },
+    "instructionVideo": "Video hướng dẫn"
   },
   "auth": {
     "signin": "Đăng nhập",

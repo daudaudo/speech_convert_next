@@ -38,6 +38,7 @@ const Feature = () => {
 					<span>{t("createSpeech")}</span>
 				</header>
 				<Textarea
+					aria-labelledby={t("createSpeech")}
 					readOnly
 					labelProps={{ className: "text-gray-700 dark:text-gray-200" }}
 					label="Văn bản cần chuyển đổi"
@@ -65,6 +66,7 @@ const Feature = () => {
 					<audio controls src={"/demo/speech-input.mp3"} controlsList="" className="flex-1" />
 				</div>
 				<Textarea
+					aria-labelledby={t("speechTranslater")}
 					readOnly
 					labelProps={{ className: "text-gray-700 dark:text-gray-200" }}
 					label="Văn bản sau khi dịch"
