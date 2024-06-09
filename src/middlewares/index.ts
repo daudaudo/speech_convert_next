@@ -6,6 +6,13 @@ import { PagePath } from "~/enums/path";
 import { RequestMethod } from "~/enums/request";
 import { auth } from "~/middlewares/auth";
 
+const requireAuthPaths = [
+	PagePath.textHistory,
+	PagePath.speechHistory,
+	PagePath.conversationHistory,
+	PagePath.conversationToSpeech,
+];
+
 export const map = async (request: NextRequest, response: NextResponse) => {
 	if (request.method !== RequestMethod.GET) {
 		return;
@@ -13,11 +20,12 @@ export const map = async (request: NextRequest, response: NextResponse) => {
 
 	const pathname = request.nextUrl.pathname;
 
-	if (match(PagePath.speechHistory)(pathname)) {
-		await auth(request, response, true);
-	} else if (match(PagePath.textHistory)(pathname)) {
-		await auth(request, response, true);
-	} else if (match(PagePath.conversationHistory)(pathname)) {
+	let flag = false;
+	requireAuthPaths.forEach((path) => {
+		if (match(path)(pathname)) flag = true;
+	});
+
+	if (flag) {
 		await auth(request, response, true);
 	} else {
 		await auth(request, response, false);

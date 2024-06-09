@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { Mention, MentionsInput } from "react-mentions";
 import { SilentTime } from "~/enums/convarsation";
 import { CTSPartial, User } from "~/types/CTSTypes";
@@ -40,7 +40,7 @@ interface Props {
 
 const ConversationInput = ({ users, onChange, placeholder }: Props) => {
 	const [text, setText] = useState<string>("");
-	const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null);
+	const typingTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
 	const userSuggestions = useMemo(() => {
 		return users.map((user) => ({ id: user.id, display: user.name }));
@@ -55,22 +55,24 @@ const ConversationInput = ({ users, onChange, placeholder }: Props) => {
 		];
 	}, []);
 
-	const processPartials = (newValue: string) => {
-		const partials: CTSPartial[] = parseTextWithUsers(newValue, users);
-		onChange(partials);
-	};
-
 	const onTextChange = (event: any, newValue: string, newPlainTextValue: string) => {
 		setText(newPlainTextValue);
-		if (typingTimeout) {
-			clearTimeout(typingTimeout);
-		}
-		setTypingTimeout(
-			setTimeout(() => {
-				processPartials(newValue);
-			}, 500),
-		);
 	};
+
+	useEffect(() => {
+		if (typingTimeoutRef.current) {
+			clearTimeout(typingTimeoutRef.current);
+		}
+		typingTimeoutRef.current = setTimeout(() => {
+			const partials: CTSPartial[] = parseTextWithUsers(text, users);
+			onChange(partials);
+		}, 500);
+		return () => {
+			if (typingTimeoutRef.current) {
+				clearTimeout(typingTimeoutRef.current);
+			}
+		};
+	}, [text, users]);
 
 	return (
 		<MentionsInput value={text} onChange={onTextChange} placeholder={placeholder} className="mentions__control">

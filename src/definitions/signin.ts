@@ -6,11 +6,11 @@ export enum SigninFields {
 }
 
 export const SigninFormSchema = z.object({
-	[SigninFields.email]: z.string().email({ message: "Địa chỉ email không hợp lệ." }).trim(),
+	[SigninFields.email]: z.string().email({ message: "emailInvalid" }).trim(),
 	[SigninFields.password]: z
 		.string()
-		.min(6, { message: "Mật khẩu phải có ít nhất 6 kí tự." })
-		.max(20, { message: "Mật khẩu không được quá 20 kí tự." })
+		.min(6, { message: "passwordMinLength" })
+		.max(20, { message: "passwordMaxLength" })
 		.trim(),
 });
 

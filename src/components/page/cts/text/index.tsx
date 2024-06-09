@@ -52,9 +52,14 @@ const TextToSpeechPage = () => {
 					formData.append("model", model);
 					formData.append("speed", speed.toString());
 					formData.append("input", text);
+					setOutput(undefined);
 					const res = await convertToSpeech(formData);
-					clearError();
-					setOutput(res);
+					if ("error" in res) {
+						setError(res.error);
+					} else {
+						clearError();
+						setOutput(res);
+					}
 				} catch (error) {
 					if (error instanceof Error) {
 						setError(error.message);

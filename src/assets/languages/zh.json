@@ -113,7 +113,13 @@
     "signupError": "创建账户时出错！",
     "signinGoogleError": "使用 Google 登录失败！请重试。",
     "signinGoogleSuccess": "成功使用 Google 登录！",
-    "backToHome": "返回主页"
+    "backToHome": "返回主页",
+    "definition": {
+      "emailInvalid": "电子邮件字段必须是有效的电子邮件地址",
+      "nameMinLength": "名称必须至少包含 6 个字符。",
+      "passwordMaxLength": "密码不得超过 20 个字符。",
+      "passwordMinLength": "密码必须至少有 6 个字符。"
+    }
   },
   "history": {
     "history": "历史",
