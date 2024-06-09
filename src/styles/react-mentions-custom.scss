@@ -17,11 +17,11 @@
 }
 
 .mentions__control__suggestions {
-  @apply absolute z-10 bg-white border border-gray-300 rounded-md mt-1 shadow-lg dark:bg-gray-800 dark:border-gray-600;
+  @apply absolute z-10 bg-gray-100 border border-gray-300 rounded-md mt-1 shadow-lg dark:bg-gray-800 dark:border-gray-600;
 }
 
 .mentions__control__suggestions__item {
-  @apply cursor-pointer p-2 hover:bg-gray-200 dark:hover:bg-gray-700;
+  @apply cursor-pointer p-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700;
 }
 
 .mentions__control__suggestions__item--focused {
