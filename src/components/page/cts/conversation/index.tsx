@@ -61,6 +61,7 @@ const ConversationToSpeechPage = () => {
 		if (validated) {
 			startTransition(async () => {
 				try {
+					setOutput(undefined);
 					const res = await convertToConversation(partials);
 					if ("error" in res) {
 						setError(res.error);

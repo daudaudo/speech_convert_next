@@ -113,7 +113,13 @@
     "signupError": "Lỗi tạo tài khoản!",
     "signinGoogleError": "Đăng nhập với Google thất bại! Vui lòng thử lại.",
     "signinGoogleSuccess": "Đăng nhập với Google thành công!",
-    "backToHome": "Trở lại trang chủ"
+    "backToHome": "Trở lại trang chủ",
+    "definition": {
+      "emailInvalid": "Địa chỉ email không hợp lệ",
+      "nameMinLength": "Tên phải có ít nhất 6 ký tự.",
+      "passwordMaxLength": "Mật khẩu không được vượt quá 20 ký tự.",
+      "passwordMinLength": "Mật khẩu phải có ít nhất 6 ký tự."
+    }
   },
   "history": {
     "history": "Lịch sử",

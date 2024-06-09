@@ -113,7 +113,13 @@
     "signupError": "Error creating account!",
     "signinGoogleError": "Logging in with Google failed! Please try again.",
     "signinGoogleSuccess": "Logged in with Google successfully!",
-    "backToHome": "Back to Home page"
+    "backToHome": "Back to Home page",
+    "definition": {
+      "emailInvalid": "The email field must be valid email address",
+      "passwordMinLength": "Password must have at least 6 characters.",
+      "passwordMaxLength": "Password must not exceed 20 characters.",
+      "nameMinLength": "Name must have at least 6 characters."
+    }
   },
   "history": {
     "history": "History",

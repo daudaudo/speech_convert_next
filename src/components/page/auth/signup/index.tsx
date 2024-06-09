@@ -64,8 +64,8 @@ const SignUpForm = ({}: Props) => {
 
 	const renderError = useCallback(
 		(field: SignupFields) => {
-			if (!state?.errors) return null;
-			const error = state.errors[field];
+			if (!state?.errors?.[field]) return null;
+			const error = t(`definition.${state.errors[field]}`);
 			if (!error) return null;
 			return <p className="text-red-500 text-xs">{error}</p>;
 		},
