@@ -81,7 +81,7 @@ const DocSearch = () => {
 
 	return (
 		<>
-			<IconButton onClick={toggleOpen} variant="text" className="p-0 rounded-full">
+			<IconButton onClick={toggleOpen} variant="text" className="p-0 rounded-full lg:hidden">
 				<SvgIcon
 					name="bars"
 					type="solid"

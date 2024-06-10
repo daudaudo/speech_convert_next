@@ -75,7 +75,12 @@ const ConversationInput = ({ users, onChange, placeholder }: Props) => {
 	}, [text, users]);
 
 	return (
-		<MentionsInput value={text} onChange={onTextChange} placeholder={placeholder} className="flex-1 mentions__control">
+		<MentionsInput
+			value={text}
+			onChange={onTextChange}
+			placeholder={placeholder}
+			className="flex-1 mentions__control tex-gray-800 dark:text-gray-200"
+		>
 			<Mention
 				trigger="@"
 				data={userSuggestions}
