@@ -79,7 +79,7 @@ const TextToSpeechPage = () => {
 					<VoiceSelect value={voiceId} onChange={setVoiceId} />
 				</span>
 			</div>
-			<div className="relative flex-1 w-full">
+			<div className="relative flex-1 w-full flex flex-col">
 				{error && (
 					<div className="text-red-500 p-4 text-sm">
 						<div className="flex flex-row gap-2 items-center">
@@ -100,7 +100,7 @@ const TextToSpeechPage = () => {
 					maxLength={maxTextLength}
 					onChange={onTextChange}
 					value={text}
-					className={`${error ? "hidden" : ""} w-full pt-8 pl-4 pr-2 resize-none overflow-y-auto h-full min-h-[210px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-900 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none py-3`}
+					className={`${error ? "hidden" : ""} flex-1 p-2 w-full pt-8 pl-4 pr-2 resize-none overflow-y-auto h-full min-h-[210px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-900 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none py-3`}
 				/>
 				<div
 					className={`${error || !text ? "hidden" : ""} absolute top-[10px] right-3 text-right text-xs font-thin dark:text-gray-300 flex flex-row space-x-4 items-center`}

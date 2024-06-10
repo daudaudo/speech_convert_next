@@ -88,7 +88,7 @@ const ConversationToSpeechPage = () => {
 				clear={clearUsers}
 				maxUser={maxUserConversation}
 			/>
-			<div className="flex-1 w-full p-1">
+			<div className="flex-1 w-full p-1 flex flex-col">
 				{error ? (
 					<div className="text-red-500 p-4 text-sm">
 						<div className="flex flex-row gap-2 items-center">
