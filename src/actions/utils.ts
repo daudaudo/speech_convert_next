@@ -27,7 +27,7 @@ const buildHeaders = async (options: { method: RequestMethod; body: RequestData 
 	if ([RequestMethod.GET, RequestMethod.PATCH, RequestMethod.DELETE].includes(method)) {
 		return headers;
 	}
-	if (typeof body === "object" && body instanceof FormData) {
+	if (typeof body === "object" && !(body instanceof FormData)) {
 		headers["Content-Type"] = "application/json";
 	}
 	return headers;
