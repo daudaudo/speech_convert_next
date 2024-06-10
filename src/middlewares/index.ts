@@ -20,12 +20,7 @@ export const map = async (request: NextRequest, response: NextResponse) => {
 
 	const pathname = request.nextUrl.pathname;
 
-	let flag = false;
-	requireAuthPaths.forEach((path) => {
-		if (match(path)(pathname)) flag = true;
-	});
-
-	if (flag) {
+	if (requireAuthPaths.some((path) => match(path)(pathname))) {
 		await auth(request, response, true);
 	} else {
 		await auth(request, response, false);

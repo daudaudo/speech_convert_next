@@ -36,7 +36,8 @@
       "convertDocumentToSpeech": "File to speech",
       "convertConversationToSpeech": "Conversation to muti-voice speech",
       "convertSpeechToText": "Speech to text",
-      "convertDocumentToText": "File to text"
+      "convertDocumentToText": "File to text",
+      "socialsNetworks": "Social networks"
     }
   },
   "home": {

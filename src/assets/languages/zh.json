@@ -36,7 +36,8 @@
       "convertDocumentToSpeech": "文件转语音",
       "convertConversationToSpeech": "对话转多声部语音",
       "convertSpeechToText": "语音转文本",
-      "convertDocumentToText": "文件到文本"
+      "convertDocumentToText": "文件到文本",
+      "socialsNetworks": "社交网络"
     }
   },
   "home": {

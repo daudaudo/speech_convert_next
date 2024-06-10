@@ -19,7 +19,7 @@ const HomePage = () => {
 					<Header />
 				</header>
 			</div>
-			<div className="max-w-screen-xl mx-auto w-full min-h-[calc(100vh-4rem)] pb-10 flex flex-col items-center">
+			<div className="max-w-screen-xl mx-auto w-full min-h-[calc(100vh-4rem)] pb-10 flex flex-col items-center gap-4">
 				<section className="flex flex-col items-center gap-2">
 					<SvgIcon type="app" name="logo" width={70} />
 					<div className="w-full font-bold md:text-5xl text-3xl text-center text-gray-700 dark:text-gray-200">

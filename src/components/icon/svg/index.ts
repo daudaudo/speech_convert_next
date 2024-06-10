@@ -39,10 +39,14 @@ import LanguageSolid from "~/components/icon/svg/solid/Language";
 import BarsOutline from "~/components/icon/svg/outline/Bars";
 import BarsSolid from "~/components/icon/svg/solid/Bars";
 import VolumeHighOutline from "~/components/icon/svg/outline/VolumeHigh";
+import Facebook from "~/components/icon/svg/app/Facebook";
+import Youtube from "~/components/icon/svg/app/Youtube";
 
 const IconsMap = {
 	app: {
 		logo: Logo,
+		facebook: Facebook,
+		youtube: Youtube,
 	},
 	flag: {
 		en: EN,

@@ -36,7 +36,8 @@
       "convertDocumentToSpeech": "Chuyển tệp thành giọng nói",
       "convertConversationToSpeech": "Hội thoại bằng nhiều giọng nói",
       "convertSpeechToText": "Chuyển lời nói thành văn bản",
-      "convertDocumentToText": "Chuyển tệp thành văn bản"
+      "convertDocumentToText": "Chuyển tệp thành văn bản",
+      "socialsNetworks": "Mạng xã hội"
     }
   },
   "home": {
