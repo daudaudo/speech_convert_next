@@ -14,8 +14,8 @@ const ConvertToTextLayout = ({ children }: Props) => {
 	return (
 		<ConvertToTextProvider>
 			<div className="flex-1 flex flex-col h-full w-full md:pb-8 mt-4">
-				<div className="shrink-0 sticky top-0 z-20">
-					<div className="sticky items-center top-16 border-b border-gray-50 dark:border-gray-900 bg-gray-50 dark:bg-gray-900 flex mb-1">
+				<div className="shrink-0">
+					<div className="items-center top-16 border-b border-gray-50 dark:border-gray-900 bg-gray-50 dark:bg-gray-900 flex mb-1">
 						<div className="flex-1">
 							<CTTNavbar />
 						</div>

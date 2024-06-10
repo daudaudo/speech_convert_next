@@ -27,7 +27,9 @@
       "speechHistory": "History of conversions to audio",
       "textHistory": "History of conversions to text",
       "conversationHistory": "History of conversions to conversation",
-      "convertToSpeech": "Convert to speech"
+      "convertToSpeech": "Convert to speech",
+      "speech": "Speech",
+      "text": "Text"
     }
   },
   "footer": {

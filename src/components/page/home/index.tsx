@@ -2,6 +2,7 @@
 
 import React from "react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import Header from "~/components/header";
 import FrequentQuestions from "~/components/page/home/FrequentQuestions";
 import InstructionVideo from "~/components/page/home/InstructionVideo";
@@ -20,6 +21,7 @@ const HomePage = () => {
 				</header>
 			</div>
 			<div className="max-w-screen-xl mx-auto w-full min-h-[calc(100vh-4rem)] pb-10 flex flex-col items-center gap-4">
+				<Image src="/images/background.webp" alt="background" width={800} height={600} className="w-full rounded-lg" />
 				<section className="flex flex-col items-center gap-2">
 					<SvgIcon type="app" name="logo" width={70} />
 					<div className="w-full font-bold md:text-5xl text-3xl text-center text-gray-700 dark:text-gray-200">

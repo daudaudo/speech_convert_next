@@ -1,50 +1,91 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { isCTSPage, isCTTPage, isHistoryPage, PagePath } from "~/enums/path";
+import { List, ListItem, ListItemPrefix, Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react";
+import { PagePath } from "~/enums/path";
 import type { NavbarItem } from "~/types/navbar";
+import SvgIcon from "~/components/icon/SvgIcon";
 
-const NavBar = () => {
-	const t = useTranslations("header");
-	const pathname = usePathname();
+interface NavBarItemPopoverProps {
+	items: NavbarItem[];
+	label?: string;
+}
 
-	const navItems: NavbarItem[] = [
-		{ path: PagePath.textToSpeech, label: t("speech") },
-		{ path: PagePath.speechToText, label: t("text") },
-		{ path: PagePath.speechHistory, label: t("history") },
-	];
+const NavBarItemPopover = ({ items, label }: NavBarItemPopoverProps) => {
+	const [open, setOpen] = useState(false);
 
-	const renderNavItem = (item: { path: string; label: string }) => {
-		const { path, label } = item;
-		let isActive = false;
-		switch (path) {
-			case PagePath.textToSpeech:
-				isActive = isCTSPage(pathname);
-				break;
-			case PagePath.speechToText:
-				isActive = isCTTPage(pathname);
-				break;
-			case PagePath.speechHistory:
-				isActive = isHistoryPage(pathname);
-			default:
-				break;
-		}
-
-		return (
-			<Link
-				href={path}
-				key={path}
-				className={`flex items-center py-2 px-4 font-medium transition-colors border-b-2 ${isActive ? "text-primary-600 dark:text-primary-400 border-primary-600 dark:border-primary-400" : "text-gray-500 hover:text-gray-700 border-transparent dark:text-gray-400 dark:hover:text-gray-200"}`}
-			>
-				{label}
-			</Link>
-		);
+	const triggers = {
+		onMouseEnter: () => setOpen(true),
+		onMouseLeave: () => setOpen(false),
 	};
 
 	return (
-		<nav className="items-center dark:ring-gray-800 gap-x-0 rounded-full transition-transform duration-200 hidden lg:flex px-4">
-			{navItems.map(renderNavItem)}
+		<Popover open={open} handler={setOpen} placement="bottom-start">
+			<PopoverHandler {...triggers}>
+				<span className="px-4 py-2 cursor-pointer font-nomal text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+					{label}
+				</span>
+			</PopoverHandler>
+			<PopoverContent
+				{...triggers}
+				className="z-45 bg-gray-100 dark:bg-gray-800 border-gray-200 dark:border-gray-700 shadow-lg rounded-lg p-1"
+			>
+				<List className="flex flex-col">
+					{items.map((item) => {
+						const { path, label, iconName } = item;
+						if (!label) return null;
+						return (
+							<Link key={`${label}-${path}`} href={path}>
+								<ListItem className="hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors duration-200">
+									{iconName && (
+										<ListItemPrefix>
+											<SvgIcon
+												name={iconName}
+												type="outline"
+												width={20}
+												height={20}
+												className="text-gray-600 dark:text-gray-400"
+											/>
+										</ListItemPrefix>
+									)}
+									<span className="text-gray-700 dark:text-gray-300">{label}</span>
+								</ListItem>
+							</Link>
+						);
+					})}
+				</List>
+			</PopoverContent>
+		</Popover>
+	);
+};
+
+const NavBar = () => {
+	const t = useTranslations("header.directional");
+
+	const convertToSpeechItems: NavbarItem[] = [
+		{ path: PagePath.textToSpeech, label: t("convertTextToSpeech"), iconName: "text" },
+		{ path: PagePath.documentToSpeech, label: t("convertDocumentToSpeech"), iconName: "file" },
+		{ path: PagePath.conversationToSpeech, label: t("convertConversationToSpeech"), iconName: "messages" },
+	];
+
+	const convertToTextItems: NavbarItem[] = [
+		{ path: PagePath.speechToText, label: t("convertSpeechToText"), iconName: "microphone" },
+		{ path: PagePath.documentToText, label: t("convertDocumentToText"), iconName: "file" },
+	];
+
+	const historyItems: NavbarItem[] = [
+		{ path: PagePath.speechHistory, label: t("speechHistory"), iconName: "volume-high" },
+		{ path: PagePath.textHistory, label: t("textHistory"), iconName: "text" },
+		{ path: PagePath.conversationHistory, label: t("conversationHistory"), iconName: "messages" },
+	];
+
+	return (
+		<nav className="items-center rounded-full transition-transform duration-200 hidden lg:flex px-4">
+			<NavBarItemPopover items={convertToSpeechItems} label={t("speech")} />
+			<NavBarItemPopover items={convertToTextItems} label={t("text")} />
+			<NavBarItemPopover items={historyItems} label={t("history")} />
 		</nav>
 	);
 };
