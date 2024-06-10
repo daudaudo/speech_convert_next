@@ -67,7 +67,7 @@ const TextToSpeechPage = () => {
 				}
 			});
 		}
-	}, [validated, startTransition]);
+	}, [validated, startTransition, voiceId, model, speed, text, setOutput, clearError]);
 
 	return (
 		<div className="flex-1 w-full h-full inline-flex flex-col">

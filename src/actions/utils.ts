@@ -1,57 +1,73 @@
 "use server";
 
 import { headers } from "next/headers";
+import { getLocale } from "~/actions/cookies/locale";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { FailedRequestError } from "~/errors/request";
 import { getSession } from "~/utils/session";
 
 const BASE_API_URL = process.env.BASE_API_URL;
 
-const callApi = async (
-	url: RequestUrl,
-	method: RequestMethod,
-	body: FormData | object | undefined,
-	params: Record<string, string> = {}, // Thêm đối số params mặc định là một đối tượng trống
-) => {
+type RequestData = FormData | object | undefined;
+
+const buildHeaders = async (options: { method: RequestMethod; body: RequestData }) => {
+	const { method, body } = options;
+	const headers: HeadersInit = {};
 	const { token } = await getSession();
-	const isFormData = typeof body === "object" && body instanceof FormData;
-	const headers: HeadersInit = {
-		Authorization: token ? `Bearer ${token}` : "",
-	};
-	const parseBody = () => {
-		if (method === RequestMethod.GET || method === RequestMethod.DELETE) {
-			return null;
-		}
-
-		if (isFormData) {
-			return body;
-		}
-
-		if (body) {
-			return JSON.stringify(body);
-		}
-
-		return body;
-	};
-
-	if (!isFormData) {
-		headers["Content-Type"] = "application/json";
+	headers["Authorization"] = token ? `Bearer ${token}` : "";
+	const locale = await getLocale();
+	if (locale) {
+		headers["Accept-Language"] = locale;
 	}
-
 	const ip = await getRealIP();
-
 	if (ip) {
 		headers["X-Forwarded-For"] = ip;
 		headers["X-Real-IP"] = ip;
 	}
+	if ([RequestMethod.GET, RequestMethod.PATCH, RequestMethod.DELETE].includes(method)) {
+		return headers;
+	}
+	if (typeof body === "object" && !(body instanceof FormData)) {
+		headers["Content-Type"] = "application/json";
+	}
+	return headers;
+};
 
+const buildBody = async (method: RequestMethod, data: RequestData) => {
+	if ([RequestMethod.GET, RequestMethod.PATCH, RequestMethod.DELETE].includes(method)) {
+		return null;
+	}
+	if (data instanceof FormData) {
+		return data;
+	}
+	if (typeof data === "object") {
+		return JSON.stringify(data);
+	}
+	return data;
+};
+
+const buildUrl = (method: RequestMethod, url: RequestUrl, params: Record<string, string>) => {
+	const absoluteUrl = BASE_API_URL + "/" + url;
+	if (method !== RequestMethod.GET) {
+		return absoluteUrl;
+	}
 	const queryParams = new URLSearchParams(params).toString();
-	const apiUrl = `${BASE_API_URL}/${url}?${queryParams}`;
+	return `${absoluteUrl}?${queryParams}`;
+};
 
+const callApi = async (
+	url: RequestUrl,
+	method: RequestMethod,
+	body: FormData | object | undefined,
+	params: Record<string, string> = {},
+) => {
+	const headersData = await buildHeaders({ method, body });
+	const bodyData = await buildBody(method, body);
+	const apiUrl = buildUrl(method, url, params);
 	const fetchInit = {
 		method,
-		headers: headers,
-		body: parseBody(),
+		headers: headersData,
+		body: bodyData,
 	};
 	const res = await fetch(apiUrl, fetchInit);
 	return res.json();
