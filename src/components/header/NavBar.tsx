@@ -24,9 +24,12 @@ const NavBarItemPopover = ({ items, label }: NavBarItemPopoverProps) => {
 	return (
 		<Popover open={open} handler={setOpen} placement="bottom-start">
 			<PopoverHandler {...triggers}>
-				<span className="px-4 py-2 cursor-pointer font-nomal text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+				<Link
+					href={items[0].path}
+					className="px-4 py-2 cursor-pointer font-nomal text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+				>
 					{label}
-				</span>
+				</Link>
 			</PopoverHandler>
 			<PopoverContent
 				{...triggers}
@@ -38,7 +41,7 @@ const NavBarItemPopover = ({ items, label }: NavBarItemPopoverProps) => {
 						if (!label) return null;
 						return (
 							<Link key={`${label}-${path}`} href={path}>
-								<ListItem className="hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors duration-200">
+								<ListItem className="hover:bg-gray-300 dark:hover:bg-gray-700 rounded-md transition-colors duration-200">
 									{iconName && (
 										<ListItemPrefix>
 											<SvgIcon
