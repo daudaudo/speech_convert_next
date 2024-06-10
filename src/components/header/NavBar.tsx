@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { List, ListItem, ListItemPrefix, Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react";
+import { usePathname } from "next/navigation";
 import { PagePath } from "~/enums/path";
 import type { NavbarItem } from "~/types/navbar";
 import SvgIcon from "~/components/icon/SvgIcon";
@@ -14,6 +15,7 @@ interface NavBarItemPopoverProps {
 }
 
 const NavBarItemPopover = ({ items, label }: NavBarItemPopoverProps) => {
+	const pathname = usePathname();
 	const [open, setOpen] = useState(false);
 
 	const triggers = {
@@ -21,12 +23,14 @@ const NavBarItemPopover = ({ items, label }: NavBarItemPopoverProps) => {
 		onMouseLeave: () => setOpen(false),
 	};
 
+	const isActive = useMemo(() => items.some((item) => item.path === pathname), [pathname, items]);
+
 	return (
 		<Popover open={open} handler={setOpen} placement="bottom-start">
 			<PopoverHandler {...triggers}>
 				<Link
 					href={items[0].path}
-					className="px-4 py-2 cursor-pointer font-nomal text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+					className={`px-4 py-2 cursor-pointer font-nomal ${isActive ? "text-primary-600 dark:text-primary-400" : "text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"}`}
 				>
 					{label}
 				</Link>
@@ -39,9 +43,13 @@ const NavBarItemPopover = ({ items, label }: NavBarItemPopoverProps) => {
 					{items.map((item) => {
 						const { path, label, iconName } = item;
 						if (!label) return null;
+						const isActiveItem = pathname === path;
 						return (
 							<Link key={`${label}-${path}`} href={path}>
-								<ListItem className="hover:bg-gray-300 dark:hover:bg-gray-700 rounded-md transition-colors duration-200">
+								<ListItem
+									disabled={isActiveItem}
+									className="hover:bg-gray-300 dark:hover:bg-gray-700 rounded-md transition-colors duration-200"
+								>
 									{iconName && (
 										<ListItemPrefix>
 											<SvgIcon

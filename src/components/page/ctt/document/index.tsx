@@ -56,7 +56,7 @@ const DocumentToTextPage = () => {
 	};
 
 	return (
-		<div className="flex-1">
+		<div>
 			<div className="relative flex items-center justify-center w-full p-6">
 				<label className="flex flex-col items-center rounded-lg justify-center w-full h-64 cursor-pointer border-2 border-dashed dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
 					{!!input.file && (
@@ -71,11 +71,9 @@ const DocumentToTextPage = () => {
 					<input type="file" accept={fileAccept.join(",")} onChange={onInputFileChange} className="hidden" />
 				</label>
 			</div>
-			<div className="flex flex-col w-full px-6 text-sm0">
-				<div className="flex flex-row items-center gap-1 text-primary-500">
-					<SvgIcon name="circle-info" width={16} height={16} />
-					<div>{t("fileInputInfo")}</div>
-				</div>
+			<div className="w-full px-6 text-sm text-wrap text-primary-500">
+				<SvgIcon name="circle-info" width={16} height={16} />
+				{t("fileInputInfo")}
 			</div>
 		</div>
 	);

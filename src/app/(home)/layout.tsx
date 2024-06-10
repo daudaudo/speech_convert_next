@@ -14,9 +14,7 @@ const UserLayout = ({ children }: Props) => {
 					<Header />
 				</header>
 			</div>
-			<div className="flex-1 flex flex-col w-full md:max-w-screen-xl mx-auto py-1 min-h-[calc(100vh-4rem)]">
-				{children}
-			</div>
+			<div className="flex-1 w-full md:max-w-screen-xl mx-auto py-1">{children}</div>
 			<footer className="w-full bg-gray-100 dark:bg-gray-800 border-t-[1px] border-gray-300 dark:border-gray-700">
 				<Footer />
 			</footer>
