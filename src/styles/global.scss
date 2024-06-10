@@ -33,6 +33,11 @@ body {
   background-color: #555;
 }
 
+// link
+a:-webkit-any-link:focus-visible {
+  outline-width: 0px;
+}
+
 .Toastify {
   &__toast-body {
     font-family: "Open_Sans", sans-serif;

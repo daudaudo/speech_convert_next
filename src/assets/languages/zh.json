@@ -3,7 +3,8 @@
     "auth": {}
   },
   "app": {
-    "title": "Speech Convert"
+    "title": "Speech Convert",
+    "copyright": "© Copyright 2024."
   },
   "header": {
     "speech": "语音",
@@ -26,10 +27,21 @@
       "conversationHistory": "对话转化历史",
       "textHistory": "文本转换历史",
       "speechHistory": "音频转换历史",
-      "convertToSpeech": "转换为语音"
+      "convertToSpeech": "转换为语音",
+      "speech": "演讲",
+      "text": "文本"
     }
   },
-  "footer": {},
+  "footer": {
+    "directional": {
+      "convertTextToSpeech": "文字转语音",
+      "convertDocumentToSpeech": "文件转语音",
+      "convertConversationToSpeech": "对话转多声部语音",
+      "convertSpeechToText": "语音转文本",
+      "convertDocumentToText": "文件到文本",
+      "socialsNetworks": "社交网络"
+    }
+  },
   "home": {
     "welcome": "欢迎来到",
     "createSpeech": "创建语音",

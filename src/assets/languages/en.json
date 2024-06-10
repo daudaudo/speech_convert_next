@@ -3,7 +3,8 @@
     "auth": {}
   },
   "app": {
-    "title": "Speech Convert"
+    "title": "Speech Convert",
+    "copyright": "© Copyright 2024."
   },
   "header": {
     "speech": "Speech",
@@ -26,10 +27,21 @@
       "speechHistory": "History of conversions to audio",
       "textHistory": "History of conversions to text",
       "conversationHistory": "History of conversions to conversation",
-      "convertToSpeech": "Convert to speech"
+      "convertToSpeech": "Convert to speech",
+      "speech": "Speech",
+      "text": "Text"
     }
   },
-  "footer": {},
+  "footer": {
+    "directional": {
+      "convertTextToSpeech": "Text to speech",
+      "convertDocumentToSpeech": "File to speech",
+      "convertConversationToSpeech": "Conversation to muti-voice speech",
+      "convertSpeechToText": "Speech to text",
+      "convertDocumentToText": "File to text",
+      "socialsNetworks": "Social networks"
+    }
+  },
   "home": {
     "welcome": "Welcome to",
     "createSpeech": "Create a speech",
