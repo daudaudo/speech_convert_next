@@ -4,6 +4,7 @@ import { headers } from "next/headers";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { ResponseData } from "~/types/response";
 import { FailedRequestError, RequestTimeoutError } from "~/errors/request";
+import { getLocale } from "~/actions/cookies/locale";
 
 const BASE_API_URL = process.env.BASE_API_URL;
 
@@ -40,6 +41,11 @@ const buildBody = async (method: RequestMethod, data: RequestData) => {
 const buildHeaders = async (options: { method: RequestMethod; data: RequestData; bearer?: string }) => {
 	const { method, data, bearer } = options;
 	const headers: HeadersInit = {};
+
+	const locale = await getLocale();
+	if (locale) {
+		headers["Accept-Language"] = locale;
+	}
 
 	const ip = await getRealIP();
 	if (ip) {
