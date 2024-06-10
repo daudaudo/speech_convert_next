@@ -3,7 +3,8 @@
     "auth": {}
   },
   "app": {
-    "title": "Speech Convert"
+    "title": "Speech Convert",
+    "copyright": "© Copyright 2024."
   },
   "header": {
     "speech": "Giọng nói",
@@ -29,7 +30,15 @@
       "convertToSpeech": "Chuyển thành giọng nói"
     }
   },
-  "footer": {},
+  "footer": {
+    "directional": {
+      "convertTextToSpeech": "Chuyển văn bản thành giọng nói",
+      "convertDocumentToSpeech": "Chuyển tệp thành giọng nói",
+      "convertConversationToSpeech": "Hội thoại bằng nhiều giọng nói",
+      "convertSpeechToText": "Chuyển lời nói thành văn bản",
+      "convertDocumentToText": "Chuyển tệp thành văn bản"
+    }
+  },
   "home": {
     "welcome": "Chào mừng đến với",
     "createSpeech": "Tạo giọng nói",

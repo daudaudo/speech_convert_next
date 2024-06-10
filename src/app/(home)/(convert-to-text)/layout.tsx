@@ -13,7 +13,7 @@ interface Props {
 const ConvertToTextLayout = ({ children }: Props) => {
 	return (
 		<ConvertToTextProvider>
-			<div className="flex flex-col h-full w-full md:pb-8 mt-4">
+			<div className="flex-1 flex flex-col h-full w-full md:pb-8 mt-4">
 				<div className="shrink-0 sticky top-0 z-20">
 					<div className="sticky items-center top-16 border-b border-gray-50 dark:border-gray-900 bg-gray-50 dark:bg-gray-900 flex mb-1">
 						<div className="flex-1">
@@ -32,7 +32,7 @@ const ConvertToTextLayout = ({ children }: Props) => {
 						</div>
 					</div>
 				</div>
-				<div className="flex-1">
+				<div className="flex-1 flex flex-col">
 					<div className="relative flex-1 h-full grid grid-cols-1 md:grid-cols-2 gap-3 content-stretch">
 						<div className="flex flex-col h-full border border-gray-200 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600">
 							{children}

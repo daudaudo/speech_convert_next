@@ -3,12 +3,13 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { isCTSPage, isCTTPage, isHistoryPage, PagePath } from "~/enums/path";
+import type { NavbarItem } from "~/types/navbar";
 
 const NavBar = () => {
 	const t = useTranslations("header");
 	const pathname = usePathname();
 
-	const navItems = [
+	const navItems: NavbarItem[] = [
 		{ path: PagePath.textToSpeech, label: t("speech") },
 		{ path: PagePath.speechToText, label: t("text") },
 		{ path: PagePath.speechHistory, label: t("history") },

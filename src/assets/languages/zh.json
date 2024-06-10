@@ -3,7 +3,8 @@
     "auth": {}
   },
   "app": {
-    "title": "Speech Convert"
+    "title": "Speech Convert",
+    "copyright": "© Copyright 2024."
   },
   "header": {
     "speech": "语音",
@@ -29,7 +30,15 @@
       "convertToSpeech": "转换为语音"
     }
   },
-  "footer": {},
+  "footer": {
+    "directional": {
+      "convertTextToSpeech": "文字转语音",
+      "convertDocumentToSpeech": "文件转语音",
+      "convertConversationToSpeech": "对话转多声部语音",
+      "convertSpeechToText": "语音转文本",
+      "convertDocumentToText": "文件到文本"
+    }
+  },
   "home": {
     "welcome": "欢迎来到",
     "createSpeech": "创建语音",
