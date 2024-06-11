@@ -4,7 +4,8 @@
   },
   "app": {
     "title": "Speech Convert",
-    "copyright": "© Copyright 2024."
+    "copyright": "© Copyright 2024.",
+    "description": "Transform your text and speech into natural conversations effortlessly."
   },
   "header": {
     "speech": "Speech",
@@ -39,7 +40,9 @@
       "convertConversationToSpeech": "Conversation to muti-voice speech",
       "convertSpeechToText": "Speech to text",
       "convertDocumentToText": "File to text",
-      "socialsNetworks": "Social networks"
+      "socialsNetworks": "Social networks",
+      "convertToSpeech": "Convert to speech",
+      "convertToText": "Convert to text"
     }
   },
   "home": {
@@ -100,7 +103,8 @@
         "answer": "You can contact us via email at {email}."
       }
     },
-    "instructionVideo": "Instruction video"
+    "instructionVideo": "Instruction video",
+    "feature": "Features"
   },
   "auth": {
     "signin": "Sign in",

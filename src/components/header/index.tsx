@@ -11,7 +11,7 @@ const DarkModeButton = dynamic(() => import("~/components/header/DarkModeButton"
 
 const Header = () => {
 	return (
-		<div className="border-b -mb-px sticky top-0 lg:!border-transparent dark:bg-slate-950/95 z-30 w-full bg-background/60 border-gray-200 dark:border-gray-800">
+		<div className="md:max-w-screen-xl mx-auto border-b -mb-px sticky top-0 lg:!border-transparent dark:bg-slate-950/95 z-50 w-full bg-background/60 border-gray-200 dark:border-gray-800">
 			<div className="w-full inline-flex items-center gap-3 h-16">
 				<div className="flex flex-1 flex-row items-center">
 					<Logo />

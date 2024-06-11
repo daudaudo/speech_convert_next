@@ -85,9 +85,9 @@ const Footer = () => {
 						</nav>
 					</div>
 					<div className="hidden md:block w-px bg-gray-300 dark:bg-gray-600" />
-					{renderListNavigate(convertToSpeechItems, "Convert to Speech")}
+					{renderListNavigate(convertToSpeechItems, t("footer.directional.convertToSpeech"))}
 					<div className="hidden md:block w-px bg-gray-300 dark:bg-gray-600" />
-					{renderListNavigate(convertToTextItems, "Convert to Text")}
+					{renderListNavigate(convertToTextItems, t("footer.directional.convertToText"))}
 				</div>
 			</div>
 		</div>
