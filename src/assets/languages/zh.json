@@ -1,10 +1,14 @@
 {
-  "errors": {
-    "auth": {}
+  "metadata": {
+    "title": "Speech Convert",
+    "description": "通过Speech Convert将您的文本和语音转换为自然的对话。立即尝试",
+    "keywords": "文本到语音, 语音到文本, 音频转换, 文本到多语音, Speech Convert",
+    "applicationName": "text-to-speech"
   },
   "app": {
     "title": "Speech Convert",
-    "copyright": "© Copyright 2024."
+    "copyright": "© Copyright 2024.",
+    "description": "轻松将您的文本和语音转化为自然对话"
   },
   "header": {
     "speech": "语音",
@@ -39,7 +43,9 @@
       "convertConversationToSpeech": "对话转多声部语音",
       "convertSpeechToText": "语音转文本",
       "convertDocumentToText": "文件到文本",
-      "socialsNetworks": "社交网络"
+      "socialsNetworks": "社交网络",
+      "convertToText": "转换为文本",
+      "convertToSpeech": "转换为语音"
     }
   },
   "home": {
@@ -100,7 +106,8 @@
         "answer": "您可以通过电子邮件 {email} 与我们联系。"
       }
     },
-    "instructionVideo": "教学视频"
+    "instructionVideo": "教学视频",
+    "feature": "特征"
   },
   "auth": {
     "signin": "登录",
