@@ -20,7 +20,7 @@
       "supportUser": "Support",
       "convertTextToSpeech": "Text to speech",
       "convertDocumentToSpeech": "File to speech",
-      "convertConversationToSpeech": "Text to multi-voice-speech",
+      "convertConversationToSpeech": "Text to conversation",
       "convertSpeechToText": "Speech to text",
       "convertDocumentToText": "File to text",
       "convertTextToText": "Translate text",
@@ -33,7 +33,9 @@
       "conversationHistory": "History of conversions to conversation",
       "convertToSpeech": "Convert to speech",
       "speech": "Speech",
-      "text": "Text"
+      "text": "Text",
+      "guild": "Guild",
+      "guide": "Guide"
     }
   },
   "footer": {
@@ -196,7 +198,8 @@
       "name": "Name",
       "delete": "Delete"
     },
-    "conversationPlaceholder": "[John]: Hello Jane!\n[Jane]: Hello John"
+    "conversationPlaceholder": "[John]: Hello Jane!\n[Jane]: Hello John",
+    "conversationGuild": "Hint: Type @ to assign the speaker, type # to assign silence after each sentence"
   },
   "ctt": {
     "record": "Record",

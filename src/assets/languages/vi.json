@@ -20,7 +20,7 @@
       "supportUser": "Hỗ trợ",
       "convertTextToSpeech": "Chuyển văn bản thành giọng nói",
       "convertDocumentToSpeech": "Chuyển đổi tệp thành giọng nói",
-      "convertConversationToSpeech": "Chuyển văn bản sang giọng nói đa giọng nói",
+      "convertConversationToSpeech": "Chuyển văn bản sang hội thoại",
       "convertSpeechToText": "Chuyển giọng nói thành văn bản",
       "convertDocumentToText": "Chuyển đổi tệp thành văn bản",
       "convertTextToText": "Dịch văn bản",
@@ -33,7 +33,8 @@
       "conversationHistory": "Lịch sử chuyển đổi sang cuộc trò chuyện",
       "convertToSpeech": "Chuyển thành giọng nói",
       "speech": "Âm thanh",
-      "text": "Văn bản"
+      "text": "Văn bản",
+      "guide": "Hướng dẫn"
     }
   },
   "footer": {
@@ -196,7 +197,8 @@
       "create": "Tạo",
       "name": "Tên",
       "delete": "Xóa"
-    }
+    },
+    "conversationGuild": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại"
   },
   "ctt": {
     "record": "Ghi âm",

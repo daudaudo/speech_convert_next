@@ -20,7 +20,7 @@
       "supportUser": "支持",
       "convertTextToSpeech": "文字转语音",
       "convertDocumentToSpeech": "文件转语音",
-      "convertConversationToSpeech": "文本转多语音",
+      "convertConversationToSpeech": "将文本转换为对话",
       "convertSpeechToText": "语音转文本",
       "convertDocumentToText": "文件到文本",
       "convertTextToText": "翻译文本",
@@ -33,7 +33,8 @@
       "speechHistory": "音频转换历史",
       "convertToSpeech": "转换为语音",
       "speech": "演讲",
-      "text": "文本"
+      "text": "文本",
+      "guide": "指导"
     }
   },
   "footer": {
@@ -197,7 +198,8 @@
       "name": "姓名",
       "delete": "删除"
     },
-    "conversationPlaceholder": "[张三]: 你好，李四！\n[李四]: 你好，张三"
+    "conversationPlaceholder": "[张三]: 你好，李四！\n[李四]: 你好，张三",
+    "conversationGuild": "提示：输入 @ 指定发言者，输入 # 指定每句话后静音"
   },
   "ctt": {
     "record": "录音",

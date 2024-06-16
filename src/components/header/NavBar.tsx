@@ -91,12 +91,18 @@ const NavBar = () => {
 		{ path: PagePath.textHistory, label: t("textHistory"), iconName: "text" },
 		{ path: PagePath.conversationHistory, label: t("conversationHistory"), iconName: "messages" },
 	];
-
 	return (
 		<nav className="items-center rounded-full transition-transform duration-200 hidden lg:flex px-4">
 			<NavBarItemPopover items={convertToSpeechItems} label={t("speech")} />
 			<NavBarItemPopover items={convertToTextItems} label={t("text")} />
 			<NavBarItemPopover items={historyItems} label={t("history")} />
+			<Link
+				href="https://www.youtube.com/watch?v=pBdVzoHtS3c"
+				target="_blank"
+				className={`px-4 py-2 cursor-pointer font-nomal text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white`}
+			>
+				{t("guide")}
+			</Link>
 		</nav>
 	);
 };

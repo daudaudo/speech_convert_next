@@ -78,6 +78,9 @@ const SignInForm = ({}: Props) => {
 				<h1 className="text-center text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
 					{t("signin")}
 				</h1>
+				<span className="text-center text-xs font-bold text-primary-500 italic">
+					Đăng nhập để sử dụng các chức năng nâng cao
+				</span>
 				{Warning}
 				<form action={action} noValidate className="space-y-4 md:space-y-6">
 					<div>
