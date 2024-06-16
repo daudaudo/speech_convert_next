@@ -1,12 +1,14 @@
 import React from "react";
-import type { Metadata } from "next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Open_Sans } from "next/font/google";
+import { getTranslations } from "next-intl/server";
+import { Metadata } from "next";
 import { ThemeProvider } from "~/contexts/ThemeContext";
 import AuthWrapper from "~/contexts/auth/AuthWrapper";
 import ToastWrapper from "~/contexts/toast/ToastWrapper";
 import LanguageWrapper from "~/contexts/language/LanguageWrapper";
 import { supportedLanguages } from "~/constants/language";
+import { getLocale } from "~/actions/cookies/locale";
 import "~/styles/global.scss";
 
 const inter = Open_Sans({
@@ -14,10 +16,18 @@ const inter = Open_Sans({
 	display: "auto",
 });
 
-export const metadata: Metadata = {
-	title: "Speech Convert",
-	description: "Speech Convert App",
-};
+export async function generateMetadata() {
+	const cookiesLocale = await getLocale();
+	const locale = cookiesLocale ?? "en";
+	const t = await getTranslations({ locale });
+
+	return {
+		title: t("metadata.title"),
+		description: t("metadata.description"),
+		keywords: t("metadata.keywords"),
+		applicationName: t("metadata.applicationName"),
+	} as Metadata;
+}
 
 const RootLayout = async ({ children }: React.PropsWithChildren) => {
 	return (

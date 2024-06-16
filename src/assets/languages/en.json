@@ -1,6 +1,9 @@
 {
-  "errors": {
-    "auth": {}
+  "metadata": {
+    "title": "Speech Convert",
+    "description": "Convert your text and speech into natural conversations with Speech Convert. Try it now!",
+    "keywords": "text to speech, speech to text, audio conversion, text to multi-speech, Speech Convert",
+    "applicationName": "text-to-speech"
   },
   "app": {
     "title": "Speech Convert",

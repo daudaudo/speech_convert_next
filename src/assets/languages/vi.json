@@ -1,6 +1,9 @@
 {
-  "errors": {
-    "auth": {}
+  "metadata": {
+    "title": "Speech Convert",
+    "description": "Chuyển đổi văn bản và giọng nói của bạn thành các cuộc trò chuyện tự nhiên với Speech Convert. Thử ngay bây giờ!",
+    "keywords": "chuyển văn bản thành giọng nói, chuyển giọng nói thành văn bản, chuyển đổi âm thanh, chuyển đổi văn bản thành đa giọng nói, Speech Convert",
+    "applicationName": "text-to-speech"
   },
   "app": {
     "title": "Speech Convert",
