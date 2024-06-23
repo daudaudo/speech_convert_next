@@ -7,12 +7,13 @@ import { Card, Textarea } from "@material-tailwind/react";
 import getConversationHistory from "~/actions/getConversationHistory";
 import { ConversationHistoryItemResponseData } from "~/types/response/history";
 import Pagination from "~/components/base/Pagination";
-import Loading from "~/components/animations/Loading";
+import LoadingData from "~/components/animations/LoadingData";
 import { HistoryConfig } from "~/constants/configs";
 import SvgIcon from "~/components/icon/SvgIcon";
 import formatDate from "~/utils/date";
+import withSuspense from "~/hocs/withSuspense";
 
-const ConversationHistoryPage = () => {
+const HistoryPage = () => {
 	const t = useTranslations("");
 
 	const { DEFAULT_PAGE, DEFAULT_LIMIT } = HistoryConfig;
@@ -142,7 +143,7 @@ const ConversationHistoryPage = () => {
 				<Pagination size={lastPage} initPage={currentPage} onChange={onChangePage} />
 			</div>
 			{pending ? (
-				<Loading />
+				<LoadingData />
 			) : error ? (
 				<div className="text-red-500 text-center p-4">{error}</div>
 			) : (
@@ -151,5 +152,7 @@ const ConversationHistoryPage = () => {
 		</div>
 	);
 };
+
+const ConversationHistoryPage = withSuspense(HistoryPage, <LoadingData />);
 
 export default ConversationHistoryPage;

@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useCallback, useMemo, useState, useTransition } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
+import { v4 as uuidv4 } from "uuid";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
 import CTSNavbar from "~/components/cts/Navbar";
 import type { CTSPartial, User } from "~/types/CTSTypes";
@@ -11,6 +12,7 @@ import ConversationInput from "~/components/page/cts/conversation/ConversationIn
 import convertToConversation from "~/actions/convertToConversation";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import SvgIcon from "~/components/icon/SvgIcon";
+import { OpenAIVoiceId } from "~/enums/openAi";
 
 const ConversationToSpeechPage = () => {
 	const t = useTranslations("cts");
@@ -21,6 +23,7 @@ const ConversationToSpeechPage = () => {
 
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string>("");
+	const initRef = useRef<boolean>(true);
 
 	const [users, setUsers] = useState<User[]>([]);
 	const [partials, setPartials] = useState<CTSPartial[]>([]);
@@ -73,6 +76,16 @@ const ConversationToSpeechPage = () => {
 			});
 		}
 	}, [validated, startTransition, partials]);
+
+	useEffect(() => {
+		if (initRef.current) {
+			setUsers([
+				{ id: uuidv4(), name: "John", voice: OpenAIVoiceId.Alloy },
+				{ id: uuidv4(), name: "Emma", voice: OpenAIVoiceId.Onyx },
+			]);
+			initRef.current = false;
+		}
+	});
 
 	return (
 		<div className="flex-1 w-full h-full inline-flex flex-col">

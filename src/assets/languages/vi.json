@@ -159,7 +159,7 @@
     "fileAccept": "Chấp nhận tệp: {value}",
     "maxFileSize": "Kích thước tệp tối đa là {value}",
     "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo giọng nói của bạn. Điều này có thể mất vài phút.",
-    "conversationPlaceholder": "[Trường]: Chào Thu!\n[Thu]: Chào Trường",
+    "conversationPlaceholder": "[John]: Xin chào! Chào mừng đến với dịch vụ Chuyển Văn Bản thành Hội Thoại từ SpeechConvert. [1s]\n\n[Emma]: Để gán người nói, hãy sử dụng ký hiệu '@'. Để thêm khoảng lặng sau mỗi câu, hãy sử dụng ký hiệu '#'. [3s]\n\n[John]: Nếu bạn cần trợ giúp, hãy nhấp vào nút Hướng Dẫn để được hỗ trợ.",
     "voice": {
       "selectSpeed": "Chọn tốc độ",
       "selectVoice": "Chọn giọng",

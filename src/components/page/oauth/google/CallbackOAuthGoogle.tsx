@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import { signinByGoogle } from "~/actions/signinGoogle";
-import Loading from "~/components/animations/Loading";
+import LoadingPage from "~/components/animations/LoadingPage";
 import { useAuth } from "~/contexts/auth/AuthContext";
 import { useToastMessage } from "~/contexts/toast/ToastWrapper";
 import { PagePath } from "~/enums/path";
@@ -41,7 +41,7 @@ const CallbackOAuthGoogleView = ({}: Props) => {
 
 	return (
 		<div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
-			<Loading />
+			<LoadingPage />
 		</div>
 	);
 };
