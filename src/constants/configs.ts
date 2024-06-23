@@ -10,6 +10,16 @@ const CTSConfig: {
 	maxUserConversation: 5,
 };
 
+const CTTConfig: {
+	maxTextLength?: number;
+	fileAccept?: string[];
+	maxFileSize?: number;
+} = {
+	maxTextLength: 2048,
+	maxFileSize: 10 * 1024 * 1024, // 10MB
+	fileAccept: [".mp3", ".wav", ".occ", ".ogg"],
+};
+
 const HistoryConfig: {
 	DEFAULT_PAGE: number;
 	DEFAULT_LIMIT: number;
@@ -18,4 +28,4 @@ const HistoryConfig: {
 	DEFAULT_LIMIT: 10,
 };
 
-export { CTSConfig, HistoryConfig };
+export { CTSConfig, HistoryConfig, CTTConfig };

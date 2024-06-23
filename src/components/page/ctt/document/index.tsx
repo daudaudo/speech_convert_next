@@ -1,79 +1,74 @@
 "use client";
 
-import React from "react";
-import { useTranslations } from "next-intl";
-import { useConvertToText } from "~/contexts/ConvertToTextContext";
-import { FileSizeUnit } from "~/enums/file";
-import { convertBytes } from "~/utils/file";
+import React, { useState, useTransition } from "react";
+import Navbar from "~/components/ctt/Navbar";
+import CTTOutput from "~/components/ctt/CTTOutput";
+import SelectLanguage from "~/components/ctt/LanguageSelect";
+import SubmitButton from "~/components/ctt/SubmitButton";
 import SvgIcon from "~/components/icon/SvgIcon";
+import FileInput from "~/components/page/ctt/document/FileInput";
+import type { CTTLanguage, CTTOutput as CTTOutputType } from "~/types/CTTTypes";
+import { LanguageCode } from "~/enums/language";
+import convertToText from "~/actions/convertToText";
+import { OpenAITranscriptionModel } from "~/enums/openAi";
 
 const DocumentToTextPage = () => {
-	const t = useTranslations("ctt");
-	const { input, changeInput, config } = useConvertToText();
+	const [pending, startTransition] = useTransition();
+	const [error, setError] = useState<string>("");
 
-	const { fileAccept = [], maxFileSize = 0 } = config;
+	const [file, setFile] = useState<File | null>(null);
+	const [language, setLanguage] = useState<CTTLanguage>(LanguageCode.English);
+	const [output, setOutput] = useState<CTTOutputType | undefined>();
 
-	const onInputFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		if (e.target.files && e.target.files.length > 0) {
-			changeInput(e.target.files[0]);
-		}
-	};
+	const validate = () => !!file;
 
-	const onClickClearFile = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-		changeInput(null);
-		e.preventDefault();
-	};
-
-	const renderFile = () => {
-		const file = input.file as File;
-		if (!file)
-			return (
-				<div className="flex flex-col items-center justify-center pt-5 pb-6">
-					<SvgIcon name="cloud-arrow-up" width={32} height={32} className="text-gray-400 dark:text-gray-300" />
-					<p className="mb-2 text-sm text-gray-500 dark:text-gray-400 text-center">
-						<span className="font-semibold">{t("upload")}</span>
-						<br />
-					</p>
-					<div className="text-xs text-gray-500 dark:text-gray-400">
-						{t("fileAccept", { value: fileAccept.join(", ") })}
-					</div>
-					<div className="text-xs text-center text-gray-500 dark:text-gray-400 mt-1">
-						{t("maxFileSize", { value: convertBytes(maxFileSize, FileSizeUnit.MEGABYTE) })}
-					</div>
-				</div>
-			);
-		return (
-			<div className="flex items-center md:min-w-[200px] space-x-3 max-w-sm md:max-w-sm px-4 py-2 bg-gray-100 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-				<div>
-					<SvgIcon name="file" type="solid" width={32} height={32} className="text-gray-500 dark:text-gray-400" />
-				</div>
-				<div className="truncate">
-					<div className="text-nomal text-gray-700 dark:text-gray-300 truncate">{file.name}</div>
-					<div className="text-sm font-thin text-gray-500 dark:text-gray-400">{file.size} bytes</div>
-				</div>
-			</div>
-		);
+	const requestCreateText = () => {
+		startTransition(async () => {
+			if (validate()) {
+				const formData = new FormData();
+				formData.append("language_code", language);
+				formData.append("model", OpenAITranscriptionModel.Whisper1);
+				formData.append("file", file as File);
+				setOutput(undefined);
+				const res = await convertToText(formData);
+				if (res.error) {
+					setError(res.error);
+				} else {
+					setError("");
+					setOutput(res as CTTOutputType);
+				}
+			}
+		});
 	};
 
 	return (
-		<div>
-			<div className="relative flex items-center justify-center w-full p-6">
-				<label className="flex flex-col items-center rounded-lg justify-center w-full h-64 cursor-pointer border-2 border-dashed dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
-					{!!input.file && (
-						<button
-							onClick={onClickClearFile}
-							className="absolute right-8 top-8 cursor-pointer inline-flex justify-center p-2 text-gray-500 rounded-full"
-						>
-							<SvgIcon name="x-mark" width={20} height={20} />
-						</button>
-					)}
-					{renderFile()}
-					<input type="file" accept={fileAccept.join(",")} onChange={onInputFileChange} className="hidden" />
-				</label>
+		<div className="flex flex-col w-full md:pb-8 mt-4">
+			<div className="shrink-0 items-center top-16 border-b border-gray-50 dark:border-gray-900 bg-gray-50 dark:bg-gray-900 flex mb-1">
+				<div className="flex-1">
+					<Navbar />
+				</div>
+				<div className="shrink-0">
+					<div className="hidden md:inline-flex justify-center p-2 text-gray-500 rounded-full dark:text-gray-400">
+						<SvgIcon name="chevron-double-right" type="solid" width={24} height={24} />
+					</div>
+					<div className="block md:hidden">
+						<SubmitButton validated={!!file} pending={pending} submit={requestCreateText} />
+					</div>
+				</div>
+				<div className="flex-1 flex justify-end w-full">
+					<SelectLanguage language={language} setLanguage={setLanguage} />
+				</div>
 			</div>
-			<div className="w-full px-6 text-sm text-wrap text-primary-500">
-				<SvgIcon name="circle-info" width={16} height={16} />
-				{t("fileInputInfo")}
+			<div className="flex-1 relative grid min-h-96 grid-cols-1 md:grid-cols-2 gap-3 content-stretch">
+				<div className="flex border border-gray-200 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600">
+					<FileInput file={file} setFile={setFile} />
+				</div>
+				<div className="hidden md:block z-10 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 justify-center w-20 h-20 rounded-full bg-gray-50 border border-gray-200 dark:bg-gray-900 dark:border-gray-600 cursor-pointer disabled:cursor-not-allowed">
+					<SubmitButton validated={!!file} pending={pending} submit={requestCreateText} />
+				</div>
+				<div className="relative flex-grow">
+					<CTTOutput output={output} error={error} setError={setError} />
+				</div>
 			</div>
 		</div>
 	);
