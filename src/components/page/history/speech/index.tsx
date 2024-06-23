@@ -5,7 +5,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Card } from "@material-tailwind/react";
 import getSpeechHistory from "~/actions/getSpeechHistory";
-import Loading from "~/components/animations/Loading";
+import LoadingData from "~/components/animations/LoadingData";
 import withSuspense from "~/hocs/withSuspense";
 import Pagination from "~/components/base/Pagination";
 import SvgIcon from "~/components/icon/SvgIcon";
@@ -13,7 +13,7 @@ import formatDate from "~/utils/date";
 import { SpeechHistoryItemResponseData } from "~/types/response/history";
 import { HistoryConfig } from "~/constants/configs";
 
-const SpeechHistoryPage = () => {
+const HistoryPage = () => {
 	const t = useTranslations("history");
 
 	const { DEFAULT_PAGE, DEFAULT_LIMIT } = HistoryConfig;
@@ -101,7 +101,7 @@ const SpeechHistoryPage = () => {
 						</div>
 						<div className="flex-1 p-2 bg-gray-300 dark:bg-gray-600 rounded-lg">
 							<div className="flex flex-row items-center gap-2">
-								<audio controls className="w-full bg-gray-300 dark:bg-gray-600" controlsList="nodownload">
+								<audio controls className="w-full bg-gray-300 dark:bg-gray-600">
 									<source src={download_url} type="audio/mpeg" />
 									Your browser does not support the audio element.
 								</audio>
@@ -130,7 +130,7 @@ const SpeechHistoryPage = () => {
 				<Pagination size={lastPage} initPage={currentPage} onChange={onChangePage} />
 			</div>
 			{pending ? (
-				<Loading />
+				<LoadingData />
 			) : error ? (
 				<div className="text-red-500 text-center p-4">{error}</div>
 			) : (
@@ -140,6 +140,6 @@ const SpeechHistoryPage = () => {
 	);
 };
 
-const HistoryPage = withSuspense(SpeechHistoryPage, <Loading />);
+const SpeechHistoryPage = withSuspense(HistoryPage, <LoadingData />);
 
-export default HistoryPage;
+export default SpeechHistoryPage;

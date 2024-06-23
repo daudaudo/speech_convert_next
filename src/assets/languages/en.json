@@ -42,7 +42,7 @@
     "directional": {
       "convertTextToSpeech": "Text to speech",
       "convertDocumentToSpeech": "File to speech",
-      "convertConversationToSpeech": "Conversation to muti-voice speech",
+      "convertConversationToSpeech": "Text to conversation",
       "convertSpeechToText": "Speech to text",
       "convertDocumentToText": "File to text",
       "socialsNetworks": "Social networks",
@@ -144,10 +144,10 @@
   },
   "history": {
     "history": "History",
-    "convertToSpeech": "Create speech",
-    "convertToText": "Create text",
+    "convertToSpeech": "Audio",
+    "convertToText": "Text",
     "countDisplay": "{from} - {to} / {total}",
-    "convertToConversation": "Convert to conversation"
+    "convertToConversation": "Conversation"
   },
   "cts": {
     "text": "Text",
@@ -198,7 +198,7 @@
       "name": "Name",
       "delete": "Delete"
     },
-    "conversationPlaceholder": "[John]: Hello Jane!\n[Jane]: Hello John",
+    "conversationPlaceholder": "[John]: Hi there! Welcome to Text to Conversation by SpeechConvert. [1s]\n\n[Emma]: To assign a speaker, use the '@' symbol. For adding a pause after a sentence, use the '#' symbol. [3s]\n\n[John]: Need help? Just click the Guide button for assistance.",
     "conversationGuild": "Hint: Type @ to assign the speaker, type # to assign silence after each sentence"
   },
   "ctt": {

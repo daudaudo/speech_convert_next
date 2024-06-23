@@ -2,13 +2,15 @@
 
 import React from "react";
 import { Option, Select } from "@material-tailwind/react";
-import { useConvertToText } from "~/contexts/ConvertToTextContext";
 import { LanguageCode } from "~/enums/language";
 import { Languages, supportedLanguages } from "~/constants/language";
 
-const LanguageSelect = () => {
-	const { setLanguage, language } = useConvertToText();
+interface Props {
+	language: LanguageCode;
+	setLanguage: (language: LanguageCode) => void;
+}
 
+const LanguageSelect = ({ setLanguage, language }: Props) => {
 	const onSelectChange = (value?: string) => {
 		if (!value) return;
 		setLanguage(value as LanguageCode);

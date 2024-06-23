@@ -41,7 +41,7 @@
     "directional": {
       "convertTextToSpeech": "Chuyển văn bản thành giọng nói",
       "convertDocumentToSpeech": "Chuyển tệp thành giọng nói",
-      "convertConversationToSpeech": "Hội thoại bằng nhiều giọng nói",
+      "convertConversationToSpeech": "Chuyển văn bản thành hội thoại",
       "convertSpeechToText": "Chuyển lời nói thành văn bản",
       "convertDocumentToText": "Chuyển tệp thành văn bản",
       "socialsNetworks": "Mạng xã hội",
@@ -143,10 +143,10 @@
   },
   "history": {
     "history": "Lịch sử",
-    "convertToSpeech": "Tạo giọng nói",
-    "convertToText": "Tạo văn bản",
+    "convertToSpeech": "Âm thanh",
+    "convertToText": "Văn bản",
     "countDisplay": "{from} - {to} / {total}",
-    "convertToConversation": "Tạo hội thoại"
+    "convertToConversation": "Hội thoại"
   },
   "cts": {
     "text": "Văn bản",
@@ -159,7 +159,7 @@
     "fileAccept": "Chấp nhận tệp: {value}",
     "maxFileSize": "Kích thước tệp tối đa là {value}",
     "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo giọng nói của bạn. Điều này có thể mất vài phút.",
-    "conversationPlaceholder": "[Trường]: Chào Thu!\n[Thu]: Chào Trường",
+    "conversationPlaceholder": "[John]: Xin chào! Chào mừng đến với dịch vụ Chuyển Văn Bản thành Hội Thoại từ SpeechConvert. [1s]\n\n[Emma]: Để gán người nói, hãy sử dụng ký hiệu '@'. Để thêm khoảng lặng sau mỗi câu, hãy sử dụng ký hiệu '#'. [3s]\n\n[John]: Nếu bạn cần trợ giúp, hãy nhấp vào nút Hướng Dẫn để được hỗ trợ.",
     "voice": {
       "selectSpeed": "Chọn tốc độ",
       "selectVoice": "Chọn giọng",

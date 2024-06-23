@@ -18,7 +18,6 @@ export enum PagePath {
 	// Convert to Text Pages
 	speechToText = "/speech-to-text",
 	documentToText = "/document-to-text",
-	textToText = "/text-to-text",
 
 	// History Page
 	speechHistory = "/history/speech",
@@ -29,7 +28,7 @@ export enum PagePath {
 export const AuthPaths = [PagePath.signin, PagePath.signup];
 export const HomePaths = [PagePath.home];
 export const CTSPaths = [PagePath.textToSpeech, PagePath.documentToSpeech, PagePath.conversationToSpeech];
-export const CTTPaths = [PagePath.speechToText, PagePath.documentToText, PagePath.textToText];
+export const CTTPaths = [PagePath.speechToText, PagePath.documentToText];
 export const HistoryPaths = [PagePath.speechHistory, PagePath.conversationHistory, PagePath.textHistory];
 
 export const isAuthPage = (pathname: string) =>

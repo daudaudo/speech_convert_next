@@ -9,7 +9,7 @@ interface Props {
 	size?: number;
 }
 
-const Loading = ({ size }: Props) => {
+const LoadingPage = ({ size }: Props) => {
 	return (
 		<div>
 			<Player
@@ -22,4 +22,4 @@ const Loading = ({ size }: Props) => {
 	);
 };
 
-export default Loading;
+export default LoadingPage;

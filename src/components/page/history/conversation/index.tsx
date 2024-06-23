@@ -7,12 +7,13 @@ import { Card, Textarea } from "@material-tailwind/react";
 import getConversationHistory from "~/actions/getConversationHistory";
 import { ConversationHistoryItemResponseData } from "~/types/response/history";
 import Pagination from "~/components/base/Pagination";
-import Loading from "~/components/animations/Loading";
+import LoadingData from "~/components/animations/LoadingData";
 import { HistoryConfig } from "~/constants/configs";
 import SvgIcon from "~/components/icon/SvgIcon";
 import formatDate from "~/utils/date";
+import withSuspense from "~/hocs/withSuspense";
 
-const ConversationHistoryPage = () => {
+const HistoryPage = () => {
 	const t = useTranslations("");
 
 	const { DEFAULT_PAGE, DEFAULT_LIMIT } = HistoryConfig;
@@ -107,7 +108,7 @@ const ConversationHistoryPage = () => {
 						</div>
 						<div className="flex-1 p-2 bg-gray-300 dark:bg-gray-600 rounded-lg">
 							<div className="flex flex-row items-center gap-2">
-								<audio controls className="w-full bg-gray-300 dark:bg-gray-600" controlsList="nodownload">
+								<audio controls className="w-full bg-gray-300 dark:bg-gray-600">
 									<source src={audio_url} type="audio/mpeg" />
 									Your browser does not support the audio element.
 								</audio>
@@ -142,7 +143,7 @@ const ConversationHistoryPage = () => {
 				<Pagination size={lastPage} initPage={currentPage} onChange={onChangePage} />
 			</div>
 			{pending ? (
-				<Loading />
+				<LoadingData />
 			) : error ? (
 				<div className="text-red-500 text-center p-4">{error}</div>
 			) : (
@@ -151,5 +152,7 @@ const ConversationHistoryPage = () => {
 		</div>
 	);
 };
+
+const ConversationHistoryPage = withSuspense(HistoryPage, <LoadingData />);
 
 export default ConversationHistoryPage;
