@@ -107,7 +107,7 @@ const ConversationHistoryPage = () => {
 						</div>
 						<div className="flex-1 p-2 bg-gray-300 dark:bg-gray-600 rounded-lg">
 							<div className="flex flex-row items-center gap-2">
-								<audio controls className="w-full bg-gray-300 dark:bg-gray-600" controlsList="nodownload">
+								<audio controls className="w-full bg-gray-300 dark:bg-gray-600">
 									<source src={audio_url} type="audio/mpeg" />
 									Your browser does not support the audio element.
 								</audio>

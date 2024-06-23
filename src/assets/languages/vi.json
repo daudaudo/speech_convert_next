@@ -41,7 +41,7 @@
     "directional": {
       "convertTextToSpeech": "Chuyển văn bản thành giọng nói",
       "convertDocumentToSpeech": "Chuyển tệp thành giọng nói",
-      "convertConversationToSpeech": "Hội thoại bằng nhiều giọng nói",
+      "convertConversationToSpeech": "Chuyển văn bản thành hội thoại",
       "convertSpeechToText": "Chuyển lời nói thành văn bản",
       "convertDocumentToText": "Chuyển tệp thành văn bản",
       "socialsNetworks": "Mạng xã hội",
@@ -143,10 +143,10 @@
   },
   "history": {
     "history": "Lịch sử",
-    "convertToSpeech": "Tạo giọng nói",
-    "convertToText": "Tạo văn bản",
+    "convertToSpeech": "Âm thanh",
+    "convertToText": "Văn bản",
     "countDisplay": "{from} - {to} / {total}",
-    "convertToConversation": "Tạo hội thoại"
+    "convertToConversation": "Hội thoại"
   },
   "cts": {
     "text": "Văn bản",

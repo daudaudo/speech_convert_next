@@ -42,7 +42,7 @@
     "directional": {
       "convertTextToSpeech": "Text to speech",
       "convertDocumentToSpeech": "File to speech",
-      "convertConversationToSpeech": "Conversation to muti-voice speech",
+      "convertConversationToSpeech": "Text to conversation",
       "convertSpeechToText": "Speech to text",
       "convertDocumentToText": "File to text",
       "socialsNetworks": "Social networks",
@@ -144,10 +144,10 @@
   },
   "history": {
     "history": "History",
-    "convertToSpeech": "Create speech",
-    "convertToText": "Create text",
+    "convertToSpeech": "Audio",
+    "convertToText": "Text",
     "countDisplay": "{from} - {to} / {total}",
-    "convertToConversation": "Convert to conversation"
+    "convertToConversation": "Conversation"
   },
   "cts": {
     "text": "Text",
