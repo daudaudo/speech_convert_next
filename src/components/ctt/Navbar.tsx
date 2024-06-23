@@ -15,7 +15,6 @@ const Navbar = () => {
 	const navItems: NavbarItem[] = [
 		{ path: PagePath.speechToText, label: t("record"), iconName: "microphone" },
 		{ path: PagePath.documentToText, label: t("document"), iconName: "file" },
-		// { path: PagePath.textToText, label: t("translation"), iconName: "language" },
 	];
 
 	const renderNavItem = (item: NavbarItem) => {

@@ -42,7 +42,7 @@ const DocumentToTextPage = () => {
 	};
 
 	return (
-		<div className="flex flex-col w-full md:pb-8 mt-4">
+		<div className="flex flex-col w-full md:pb-8 my-4">
 			<div className="shrink-0 items-center top-16 border-b border-gray-50 dark:border-gray-900 bg-gray-50 dark:bg-gray-900 flex mb-1">
 				<div className="flex-1">
 					<Navbar />

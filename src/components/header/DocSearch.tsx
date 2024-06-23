@@ -36,7 +36,6 @@ const DocSearch = () => {
 	const convertToTextItems: NavbarItem[] = [
 		{ path: PagePath.speechToText, label: t("convertSpeechToText"), iconName: "microphone" },
 		{ path: PagePath.documentToText, label: t("convertDocumentToText"), iconName: "file" },
-		// { path: PagePath.textToText, label: t("convertTextToText"), iconName: "language" },
 	];
 
 	const historyItems: NavbarItem[] = [
