@@ -96,6 +96,19 @@ const DocSearch = () => {
 					{renderList(convertToTextItems, t("createText"))}
 					{renderList(historyItems, t("history"))}
 					<div className="w-full text-gray-800 dark:text-gray-100">
+						<span>{t("guild")}</span>
+						<List>
+							<Link href="https://www.youtube.com/watch?v=pBdVzoHtS3c" target="_blank">
+								<ListItem className="text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800">
+									<ListItemPrefix>
+										<SvgIcon name="youtube" width={20} height={20} />
+									</ListItemPrefix>
+									{t("videoGuild")}
+								</ListItem>
+							</Link>
+						</List>
+					</div>
+					<div className="w-full text-gray-800 dark:text-gray-100">
 						<span>{t("theme")}</span>
 						<List>
 							<ListItem
