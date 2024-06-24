@@ -81,7 +81,7 @@ const ConversationToSpeechPage = () => {
 		if (initRef.current) {
 			setUsers([
 				{ id: uuidv4(), name: "John", voice: OpenAIVoiceId.Alloy },
-				{ id: uuidv4(), name: "Emma", voice: OpenAIVoiceId.Onyx },
+				{ id: uuidv4(), name: "Emma", voice: OpenAIVoiceId.Shimmer },
 			]);
 			initRef.current = false;
 		}

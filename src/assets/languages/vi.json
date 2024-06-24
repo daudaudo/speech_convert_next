@@ -34,7 +34,8 @@
       "convertToSpeech": "Chuyển thành giọng nói",
       "speech": "Âm thanh",
       "text": "Văn bản",
-      "guide": "Hướng dẫn"
+      "guide": "Hướng dẫn",
+      "videoGuild": "Video hướng dẫn"
     }
   },
   "footer": {

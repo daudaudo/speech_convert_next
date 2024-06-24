@@ -34,7 +34,8 @@
       "convertToSpeech": "转换为语音",
       "speech": "演讲",
       "text": "文本",
-      "guide": "指导"
+      "guide": "指导",
+      "videoGuild": "导览视频"
     }
   },
   "footer": {

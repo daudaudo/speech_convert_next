@@ -35,7 +35,8 @@
       "speech": "Speech",
       "text": "Text",
       "guild": "Guild",
-      "guide": "Guide"
+      "guide": "Guide",
+      "videoGuild": "Guide video"
     }
   },
   "footer": {
