@@ -35,7 +35,9 @@
       "speech": "演讲",
       "text": "文本",
       "guide": "指导",
-      "videoGuild": "导览视频"
+      "videoGuild": "导览视频",
+      "guild": "指导",
+      "videoGuide": "导览视频"
     }
   },
   "footer": {
@@ -200,7 +202,10 @@
       "delete": "删除"
     },
     "conversationPlaceholder": "[John]: 你好！欢迎使用 SpeechConvert 的文字转换对话服务。 [1s]\n\n[Emma]: 使用 '@' 符号来指定说话者，使用 '#' 符号在每句后添加停顿。[3s]\n\n[John]: 需要帮助吗？点击指南按钮获取更多帮助。",
-    "conversationGuild": "提示：输入 @ 指定发言者，输入 # 指定每句话后静音"
+    "conversationGuide": "提示：输入 @ 指定发言者，输入 # 指定每句话后静音",
+    "conversationError": {
+      "noUser": "您忘记指定说话者了。请使用 '@' 符号来指定说话者再继续。说话者的格式应为 [名字]，例如：[John]。"
+    }
   },
   "ctt": {
     "record": "录音",

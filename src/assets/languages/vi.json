@@ -35,7 +35,9 @@
       "speech": "Âm thanh",
       "text": "Văn bản",
       "guide": "Hướng dẫn",
-      "videoGuild": "Video hướng dẫn"
+      "videoGuild": "Video hướng dẫn",
+      "guild": "Hướng dẫn",
+      "videoGuide": "Video hướng dẫn"
     }
   },
   "footer": {
@@ -199,7 +201,10 @@
       "name": "Tên",
       "delete": "Xóa"
     },
-    "conversationGuild": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại"
+    "conversationGuide": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại",
+    "conversationError": {
+      "noUser": "Bạn đã quên gán người nói. Vui lòng sử dụng ký hiệu '@' để chỉ định người nói trước khi tiếp tục. Người nói phải được đặt trong định dạng [Tên], ví dụ: [John]."
+    }
   },
   "ctt": {
     "record": "Ghi âm",

@@ -61,12 +61,16 @@ const ConversationToSpeechPage = () => {
 			startTransition(async () => {
 				try {
 					setOutput(undefined);
-					const res = await convertToConversation(partials);
-					if ("error" in res) {
-						setError(res.error);
+					if (partials.length === 0) {
+						setError(t("conversationError.noUser"));
 					} else {
-						setOutput(res);
-						clearError();
+						const res = await convertToConversation(partials);
+						if ("error" in res) {
+							setError(res.error);
+						} else {
+							setOutput(res);
+							clearError();
+						}
 					}
 				} catch (error) {
 					if (error instanceof Error) {
@@ -104,7 +108,7 @@ const ConversationToSpeechPage = () => {
 			<div className="flex-1 w-full p-1 flex flex-col">
 				{error ? (
 					<div className="text-red-500 p-4 text-sm">
-						<div className="flex flex-row gap-2 items-center min-h-96">
+						<div className="flex flex-row gap-2 items-center">
 							<button
 								onClick={clearError}
 								className="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-full text-xs gap-x-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 underline-offset-4 hover:underline focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
@@ -119,7 +123,7 @@ const ConversationToSpeechPage = () => {
 				)}
 			</div>
 			<div className="w-full flex justify-between items-center h-12 bg-gray-50 dark:bg-gray-900 px-4">
-				<span className="text-xs text-primary-500">{t("conversationGuild")}</span>
+				<span className="text-xs text-primary-500">{t("conversationGuide")}</span>
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>
 		</div>
