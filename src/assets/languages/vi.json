@@ -199,7 +199,15 @@
       "selectQuality": "Chọn chất lượng",
       "create": "Tạo",
       "name": "Tên",
-      "delete": "Xóa"
+      "delete": "Xóa",
+      "voiceProvider": {
+        "openai": {
+          "name": "Giọng OpenAI"
+        },
+        "google_cloud": {
+          "name": "Giọng google"
+        }
+      }
     },
     "conversationGuide": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại",
     "conversationError": {

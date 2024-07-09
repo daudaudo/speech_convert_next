@@ -1,4 +1,5 @@
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
+import { VoiceProvider } from "~/enums/voice";
 
 type User = {
 	id: string;
@@ -17,4 +18,6 @@ type CTSModel = OpenAITTSModel;
 
 type CTSVoiceId = OpenAIVoiceId;
 
-export type { User, CTSPartial, CTSModel, CTSVoiceId };
+type CTSVoiceProvider = VoiceProvider;
+
+export type { User, CTSPartial, CTSModel, CTSVoiceId, CTSVoiceProvider };

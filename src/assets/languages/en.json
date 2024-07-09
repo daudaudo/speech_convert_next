@@ -169,6 +169,14 @@
       "HDQuality": "HD quality",
       "voice": "Voice",
       "save": "Save",
+      "voiceProvider": {
+        "google_cloud": {
+          "name": "Google voice"
+        },
+        "openai": {
+          "name": "OpenAI voice"
+        }
+      },
       "openAIVoice": {
         "alloy": {
           "name": "Alloy",

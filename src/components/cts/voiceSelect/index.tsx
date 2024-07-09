@@ -1,21 +1,24 @@
 "use client";
 
-import { Button, Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
+import { Button, ButtonGroup, Dialog, DialogBody, DialogFooter } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
 import React, { useState } from "react";
-import { OpenAIVoiceId } from "~/enums/openAi";
-import { CTSVoiceId } from "~/types/CTSTypes";
+import { CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
 import SvgIcon from "~/components/icon/SvgIcon";
+import { VoiceProvider } from "~/enums/voice";
+import OpenAIVoiceMenu from "~/components/cts/voiceSelect/OpenAIVoiceMenu";
+import GoogleVoiceMenu from "~/components/cts/voiceSelect/GoogleVoiceMenu";
 
 interface Props {
 	value: CTSVoiceId;
-	onChange: (value: CTSVoiceId) => void;
+	onChange: (id: CTSVoiceId, provider: CTSVoiceProvider) => void;
 }
 
 const VoiceSelect = ({ value, onChange }: Props) => {
 	const t = useTranslations("cts.voice");
 	const [open, setOpen] = useState<boolean>(false);
 
+	const [provider, setProvider] = useState(VoiceProvider.OPEN_AI);
 	const [voice, setVoice] = useState(value);
 
 	const onToggleOpen = () => {
@@ -23,28 +26,34 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 	};
 
 	const onClickSave = () => {
-		onChange(voice);
+		onChange(voice, provider);
 		setOpen(false);
 	};
 
-	const renderVoice = (id: CTSVoiceId) => {
-		const name = t(`openAIVoice.${id}.name`);
-		const description = t(`openAIVoice.${id}.description`);
-		const selected = id === voice;
+	const renderProvider = (id: CTSVoiceProvider) => {
+		const name = t(`voiceProvider.${id}.name`);
+		const selected = id === provider;
 		return (
-			<button
-				key={id}
-				onClick={() => setVoice(id)}
-				className={`inline-flex items-center cursor-pointer pr-6 pl-4 py-2 border-b dark:border-t-gray-800 dark:hover:bg-gray-800 ${selected ? "bg-gray-100/80 hover:bg-gray-100 dark:bg-gray-800 border-l-2 border-l-primary-600 rounded-l-lg" : ""}`}
+			<Button
+				variant="text"
+				size="sm"
+				onClick={() => setProvider(id)}
+				className={`rounded-lg flex-1 shadow-none bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:shadow-none border-none ${selected ? "bg-primary-200 dark:bg-primary-800" : ""}`}
 			>
-				<div className="flex items-start gap-2.5 w-full">
-					<div className="flex flex-col items-start gap-1 flex-1">
-						<span className="text-sm font-semibold text-gray-900 dark:text-white">{name}</span>
-						<span className="text-xs font-normal text-gray-500 dark:text-gray-400">{description}</span>
-					</div>
-				</div>
-			</button>
+				{name}
+			</Button>
 		);
+	};
+
+	const renderListVoice = () => {
+		switch (provider) {
+			case VoiceProvider.GOOGLE:
+				return <GoogleVoiceMenu onClick={setVoice} selectedVoice={voice} />;
+			case VoiceProvider.OPEN_AI:
+				return <OpenAIVoiceMenu onClick={setVoice} selectedVoice={voice} />;
+			default:
+				return null;
+		}
 	};
 
 	return (
@@ -66,12 +75,11 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 						<SvgIcon name="circle-x" type="outline" width={24} height={24} />
 					</button>
 					<div className="text-gray-700 dark:text-gray-300 py-4">{t("selectVoice")}</div>
-					{renderVoice(OpenAIVoiceId.Alloy)}
-					{renderVoice(OpenAIVoiceId.Echo)}
-					{renderVoice(OpenAIVoiceId.Fable)}
-					{renderVoice(OpenAIVoiceId.Onyx)}
-					{renderVoice(OpenAIVoiceId.Nova)}
-					{renderVoice(OpenAIVoiceId.Shimmer)}
+					<ButtonGroup className="gap-1 rounded-lg bg-gray-100 dark:bg-gray-800 p-2 my-1">
+						{renderProvider(VoiceProvider.GOOGLE)}
+						{renderProvider(VoiceProvider.OPEN_AI)}
+					</ButtonGroup>
+					<div className="flex flex-col h-96 overflow-y-auto">{renderListVoice()}</div>
 				</DialogBody>
 				<DialogFooter className="flex justify-end px-6 py-4">
 					<button

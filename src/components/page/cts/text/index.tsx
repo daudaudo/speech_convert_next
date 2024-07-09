@@ -5,14 +5,15 @@ import { useTranslations } from "next-intl";
 import ModelSelect from "~/components/cts/ModelSelect";
 import CTSNavbar from "~/components/cts/Navbar";
 import SpeedSelect from "~/components/cts/SpeedSelect";
-import VoiceSelect from "~/components/cts/VoiceSelect";
+import VoiceSelect from "~/components/cts/voiceSelect";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
-import type { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
+import type { CTSModel, CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import convertToSpeech from "~/actions/convertToSpeech";
 import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { CTSConfig } from "~/constants/configs";
 import SvgIcon from "~/components/icon/SvgIcon";
+import { VoiceProvider } from "~/enums/voice";
 
 const TextToSpeechPage = () => {
 	const t = useTranslations("cts");
@@ -25,7 +26,10 @@ const TextToSpeechPage = () => {
 	const [error, setError] = useState<string>("");
 
 	const [text, setText] = useState<string>("");
-	const [voiceId, setVoiceId] = useState<CTSVoiceId>(OpenAIVoiceId.Alloy);
+	const [voice, setVoice] = useState<{
+		id: CTSVoiceId;
+		provider: CTSVoiceProvider;
+	}>({ id: OpenAIVoiceId.Alloy, provider: VoiceProvider.OPEN_AI });
 	const [speed, setSpeed] = useState<number>(1);
 	const [model, setModel] = useState<CTSModel>(OpenAITTSModel.TTS1);
 
@@ -43,15 +47,25 @@ const TextToSpeechPage = () => {
 		return text.length > 0;
 	}, [text]);
 
+	const buildFormData = useCallback(() => {
+		const formData = new FormData();
+		formData.append("provider", voice.provider);
+		if (voice.provider === VoiceProvider.OPEN_AI) {
+			formData.append("voice", voice.id);
+			formData.append("model", model);
+		} else if (voice.provider === VoiceProvider.GOOGLE) {
+			formData.append("voice_name", voice.id);
+		}
+		formData.append("speed", speed.toString());
+		formData.append("input", text);
+		return formData;
+	}, [voice, model, speed, text]);
+
 	const onCreateSpeech = useCallback(() => {
 		if (validated) {
 			startTransition(async () => {
 				try {
-					const formData = new FormData();
-					formData.append("voice", voiceId);
-					formData.append("model", model);
-					formData.append("speed", speed.toString());
-					formData.append("input", text);
+					const formData = buildFormData();
 					setOutput(undefined);
 					const res = await convertToSpeech(formData);
 					if ("error" in res) {
@@ -67,7 +81,7 @@ const TextToSpeechPage = () => {
 				}
 			});
 		}
-	}, [validated, startTransition, voiceId, model, speed, text, setOutput, clearError]);
+	}, [validated, startTransition, buildFormData, clearError]);
 
 	return (
 		<div className="flex-1 w-full h-full inline-flex flex-col">
@@ -76,7 +90,7 @@ const TextToSpeechPage = () => {
 				<span className="inline-flex gap-1 mt-2 md:mt-0">
 					<SpeedSelect value={speed} onChange={setSpeed} />
 					<ModelSelect value={model} onChange={setModel} />
-					<VoiceSelect value={voiceId} onChange={setVoiceId} />
+					<VoiceSelect value={voice.id} onChange={(id, provider) => setVoice({ id, provider })} />
 				</span>
 			</div>
 			<div className="relative flex-1 w-full flex flex-col">

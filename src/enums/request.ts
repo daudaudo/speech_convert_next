@@ -23,6 +23,8 @@ enum RequestUrl {
 	speechHistory = "audio/speech/history",
 	textHistory = "audio/transcriptions/history",
 	conversationHistory = "audio/conversations/history",
+	// reference
+	referenceGoogleVoice = "reference/google_cloud_voices",
 }
 
 export { RequestMethod, RequestUrl };
