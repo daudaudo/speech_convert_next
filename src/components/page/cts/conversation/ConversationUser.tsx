@@ -36,7 +36,8 @@ const User = ({ user, update, remove }: UserProps) => {
 					>
 						<span className="font-semibold text-gray-800 dark:text-gray-200">{user.name}</span>
 						{!open && (
-							<button
+							<div
+								role="presentation"
 								onClick={deleteUser}
 								className="p-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full inline-flex items-center justify-center bg-gray-300 dark:bg-gray-700"
 							>
@@ -47,7 +48,7 @@ const User = ({ user, update, remove }: UserProps) => {
 									height={12}
 									className="text-gray-700 dark:text-gray-300"
 								/>
-							</button>
+							</div>
 						)}
 					</Button>
 				</div>
