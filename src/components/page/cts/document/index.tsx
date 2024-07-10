@@ -12,15 +12,14 @@ import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
 import type { CTSModel, CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import convertToSpeech from "~/actions/convertToSpeech";
-import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import { CTSConfig } from "~/constants/configs";
 import SvgIcon from "~/components/icon/SvgIcon";
 import { VoiceProvider } from "~/enums/voice";
+import { SpeechResponseData } from "~/types/response/cts";
+import AudioPlayer from "~/components/base/AudioPlayer";
 
 const DocumentToSpeechPage = () => {
 	const t = useTranslations("cts");
-
-	const { setOutput } = useConvertToSpeech();
 
 	const { fileAccept, maxFileSize } = CTSConfig;
 
@@ -34,6 +33,7 @@ const DocumentToSpeechPage = () => {
 	}>({ id: OpenAIVoiceId.Alloy, provider: VoiceProvider.OPEN_AI });
 	const [speed, setSpeed] = useState<number>(1);
 	const [model, setModel] = useState<CTSModel>(OpenAITTSModel.TTS1);
+	const [output, setOutput] = useState<SpeechResponseData | undefined>(undefined);
 
 	const clearError = useCallback(() => setError(""), []);
 
@@ -159,6 +159,14 @@ const DocumentToSpeechPage = () => {
 			<div className="w-full flex justify-end items-center h-12 bg-gray-50 dark:bg-gray-900 px-4">
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>
+			{output && (
+				<div className="w-full flex items-center p-1 bg-gray-50 dark:bg-gray-900 px-4 gap-2 border-t-2 border-dashed border-gray-300 dark:border-gray-700">
+					<a href={output.download_url} className="text-gray-700 dark:text-gray-200">
+						<SvgIcon name="arrow-down-to-bracket" type="solid" width={24} height={24} />
+					</a>
+					<AudioPlayer src={output.download_url} />
+				</div>
+			)}
 		</div>
 	);
 };

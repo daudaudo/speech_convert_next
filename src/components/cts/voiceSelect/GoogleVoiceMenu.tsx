@@ -68,7 +68,7 @@ const GoogleVoiceMenu = ({ onClick, selectedVoice }: Props) => {
 						<div className="flex items-start gap-2.5 w-full">
 							<div className="flex flex-col items-start gap-1 flex-1">
 								<span className="text-sm font-semibold text-gray-900 dark:text-white">
-									{capitalizeFirstLetter(voiceLang)}
+									{capitalizeFirstLetter(name)}
 								</span>
 								<span className="text-xs font-normal text-gray-500 dark:text-gray-400">
 									{capitalizeFirstLetter(ssmlGender)}, {capitalizeFirstLetter(voiceType)}

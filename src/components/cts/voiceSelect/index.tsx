@@ -64,7 +64,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 				className="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-75 flex items-center gap-2"
 			>
 				<SvgIcon name="volume-high" type="solid" width={24} height={24} />
-				{t(`openAIVoice.${value}.name`)}
+				{value}
 			</Button>
 			<Dialog open={open} handler={onToggleOpen} className="bg-white dark:bg-gray-900">
 				<DialogBody className="relative px-6 py-4 flex flex-col">

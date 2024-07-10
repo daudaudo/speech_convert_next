@@ -10,14 +10,13 @@ import ConversationUser from "~/components/page/cts/conversation/ConversationUse
 import { CTSConfig } from "~/constants/configs";
 import ConversationInput from "~/components/page/cts/conversation/ConversationInput";
 import convertToConversation from "~/actions/convertToConversation";
-import { useConvertToSpeech } from "~/contexts/ConvertToSpeechContext";
 import SvgIcon from "~/components/icon/SvgIcon";
 import { OpenAIVoiceId } from "~/enums/openAi";
+import { ConversationResponseData } from "~/types/response/cts";
+import AudioPlayer from "~/components/base/AudioPlayer";
 
 const ConversationToSpeechPage = () => {
 	const t = useTranslations("cts");
-
-	const { setOutput } = useConvertToSpeech();
 
 	const { maxUserConversation } = CTSConfig;
 
@@ -27,6 +26,7 @@ const ConversationToSpeechPage = () => {
 
 	const [users, setUsers] = useState<User[]>([]);
 	const [partials, setPartials] = useState<CTSPartial[]>([]);
+	const [output, setOutput] = useState<ConversationResponseData | undefined>(undefined);
 
 	const clearError = useCallback(() => setError(""), []);
 
@@ -126,6 +126,14 @@ const ConversationToSpeechPage = () => {
 				<span className="text-xs text-primary-500">{t("conversationGuide")}</span>
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>
+			{output && (
+				<div className="w-full flex items-center p-1 bg-gray-50 dark:bg-gray-900 px-4 gap-2 border-t-2 border-dashed border-gray-300 dark:border-gray-700">
+					<a href={output.audio_url} className="text-gray-700 dark:text-gray-200">
+						<SvgIcon name="arrow-down-to-bracket" type="solid" width={24} height={24} />
+					</a>
+					<AudioPlayer src={output.audio_url} />
+				</div>
+			)}
 		</div>
 	);
 };
