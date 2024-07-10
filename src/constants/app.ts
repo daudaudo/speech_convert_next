@@ -1,7 +1,7 @@
 import { SvgName } from "~/components/icon/svg";
 
 const ContactEmail = process.env.CONTACT_EMAIL;
-const InstructionVideoId = "pBdVzoHtS3c";
+const InstructionVideoId = "RBaEKH_h-xA";
 
 const SOCIAL_NETWORKS: { name: string; url: string; icon: SvgName }[] = [
 	// { name: "Facebook", url: "https://www.facebook.com/", icon: "facebook" },

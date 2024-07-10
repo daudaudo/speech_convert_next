@@ -3,7 +3,6 @@
 import React from "react";
 import H5AudioPlayer from "react-h5-audio-player";
 import { AUDIO_PRELOAD_ATTRIBUTE } from "react-h5-audio-player/lib/constants";
-import "react-h5-audio-player/lib/styles.css";
 
 interface AudioPlayerProps {
 	// Controls Props
@@ -45,7 +44,9 @@ interface AudioPlayerProps {
 
 const AudioPlayer: React.FC<AudioPlayerProps> = (props: AudioPlayerProps) => {
 	const { autoPlay = true, src, volume = 0.8, ...restProps } = props;
-	return <H5AudioPlayer autoPlay={autoPlay} src={src} volume={volume} {...restProps} />;
+	return (
+		<H5AudioPlayer autoPlay={autoPlay} src={src} volume={volume} className="audioPlayer rounded-lg" {...restProps} />
+	);
 };
 
 export default AudioPlayer;

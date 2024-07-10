@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { useTranslations } from "next-intl";
 import { v4 as uuidv4 } from "uuid";
 import type { CTSVoiceId, User } from "~/types/CTSTypes";
-import VoiceSelect from "~/components/cts/VoiceSelect";
+import VoiceSelect from "~/components/cts/voiceSelect";
 import { OpenAIVoiceId } from "~/enums/openAi";
 
 interface Props {

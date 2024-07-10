@@ -34,9 +34,10 @@
       "convertToSpeech": "Convert to speech",
       "speech": "Speech",
       "text": "Text",
-      "guild": "Guild",
+      "guild": "Guide",
       "guide": "Guide",
-      "videoGuild": "Guide video"
+      "videoGuild": "Guide video",
+      "videoGuide": "Guide video"
     }
   },
   "footer": {
@@ -168,6 +169,14 @@
       "HDQuality": "HD quality",
       "voice": "Voice",
       "save": "Save",
+      "voiceProvider": {
+        "google_cloud": {
+          "name": "Google voice"
+        },
+        "openai": {
+          "name": "OpenAI voice"
+        }
+      },
       "openAIVoice": {
         "alloy": {
           "name": "Alloy",
@@ -200,7 +209,10 @@
       "delete": "Delete"
     },
     "conversationPlaceholder": "[John]: Hi there! Welcome to Text to Conversation by SpeechConvert. [1s]\n\n[Emma]: To assign a speaker, use the '@' symbol. For adding a pause after a sentence, use the '#' symbol. [3s]\n\n[John]: Need help? Just click the Guide button for assistance.",
-    "conversationGuild": "Hint: Type @ to assign the speaker, type # to assign silence after each sentence"
+    "conversationGuide": "Hint: Type @ to assign the speaker, type # to assign silence after each sentence",
+    "conversationError": {
+      "noUser": "You forgot to assign a speaker. Please use the '@' symbol to designate the speaker before continuing. The speaker should be in the format [Name], for example: [John]."
+    }
   },
   "ctt": {
     "record": "Record",

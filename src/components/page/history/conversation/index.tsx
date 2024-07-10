@@ -14,7 +14,7 @@ import formatDate from "~/utils/date";
 import withSuspense from "~/hocs/withSuspense";
 
 const HistoryPage = () => {
-	const t = useTranslations("");
+	const t = useTranslations("history");
 
 	const { DEFAULT_PAGE, DEFAULT_LIMIT } = HistoryConfig;
 
@@ -93,7 +93,7 @@ const HistoryPage = () => {
 										<Textarea
 											readOnly
 											value={text}
-											label={`${t(`cts.voice.openAIVoice.${voice}.name`)}${silent ? ` +${silent}s` : ""}`}
+											label={`${voice}${silent ? ` +${silent}s` : ""}`}
 											labelProps={{ className: "text-pink-200" }}
 											className="!min-h-0 w-full text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-800 !cursor-default"
 										/>
@@ -135,7 +135,7 @@ const HistoryPage = () => {
 			<div className="flex justify-between px-2">
 				{from !== to && total > 1 ? (
 					<span className="inline-flex font-semibold text-gray-500 items-center ">
-						{t("history.countDisplay", { from, to, total })}
+						{t("countDisplay", { from, to, total })}
 					</span>
 				) : (
 					<div />
