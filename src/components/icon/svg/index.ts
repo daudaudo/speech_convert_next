@@ -42,6 +42,7 @@ import VolumeHighOutline from "~/components/icon/svg/outline/VolumeHigh";
 import Facebook from "~/components/icon/svg/app/Facebook";
 import Youtube from "~/components/icon/svg/app/Youtube";
 import Mail from "~/components/icon/svg/app/Mail";
+import Search from "~/components/icon/svg/solid/Search";
 
 const IconsMap = {
 	app: {
@@ -94,6 +95,7 @@ const IconsMap = {
 		microphone: MicrophoneSolid,
 		language: LanguageSolid,
 		bars: BarsSolid,
+		search: Search,
 	},
 };
 

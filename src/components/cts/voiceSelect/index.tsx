@@ -10,6 +10,7 @@ import OpenAIVoiceMenu from "~/components/cts/voiceSelect/OpenAIVoiceMenu";
 import GoogleVoiceMenu from "~/components/cts/voiceSelect/GoogleVoiceMenu";
 import { capitalizeFirstLetter } from "~/utils/string";
 import { OpenAIVoiceId } from "~/enums/openAi";
+import SearchInput from "~/components/base/SearchInput";
 
 interface Props {
 	value: CTSVoiceId;
@@ -22,6 +23,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 
 	const [provider, setProvider] = useState(VoiceProvider.OPEN_AI);
 	const [voice, setVoice] = useState(value);
+	const [searchText, setSearchText] = useState<string>("");
 
 	const onToggleOpen = () => {
 		setOpen((prev) => !prev);
@@ -50,9 +52,9 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 	const renderListVoice = () => {
 		switch (provider) {
 			case VoiceProvider.GOOGLE:
-				return <GoogleVoiceMenu onClick={setVoice} selectedVoice={voice} />;
+				return <GoogleVoiceMenu onClick={setVoice} selectedVoice={voice} searchText={searchText} />;
 			case VoiceProvider.OPEN_AI:
-				return <OpenAIVoiceMenu onClick={setVoice} selectedVoice={voice as OpenAIVoiceId} />;
+				return <OpenAIVoiceMenu onClick={setVoice} selectedVoice={voice as OpenAIVoiceId} searchText={searchText} />;
 			default:
 				return null;
 		}
@@ -69,7 +71,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 				{capitalizeFirstLetter(value)}
 			</Button>
 			<Dialog open={open} handler={onToggleOpen} className="bg-white dark:bg-gray-900">
-				<DialogBody className="relative px-6 py-4 flex flex-col">
+				<DialogBody className="relative px-6 py-4 flex flex-col gap-2">
 					<button
 						onClick={onToggleOpen}
 						className="absolute rounded-full right-6 top-6 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
@@ -81,6 +83,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 						{renderProvider(VoiceProvider.GOOGLE)}
 						{renderProvider(VoiceProvider.OPEN_AI)}
 					</ButtonGroup>
+					<SearchInput value={searchText} onSearchChange={setSearchText} />
 					<div className="flex flex-col h-96 overflow-y-auto">{renderListVoice()}</div>
 				</DialogBody>
 				<DialogFooter className="flex justify-end px-6 py-4">

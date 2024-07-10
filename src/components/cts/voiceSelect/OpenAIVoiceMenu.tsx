@@ -1,10 +1,10 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import React from "react";
+import React, { useMemo } from "react";
 import { OpenAIVoiceId } from "~/enums/openAi";
 
-const OpenAIVoice = [
+const OpenAIVoices = [
 	OpenAIVoiceId.Alloy,
 	OpenAIVoiceId.Echo,
 	OpenAIVoiceId.Fable,
@@ -16,10 +16,19 @@ const OpenAIVoice = [
 interface Props {
 	onClick: (id: OpenAIVoiceId) => void;
 	selectedVoice?: OpenAIVoiceId;
+	searchText?: string;
 }
 
-const OpenAIVoiceMenu = ({ onClick, selectedVoice }: Props) => {
+const OpenAIVoiceMenu = ({ onClick, selectedVoice, searchText }: Props) => {
 	const t = useTranslations("cts.voice.openAIVoice");
+
+	const voicesDisplay = useMemo(() => {
+		if (searchText)
+			return OpenAIVoices.filter((voice) => {
+				return voice.searchIn(searchText);
+			});
+		return OpenAIVoices;
+	}, [searchText]);
 
 	const renderVoice = (id: OpenAIVoiceId) => {
 		const name = t(`${id}.name`);
@@ -40,7 +49,8 @@ const OpenAIVoiceMenu = ({ onClick, selectedVoice }: Props) => {
 			</button>
 		);
 	};
-	return <>{OpenAIVoice.map(renderVoice)}</>;
+
+	return <>{voicesDisplay.map(renderVoice)}</>;
 };
 
 export default OpenAIVoiceMenu;
