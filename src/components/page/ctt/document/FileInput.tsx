@@ -67,11 +67,11 @@ const FileInput = ({ file, setFile }: Props) => {
 							onClick={onClickClearFile}
 							className="absolute right-8 top-8 cursor-pointer inline-flex justify-center p-2 text-gray-500 rounded-full"
 						>
-							<SvgIcon name="x-mark" width={20} height={20} />
+							<SvgIcon name="x-mark" type="solid" width={20} height={20} />
 						</button>
 					)}
 					{renderFile()}
-					<input type="file" accept={fileAccept.join(",")} onChange={onInputFileChange} className="hidden" />
+					{!file && <input type="file" accept={fileAccept.join(",")} onChange={onInputFileChange} className="hidden" />}
 				</label>
 			</div>
 			<div className="w-full px-6 text-sm text-wrap text-primary-500">

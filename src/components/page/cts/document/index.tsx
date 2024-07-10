@@ -24,7 +24,7 @@ const DocumentToSpeechPage = () => {
 	const { fileAccept, maxFileSize } = CTSConfig;
 
 	const [pending, startTransition] = useTransition();
-	const [, setError] = useState<string>("");
+	const [error, setError] = useState<string>("");
 
 	const [file, setFile] = useState<File | null>(null);
 	const [voice, setVoice] = useState<{
@@ -134,28 +134,44 @@ const DocumentToSpeechPage = () => {
 					<VoiceSelect value={voice.id} onChange={(id, provider) => setVoice({ id, provider })} />
 				</span>
 			</div>
-			<div className="flex-1 w-full">
-				<div className="relative flex items-center justify-center w-full p-6">
-					<label className="flex flex-col items-center rounded-lg justify-center w-full h-64 cursor-pointer border-2 border-dashed dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
-						{!!file && (
-							<button
-								onClick={onClickClearFile}
-								className="absolute right-8 top-8 cursor-pointer inline-flex justify-center p-2 text-gray-500 rounded-full"
-							>
-								<SvgIcon name="x-mark" type="solid" width={20} height={20} />
-							</button>
-						)}
-						{renderFile()}
-						<input type="file" accept={fileAccept.join(", ")} onChange={onInputFileChange} className="hidden" />
-					</label>
-				</div>
-				<div className="flex flex-col w-full px-6 text-sm0">
-					<div className="flex flex-row items-center gap-1 text-primary-500">
-						<SvgIcon name="circle-info" type="solid" width={16} height={16} />
-						<div>{t("fileInputInfo")}</div>
+			{error ? (
+				<div className="text-red-500 p-4 text-sm">
+					<div className="flex flex-row gap-2 items-center">
+						<button
+							onClick={clearError}
+							className="focus:outline-none focus-visible:outline-0 disabled:cursor-not-allowed disabled:opacity-75 flex-shrink-0 font-medium rounded-full text-xs gap-x-1.5 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 underline-offset-4 hover:underline focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 inline-flex items-center"
+						>
+							<SvgIcon name="circle-x" type="outline" width={16} height={16} />
+						</button>
+						<span>{t("textError", { error })}</span>
 					</div>
 				</div>
-			</div>
+			) : (
+				<div className="flex-1 w-full">
+					<div className="relative flex items-center justify-center w-full p-6">
+						<label className="flex flex-col items-center rounded-lg justify-center w-full h-64 cursor-pointer border-2 border-dashed dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800">
+							{!!file && (
+								<button
+									onClick={onClickClearFile}
+									className="absolute right-8 top-8 cursor-pointer inline-flex justify-center p-2 text-gray-500 rounded-full"
+								>
+									<SvgIcon name="x-mark" type="solid" width={20} height={20} />
+								</button>
+							)}
+							{renderFile()}
+							{!file && (
+								<input type="file" accept={fileAccept.join(", ")} onChange={onInputFileChange} className="hidden" />
+							)}
+						</label>
+					</div>
+					<div className="flex flex-col w-full px-6 text-sm0">
+						<div className="flex flex-row items-center gap-1 text-primary-500">
+							<SvgIcon name="circle-info" type="solid" width={16} height={16} />
+							<div>{t("fileInputInfo")}</div>
+						</div>
+					</div>
+				</div>
+			)}
 			<div className="w-full flex justify-end items-center h-12 bg-gray-50 dark:bg-gray-900 px-4">
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>
