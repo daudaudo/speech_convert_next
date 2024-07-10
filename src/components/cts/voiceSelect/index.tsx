@@ -8,6 +8,8 @@ import SvgIcon from "~/components/icon/SvgIcon";
 import { VoiceProvider } from "~/enums/voice";
 import OpenAIVoiceMenu from "~/components/cts/voiceSelect/OpenAIVoiceMenu";
 import GoogleVoiceMenu from "~/components/cts/voiceSelect/GoogleVoiceMenu";
+import { capitalizeFirstLetter } from "~/utils/string";
+import { OpenAIVoiceId } from "~/enums/openAi";
 
 interface Props {
 	value: CTSVoiceId;
@@ -50,7 +52,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 			case VoiceProvider.GOOGLE:
 				return <GoogleVoiceMenu onClick={setVoice} selectedVoice={voice} />;
 			case VoiceProvider.OPEN_AI:
-				return <OpenAIVoiceMenu onClick={setVoice} selectedVoice={voice} />;
+				return <OpenAIVoiceMenu onClick={setVoice} selectedVoice={voice as OpenAIVoiceId} />;
 			default:
 				return null;
 		}
@@ -64,7 +66,7 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 				className="px-4 py-2 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-opacity-75 flex items-center gap-2"
 			>
 				<SvgIcon name="volume-high" type="solid" width={24} height={24} />
-				{value}
+				{capitalizeFirstLetter(value)}
 			</Button>
 			<Dialog open={open} handler={onToggleOpen} className="bg-white dark:bg-gray-900">
 				<DialogBody className="relative px-6 py-4 flex flex-col">

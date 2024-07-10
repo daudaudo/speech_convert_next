@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import React from "react";
 import { OpenAIVoiceId } from "~/enums/openAi";
-import { CTSVoiceId } from "~/types/CTSTypes";
 
 const OpenAIVoice = [
 	OpenAIVoiceId.Alloy,
@@ -22,7 +21,7 @@ interface Props {
 const OpenAIVoiceMenu = ({ onClick, selectedVoice }: Props) => {
 	const t = useTranslations("cts.voice.openAIVoice");
 
-	const renderVoice = (id: CTSVoiceId) => {
+	const renderVoice = (id: OpenAIVoiceId) => {
 		const name = t(`${id}.name`);
 		const description = t(`${id}.description`);
 		const selected = id === selectedVoice;

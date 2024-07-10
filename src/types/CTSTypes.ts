@@ -16,7 +16,7 @@ type CTSPartial = {
 
 type CTSModel = OpenAITTSModel;
 
-type CTSVoiceId = OpenAIVoiceId;
+type CTSVoiceId = OpenAIVoiceId | string;
 
 type CTSVoiceProvider = VoiceProvider;
 
