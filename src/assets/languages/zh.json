@@ -228,7 +228,8 @@
     "fileInputInfo": "文件上传后，我们将开始创建您的文本。这可能需要几分钟。",
     "textError": "错误：{error}",
     "textPlaceholder": "输入要翻译的文本",
-    "clearText": "清除文本"
+    "clearText": "清除文本",
+    "selectLanguegeLabel": "选择语言"
   },
   "components": {
     "Pagination": {

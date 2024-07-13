@@ -227,7 +227,8 @@
     "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo văn bản của bạn. Điều này có thể mất vài phút.",
     "textError": "Lỗi: {error}",
     "textPlaceholder": "Nhập văn bản để dịch",
-    "clearText": "Xóa văn bản"
+    "clearText": "Xóa văn bản",
+    "selectLanguegeLabel": "Chọn ngôn ngữ"
   },
   "components": {
     "Pagination": {

@@ -227,7 +227,8 @@
     "fileInputInfo": "Once the file is uploaded, we'll start creating your text. This may take several minutes.",
     "textError": "Error: {error}",
     "textPlaceholder": "Enter the text to be translated",
-    "clearText": "Clear text"
+    "clearText": "Clear text",
+    "selectLanguegeLabel": "Select language"
   },
   "components": {
     "Pagination": {
