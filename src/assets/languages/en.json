@@ -207,7 +207,7 @@
       "create": "Create",
       "name": "Name",
       "delete": "Delete",
-      "selectProviderLabel": "Select provider"
+      "selectProviderLabel": "Select service type"
     },
     "conversationPlaceholder": "[John]: Hi there! Welcome to Text to Conversation by SpeechConvert. [1s]\n\n[Emma]: To assign a speaker, use the '@' symbol. For adding a pause after a sentence, use the '#' symbol. [3s]\n\n[John]: Need help? Just click the Guide button for assistance.",
     "conversationGuide": "Hint: Type @ to assign the speaker, type # to assign silence after each sentence",

@@ -208,7 +208,7 @@
           "name": "谷歌语音"
         }
       },
-      "selectProviderLabel": "选择提供商"
+      "selectProviderLabel": "选择服务类型"
     },
     "conversationPlaceholder": "[John]: 你好！欢迎使用 SpeechConvert 的文字转换对话服务。 [1s]\n\n[Emma]: 使用 '@' 符号来指定说话者，使用 '#' 符号在每句后添加停顿。[3s]\n\n[John]: 需要帮助吗？点击指南按钮获取更多帮助。",
     "conversationGuide": "提示：输入 @ 指定发言者，输入 # 指定每句话后静音",

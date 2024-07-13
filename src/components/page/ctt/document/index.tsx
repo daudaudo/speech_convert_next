@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition } from "react";
+import React, { useCallback, useState, useTransition } from "react";
 import Navbar from "~/components/ctt/Navbar";
 import CTTOutput from "~/components/ctt/CTTOutput";
 import SelectLanguage from "~/components/ctt/LanguageSelect";
@@ -11,24 +11,37 @@ import type { CTTLanguage, CTTOutput as CTTOutputType } from "~/types/CTTTypes";
 import { LanguageCode } from "~/enums/language";
 import convertToText from "~/actions/convertToText";
 import { OpenAITranscriptionModel } from "~/enums/openAi";
+import { VoiceProvider } from "~/enums/voice";
+import ProviderSelect from "~/components/cts/voiceSelect/ProviderSelect";
 
 const DocumentToTextPage = () => {
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string>("");
 
+	const [provider, setProvider] = useState(VoiceProvider.OPEN_AI);
 	const [file, setFile] = useState<File | null>(null);
 	const [language, setLanguage] = useState<CTTLanguage>(LanguageCode.English);
 	const [output, setOutput] = useState<CTTOutputType | undefined>();
 
 	const validate = () => !!file;
 
+	const buildFormData = useCallback(() => {
+		const formData = new FormData();
+		formData.append("provider", provider);
+		formData.append("language_code", language);
+		formData.append("file", file as File);
+		if (provider === VoiceProvider.OPEN_AI) {
+			formData.append("model", OpenAITranscriptionModel.Whisper1);
+		} else if (provider === VoiceProvider.GOOGLE) {
+			formData.append("language_code", language);
+		}
+		return formData;
+	}, [provider, language, file]);
+
 	const requestCreateText = () => {
 		startTransition(async () => {
 			if (validate()) {
-				const formData = new FormData();
-				formData.append("language_code", language);
-				formData.append("model", OpenAITranscriptionModel.Whisper1);
-				formData.append("file", file as File);
+				const formData = buildFormData();
 				setOutput(undefined);
 				const res = await convertToText(formData);
 				if (res.error) {
@@ -58,6 +71,9 @@ const DocumentToTextPage = () => {
 				<div className="flex-1 flex justify-end w-full">
 					<SelectLanguage language={language} setLanguage={setLanguage} />
 				</div>
+			</div>
+			<div className="w-48 p-2">
+				<ProviderSelect provider={provider} changeProvider={setProvider} />
 			</div>
 			<div className="flex-1 relative grid min-h-96 grid-cols-1 md:grid-cols-2 gap-3 content-stretch">
 				<div className="flex border border-gray-200 rounded-lg bg-white dark:bg-gray-700 dark:border-gray-600">
