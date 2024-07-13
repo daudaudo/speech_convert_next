@@ -206,12 +206,14 @@
       "selectQuality": "Select quality",
       "create": "Create",
       "name": "Name",
-      "delete": "Delete"
+      "delete": "Delete",
+      "selectProviderLabel": "Select provider"
     },
     "conversationPlaceholder": "[John]: Hi there! Welcome to Text to Conversation by SpeechConvert. [1s]\n\n[Emma]: To assign a speaker, use the '@' symbol. For adding a pause after a sentence, use the '#' symbol. [3s]\n\n[John]: Need help? Just click the Guide button for assistance.",
     "conversationGuide": "Hint: Type @ to assign the speaker, type # to assign silence after each sentence",
     "conversationError": {
-      "noUser": "You forgot to assign a speaker. Please use the '@' symbol to designate the speaker before continuing. The speaker should be in the format [Name], for example: [John]."
+      "noUser": "You forgot to assign a speaker. Please use the '@' symbol to designate the speaker before continuing. The speaker should be in the format [Name], for example: [John].",
+      "existUserNoVoice": "Exists a speaker who has not chosen a voice"
     }
   },
   "ctt": {

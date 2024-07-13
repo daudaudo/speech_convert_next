@@ -207,11 +207,13 @@
         "google_cloud": {
           "name": "Giọng google"
         }
-      }
+      },
+      "selectProviderLabel": "Chọn loại giọng nói"
     },
     "conversationGuide": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại",
     "conversationError": {
-      "noUser": "Bạn đã quên gán người nói. Vui lòng sử dụng ký hiệu '@' để chỉ định người nói trước khi tiếp tục. Người nói phải được đặt trong định dạng [Tên], ví dụ: [John]."
+      "noUser": "Bạn đã quên gán người nói. Vui lòng sử dụng ký hiệu '@' để chỉ định người nói trước khi tiếp tục. Người nói phải được đặt trong định dạng [Tên], ví dụ: [John].",
+      "existUserNoVoice": "存在一个没有选择声音的演讲者"
     }
   },
   "ctt": {

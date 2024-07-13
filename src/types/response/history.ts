@@ -1,8 +1,9 @@
-import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
-import { CTTLanguage, CTTModel } from "~/types/CTTTypes";
+import type { CTSModel, CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
+import type { CTTLanguage, CTTModel } from "~/types/CTTTypes";
 
 type SpeechHistoryItemResponseData = {
 	_id: string;
+	provider: CTSVoiceProvider;
 	input: string;
 	voice: CTSVoiceId;
 	model: CTSModel;
@@ -28,6 +29,7 @@ type SpeechHistoryResponseData =
 
 type TextHistoryItemResponseData = {
 	_id: string;
+	provider: CTSVoiceProvider;
 	model: CTTModel;
 	language: CTTLanguage;
 	duration: number;
@@ -52,7 +54,7 @@ type TextHistoryResponseData =
 
 type ConversationHistoryItemResponseData = {
 	_id: string;
-	// other fields
+	provider: CTSVoiceProvider;
 	partials: { name: string; voice: CTSVoiceId; text: string; silent: number; audio_url: string }[];
 	audio_url: string;
 	created_at: string;

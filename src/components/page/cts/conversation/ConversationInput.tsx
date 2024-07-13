@@ -19,7 +19,7 @@ function parseTextWithUsers(text: string, users: User[]): CTSPartial[] {
 			if (user) {
 				partials.push({
 					name: user.name,
-					voice: user.voice,
+					voice: user.voice || "",
 					text: message,
 					silent: 0,
 				});

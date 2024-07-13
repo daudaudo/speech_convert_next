@@ -4,7 +4,7 @@ import { VoiceProvider } from "~/enums/voice";
 type User = {
 	id: string;
 	name: string;
-	voice: CTSVoiceId;
+	voice?: CTSVoiceId;
 };
 
 type CTSPartial = {
