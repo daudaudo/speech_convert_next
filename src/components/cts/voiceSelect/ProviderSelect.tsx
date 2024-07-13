@@ -1,28 +1,30 @@
 "use client";
 
-import React from "react";
 import { Option, Select } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
-import { LanguageCode } from "~/enums/language";
-import { Languages } from "~/constants/language";
+import React from "react";
+import { VoiceProvider } from "~/enums/voice";
+import type { CTSVoiceProvider } from "~/types/CTSTypes";
+
+const Providers = [VoiceProvider.GOOGLE, VoiceProvider.OPEN_AI];
 
 interface Props {
-	language: LanguageCode;
-	setLanguage: (language: LanguageCode) => void;
-	options: LanguageCode[];
+	provider: CTSVoiceProvider;
+	changeProvider: (provider: CTSVoiceProvider) => void;
+	className?: string;
 }
 
-const LanguageSelect = ({ setLanguage, language, options = [] }: Props) => {
-	const t = useTranslations("ctt");
+const ProviderSelect = ({ changeProvider, provider, className }: Props) => {
+	const t = useTranslations("cts.voice");
 	const onSelectChange = (value?: string) => {
 		if (!value) return;
-		setLanguage(value as LanguageCode);
+		changeProvider(value as VoiceProvider);
 	};
 
 	const renderSelectedOptions = () => {
 		return (
 			<span className="w-full flex items-center gap-1.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75">
-				{Languages[language].name}
+				{provider}
 			</span>
 		);
 	};
@@ -30,15 +32,16 @@ const LanguageSelect = ({ setLanguage, language, options = [] }: Props) => {
 	return (
 		<Select
 			size="md"
-			label={t("selectLanguegeLabel")}
-			value={language}
+			label={t("selectProviderLabel")}
+			value={provider}
 			selected={renderSelectedOptions}
 			onChange={onSelectChange}
+			className={className}
 		>
-			{options.map((lang: LanguageCode) => (
-				<Option key={lang} value={lang}>
+			{Providers.map((p) => (
+				<Option key={p} value={p}>
 					<span className="w-full flex items-center gap-1.5 rounded-md font-medium text-sm focus:outline-none focus-visible:outline-none dark:focus-visible:outline-none focus-visible:ring-inset focus-visible:ring-2 focus-visible:ring-primary-500 dark:focus-visible:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-75">
-						{Languages[lang].name}
+						{p}
 					</span>
 				</Option>
 			))}
@@ -46,4 +49,4 @@ const LanguageSelect = ({ setLanguage, language, options = [] }: Props) => {
 	);
 };
 
-export default LanguageSelect;
+export default ProviderSelect;

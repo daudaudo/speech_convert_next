@@ -207,11 +207,13 @@
         "google_cloud": {
           "name": "Giọng google"
         }
-      }
+      },
+      "selectProviderLabel": "Chọn loại dịch vụ"
     },
     "conversationGuide": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại",
     "conversationError": {
-      "noUser": "Bạn đã quên gán người nói. Vui lòng sử dụng ký hiệu '@' để chỉ định người nói trước khi tiếp tục. Người nói phải được đặt trong định dạng [Tên], ví dụ: [John]."
+      "noUser": "Bạn đã quên gán người nói. Vui lòng sử dụng ký hiệu '@' để chỉ định người nói trước khi tiếp tục. Người nói phải được đặt trong định dạng [Tên], ví dụ: [John].",
+      "existUserNoVoice": "存在一个没有选择声音的演讲者"
     }
   },
   "ctt": {
@@ -225,7 +227,8 @@
     "fileInputInfo": "Khi tệp đã được tải lên, chúng tôi sẽ bắt đầu tạo văn bản của bạn. Điều này có thể mất vài phút.",
     "textError": "Lỗi: {error}",
     "textPlaceholder": "Nhập văn bản để dịch",
-    "clearText": "Xóa văn bản"
+    "clearText": "Xóa văn bản",
+    "selectLanguegeLabel": "Chọn ngôn ngữ"
   },
   "components": {
     "Pagination": {

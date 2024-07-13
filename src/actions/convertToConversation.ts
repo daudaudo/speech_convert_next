@@ -2,12 +2,12 @@
 
 import { callApiAction } from "~/actions/utils";
 import { RequestMethod, RequestUrl } from "~/enums/request";
-import type { CTSPartial } from "~/types/CTSTypes";
+import type { CTSPartial, CTSVoiceProvider } from "~/types/CTSTypes";
 import { ConversationResponseData } from "~/types/response/cts";
 
-const convertToConversation = async (partials: CTSPartial[]) => {
+const convertToConversation = async (provider: CTSVoiceProvider, partials: CTSPartial[]) => {
 	try {
-		const res = await callApiAction(RequestUrl.convertToConversation, RequestMethod.POST, { partials });
+		const res = await callApiAction(RequestUrl.convertToConversation, RequestMethod.POST, { provider, partials });
 		if (!res.success) {
 			return { error: res.message as string };
 		}

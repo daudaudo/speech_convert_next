@@ -77,7 +77,7 @@ const HistoryPage = () => {
 	}, [searchParams, requestGetHistory]);
 
 	const renderHistoryItem = (item: SpeechHistoryItemResponseData) => {
-		const { _id, input, voice, download_url, model, speed, created_at } = item;
+		const { _id, provider, input, voice, download_url, model, speed, created_at } = item;
 		return (
 			<Card key={_id} className="p-4 bg-gray-200 dark:bg-gray-800 rounded-md flex flex-row gap-2">
 				<div className="w-10 h-10 rounded-full bg-primary-200 dark:bg-primary-800 inline-flex items-center justify-center text-primary-800 dark:text-primary-200">
@@ -86,6 +86,7 @@ const HistoryPage = () => {
 				<div className="flex-1 flex flex-col gap-2">
 					<div className="inline-flex justify-between">
 						<div className="flex-1 flex gap-2 items-center">
+							<span className="bg-orange-100 px-3 py-1 rounded-lg text-xs text-gray-800">{provider}</span>
 							<span className="bg-pink-100 px-3 py-1 rounded-lg text-xs text-gray-800">{voice}</span>
 							<span className="bg-green-100 px-3 py-1 rounded-lg text-xs text-gray-800">{model}</span>
 							<span className="bg-blue-100 px-3 py-1 rounded-lg text-xs text-gray-800">{speed}x</span>

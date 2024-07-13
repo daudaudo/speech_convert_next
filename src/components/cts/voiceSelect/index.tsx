@@ -15,13 +15,14 @@ import SearchInput from "~/components/base/SearchInput";
 interface Props {
 	value: CTSVoiceId;
 	onChange: (id: CTSVoiceId, provider: CTSVoiceProvider) => void;
+	providers?: VoiceProvider[];
 }
 
-const VoiceSelect = ({ value, onChange }: Props) => {
+const VoiceSelect = ({ value, onChange, providers = [VoiceProvider.OPEN_AI, VoiceProvider.GOOGLE] }: Props) => {
 	const t = useTranslations("cts.voice");
 	const [open, setOpen] = useState<boolean>(false);
 
-	const [provider, setProvider] = useState(VoiceProvider.OPEN_AI);
+	const [provider, setProvider] = useState(providers?.[0]);
 	const [voice, setVoice] = useState(value);
 	const [searchText, setSearchText] = useState<string>("");
 
@@ -80,8 +81,8 @@ const VoiceSelect = ({ value, onChange }: Props) => {
 					</button>
 					<div className="text-gray-700 dark:text-gray-300 py-4">{t("selectVoice")}</div>
 					<ButtonGroup className="gap-1 rounded-lg bg-gray-100 dark:bg-gray-800 p-2 my-1">
-						{renderProvider(VoiceProvider.GOOGLE)}
-						{renderProvider(VoiceProvider.OPEN_AI)}
+						{providers?.includes(VoiceProvider.GOOGLE) && renderProvider(VoiceProvider.GOOGLE)}
+						{providers?.includes(VoiceProvider.OPEN_AI) && renderProvider(VoiceProvider.OPEN_AI)}
 					</ButtonGroup>
 					<SearchInput value={searchText} onSearchChange={setSearchText} />
 					<div className="flex flex-col h-96 overflow-y-auto">{renderListVoice()}</div>

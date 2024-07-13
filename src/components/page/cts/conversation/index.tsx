@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useRef, useState, useTransition } from "react";
+import React, { useCallback, useEffect, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { v4 as uuidv4 } from "uuid";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
@@ -14,6 +14,8 @@ import SvgIcon from "~/components/icon/SvgIcon";
 import { OpenAIVoiceId } from "~/enums/openAi";
 import { ConversationResponseData } from "~/types/response/cts";
 import AudioPlayer from "~/components/base/AudioPlayer";
+import { VoiceProvider } from "~/enums/voice";
+import ProviderSelect from "~/components/cts/voiceSelect/ProviderSelect";
 
 const ConversationToSpeechPage = () => {
 	const t = useTranslations("cts");
@@ -22,8 +24,8 @@ const ConversationToSpeechPage = () => {
 
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string>("");
-	const initRef = useRef<boolean>(true);
 
+	const [provider, setProvider] = useState(VoiceProvider.OPEN_AI);
 	const [users, setUsers] = useState<User[]>([]);
 	const [partials, setPartials] = useState<CTSPartial[]>([]);
 	const [output, setOutput] = useState<ConversationResponseData | undefined>(undefined);
@@ -52,44 +54,49 @@ const ConversationToSpeechPage = () => {
 		setPartials(partial);
 	}, []);
 
-	const validated = useMemo(() => {
-		return users.length > 0;
-	}, [users]);
+	const checkValidate = useCallback(() => {
+		if (partials.length === 0) {
+			return t("conversationError.noUser");
+		}
+		if (users.find((user) => !user.voice)) {
+			return t("conversationError.existUserNoVoice");
+		}
+	}, [partials, users]);
 
 	const onCreateSpeech = useCallback(() => {
-		if (validated) {
-			startTransition(async () => {
-				try {
-					setOutput(undefined);
-					if (partials.length === 0) {
-						setError(t("conversationError.noUser"));
+		startTransition(async () => {
+			try {
+				setOutput(undefined);
+				const err = checkValidate();
+				if (err) setError(err);
+				else {
+					const res = await convertToConversation(provider, partials);
+					if ("error" in res) {
+						setError(res.error);
 					} else {
-						const res = await convertToConversation(partials);
-						if ("error" in res) {
-							setError(res.error);
-						} else {
-							setOutput(res);
-							clearError();
-						}
-					}
-				} catch (error) {
-					if (error instanceof Error) {
-						setError(error.message);
+						setOutput(res);
+						clearError();
 					}
 				}
-			});
-		}
-	}, [validated, startTransition, partials]);
+			} catch (error) {
+				if (error instanceof Error) {
+					setError(error.message);
+				}
+			}
+		});
+	}, [startTransition, partials]);
 
 	useEffect(() => {
-		if (initRef.current) {
+		if (provider === VoiceProvider.OPEN_AI) {
 			setUsers([
 				{ id: uuidv4(), name: "John", voice: OpenAIVoiceId.Alloy },
 				{ id: uuidv4(), name: "Emma", voice: OpenAIVoiceId.Shimmer },
 			]);
-			initRef.current = false;
 		}
-	});
+		if (provider === VoiceProvider.GOOGLE) {
+			setUsers([]);
+		}
+	}, [provider]);
 
 	return (
 		<div className="flex-1 w-full h-full inline-flex flex-col">
@@ -97,14 +104,23 @@ const ConversationToSpeechPage = () => {
 				<CTSNavbar />
 				<span className="inline-flex gap-1 mt-2 md:mt-0" />
 			</div>
-			<ConversationUser
-				users={users}
-				add={addUser}
-				update={updateUser}
-				remove={removeUser}
-				clear={clearUsers}
-				maxUser={maxUserConversation}
-			/>
+			<div className="w-full p-4 flex flex-col md:flex-row items-center justify-between border-b-2 border-dashed border-gray-300">
+				<div className="w-full md:w-48 px-2 md:border-b-0 md:border-r-2 border-gray-500 mb-2 md:mb-0">
+					<ProviderSelect provider={provider} changeProvider={setProvider} />
+				</div>
+				<div className="w-full">
+					<ConversationUser
+						provider={provider}
+						users={users}
+						add={addUser}
+						update={updateUser}
+						remove={removeUser}
+						clear={clearUsers}
+						maxUser={maxUserConversation}
+					/>
+				</div>
+			</div>
+
 			<div className="flex-1 w-full p-1 flex flex-col">
 				{error ? (
 					<div className="text-red-500 p-4 text-sm">
@@ -124,7 +140,7 @@ const ConversationToSpeechPage = () => {
 			</div>
 			<div className="w-full flex justify-between items-center h-12 bg-gray-50 dark:bg-gray-900 px-4">
 				<span className="text-xs text-primary-500">{t("conversationGuide")}</span>
-				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
+				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={users.length === 0} />
 			</div>
 			{output && (
 				<div className="w-full flex items-center p-1 bg-gray-50 dark:bg-gray-900 px-4 gap-2 border-t-2 border-dashed border-gray-300 dark:border-gray-700">

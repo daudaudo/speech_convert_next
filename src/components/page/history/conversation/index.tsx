@@ -77,7 +77,7 @@ const HistoryPage = () => {
 	}, [searchParams, requestGetHistory]);
 
 	const renderHistoryItem = useCallback((item: ConversationHistoryItemResponseData) => {
-		const { _id, partials, created_at, audio_url } = item;
+		const { _id, provider, partials, created_at, audio_url } = item;
 		return (
 			<Card key={_id} className="p-4 bg-gray-200 dark:bg-gray-800 rounded-md flex flex-row gap-2">
 				<div className="w-10 h-10 rounded-full bg-primary-200 dark:bg-primary-800 inline-flex items-center justify-center text-primary-800 dark:text-primary-200">
@@ -93,7 +93,7 @@ const HistoryPage = () => {
 										<Textarea
 											readOnly
 											value={text}
-											label={`${voice}${silent ? ` +${silent}s` : ""}`}
+											label={`${voice} - ${provider}${silent ? ` +${silent}s` : ""}`}
 											labelProps={{ className: "text-pink-200" }}
 											className="!min-h-0 w-full text-gray-800 dark:text-gray-200 bg-gray-200 dark:bg-gray-800 !cursor-default"
 										/>

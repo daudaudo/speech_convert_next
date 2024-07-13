@@ -2,6 +2,7 @@
 
 import { Button, Popover, PopoverContent, PopoverHandler } from "@material-tailwind/react";
 import React, { useState } from "react";
+import { SvgName } from "~/components/icon/svg";
 import SvgIcon from "~/components/icon/SvgIcon";
 import { Languages } from "~/constants/language";
 import { useLanguage } from "~/contexts/language/LanguageContext";
@@ -23,7 +24,7 @@ const LanguageSwitch = () => {
 				onClick={() => onClickItem(language)}
 				className="w-full inline-flex items-center gap-2 text-gray-800 dark:text-gray-200"
 			>
-				<SvgIcon type="flag" name={language} width={24} height={24} />
+				<SvgIcon type="flag" name={language as SvgName} width={24} height={24} />
 				{Languages[language].name}
 			</Button>
 		);
@@ -37,7 +38,7 @@ const LanguageSwitch = () => {
 						variant="text"
 						className="w-full h-full p-0 rounded-full text-gray-800 dark:text-gray-200 flex justify-center items-center"
 					>
-						<SvgIcon type="flag" name={locale} width={24} height={24} />
+						<SvgIcon type="flag" name={locale as SvgName} width={24} height={24} />
 					</Button>
 				</PopoverHandler>
 				<PopoverContent className="z-45 bg-gray-100 dark:bg-gray-800 flex flex-col items-center gap-2">
