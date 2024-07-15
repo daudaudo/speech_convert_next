@@ -1,7 +1,12 @@
 import { LanguageCode } from "~/enums/language";
 import type { Languages } from "~/types/language";
 
-const supportedLanguages: LanguageCode[] = [LanguageCode.Vietnamese, LanguageCode.English, LanguageCode.Chinese];
+const supportedLanguages: LanguageCode[] = [
+	LanguageCode.Vietnamese,
+	LanguageCode.English,
+	LanguageCode.Chinese,
+	LanguageCode.Hindi,
+];
 const GoogleLanguageOptions = [
 	LanguageCode.Arabic,
 	LanguageCode.Bulgarian,

@@ -45,6 +45,7 @@ const LanguageSwitch = () => {
 					{renderLanguageItem(LanguageCode.English)}
 					{renderLanguageItem(LanguageCode.Vietnamese)}
 					{renderLanguageItem(LanguageCode.Chinese)}
+					{renderLanguageItem(LanguageCode.Hindi)}
 				</PopoverContent>
 			</Popover>
 		</div>
