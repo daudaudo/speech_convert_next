@@ -8,6 +8,7 @@ import TrashCan from "~/components/icon/svg/outline/TrashCan";
 import EN from "~/components/icon/svg/flag/en";
 import VI from "~/components/icon/svg/flag/vi";
 import ZH from "~/components/icon/svg/flag/zh";
+import HI from "~/components/icon/svg/flag/hi";
 import Share from "~/components/icon/svg/solid/Share";
 import UserPlus from "~/components/icon/svg/solid/UserPlus";
 import ArrowLeft from "~/components/icon/svg/solid/ArrowLeft";
@@ -55,6 +56,7 @@ const IconsMap = {
 		en: EN,
 		vi: VI,
 		zh: ZH,
+		hi: HI,
 	},
 	outline: {
 		"arrow-right-to-bracket": ArrowRightToBracket,
