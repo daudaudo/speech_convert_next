@@ -16,12 +16,4 @@ enum OpenAITranscriptionModel {
 	Whisper1 = "whisper-1",
 }
 
-// enum OpenAITranscriptionResponseFormat {
-// 	Json = "json",
-// 	VerboseJson = "verbose_json",
-// 	Text = "text",
-// 	Srt = "srt",
-// 	Vtt = "vtt",
-// }
-
 export { OpenAITTSModel, OpenAIVoiceId, OpenAITranscriptionModel };

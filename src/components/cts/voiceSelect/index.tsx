@@ -35,7 +35,7 @@ const VoiceSelect = ({ value, onChange, providers = [VoiceProvider.OPEN_AI, Voic
 		setOpen(false);
 	};
 
-	const renderProvider = (id: CTSVoiceProvider) => {
+	const renderProviderButton = (id: CTSVoiceProvider) => {
 		const name = t(`voiceProvider.${id}.name`);
 		const selected = id === provider;
 		return (
@@ -52,12 +52,11 @@ const VoiceSelect = ({ value, onChange, providers = [VoiceProvider.OPEN_AI, Voic
 
 	const renderListVoice = () => {
 		switch (provider) {
-			case VoiceProvider.GOOGLE:
-				return <GoogleVoiceMenu onClick={setVoice} selectedVoice={voice} searchText={searchText} />;
 			case VoiceProvider.OPEN_AI:
 				return <OpenAIVoiceMenu onClick={setVoice} selectedVoice={voice as OpenAIVoiceId} searchText={searchText} />;
+			case VoiceProvider.GOOGLE:
 			default:
-				return null;
+				return <GoogleVoiceMenu onClick={setVoice} selectedVoice={voice} searchText={searchText} />;
 		}
 	};
 
@@ -81,8 +80,8 @@ const VoiceSelect = ({ value, onChange, providers = [VoiceProvider.OPEN_AI, Voic
 					</button>
 					<div className="text-gray-700 dark:text-gray-300 py-4">{t("selectVoice")}</div>
 					<ButtonGroup className="gap-1 rounded-lg bg-gray-100 dark:bg-gray-800 p-2 my-1">
-						{providers?.includes(VoiceProvider.GOOGLE) && renderProvider(VoiceProvider.GOOGLE)}
-						{providers?.includes(VoiceProvider.OPEN_AI) && renderProvider(VoiceProvider.OPEN_AI)}
+						{providers?.includes(VoiceProvider.GOOGLE) && renderProviderButton(VoiceProvider.GOOGLE)}
+						{providers?.includes(VoiceProvider.OPEN_AI) && renderProviderButton(VoiceProvider.OPEN_AI)}
 					</ButtonGroup>
 					<SearchInput value={searchText} onSearchChange={setSearchText} />
 					<div className="flex flex-col h-96 overflow-y-auto">{renderListVoice()}</div>
