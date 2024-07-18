@@ -4,12 +4,10 @@ import React, { useCallback, useMemo, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { FileSizeUnit } from "~/enums/file";
 import { convertBytes } from "~/utils/file";
-import ModelSelect from "~/components/cts/ModelSelect";
 import CTSNavbar from "~/components/cts/Navbar";
-import SpeedSelect from "~/components/cts/SpeedSelect";
 import VoiceSelect from "~/components/cts/voiceSelect";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
-import type { CTSModel, CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
+import type { CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
 import convertToSpeech from "~/actions/convertToSpeech";
 import { CTSConfig } from "~/constants/configs";
@@ -32,7 +30,6 @@ const DocumentToSpeechPage = () => {
 		provider: CTSVoiceProvider;
 	}>({ id: OpenAIVoiceId.Alloy, provider: VoiceProvider.OPEN_AI });
 	const [speed, setSpeed] = useState<number>(1);
-	const [model, setModel] = useState<CTSModel>(OpenAITTSModel.TTS1);
 	const [output, setOutput] = useState<SpeechResponseData | undefined>(undefined);
 
 	const clearError = useCallback(() => setError(""), []);
@@ -48,6 +45,11 @@ const DocumentToSpeechPage = () => {
 		e.preventDefault();
 	};
 
+	const changeVoice = (id: CTSVoiceId, options?: { provider?: CTSVoiceProvider; speed?: number }) => {
+		setVoice({ id, provider: options?.provider || voice.provider });
+		if (options?.speed) setSpeed(options.speed);
+	};
+
 	const validated = useMemo(() => {
 		return !!file;
 	}, [file]);
@@ -57,14 +59,14 @@ const DocumentToSpeechPage = () => {
 		formData.append("provider", voice.provider);
 		if (voice.provider === VoiceProvider.OPEN_AI) {
 			formData.append("voice", voice.id);
-			formData.append("model", model);
+			formData.append("model", OpenAITTSModel.TTS1);
 		} else if (voice.provider === VoiceProvider.GOOGLE) {
 			formData.append("voice_name", voice.id);
 		}
 		formData.append("speed", speed.toString());
 		formData.append("input", file as File);
 		return formData;
-	}, [voice, model, speed, file]);
+	}, [voice, speed, file]);
 
 	const onCreateSpeech = useCallback(() => {
 		if (validated) {
@@ -128,11 +130,6 @@ const DocumentToSpeechPage = () => {
 		<div className="flex-1 w-full h-full inline-flex flex-col">
 			<div className="w-full flex flex-col md:flex-row md:items-center justify-between border-b py-1 border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-2">
 				<CTSNavbar />
-				<span className="inline-flex gap-1 mt-2 md:mt-0">
-					<SpeedSelect value={speed} onChange={setSpeed} />
-					<ModelSelect value={model} onChange={setModel} />
-					<VoiceSelect value={voice.id} onChange={(id, provider) => setVoice({ id, provider })} />
-				</span>
 			</div>
 			{error ? (
 				<div className="text-red-500 p-4 text-sm">
@@ -164,15 +161,12 @@ const DocumentToSpeechPage = () => {
 							)}
 						</label>
 					</div>
-					<div className="flex flex-col w-full px-6 text-sm0">
-						<div className="flex flex-row items-center gap-1 text-primary-500">
-							<SvgIcon name="circle-info" type="solid" width={16} height={16} />
-							<div>{t("fileInputInfo")}</div>
-						</div>
-					</div>
 				</div>
 			)}
-			<div className="w-full flex justify-end items-center h-12 bg-gray-50 dark:bg-gray-900 px-4">
+			<div className="w-full flex flex-row items-center justify-between h-12 bg-gray-50 dark:bg-gray-900 px-4">
+				<span className="inline-flex gap-1">
+					<VoiceSelect value={voice.id} onChange={changeVoice} allowSpeed />
+				</span>
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>
 			{output && (

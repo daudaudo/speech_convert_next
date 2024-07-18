@@ -25,7 +25,7 @@ const ConversationToSpeechPage = () => {
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string>("");
 
-	const [provider, setProvider] = useState(VoiceProvider.OPEN_AI);
+	const [provider, setProvider] = useState(VoiceProvider.GOOGLE);
 	const [users, setUsers] = useState<User[]>([]);
 	const [partials, setPartials] = useState<CTSPartial[]>([]);
 	const [output, setOutput] = useState<ConversationResponseData | undefined>(undefined);

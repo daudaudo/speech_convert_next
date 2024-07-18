@@ -208,7 +208,8 @@
           "name": "Giọng google"
         }
       },
-      "selectProviderLabel": "Chọn loại dịch vụ"
+      "selectProviderLabel": "Chọn loại dịch vụ",
+      "voiceConfig": "Cấu hình giọng nói"
     },
     "conversationGuide": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại",
     "conversationError": {
