@@ -3,7 +3,6 @@
 import React, { useCallback, useMemo, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import CTSNavbar from "~/components/cts/Navbar";
-import SpeedSelect from "~/components/cts/SpeedSelect";
 import VoiceSelect from "~/components/cts/voiceSelect";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
 import type { CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
@@ -40,6 +39,11 @@ const TextToSpeechPage = () => {
 	const clearText = useCallback(() => {
 		setText("");
 	}, []);
+
+	const changeVoice = (id: CTSVoiceId, options?: { provider?: CTSVoiceProvider; speed?: number }) => {
+		setVoice({ id, provider: options?.provider || voice.provider });
+		if (options?.speed) setSpeed(options.speed);
+	};
 
 	const validated = useMemo(() => {
 		return text.length > 0;
@@ -126,8 +130,7 @@ const TextToSpeechPage = () => {
 			</div>
 			<div className="w-full flex flex-row items-center justify-between h-12 bg-gray-50 dark:bg-gray-900 px-4">
 				<span className="inline-flex gap-1 mt-2 md:mt-0">
-					<SpeedSelect value={speed} onChange={setSpeed} />
-					<VoiceSelect value={voice.id} onChange={(id, provider) => setVoice({ id, provider })} />
+					<VoiceSelect value={voice.id} onChange={changeVoice} allowSpeed />
 				</span>
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>

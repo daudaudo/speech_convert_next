@@ -11,19 +11,29 @@ import GoogleVoiceMenu from "~/components/cts/voiceSelect/GoogleVoiceMenu";
 import { capitalizeFirstLetter } from "~/utils/string";
 import { OpenAIVoiceId } from "~/enums/openAi";
 import SearchInput from "~/components/base/SearchInput";
+import SpeedSelect from "../SpeedSelect";
 
 interface Props {
 	value: CTSVoiceId;
-	onChange: (id: CTSVoiceId, provider: CTSVoiceProvider) => void;
+	onChange: (id: CTSVoiceId, options?: { provider?: CTSVoiceProvider; speed?: number }) => void;
 	providers?: VoiceProvider[];
+	speed?: number;
+	allowSpeed?: boolean;
 }
 
-const VoiceSelect = ({ value, onChange, providers = [VoiceProvider.OPEN_AI, VoiceProvider.GOOGLE] }: Props) => {
+const VoiceSelect = ({
+	value,
+	onChange,
+	providers = [VoiceProvider.OPEN_AI, VoiceProvider.GOOGLE],
+	speed = 1,
+	allowSpeed = false,
+}: Props) => {
 	const t = useTranslations("cts.voice");
 	const [open, setOpen] = useState<boolean>(false);
 
 	const [provider, setProvider] = useState(providers?.[0]);
 	const [voice, setVoice] = useState(value);
+	const [curSpeed, setCurSpeed] = useState<number>(speed);
 	const [searchText, setSearchText] = useState<string>("");
 
 	const onToggleOpen = () => {
@@ -31,7 +41,10 @@ const VoiceSelect = ({ value, onChange, providers = [VoiceProvider.OPEN_AI, Voic
 	};
 
 	const onClickSave = () => {
-		onChange(voice, provider);
+		onChange(voice, {
+			provider,
+			speed: curSpeed,
+		});
 		setOpen(false);
 	};
 
@@ -71,20 +84,26 @@ const VoiceSelect = ({ value, onChange, providers = [VoiceProvider.OPEN_AI, Voic
 				{capitalizeFirstLetter(value)}
 			</Button>
 			<Dialog open={open} handler={onToggleOpen} className="bg-white dark:bg-gray-900">
-				<DialogBody className="relative px-6 py-4 flex flex-col gap-2">
+				<DialogBody className="relative px-6 py-4 flex flex-col gap-2 h-[80vh]">
 					<button
 						onClick={onToggleOpen}
 						className="absolute rounded-full right-6 top-6 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
 					>
 						<SvgIcon name="circle-x" type="outline" width={24} height={24} />
 					</button>
-					<div className="text-gray-700 dark:text-gray-300 py-4">{t("selectVoice")}</div>
+					<div className="font-bold text-gray-700 dark:text-gray-300 py-4">{t("voiceConfig")}</div>
+					{allowSpeed && (
+						<div className="inline-flex gap-2 items-center">
+							<label className="text-gray-800 dark:text-gray-200">Speech: </label>
+							<SpeedSelect value={curSpeed} onChange={setCurSpeed} />
+						</div>
+					)}
 					<ButtonGroup className="gap-1 rounded-lg bg-gray-100 dark:bg-gray-800 p-2 my-1">
 						{providers?.includes(VoiceProvider.GOOGLE) && renderProviderButton(VoiceProvider.GOOGLE)}
 						{providers?.includes(VoiceProvider.OPEN_AI) && renderProviderButton(VoiceProvider.OPEN_AI)}
 					</ButtonGroup>
 					<SearchInput value={searchText} onSearchChange={setSearchText} />
-					<div className="flex flex-col h-96 overflow-y-auto">{renderListVoice()}</div>
+					<div className="flex-1 flex flex-col h-96 overflow-y-auto">{renderListVoice()}</div>
 				</DialogBody>
 				<DialogFooter className="flex justify-end px-6 py-4">
 					<button

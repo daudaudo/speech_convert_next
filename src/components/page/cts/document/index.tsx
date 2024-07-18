@@ -5,7 +5,6 @@ import { useTranslations } from "next-intl";
 import { FileSizeUnit } from "~/enums/file";
 import { convertBytes } from "~/utils/file";
 import CTSNavbar from "~/components/cts/Navbar";
-import SpeedSelect from "~/components/cts/SpeedSelect";
 import VoiceSelect from "~/components/cts/voiceSelect";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
 import type { CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
@@ -44,6 +43,11 @@ const DocumentToSpeechPage = () => {
 	const onClickClearFile = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		setFile(null);
 		e.preventDefault();
+	};
+
+	const changeVoice = (id: CTSVoiceId, options?: { provider?: CTSVoiceProvider; speed?: number }) => {
+		setVoice({ id, provider: options?.provider || voice.provider });
+		if (options?.speed) setSpeed(options.speed);
 	};
 
 	const validated = useMemo(() => {
@@ -161,8 +165,7 @@ const DocumentToSpeechPage = () => {
 			)}
 			<div className="w-full flex flex-row items-center justify-between h-12 bg-gray-50 dark:bg-gray-900 px-4">
 				<span className="inline-flex gap-1">
-					<SpeedSelect value={speed} onChange={setSpeed} />
-					<VoiceSelect value={voice.id} onChange={(id, provider) => setVoice({ id, provider })} />
+					<VoiceSelect value={voice.id} onChange={changeVoice} allowSpeed />
 				</span>
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>
