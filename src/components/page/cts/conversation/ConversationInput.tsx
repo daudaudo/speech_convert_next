@@ -79,7 +79,7 @@ const ConversationInput = ({ users, onChange, placeholder }: Props) => {
 			value={text}
 			onChange={onTextChange}
 			placeholder={placeholder}
-			className="mentions__control text-gray-800 dark:text-gray-200 flex-1 min-h-96 max-h-96 overflow-y-auto"
+			className="mentions__control text-gray-800 dark:text-gray-200"
 		>
 			<Mention
 				trigger="@"

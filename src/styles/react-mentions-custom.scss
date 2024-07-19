@@ -1,7 +1,12 @@
 /* react-mentions-custom.scss */
 
+.mentions__control__control {
+  @apply h-96
+}
+
 .mentions__control__input {
   @apply w-full p-2 border border-gray-300 rounded-md focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-800 dark:border-gray-600 dark:text-white;
+  overflow: auto !important;
 }
 
 .mentions__control--multiLine {
@@ -9,7 +14,7 @@
 }
 
 .mentions__control__highlighter {
-  @apply p-2 bg-transparent;
+  @apply p-2 h-full bg-transparent;
 }
 
 .mentions__control__input {

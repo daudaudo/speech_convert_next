@@ -55,11 +55,17 @@ const ConversationToSpeechPage = () => {
 	}, []);
 
 	const checkValidate = useCallback(() => {
+		if (users.find((user) => !user.voice)) {
+			return t("conversationError.existUserNoVoice");
+		}
 		if (partials.length === 0) {
 			return t("conversationError.noUser");
 		}
-		if (users.find((user) => !user.voice)) {
-			return t("conversationError.existUserNoVoice");
+		if (partials.length > 10) {
+			return t("conversationError.partialMaxLength");
+		}
+		if (partials.reduce((sum, partial) => sum + partial.text.length, 0) > 2048) {
+			return t("conversationError.textMaxLength");
 		}
 	}, [partials, users]);
 

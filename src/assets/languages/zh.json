@@ -215,7 +215,9 @@
     "conversationGuide": "提示：输入 @ 指定发言者，输入 # 指定每句话后静音",
     "conversationError": {
       "noUser": "您忘记指定说话者了。请使用 '@' 符号来指定说话者再继续。说话者的格式应为 [名字]，例如：[John]。",
-      "existUserNoVoice": "Tồn tại một người nói chưa chọn được tiếng nói"
+      "existUserNoVoice": "Tồn tại một người nói chưa chọn được tiếng nói",
+      "partialMaxLength": "请将您的对话限制在10句话以内。",
+      "textMaxLength": "请保持文本总数少于2048个字符。"
     }
   },
   "ctt": {
