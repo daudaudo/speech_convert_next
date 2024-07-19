@@ -40,9 +40,10 @@ const UserButton = () => {
 					</PopoverContent>
 				</Popover>
 			)}
-			<Link href={PagePath.signin} className={`${!!user ? "hidden" : "block"}`}>
+			<Link href={PagePath.signin} aria-label={PagePath.signin} className={`${!!user ? "hidden" : "block"}`}>
 				<IconButton
 					variant="text"
+					aria-label="Navigate login"
 					className="bg-primary-200 dark:bg-primary-800 p-0 rounded-full text-gray-800 dark:text-gray-200"
 				>
 					<SvgIcon type="outline" name="arrow-right-to-bracket" width={16} height={16} />

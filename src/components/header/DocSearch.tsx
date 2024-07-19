@@ -80,7 +80,7 @@ const DocSearch = () => {
 
 	return (
 		<>
-			<IconButton onClick={toggleOpen} variant="text" className="p-0 rounded-full lg:hidden">
+			<IconButton onClick={toggleOpen} variant="text" aria-label="Menu" className="p-0 rounded-full lg:hidden">
 				<SvgIcon
 					name="bars"
 					type="solid"

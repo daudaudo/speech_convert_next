@@ -36,6 +36,7 @@ const LanguageSwitch = () => {
 				<PopoverHandler>
 					<Button
 						variant="text"
+						aria-label="Language switch"
 						className="w-full h-full p-0 rounded-full text-gray-800 dark:text-gray-200 flex justify-center items-center"
 					>
 						<SvgIcon type="flag" name={locale as SvgName} width={24} height={24} />

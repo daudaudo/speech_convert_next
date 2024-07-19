@@ -214,7 +214,9 @@
     "conversationGuide": "Hint: Type @ to assign the speaker, type # to assign silence after each sentence",
     "conversationError": {
       "noUser": "You forgot to assign a speaker. Please use the '@' symbol to designate the speaker before continuing. The speaker should be in the format [Name], for example: [John].",
-      "existUserNoVoice": "Exists a speaker who has not chosen a voice"
+      "existUserNoVoice": "Exists a speaker who has not chosen a voice",
+      "partialMaxLength": "Please limit your conversation to 10 sentences",
+      "textMaxLength": "Please keep the total text under 2048 characters."
     }
   },
   "ctt": {
