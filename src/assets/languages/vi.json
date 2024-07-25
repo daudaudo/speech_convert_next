@@ -209,12 +209,13 @@
         }
       },
       "selectProviderLabel": "Chọn loại dịch vụ",
-      "voiceConfig": "Cấu hình giọng nói"
+      "voiceConfig": "Cấu hình giọng nói",
+      "selectLanguage": "Chọn ngôn ngữ"
     },
     "conversationGuide": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại",
     "conversationError": {
       "noUser": "Bạn đã quên gán người nói. Vui lòng sử dụng ký hiệu '@' để chỉ định người nói trước khi tiếp tục. Người nói phải được đặt trong định dạng [Tên], ví dụ: [John].",
-      "existUserNoVoice": "存在一个没有选择声音的演讲者",
+      "existUserNoVoice": "Tồn tại một người nói chưa chọn được tiếng nói",
       "partialMaxLength": "Vui lòng giới hạn hội thoại của bạn trong 10 câu.",
       "textMaxLength": "Vui lòng giữ tổng số ký tự dưới 2048 ký tự."
     }
@@ -231,7 +232,8 @@
     "textError": "Lỗi: {error}",
     "textPlaceholder": "Nhập văn bản để dịch",
     "clearText": "Xóa văn bản",
-    "selectLanguegeLabel": "Chọn ngôn ngữ"
+    "selectLanguegeLabel": "Chọn ngôn ngữ",
+    "selectLanguage": "Chọn ngôn ngữ"
   },
   "components": {
     "Pagination": {

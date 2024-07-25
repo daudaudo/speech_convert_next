@@ -11,7 +11,10 @@ import GoogleVoiceMenu from "~/components/cts/voiceSelect/GoogleVoiceMenu";
 import { capitalizeFirstLetter } from "~/utils/string";
 import { OpenAIVoiceId } from "~/enums/openAi";
 import SearchInput from "~/components/base/SearchInput";
-import SpeedSelect from "../SpeedSelect";
+import { LanguageCode } from "~/enums/language";
+import SpeedSelect from "~/components/cts/SpeedSelect";
+import { GoogleLanguageOptions, Languages } from "~/constants/language";
+import Select from "~/components/base/Select";
 
 interface Props {
 	value: CTSVoiceId;
@@ -31,22 +34,22 @@ const VoiceSelect = ({
 	const t = useTranslations("cts.voice");
 	const [open, setOpen] = useState<boolean>(false);
 
-	const [provider, setProvider] = useState(providers?.[0]);
-	const [voice, setVoice] = useState(value);
 	const [curSpeed, setCurSpeed] = useState<number>(speed);
+	const [voice, setVoice] = useState(value);
+	const [provider, setProvider] = useState(providers?.[0]);
 	const [searchText, setSearchText] = useState<string>("");
+	const [language, setLanguage] = useState<LanguageCode>();
 
 	const onToggleOpen = () => {
 		setOpen((prev) => !prev);
 	};
 
 	const onClickSave = () => {
-		onChange(voice, {
-			provider,
-			speed: curSpeed,
-		});
+		onChange(voice, { provider, speed: curSpeed });
 		setOpen(false);
 	};
+
+	const LanguageOptions = GoogleLanguageOptions.map((value) => ({ value, label: Languages[value].name }));
 
 	const renderProviderButton = (id: CTSVoiceProvider) => {
 		const name = t(`voiceProvider.${id}.name`);
@@ -69,7 +72,7 @@ const VoiceSelect = ({
 				return <OpenAIVoiceMenu onClick={setVoice} selectedVoice={voice as OpenAIVoiceId} searchText={searchText} />;
 			case VoiceProvider.GOOGLE:
 			default:
-				return <GoogleVoiceMenu onClick={setVoice} selectedVoice={voice} searchText={searchText} />;
+				return <GoogleVoiceMenu onClick={setVoice} selectedVoice={voice} searchText={searchText} language={language} />;
 		}
 	};
 
@@ -102,7 +105,14 @@ const VoiceSelect = ({
 						{providers?.includes(VoiceProvider.GOOGLE) && renderProviderButton(VoiceProvider.GOOGLE)}
 						{providers?.includes(VoiceProvider.OPEN_AI) && renderProviderButton(VoiceProvider.OPEN_AI)}
 					</ButtonGroup>
-					<SearchInput value={searchText} onSearchChange={setSearchText} />
+					<div className="inline-flex flex-row gap-1">
+						{provider === VoiceProvider.GOOGLE && (
+							<div className="w-40">
+								<Select value={language} onChange={setLanguage} options={LanguageOptions} label={t("selectLanguage")} />
+							</div>
+						)}
+						<SearchInput value={searchText} onSearchChange={setSearchText} />
+					</div>
 					<div className="flex-1 flex flex-col h-96 overflow-y-auto">{renderListVoice()}</div>
 				</DialogBody>
 				<DialogFooter className="flex justify-end px-6 py-4">
