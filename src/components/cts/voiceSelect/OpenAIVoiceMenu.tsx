@@ -31,8 +31,7 @@ const OpenAIVoiceMenu = ({ onClick, selectedVoice, searchText, gender }: Props) 
 				const description = t(`openAIVoice.${voice}.description`);
 				const genderSearch = t(`gender.${gender}`);
 				const matchSearch = searchText ? name.searchIn(searchText) || description.searchIn(searchText) : true;
-				const matchGender =
-					gender && gender !== Gender.ALL ? name.searchIn(genderSearch) || description.searchIn(genderSearch) : true;
+				const matchGender = !!gender && gender !== Gender.ALL ? description.searchIn(genderSearch) : true;
 				return matchGender && matchSearch;
 			});
 		return OpenAIVoices;

@@ -1,7 +1,7 @@
 export type ReferenceGoogleCloudVoice = {
 	languageCodes: string[];
 	name: string;
-	ssmlGender: "FEMALE";
+	ssmlGender: "FEMALE" | "MALE";
 	naturalSampleRateHertz: number;
 };
 

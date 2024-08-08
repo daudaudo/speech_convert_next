@@ -20,7 +20,6 @@ export const getAuthUserByTokenCookie = async () => {
 
 export const getAuthUserUseJwtHeader = async (): Promise<AuthenticatedUser> => {
 	const jwt = headers().get("X-AUTH-JWT");
-
 	if (!jwt || !jwt.length) {
 		throw new MissingJWTInHeaderError();
 	}
