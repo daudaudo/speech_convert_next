@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import { loginUseCredentials, registerUseCredentials } from "~/actions/data/auth";
 import { getAuthUser } from "~/actions/data/auth/user";
 import { fetchLoginByGoogle } from "~/actions/data/oauth/google";
-import { createSession, deleteSession } from "~/utils/session";
+import { createSession, deleteSession } from "~/actions/cookies/session";
 
 const ACTIONS = {
 	LOGIN: "auth/login",

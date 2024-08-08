@@ -2,15 +2,15 @@
 
 import { jwtVerify, SignJWT } from "jose";
 import { headers } from "next/headers";
-import { getToken } from "~/actions/cookies/auth";
 import { getAuthUser } from "~/actions/data/auth/user";
 import { MissingJWTInHeaderError, MissingTokenInCookieError } from "~/errors/logic/auth";
 import { AuthenticatedUser } from "~/types/auth";
+import { getSession } from "~/actions/cookies/session";
 
 const secret = new TextEncoder().encode(process.env.APP_JWT_SECRET);
 
 export const getAuthUserByTokenCookie = async () => {
-	const token = await getToken();
+	const token = await getSession();
 	if (!token || !token.length) {
 		throw new MissingTokenInCookieError();
 	}
