@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { SpeechConvertIcon } from "~/types/icon";
-import { useTheme } from "~/contexts/ThemeContext";
+import { useTheme } from "~/contexts/theme/ThemeContext";
 import { ThemeMode } from "~/enums/theme";
 import { NavbarItem } from "~/types/navbar";
 import SvgIcon from "~/components/icon/SvgIcon";
