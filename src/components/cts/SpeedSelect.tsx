@@ -13,10 +13,10 @@ const options: { value: number; label: string }[] = [
 	{ value: 1.5, label: "1.5x" },
 	{ value: 1.75, label: "1.75x" },
 	{ value: 2, label: "2.0x" },
-	{ value: 2.5, label: "2.5x" },
-	{ value: 3, label: "3.0x" },
-	{ value: 3.5, label: "3.5x" },
-	{ value: 4, label: "4.0x" },
+	// { value: 2.5, label: "2.5x" },
+	// { value: 3, label: "3.0x" },
+	// { value: 3.5, label: "3.5x" },
+	// { value: 4, label: "4.0x" },
 ];
 
 interface SpeedSelectProps {

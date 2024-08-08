@@ -210,7 +210,15 @@
       },
       "selectProviderLabel": "Chọn loại dịch vụ",
       "voiceConfig": "Cấu hình giọng nói",
-      "selectLanguage": "Chọn ngôn ngữ"
+      "selectLanguage": "Chọn ngôn ngữ",
+      "selectGender": "Chọn giới tính",
+      "gender": {
+        "male": "Nam",
+        "female": "Nữ",
+        "all": "Tất cả giới tính"
+      },
+      "keyword": "Từ khóa",
+      "speed": "Tốc độ"
     },
     "conversationGuide": "Gợi ý: Gõ @ để gán người nói, gõ # để gán khoảng lặng sau mỗi câu thoại",
     "conversationError": {
@@ -246,6 +254,9 @@
       "record": "Ghi âm",
       "Re-record": "Ghi âm lại",
       "recordDescription": "Ghi âm để có file mp3"
+    },
+    "searchInput": {
+      "placeholder": "Tìm kiếm"
     }
   }
 }

@@ -1,5 +1,6 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import React, { FC } from "react";
 import SvgIcon from "~/components/icon/SvgIcon";
 
@@ -10,12 +11,9 @@ interface SearchInputProps {
 	autoFocus?: boolean;
 }
 
-const SearchInput: FC<SearchInputProps> = ({
-	placeholder = "Search...",
-	value,
-	onSearchChange,
-	autoFocus,
-}: SearchInputProps) => {
+const SearchInput: FC<SearchInputProps> = (props: SearchInputProps) => {
+	const t = useTranslations("components.searchInput");
+	const { placeholder = t("placeholder"), value, onSearchChange, autoFocus } = props;
 	const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		onSearchChange?.(e.target.value);
 	};

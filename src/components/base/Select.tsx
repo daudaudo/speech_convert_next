@@ -30,6 +30,9 @@ const Select = <T,>({ options, value, onChange, label }: SelectProps<T>): JSX.El
 		<MuiSelect
 			size="md"
 			label={label}
+			labelProps={{
+				className: "w-full overflow-hidden text-ellipsis whitespace-nowrap max-w-full",
+			}}
 			value={value as unknown as string}
 			selected={renderSelectedOptions}
 			onChange={handleChange}
