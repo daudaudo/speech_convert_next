@@ -2,7 +2,7 @@
 
 import React from "react";
 import { IconButton } from "@material-tailwind/react";
-import { useTheme } from "~/contexts/ThemeContext";
+import { useTheme } from "~/contexts/theme/ThemeContext";
 import SvgIcon from "~/components/icon/SvgIcon";
 
 const DarkModeButton = () => {
