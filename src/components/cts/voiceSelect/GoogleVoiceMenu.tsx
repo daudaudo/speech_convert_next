@@ -5,6 +5,8 @@ import React, { useEffect, useMemo, useState, useTransition } from "react";
 import getReferenceGoogleVoice from "~/actions/getReferenceGoogleVoice";
 import LoadingData from "~/components/animations/LoadingData";
 import SvgIcon from "~/components/icon/SvgIcon";
+import { Gender } from "~/enums/gender";
+import { LanguageCode } from "~/enums/language";
 import type { ReferenceGoogleCloudVoice } from "~/types/response/reference";
 import { capitalizeFirstLetter } from "~/utils/string";
 
@@ -12,9 +14,11 @@ interface Props {
 	onClick: (id: string) => void;
 	selectedVoice?: string;
 	searchText?: string;
+	language?: LanguageCode;
+	gender?: Gender;
 }
 
-const GoogleVoiceMenu = ({ onClick, selectedVoice, searchText }: Props) => {
+const GoogleVoiceMenu = ({ onClick, selectedVoice, searchText, language, gender }: Props) => {
 	const t = useTranslations("cts");
 	const [voices, setVoices] = useState<ReferenceGoogleCloudVoice[]>([]);
 
@@ -22,15 +26,17 @@ const GoogleVoiceMenu = ({ onClick, selectedVoice, searchText }: Props) => {
 	const [error, setError] = useState<string>("");
 
 	const voicesDisplay = useMemo(() => {
-		if (!!searchText)
-			return voices.filter((voice) => {
-				return (
-					voice.name.searchIn(searchText) ||
-					// voice.languageCodes.searchIn(searchText) ||
-					voice.ssmlGender.searchIn(searchText)
-				);
+		let rs = [...voices];
+		if (searchText || language || gender)
+			rs = rs.filter((voice) => {
+				const { name, ssmlGender } = voice;
+				const matchSearch = searchText ? name.searchIn(searchText) || ssmlGender.searchIn(searchText) : true;
+				const matchLanguage = language ? name.searchIn(language) || ssmlGender.searchIn(language) : true;
+				const matchGender =
+					gender && gender !== Gender.ALL ? name.searchIn(gender) || ssmlGender.searchIn(gender) : true;
+				return matchSearch && matchLanguage && matchGender;
 			});
-		return voices;
+		return rs;
 	}, [voices, searchText]);
 
 	useEffect(() => {

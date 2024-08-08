@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useCallback, useState, useTransition } from "react";
+import { useTranslations } from "next-intl";
 import Navbar from "~/components/ctt/Navbar";
 import CTTOutput from "~/components/ctt/CTTOutput";
-import SelectLanguage from "~/components/ctt/LanguageSelect";
 import SubmitButton from "~/components/ctt/SubmitButton";
 import FileInput from "~/components/page/ctt/document/FileInput";
 import type { CTTLanguage, CTTOutput as CTTOutputType } from "~/types/CTTTypes";
@@ -12,9 +12,11 @@ import convertToText from "~/actions/convertToText";
 import { OpenAITranscriptionModel } from "~/enums/openAi";
 import { VoiceProvider } from "~/enums/voice";
 import ProviderSelect from "~/components/cts/voiceSelect/ProviderSelect";
-import { GoogleLanguageOptions } from "~/constants/language";
+import { GoogleLanguageOptions, Languages } from "~/constants/language";
+import Select from "~/components/base/Select";
 
 const DocumentToTextPage = () => {
+	const t = useTranslations("ctt");
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string>("");
 
@@ -22,6 +24,8 @@ const DocumentToTextPage = () => {
 	const [file, setFile] = useState<File | null>(null);
 	const [language, setLanguage] = useState<CTTLanguage>(LanguageCode.English);
 	const [output, setOutput] = useState<CTTOutputType | undefined>();
+
+	const LanguageOptions = GoogleLanguageOptions.map((value) => ({ value, label: Languages[value].name }));
 
 	const validate = () => !!file;
 
@@ -70,7 +74,7 @@ const DocumentToTextPage = () => {
 				</div>
 				{provider === VoiceProvider.GOOGLE && (
 					<div className="w-48 p-2">
-						<SelectLanguage options={GoogleLanguageOptions} language={language} setLanguage={setLanguage} />
+						<Select options={LanguageOptions} value={language} onChange={setLanguage} label={t("selectLanguage")} />
 					</div>
 				)}
 			</div>

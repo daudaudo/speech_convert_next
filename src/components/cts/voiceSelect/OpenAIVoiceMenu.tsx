@@ -2,6 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import React, { useMemo } from "react";
+import { Gender } from "~/enums/gender";
 import { OpenAIVoiceId } from "~/enums/openAi";
 
 const OpenAIVoices = [
@@ -17,22 +18,29 @@ interface Props {
 	onClick: (id: OpenAIVoiceId) => void;
 	selectedVoice?: OpenAIVoiceId;
 	searchText?: string;
+	gender?: Gender;
 }
 
-const OpenAIVoiceMenu = ({ onClick, selectedVoice, searchText }: Props) => {
-	const t = useTranslations("cts.voice.openAIVoice");
+const OpenAIVoiceMenu = ({ onClick, selectedVoice, searchText, gender }: Props) => {
+	const t = useTranslations("cts.voice");
 
 	const voicesDisplay = useMemo(() => {
-		if (searchText)
+		if (searchText || gender)
 			return OpenAIVoices.filter((voice) => {
-				return voice.searchIn(searchText);
+				const name = t(`openAIVoice.${voice}.name`);
+				const description = t(`openAIVoice.${voice}.description`);
+				const genderSearch = t(`gender.${gender}`);
+				const matchSearch = searchText ? name.searchIn(searchText) || description.searchIn(searchText) : true;
+				const matchGender =
+					gender && gender !== Gender.ALL ? name.searchIn(genderSearch) || description.searchIn(genderSearch) : true;
+				return matchGender && matchSearch;
 			});
 		return OpenAIVoices;
-	}, [searchText]);
+	}, [searchText, gender]);
 
 	const renderVoice = (id: OpenAIVoiceId) => {
-		const name = t(`${id}.name`);
-		const description = t(`${id}.description`);
+		const name = t(`openAIVoice.${id}.name`);
+		const description = t(`openAIVoice.${id}.description`);
 		const selected = id === selectedVoice;
 		return (
 			<button

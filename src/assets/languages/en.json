@@ -208,7 +208,16 @@
       "name": "Name",
       "delete": "Delete",
       "selectProviderLabel": "Select service type",
-      "voiceConfig": "Voice configuration"
+      "voiceConfig": "Voice configuration",
+      "selectLanguage": "Select Language",
+      "selectGender": "Select gender",
+      "gender": {
+        "male": "Male",
+        "female": "Female",
+        "all": "All gender"
+      },
+      "keyword": "Key word",
+      "speed": "Speed"
     },
     "conversationPlaceholder": "[John]: Hi there! Welcome to Text to Conversation by SpeechConvert. [1s]\n\n[Emma]: To assign a speaker, use the '@' symbol. For adding a pause after a sentence, use the '#' symbol. [3s]\n\n[John]: Need help? Just click the Guide button for assistance.",
     "conversationGuide": "Hint: Type @ to assign the speaker, type # to assign silence after each sentence",
@@ -231,7 +240,8 @@
     "textError": "Error: {error}",
     "textPlaceholder": "Enter the text to be translated",
     "clearText": "Clear text",
-    "selectLanguegeLabel": "Select language"
+    "selectLanguegeLabel": "Select language",
+    "selectLanguage": "Select language"
   },
   "components": {
     "Pagination": {
@@ -244,6 +254,9 @@
       "record": "Record",
       "Re-record": "Re-record",
       "recordDescription": "Record to get an mp3 file"
+    },
+    "searchInput": {
+      "placeholder": "Search"
     }
   }
 }
