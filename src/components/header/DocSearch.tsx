@@ -10,6 +10,7 @@ import { useTheme } from "~/contexts/theme/ThemeContext";
 import { ThemeMode } from "~/enums/theme";
 import { NavbarItem } from "~/types/navbar";
 import SvgIcon from "~/components/icon/SvgIcon";
+import { InstructionVideoId } from "~/constants/app";
 
 type ListItem = {
 	path?: PagePath;
@@ -98,7 +99,7 @@ const DocSearch = () => {
 					<div className="w-full text-gray-800 dark:text-gray-100">
 						<span>{t("guide")}</span>
 						<List>
-							<Link href="https://www.youtube.com/watch?v=pBdVzoHtS3c" target="_blank">
+							<Link href={`https://www.youtube.com/watch?v=${InstructionVideoId}`} target="_blank">
 								<ListItem className="text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800">
 									<ListItemPrefix>
 										<SvgIcon name="youtube" width={20} height={20} />

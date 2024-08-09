@@ -3,12 +3,13 @@
 import { headers } from "next/headers";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { ResponseData } from "~/types/response";
-import { FailedRequestError, RequestTimeoutError } from "~/errors/request";
+import { FailedRequestError, RequestTimeoutError, RequestUnauthorizedError } from "~/errors/request";
 import { getLocale } from "~/actions/cookies/locale";
+import { getSession } from "~/actions/cookies/session";
 
 const BASE_API_URL = process.env.BASE_API_URL;
 
-export type RequestData = Record<string, string> | FormData | string | null | undefined;
+export type RequestData = Record<string, string> | Record<string, any> | FormData | string | null | undefined;
 
 export type RequestOptions = {
 	method?: RequestMethod;
@@ -104,6 +105,8 @@ export const request = async <DataType = any>(name: RequestUrl, options: Request
 
 	const url = buildUrl(method, name, data);
 
+	console.log(">>>", { url, init });
+
 	const response = await new Promise<ResponseData<DataType>>((resolve, reject) => {
 		if (typeof timeout === "number") {
 			Promise.race([fetch(url, init), createTimeOutPromise(timeout)])
@@ -123,4 +126,13 @@ export const request = async <DataType = any>(name: RequestUrl, options: Request
 	}
 
 	return response;
+};
+
+export const requestAuthencated = async <DataType = any>(name: RequestUrl, options: RequestOptions) => {
+	const token = await getSession();
+	if (!token) {
+		throw new RequestUnauthorizedError("Authentication token is missing.");
+	}
+	const authenticatedOptions: RequestOptions = { ...options, bearer: token };
+	return request<DataType>(name, authenticatedOptions);
 };

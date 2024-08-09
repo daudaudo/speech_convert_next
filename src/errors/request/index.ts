@@ -11,3 +11,9 @@ export class RequestTimeoutError extends AppError {
 		super(message || "Request timeout Error");
 	}
 }
+
+export class RequestUnauthorizedError extends AppError {
+	constructor(message?: string) {
+		super(message || "Request unauthorized Error");
+	}
+}

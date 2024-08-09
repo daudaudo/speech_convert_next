@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { PagePath } from "~/enums/path";
 import type { NavbarItem } from "~/types/navbar";
 import SvgIcon from "~/components/icon/SvgIcon";
+import { InstructionVideoId } from "~/constants/app";
 
 interface NavBarItemPopoverProps {
 	items: NavbarItem[];
@@ -97,7 +98,7 @@ const NavBar = () => {
 			<NavBarItemPopover items={convertToTextItems} label={t("text")} />
 			<NavBarItemPopover items={historyItems} label={t("history")} />
 			<Link
-				href="https://www.youtube.com/watch?v=pBdVzoHtS3c"
+				href={`https://www.youtube.com/watch?v=${InstructionVideoId}`}
 				target="_blank"
 				className={`px-4 py-2 cursor-pointer font-nomal text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white`}
 			>

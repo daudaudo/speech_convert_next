@@ -7,7 +7,7 @@ import VoiceSelect from "~/components/cts/voiceSelect";
 import CreateSpeechButton from "~/components/cts/CreateSpeechButton";
 import type { CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
 import { OpenAITTSModel, OpenAIVoiceId } from "~/enums/openAi";
-import convertToSpeech from "~/actions/convertToSpeech";
+import convertToSpeech from "~/actions/data/convertToSpeech";
 import { CTSConfig } from "~/constants/configs";
 import SvgIcon from "~/components/icon/SvgIcon";
 import { VoiceProvider } from "~/enums/voice";
@@ -69,18 +69,14 @@ const TextToSpeechPage = () => {
 		if (validated) {
 			startTransition(async () => {
 				try {
+					clearError();
 					const formData = buildFormData();
-					setDownloadUrlOutput("");
 					const res = await convertToSpeech(formData);
-					if ("error" in res) {
-						setError(res.error);
-					} else {
-						clearError();
-						setDownloadUrlOutput(res.download_url);
-						dispatch(authActions.updateBalance(res.user.balance));
-					}
+					setDownloadUrlOutput(res.download_url);
+					dispatch(authActions.updateBalance(res.user.balance));
 				} catch (error) {
 					if (error instanceof Error) {
+						setDownloadUrlOutput("");
 						setError(error.message);
 					}
 				}

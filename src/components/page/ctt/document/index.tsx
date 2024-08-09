@@ -8,7 +8,7 @@ import SubmitButton from "~/components/ctt/SubmitButton";
 import FileInput from "~/components/page/ctt/document/FileInput";
 import type { CTTLanguage } from "~/types/CTTTypes";
 import { LanguageCode } from "~/enums/language";
-import convertToText from "~/actions/convertToText";
+import convertToText from "~/actions/data/convertToText";
 import { OpenAITranscriptionModel } from "~/enums/openAi";
 import { VoiceProvider } from "~/enums/voice";
 import ProviderSelect from "~/components/cts/voiceSelect/ProviderSelect";
@@ -46,20 +46,22 @@ const DocumentToTextPage = () => {
 	}, [provider, language, file]);
 
 	const requestCreateText = () => {
-		startTransition(async () => {
-			if (validate()) {
-				const formData = buildFormData();
-				setTextOutput("");
-				const res = await convertToText(formData);
-				if ("error" in res) {
-					setError(res.error);
-				} else {
+		if (validate()) {
+			startTransition(async () => {
+				try {
 					setError("");
+					const formData = buildFormData();
+					const res = await convertToText(formData);
 					setTextOutput(res.text);
 					dispatch(authActions.updateBalance(res.user.balance));
+				} catch (error) {
+					if (error instanceof Error) {
+						setTextOutput("");
+						setError(error.message);
+					}
 				}
-			}
-		});
+			});
+		}
 	};
 
 	return (

@@ -9,7 +9,7 @@ import type { CTSPartial, User } from "~/types/CTSTypes";
 import ConversationUser from "~/components/page/cts/conversation/ConversationUser";
 import { CTSConfig } from "~/constants/configs";
 import ConversationInput from "~/components/page/cts/conversation/ConversationInput";
-import convertToConversation from "~/actions/convertToConversation";
+import convertToConversation from "~/actions/data/convertToConversation";
 import SvgIcon from "~/components/icon/SvgIcon";
 import { OpenAIVoiceId } from "~/enums/openAi";
 import AudioPlayer from "~/components/base/AudioPlayer";
@@ -72,27 +72,23 @@ const ConversationToSpeechPage = () => {
 	}, [partials, users]);
 
 	const onCreateSpeech = useCallback(() => {
-		startTransition(async () => {
-			try {
-				setAudioUrlOutput("");
-				const err = checkValidate();
-				if (err) setError(err);
-				else {
+		const err = checkValidate();
+		if (err) setError(err);
+		else {
+			startTransition(async () => {
+				try {
 					const res = await convertToConversation(provider, partials);
-					if ("error" in res) {
-						setError(res.error);
-					} else {
-						setAudioUrlOutput(res.audio_url);
-						dispatch(authActions.updateBalance(res.user.balance));
-						clearError();
+					clearError();
+					setAudioUrlOutput(res.audio_url);
+					dispatch(authActions.updateBalance(res.user.balance));
+				} catch (error) {
+					if (error instanceof Error) {
+						setAudioUrlOutput("");
+						setError(error.message);
 					}
 				}
-			} catch (error) {
-				if (error instanceof Error) {
-					setError(error.message);
-				}
-			}
-		});
+			});
+		}
 	}, [startTransition, partials]);
 
 	useEffect(() => {
