@@ -7,7 +7,7 @@ import LoadingData from "~/components/animations/LoadingData";
 import SvgIcon from "~/components/icon/SvgIcon";
 import { Gender } from "~/enums/gender";
 import { LanguageCode } from "~/enums/language";
-import type { ReferenceGoogleCloudVoice } from "~/types/response/reference";
+import type { ReferenceGoogleVoiceResponseData } from "~/types/response/reference";
 import { capitalizeFirstLetter } from "~/utils/string";
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
 
 const GoogleVoiceMenu = ({ onClick, selectedVoice, searchText, language, gender }: Props) => {
 	const t = useTranslations("cts");
-	const [voices, setVoices] = useState<ReferenceGoogleCloudVoice[]>([]);
+	const [voices, setVoices] = useState<ReferenceGoogleVoiceResponseData>([]);
 
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string>("");

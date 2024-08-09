@@ -1,4 +1,4 @@
-export type ReferenceGoogleCloudVoice = {
+type ReferenceGoogleCloudVoice = {
 	languageCodes: string[];
 	name: string;
 	ssmlGender: "FEMALE" | "MALE";

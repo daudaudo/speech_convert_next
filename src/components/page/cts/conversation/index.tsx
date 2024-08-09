@@ -22,7 +22,7 @@ const ConversationToSpeechPage = () => {
 	const dispatch = useAppDispatch();
 	const t = useTranslations("cts");
 
-	const { maxUserConversation } = CTSConfig;
+	const { maxUserConversation, maxTextLength } = CTSConfig;
 
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string>("");
@@ -66,7 +66,7 @@ const ConversationToSpeechPage = () => {
 		if (partials.length > 10) {
 			return t("conversationError.partialMaxLength");
 		}
-		if (partials.reduce((sum, partial) => sum + partial.text.length, 0) > 2048) {
+		if (partials.reduce((sum, partial) => sum + partial.text.length, 0) > maxTextLength) {
 			return t("conversationError.textMaxLength");
 		}
 	}, [partials, users]);
@@ -126,7 +126,7 @@ const ConversationToSpeechPage = () => {
 				</div>
 			</div>
 
-			<div className="flex-1 w-full p-1 flex flex-col">
+			<div className="relative flex-1 w-full p-1 flex flex-col">
 				{error ? (
 					<div className="text-red-500 p-4 text-sm">
 						<div className="flex flex-row gap-2 items-center">
