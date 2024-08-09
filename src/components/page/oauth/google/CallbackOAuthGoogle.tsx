@@ -14,7 +14,7 @@ interface Props {}
 
 const CallbackOAuthGoogleView = ({}: Props) => {
 	const dispatch = useAppDispatch();
-	const { authencated, loading } = useAppSelector((state) => state.auth);
+	const { authencated, error } = useAppSelector((state) => state.auth);
 
 	const t = useTranslations("auth");
 	const toast = useToastMessage();
@@ -23,7 +23,7 @@ const CallbackOAuthGoogleView = ({}: Props) => {
 
 	useEffect(() => {
 		const code = searchParams.get("code");
-		if (!code || !code.trim().length || (!loading && !authencated)) {
+		if (!code || !code.trim().length || error) {
 			router.replace(PagePath.signin);
 			toast.error(t("signinGoogleError"));
 		} else if (authencated) {
@@ -32,7 +32,7 @@ const CallbackOAuthGoogleView = ({}: Props) => {
 		} else {
 			dispatch(authActions.loginByGoogle({ code }));
 		}
-	}, [authencated, loading, router]);
+	}, [authencated, error, router]);
 
 	return (
 		<div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">
