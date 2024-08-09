@@ -3,7 +3,7 @@
 import { headers } from "next/headers";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { ResponseData } from "~/types/response";
-import { FailedRequestError, RequestTimeoutError, RequestUnauthorizedError } from "~/errors/request";
+import { FailedRequestError, RequestTimeoutError } from "~/errors/request";
 import { getLocale } from "~/actions/cookies/locale";
 import { getSession } from "~/actions/cookies/session";
 
@@ -130,9 +130,6 @@ export const request = async <DataType = any>(name: RequestUrl, options: Request
 
 export const requestAuthencated = async <DataType = any>(name: RequestUrl, options: RequestOptions) => {
 	const token = await getSession();
-	if (!token) {
-		throw new RequestUnauthorizedError("Authentication token is missing.");
-	}
-	const authenticatedOptions: RequestOptions = { ...options, bearer: token };
+	const authenticatedOptions: RequestOptions = { ...options, ...(token ? { bearer: token } : {}) };
 	return request<DataType>(name, authenticatedOptions);
 };

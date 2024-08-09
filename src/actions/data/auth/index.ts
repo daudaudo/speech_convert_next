@@ -1,3 +1,6 @@
+"use server";
+
+import { redirect } from "next/navigation";
 import { request } from "~/actions/data";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { LoginResponseData, RegisterResponseData } from "~/types/response/auth";
@@ -26,3 +29,10 @@ export const registerUseCredentials = async (payload: { username: string; email:
 	});
 	return data;
 };
+
+export async function navigateSigninByGoogleCallback() {
+	const { data } = await request(RequestUrl.signinGoogleCallback, {
+		method: RequestMethod.GET,
+	});
+	if (data?.callback_url) redirect(data.callback_url);
+}

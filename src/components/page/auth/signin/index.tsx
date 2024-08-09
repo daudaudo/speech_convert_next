@@ -8,7 +8,7 @@ import { useFormState } from "react-dom";
 import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
 import { SigninFields, SigninFormSchema, SigninFormState } from "~/definitions/signin";
-import { navigateSigninByGoogleCallback } from "~/actions/signinGoogle";
+import { navigateSigninByGoogleCallback } from "~/actions/data/auth";
 import { useToastMessage } from "~/contexts/toast/ToastWrapper";
 import SubmitButton from "~/components/page/auth/signin/SubmitButton";
 import { useAppDispatch, useAppSelector } from "~/store/store";
