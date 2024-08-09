@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState, useTransition } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Card } from "@material-tailwind/react";
-import getSpeechHistory from "~/actions/getSpeechHistory";
+import getSpeechHistory from "~/actions/data/getSpeechHistory";
 import LoadingData from "~/components/animations/LoadingData";
 import withSuspense from "~/hocs/withSuspense";
 import Pagination from "~/components/base/Pagination";
@@ -23,7 +23,7 @@ const HistoryPage = () => {
 	const searchParams = useSearchParams();
 
 	const [pending, startTransition] = useTransition();
-	const [error, setError] = useState<string | undefined>(undefined);
+	const [error, setError] = useState<string>("");
 	const [history, setHistory] = useState<SpeechHistoryItemResponseData[]>([]);
 	const [pageState, setPageState] = useState<{
 		currentPage: number;
@@ -54,7 +54,7 @@ const HistoryPage = () => {
 			try {
 				const res = await getSpeechHistory(limit, page);
 				if (res) {
-					setError(undefined);
+					setError("");
 					setHistory(res.items);
 					setPageState({
 						currentPage: res.current_page,

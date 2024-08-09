@@ -1,6 +1,16 @@
 import type { CTSModel, CTSVoiceId, CTSVoiceProvider } from "~/types/CTSTypes";
 import type { CTTLanguage, CTTModel } from "~/types/CTTTypes";
 
+type HistoryResponseData<ItemType = any> = {
+	items: ItemType[];
+	total: number;
+	per_page: number;
+	current_page: number;
+	last_page: number;
+	from: number;
+	to: number;
+};
+
 type SpeechHistoryItemResponseData = {
 	_id: string;
 	provider: CTSVoiceProvider;
@@ -14,18 +24,7 @@ type SpeechHistoryItemResponseData = {
 	created_at: string;
 	update_at: string;
 };
-
-type SpeechHistoryResponseData =
-	| {
-			items: SpeechHistoryItemResponseData[];
-			total: number;
-			per_page: number;
-			current_page: number;
-			last_page: number;
-			from: number;
-			to: number;
-	  }
-	| undefined;
+type SpeechHistoryResponseData = HistoryResponseData<SpeechHistoryItemResponseData>;
 
 type TextHistoryItemResponseData = {
 	_id: string;
@@ -39,18 +38,7 @@ type TextHistoryItemResponseData = {
 	created_at: string;
 	update_at: string;
 };
-
-type TextHistoryResponseData =
-	| {
-			items: TextHistoryItemResponseData[];
-			total: number;
-			per_page: number;
-			current_page: number;
-			last_page: number;
-			from: number;
-			to: number;
-	  }
-	| undefined;
+type TextHistoryResponseData = HistoryResponseData<TextHistoryItemResponseData>;
 
 type ConversationHistoryItemResponseData = {
 	_id: string;
@@ -60,18 +48,7 @@ type ConversationHistoryItemResponseData = {
 	created_at: string;
 	update_at: string;
 };
-
-type ConversationHistoryResponseData =
-	| {
-			items: ConversationHistoryItemResponseData[];
-			total: number;
-			per_page: number;
-			current_page: number;
-			last_page: number;
-			from: number;
-			to: number;
-	  }
-	| undefined;
+type ConversationHistoryResponseData = HistoryResponseData<ConversationHistoryItemResponseData>;
 
 export type {
 	SpeechHistoryItemResponseData,

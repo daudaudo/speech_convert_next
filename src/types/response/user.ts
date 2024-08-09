@@ -6,8 +6,3 @@ export type UserResponseData = {
 	created_at: string;
 	updated_at: string;
 };
-
-export type BalanceResponseData = {
-	used_balance: number;
-	balance: number;
-};

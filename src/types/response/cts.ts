@@ -1,5 +1,9 @@
 import { CTSModel, CTSVoiceId } from "~/types/CTSTypes";
-import { BalanceResponseData } from "~/types/response/user";
+
+type UserBalanceResponse = {
+	used_balance: number;
+	balance: number;
+};
 
 export type ConversationResponseData = {
 	_id: string;
@@ -10,7 +14,7 @@ export type ConversationResponseData = {
 		silence: number;
 		audio_url: string;
 	}[];
-	user: BalanceResponseData;
+	user: UserBalanceResponse;
 	audio_url: string;
 	created_at: string;
 	updated_at: string;
@@ -25,7 +29,7 @@ export type SpeechResponseData = {
 	owner: string;
 	stream_url: string;
 	download_url: string;
-	user: BalanceResponseData;
+	user: UserBalanceResponse;
 	created_at: string;
 	updated_at: string;
 };

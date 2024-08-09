@@ -1,5 +1,9 @@
 import { VoiceProvider } from "~/enums/voice";
-import { BalanceResponseData } from "~/types/response/user";
+
+type UserBalanceResponse = {
+	used_balance: number;
+	balance: number;
+};
 
 export type TranscriptionResponseData = {
 	_id: string;
@@ -15,7 +19,7 @@ export type TranscriptionResponseData = {
 		_id: string;
 	}[];
 	input_stream_url: string;
-	user: BalanceResponseData;
+	user: UserBalanceResponse;
 	created_at: string;
 	updated_at: string;
 };

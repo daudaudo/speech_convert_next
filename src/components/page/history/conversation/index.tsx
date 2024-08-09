@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Card, Textarea } from "@material-tailwind/react";
-import getConversationHistory from "~/actions/getConversationHistory";
+import getConversationHistory from "~/actions/data/getConversationHistory";
 import { ConversationHistoryItemResponseData } from "~/types/response/history";
 import Pagination from "~/components/base/Pagination";
 import LoadingData from "~/components/animations/LoadingData";
@@ -23,7 +23,7 @@ const HistoryPage = () => {
 	const searchParams = useSearchParams();
 
 	const [pending, startTransition] = useTransition();
-	const [error, setError] = useState<string | undefined>(undefined);
+	const [error, setError] = useState<string>("");
 	const [history, setHistory] = useState<ConversationHistoryItemResponseData[]>([]);
 	const [pageState, setPageState] = useState<{
 		currentPage: number;
@@ -54,7 +54,7 @@ const HistoryPage = () => {
 			try {
 				const res = await getConversationHistory(limit, page);
 				if (res) {
-					setError(undefined);
+					setError("");
 					setHistory(res.items);
 					setPageState({
 						currentPage: res.current_page,
