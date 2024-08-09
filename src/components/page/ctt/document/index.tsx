@@ -6,7 +6,7 @@ import Navbar from "~/components/ctt/Navbar";
 import CTTOutput from "~/components/ctt/CTTOutput";
 import SubmitButton from "~/components/ctt/SubmitButton";
 import FileInput from "~/components/page/ctt/document/FileInput";
-import type { CTTLanguage, CTTOutput as CTTOutputType } from "~/types/CTTTypes";
+import type { CTTLanguage } from "~/types/CTTTypes";
 import { LanguageCode } from "~/enums/language";
 import convertToText from "~/actions/convertToText";
 import { OpenAITranscriptionModel } from "~/enums/openAi";
@@ -14,8 +14,11 @@ import { VoiceProvider } from "~/enums/voice";
 import ProviderSelect from "~/components/cts/voiceSelect/ProviderSelect";
 import { GoogleLanguageOptions, Languages } from "~/constants/language";
 import Select from "~/components/base/Select";
+import { authActions } from "~/store/slices/auth";
+import { useAppDispatch } from "~/store/store";
 
 const DocumentToTextPage = () => {
+	const dispatch = useAppDispatch();
 	const t = useTranslations("ctt");
 	const [pending, startTransition] = useTransition();
 	const [error, setError] = useState<string>("");
@@ -23,7 +26,7 @@ const DocumentToTextPage = () => {
 	const [provider, setProvider] = useState(VoiceProvider.OPEN_AI);
 	const [file, setFile] = useState<File | null>(null);
 	const [language, setLanguage] = useState<CTTLanguage>(LanguageCode.English);
-	const [output, setOutput] = useState<CTTOutputType | undefined>();
+	const [textOutput, setTextOutput] = useState<string>("");
 
 	const LanguageOptions = GoogleLanguageOptions.map((value) => ({ value, label: Languages[value].name }));
 
@@ -46,13 +49,14 @@ const DocumentToTextPage = () => {
 		startTransition(async () => {
 			if (validate()) {
 				const formData = buildFormData();
-				setOutput(undefined);
+				setTextOutput("");
 				const res = await convertToText(formData);
-				if (res.error) {
+				if ("error" in res) {
 					setError(res.error);
 				} else {
 					setError("");
-					setOutput(res as CTTOutputType);
+					setTextOutput(res.text);
+					dispatch(authActions.updateBalance(res.user.balance));
 				}
 			}
 		});
@@ -86,7 +90,7 @@ const DocumentToTextPage = () => {
 					<SubmitButton validated={!!file} pending={pending} submit={requestCreateText} />
 				</div>
 				<div className="relative flex-grow">
-					<CTTOutput output={output} error={error} setError={setError} />
+					<CTTOutput text={textOutput} error={error} setError={setError} />
 				</div>
 			</div>
 		</div>

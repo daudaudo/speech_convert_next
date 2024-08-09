@@ -2,20 +2,15 @@
 
 import { jwtVerify, SignJWT } from "jose";
 import { headers } from "next/headers";
-import { getAuthUser } from "~/actions/data/auth/user";
-import { MissingJWTInHeaderError, MissingTokenInCookieError } from "~/errors/logic/auth";
+import { MissingJWTInHeaderError } from "~/errors/logic/auth";
 import { AuthenticatedUser } from "~/types/auth";
-import { getSession } from "~/actions/cookies/session";
 
 const secret = new TextEncoder().encode(process.env.APP_JWT_SECRET);
 
-export const getAuthUserByTokenCookie = async () => {
-	const token = await getSession();
-	if (!token || !token.length) {
-		throw new MissingTokenInCookieError();
-	}
-
-	return await getAuthUser(token);
+const verifyJWTAuthenticatedUser = async (jwt: string) => {
+	const verified = await jwtVerify<AuthenticatedUser>(jwt, secret);
+	const payload = verified.payload;
+	return payload;
 };
 
 export const getAuthUserUseJwtHeader = async (): Promise<AuthenticatedUser> => {
@@ -35,11 +30,4 @@ export const signAuthenticatedUser = async (authenticated: AuthenticatedUser) =>
 		.sign(secret);
 
 	return jwt;
-};
-
-export const verifyJWTAuthenticatedUser = async (jwt: string) => {
-	const verified = await jwtVerify<AuthenticatedUser>(jwt, secret);
-	const payload = verified.payload;
-
-	return payload;
 };

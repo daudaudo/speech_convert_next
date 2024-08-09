@@ -15,9 +15,12 @@ import SvgIcon from "~/components/icon/SvgIcon";
 import { VoiceProvider } from "~/enums/voice";
 import { SpeechResponseData } from "~/types/response/cts";
 import AudioPlayer from "~/components/base/AudioPlayer";
+import { useAppDispatch } from "~/store/store";
+import { authActions } from "~/store/slices/auth";
 
 const DocumentToSpeechPage = () => {
 	const t = useTranslations("cts");
+	const dispatch = useAppDispatch();
 
 	const { fileAccept, maxFileSize } = CTSConfig;
 
@@ -80,6 +83,7 @@ const DocumentToSpeechPage = () => {
 					} else {
 						clearError();
 						setOutput(res);
+						dispatch(authActions.updateBalance(res.user.balance));
 					}
 				} catch (error) {
 					if (error instanceof Error) {

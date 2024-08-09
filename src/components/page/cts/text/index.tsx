@@ -11,10 +11,12 @@ import convertToSpeech from "~/actions/convertToSpeech";
 import { CTSConfig } from "~/constants/configs";
 import SvgIcon from "~/components/icon/SvgIcon";
 import { VoiceProvider } from "~/enums/voice";
-import { SpeechResponseData } from "~/types/response/cts";
 import AudioPlayer from "~/components/base/AudioPlayer";
+import { useAppDispatch } from "~/store/store";
+import { authActions } from "~/store/slices/auth";
 
 const TextToSpeechPage = () => {
+	const dispatch = useAppDispatch();
 	const t = useTranslations("cts");
 
 	const { maxTextLength } = CTSConfig;
@@ -28,7 +30,7 @@ const TextToSpeechPage = () => {
 		provider: CTSVoiceProvider;
 	}>({ id: OpenAIVoiceId.Alloy, provider: VoiceProvider.OPEN_AI });
 	const [speed, setSpeed] = useState<number>(1);
-	const [output, setOutput] = useState<SpeechResponseData | undefined>(undefined);
+	const [downloadUrlOutput, setDownloadUrlOutput] = useState<string>("");
 
 	const clearError = useCallback(() => setError(""), []);
 
@@ -68,13 +70,14 @@ const TextToSpeechPage = () => {
 			startTransition(async () => {
 				try {
 					const formData = buildFormData();
-					setOutput(undefined);
+					setDownloadUrlOutput("");
 					const res = await convertToSpeech(formData);
 					if ("error" in res) {
 						setError(res.error);
 					} else {
 						clearError();
-						setOutput(res);
+						setDownloadUrlOutput(res.download_url);
+						dispatch(authActions.updateBalance(res.user.balance));
 					}
 				} catch (error) {
 					if (error instanceof Error) {
@@ -134,12 +137,12 @@ const TextToSpeechPage = () => {
 				</span>
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={!validated} />
 			</div>
-			{output && (
+			{downloadUrlOutput && (
 				<div className="w-full flex items-center p-1 bg-gray-50 dark:bg-gray-900 px-4 gap-2 border-t-2 border-dashed border-gray-300 dark:border-gray-700">
-					<a href={output.download_url} className="text-gray-700 dark:text-gray-200">
+					<a href={downloadUrlOutput} className="text-gray-700 dark:text-gray-200">
 						<SvgIcon name="arrow-down-to-bracket" type="solid" width={24} height={24} />
 					</a>
-					<AudioPlayer src={output.download_url} />
+					<AudioPlayer src={downloadUrlOutput} />
 				</div>
 			)}
 		</div>

@@ -25,6 +25,7 @@ export type SpeechResponseData = {
 	owner: string;
 	stream_url: string;
 	download_url: string;
+	user: BalanceResponseData;
 	created_at: string;
 	updated_at: string;
 };

@@ -24,6 +24,11 @@ export const authSlice = createSlice({
 		setUser: (state, action: PayloadAction<UserData>) => {
 			return { user: action.payload, authencated: true, loading: false, error: false };
 		},
+		updateBalance: (state, action: PayloadAction<number>) => {
+			if (state.user) {
+				state.user.balance = action.payload;
+			}
+		},
 	},
 	extraReducers: (builder) => {
 		builder
