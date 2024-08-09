@@ -32,12 +32,11 @@ const GoogleVoiceMenu = ({ onClick, selectedVoice, searchText, language, gender 
 				const { name, ssmlGender } = voice;
 				const matchSearch = searchText ? name.searchIn(searchText) || ssmlGender.searchIn(searchText) : true;
 				const matchLanguage = language ? name.searchIn(language) || ssmlGender.searchIn(language) : true;
-				const matchGender =
-					gender && gender !== Gender.ALL ? name.searchIn(gender) || ssmlGender.searchIn(gender) : true;
+				const matchGender = !!gender && gender !== Gender.ALL ? ssmlGender.searchIn(gender) : true;
 				return matchSearch && matchLanguage && matchGender;
 			});
 		return rs;
-	}, [voices, searchText]);
+	}, [voices, searchText, gender]);
 
 	useEffect(() => {
 		startTransition(async () => {

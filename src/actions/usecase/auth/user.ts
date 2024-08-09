@@ -2,25 +2,19 @@
 
 import { jwtVerify, SignJWT } from "jose";
 import { headers } from "next/headers";
-import { getToken } from "~/actions/cookies/auth";
-import { getAuthUser } from "~/actions/data/auth/user";
-import { MissingJWTInHeaderError, MissingTokenInCookieError } from "~/errors/logic/auth";
+import { MissingJWTInHeaderError } from "~/errors/logic/auth";
 import { AuthenticatedUser } from "~/types/auth";
 
 const secret = new TextEncoder().encode(process.env.APP_JWT_SECRET);
 
-export const getAuthUserByTokenCookie = async () => {
-	const token = await getToken();
-	if (!token || !token.length) {
-		throw new MissingTokenInCookieError();
-	}
-
-	return await getAuthUser(token);
+const verifyJWTAuthenticatedUser = async (jwt: string) => {
+	const verified = await jwtVerify<AuthenticatedUser>(jwt, secret);
+	const payload = verified.payload;
+	return payload;
 };
 
 export const getAuthUserUseJwtHeader = async (): Promise<AuthenticatedUser> => {
 	const jwt = headers().get("X-AUTH-JWT");
-
 	if (!jwt || !jwt.length) {
 		throw new MissingJWTInHeaderError();
 	}
@@ -36,11 +30,4 @@ export const signAuthenticatedUser = async (authenticated: AuthenticatedUser) =>
 		.sign(secret);
 
 	return jwt;
-};
-
-export const verifyJWTAuthenticatedUser = async (jwt: string) => {
-	const verified = await jwtVerify<AuthenticatedUser>(jwt, secret);
-	const payload = verified.payload;
-
-	return payload;
 };

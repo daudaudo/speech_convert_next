@@ -12,12 +12,14 @@ import ConversationInput from "~/components/page/cts/conversation/ConversationIn
 import convertToConversation from "~/actions/convertToConversation";
 import SvgIcon from "~/components/icon/SvgIcon";
 import { OpenAIVoiceId } from "~/enums/openAi";
-import { ConversationResponseData } from "~/types/response/cts";
 import AudioPlayer from "~/components/base/AudioPlayer";
 import { VoiceProvider } from "~/enums/voice";
 import ProviderSelect from "~/components/cts/voiceSelect/ProviderSelect";
+import { useAppDispatch } from "~/store/store";
+import { authActions } from "~/store/slices/auth";
 
 const ConversationToSpeechPage = () => {
+	const dispatch = useAppDispatch();
 	const t = useTranslations("cts");
 
 	const { maxUserConversation } = CTSConfig;
@@ -28,7 +30,7 @@ const ConversationToSpeechPage = () => {
 	const [provider, setProvider] = useState(VoiceProvider.GOOGLE);
 	const [users, setUsers] = useState<User[]>([]);
 	const [partials, setPartials] = useState<CTSPartial[]>([]);
-	const [output, setOutput] = useState<ConversationResponseData | undefined>(undefined);
+	const [audioUrlOutput, setAudioUrlOutput] = useState<string>("");
 
 	const clearError = useCallback(() => setError(""), []);
 
@@ -72,7 +74,7 @@ const ConversationToSpeechPage = () => {
 	const onCreateSpeech = useCallback(() => {
 		startTransition(async () => {
 			try {
-				setOutput(undefined);
+				setAudioUrlOutput("");
 				const err = checkValidate();
 				if (err) setError(err);
 				else {
@@ -80,7 +82,8 @@ const ConversationToSpeechPage = () => {
 					if ("error" in res) {
 						setError(res.error);
 					} else {
-						setOutput(res);
+						setAudioUrlOutput(res.audio_url);
+						dispatch(authActions.updateBalance(res.user.balance));
 						clearError();
 					}
 				}
@@ -148,12 +151,12 @@ const ConversationToSpeechPage = () => {
 				<span className="text-xs text-primary-500">{t("conversationGuide")}</span>
 				<CreateSpeechButton onCreateSpeech={onCreateSpeech} pending={pending} disabled={users.length === 0} />
 			</div>
-			{output && (
+			{audioUrlOutput && (
 				<div className="w-full flex items-center p-1 bg-gray-50 dark:bg-gray-900 px-4 gap-2 border-t-2 border-dashed border-gray-300 dark:border-gray-700">
-					<a href={output.audio_url} className="text-gray-700 dark:text-gray-200">
+					<a href={audioUrlOutput} className="text-gray-700 dark:text-gray-200">
 						<SvgIcon name="arrow-down-to-bracket" type="solid" width={24} height={24} />
 					</a>
-					<AudioPlayer src={output.audio_url} />
+					<AudioPlayer src={audioUrlOutput} />
 				</div>
 			)}
 		</div>

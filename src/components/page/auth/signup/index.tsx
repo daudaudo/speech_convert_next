@@ -1,22 +1,23 @@
 "use client";
 
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { SignupFields, SignupFormSchema, SignupFormState } from "~/definitions/signup";
 import { PagePath } from "~/enums/path";
-import { register } from "~/actions/usecase/auth";
-import { useAuth } from "~/contexts/auth/AuthContext";
 import SubmitButton from "~/components/page/auth/signup/SubmitButton";
 import { useToastMessage } from "~/contexts/toast/ToastWrapper";
+import { useAppDispatch, useAppSelector } from "~/store/store";
+import { authActions } from "~/store/slices/auth";
 
 interface Props {}
 
 const SignUpForm = ({}: Props) => {
+	const dispatch = useAppDispatch();
+	const { authencated } = useAppSelector((state) => state.auth);
 	const router = useRouter();
-	const auth = useAuth();
 	const toast = useToastMessage();
 	const t = useTranslations("auth");
 	const [state, action] = useFormState<SignupFormState, FormData>(
@@ -25,23 +26,11 @@ const SignUpForm = ({}: Props) => {
 				const username = formData.get(SignupFields.username) as string;
 				const email = formData.get(SignupFields.email) as string;
 				const password = formData.get(SignupFields.password) as string;
-
 				const validatedFields = SignupFormSchema.safeParse({ username, email, password });
 				if (!validatedFields.success) {
 					return { errors: validatedFields.error.flatten().fieldErrors };
 				}
-
-				await register({ username, email, password });
-
-				if (auth.signin) {
-					await auth.signin();
-					toast.show(t("signupSuccess"));
-				} else {
-					toast.show(t("signupError"));
-					window.location.href = PagePath.home;
-				}
-
-				router.replace(PagePath.home);
+				dispatch(authActions.register({ username, email, password }));
 			} catch (error: unknown) {
 				if (error instanceof Error) {
 					return { message: error.message };
@@ -50,6 +39,13 @@ const SignUpForm = ({}: Props) => {
 		},
 		undefined,
 	);
+
+	useEffect(() => {
+		if (authencated) {
+			router.replace(PagePath.home);
+			toast.show(t("signupSuccess"), { autoClose: 3000 });
+		}
+	}, [authencated, router]);
 
 	const renderWarning = useCallback(() => {
 		const message = state?.message;

@@ -5,22 +5,21 @@ import { IconButton } from "@material-tailwind/react";
 import { useTranslations } from "next-intl";
 import { useCopyToClipboard } from "usehooks-ts";
 import SvgIcon from "~/components/icon/SvgIcon";
-import { CTTOutput as CTTOutputType } from "~/types/CTTTypes";
 
 interface Props {
-	output?: CTTOutputType;
+	text?: string;
 	error?: string;
 	setError?: (err: string) => void;
 }
 
-const CTTOutput = ({ output, error, setError }: Props) => {
+const CTTOutput = ({ text: output, error, setError }: Props) => {
 	const t = useTranslations("ctt");
 	const [, copyToClipboard] = useCopyToClipboard();
 	const [copied, setCopied] = useState(false);
 
 	const onCopyOutput = () => {
-		if (output?.text) {
-			copyToClipboard(output.text)
+		if (output) {
+			copyToClipboard(output)
 				.then(() => {
 					setCopied(true);
 					setTimeout(() => {
@@ -41,7 +40,7 @@ const CTTOutput = ({ output, error, setError }: Props) => {
 						<div className="relative w-full h-full">
 							<textarea
 								readOnly
-								value={output.text}
+								value={output}
 								className="w-full pb-6 pt-1 resize-none overflow-y-auto md:h-full min-h-[238px] px-0 text-sm text-gray-900 bg-white border-0 dark:bg-gray-700 focus:ring-0 dark:text-white dark:placeholder-gray-500 placeholder-gray-300 focus-visible:outline-none"
 							/>
 						</div>

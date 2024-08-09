@@ -3,41 +3,36 @@
 import { useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
-import { signinByGoogle } from "~/actions/signinGoogle";
 import LoadingPage from "~/components/animations/LoadingPage";
-import { useAuth } from "~/contexts/auth/AuthContext";
 import { useToastMessage } from "~/contexts/toast/ToastWrapper";
 import { PagePath } from "~/enums/path";
 import withSuspense from "~/hocs/withSuspense";
+import { useAppDispatch, useAppSelector } from "~/store/store";
+import { authActions } from "~/store/slices/auth";
 
 interface Props {}
 
 const CallbackOAuthGoogleView = ({}: Props) => {
+	const dispatch = useAppDispatch();
+	const { authencated, loading } = useAppSelector((state) => state.auth);
+
+	const t = useTranslations("auth");
 	const toast = useToastMessage();
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const t = useTranslations("auth");
-	const { signin } = useAuth();
 
 	useEffect(() => {
 		const code = searchParams.get("code");
-		if (!code || !code.trim().length) {
+		if (!code || !code.trim().length || (!loading && !authencated)) {
 			router.replace(PagePath.signin);
 			toast.error(t("signinGoogleError"));
+		} else if (authencated) {
+			router.replace(PagePath.home);
+			toast.info(t("signinGoogleSuccess"), { autoClose: 3000 });
 		} else {
-			(async () => {
-				try {
-					await signinByGoogle(code);
-					await signin();
-					router.replace(PagePath.home);
-					toast.info(t("signinGoogleSuccess"), { autoClose: 3000 });
-				} catch {
-					router.replace(PagePath.signin);
-					toast.error(t("signinGoogleError"));
-				}
-			})();
+			dispatch(authActions.loginByGoogle({ code }));
 		}
-	}, []);
+	}, [authencated, loading, router]);
 
 	return (
 		<div className="fixed top-0 left-0 w-screen h-screen flex items-center justify-center">

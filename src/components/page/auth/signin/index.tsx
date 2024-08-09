@@ -1,24 +1,26 @@
 "use client";
 
 import Link from "next/link";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
 import { Button } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
 import { useFormState } from "react-dom";
 import { useTranslations } from "next-intl";
 import { PagePath } from "~/enums/path";
-import { login } from "~/actions/usecase/auth";
 import { SigninFields, SigninFormSchema, SigninFormState } from "~/definitions/signin";
 import { navigateSigninByGoogleCallback } from "~/actions/signinGoogle";
-import { useAuth } from "~/contexts/auth/AuthContext";
 import { useToastMessage } from "~/contexts/toast/ToastWrapper";
 import SubmitButton from "~/components/page/auth/signin/SubmitButton";
+import { useAppDispatch, useAppSelector } from "~/store/store";
+import { authActions } from "~/store/slices/auth";
 
 interface Props {}
 
 const SignInForm = ({}: Props) => {
+	const dispatch = useAppDispatch();
+	const { authencated } = useAppSelector((state) => state.auth);
+
 	const router = useRouter();
-	const auth = useAuth();
 	const toast = useToastMessage();
 	const t = useTranslations("auth");
 	const [state, action] = useFormState<SigninFormState, FormData>(
@@ -33,12 +35,7 @@ const SignInForm = ({}: Props) => {
 				if (!validatedFields.success) {
 					return { errors: validatedFields.error.flatten().fieldErrors };
 				}
-
-				await login(email, password);
-				await auth.signin();
-
-				toast.show(t("signinSuccess"));
-				router.replace(PagePath.home);
+				dispatch(authActions.login({ email, password }));
 			} catch (error: unknown) {
 				if (error instanceof Error) {
 					return { message: error.message };
@@ -48,6 +45,13 @@ const SignInForm = ({}: Props) => {
 		},
 		undefined,
 	);
+
+	useEffect(() => {
+		if (authencated) {
+			router.replace(PagePath.home);
+			toast.show(t("signinSuccess"), { autoClose: 3000 });
+		}
+	}, [authencated, router]);
 
 	const Warning = useMemo(() => {
 		const message = state?.message;

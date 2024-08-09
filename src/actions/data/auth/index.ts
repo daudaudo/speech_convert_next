@@ -10,7 +10,6 @@ export const loginUseCredentials = async (email: string, password: string) => {
 			password,
 		},
 	});
-
 	return data;
 };
 
@@ -25,6 +24,5 @@ export const registerUseCredentials = async (payload: { username: string; email:
 			password,
 		},
 	});
-
 	return data;
 };

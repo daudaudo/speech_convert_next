@@ -4,7 +4,7 @@ import { headers } from "next/headers";
 import { getLocale } from "~/actions/cookies/locale";
 import { RequestMethod, RequestUrl } from "~/enums/request";
 import { FailedRequestError } from "~/errors/request";
-import { getSession } from "~/utils/session";
+import { getSession } from "~/actions/cookies/session";
 
 const BASE_API_URL = process.env.BASE_API_URL;
 
@@ -13,7 +13,7 @@ type RequestData = FormData | object | undefined;
 const buildHeaders = async (options: { method: RequestMethod; body: RequestData }) => {
 	const { method, body } = options;
 	const headers: HeadersInit = {};
-	const { token } = await getSession();
+	const token = await getSession();
 	headers["Authorization"] = token ? `Bearer ${token}` : "";
 	const locale = await getLocale();
 	if (locale) {

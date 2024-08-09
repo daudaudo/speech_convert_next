@@ -2,8 +2,6 @@
 
 import { redirect } from "next/navigation";
 import { RequestMethod, RequestUrl } from "~/enums/request";
-import { login } from "~/actions/data/oauth/google";
-import { createSession } from "~/utils/session";
 import { callApiAction } from "~/actions/utils";
 
 export async function navigateSigninByGoogleCallback() {
@@ -18,8 +16,3 @@ export async function navigateSigninByGoogleCallback() {
 		throw error;
 	}
 }
-
-export const signinByGoogle = async (code: string) => {
-	const { access_token } = await login({ code });
-	await createSession(access_token);
-};
