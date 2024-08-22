@@ -105,8 +105,6 @@ export const request = async <DataType = any>(name: RequestUrl, options: Request
 
 	const url = buildUrl(method, name, data);
 
-	console.log(">>>", { url, init });
-
 	const response = await new Promise<ResponseData<DataType>>((resolve, reject) => {
 		if (typeof timeout === "number") {
 			Promise.race([fetch(url, init), createTimeOutPromise(timeout)])

@@ -1,10 +1,9 @@
 "use client";
 
-import React, { useCallback, useEffect, useState, useTransition } from "react";
+import React, { useCallback, useEffect } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { Card } from "@material-tailwind/react";
-import getSpeechHistory from "~/actions/data/getSpeechHistory";
 import LoadingData from "~/components/animations/LoadingData";
 import withSuspense from "~/hocs/withSuspense";
 import Pagination from "~/components/base/Pagination";
@@ -12,8 +11,14 @@ import SvgIcon from "~/components/icon/SvgIcon";
 import formatDate from "~/utils/date";
 import { SpeechHistoryItemResponseData } from "~/types/response/history";
 import { HistoryConfig } from "~/constants/configs";
+import { useAppDispatch, useAppSelector } from "~/store/store";
+import { historyActions } from "~/store/slices/history";
 
 const HistoryPage = () => {
+	const dispatch = useAppDispatch();
+	const { items, loading, error, current_page, last_page, total, from, to } = useAppSelector(
+		(state) => state.history.speech,
+	);
 	const t = useTranslations("history");
 
 	const { DEFAULT_PAGE, DEFAULT_LIMIT } = HistoryConfig;
@@ -21,23 +26,6 @@ const HistoryPage = () => {
 	const router = useRouter();
 	const pathname = usePathname();
 	const searchParams = useSearchParams();
-
-	const [pending, startTransition] = useTransition();
-	const [error, setError] = useState<string>("");
-	const [history, setHistory] = useState<SpeechHistoryItemResponseData[]>([]);
-	const [pageState, setPageState] = useState<{
-		currentPage: number;
-		lastPage: number;
-		from: number;
-		to: number;
-		total: number;
-	}>({
-		currentPage: DEFAULT_PAGE,
-		lastPage: 1,
-		from: 0,
-		to: 0,
-		total: 0,
-	});
 
 	const onChangePage = (page: number) => {
 		const current = new URLSearchParams(Array.from(searchParams.entries()));
@@ -50,26 +38,7 @@ const HistoryPage = () => {
 	const requestGetHistory = useCallback(() => {
 		const page = searchParams.get("page") ?? DEFAULT_PAGE;
 		const limit = searchParams.get("limit") ?? DEFAULT_LIMIT;
-		startTransition(async () => {
-			try {
-				const res = await getSpeechHistory(limit, page);
-				if (res) {
-					setError("");
-					setHistory(res.items);
-					setPageState({
-						currentPage: res.current_page,
-						lastPage: res.last_page,
-						from: res.from,
-						to: res.to,
-						total: res.total,
-					});
-				}
-			} catch (error) {
-				if (error instanceof Error) {
-					setError(error.message);
-				}
-			}
-		});
+		dispatch(historyActions.fetchSpeechHistory({ limit, page }));
 	}, [searchParams]);
 
 	useEffect(() => {
@@ -117,7 +86,6 @@ const HistoryPage = () => {
 		);
 	};
 
-	const { currentPage, lastPage, from, to, total } = pageState;
 	return (
 		<div className="w-full h-full flex flex-col gap-4 py-2">
 			<div className="flex justify-between px-2">
@@ -128,14 +96,14 @@ const HistoryPage = () => {
 				) : (
 					<div />
 				)}
-				<Pagination size={lastPage} initPage={currentPage} onChange={onChangePage} />
+				<Pagination size={last_page} initPage={current_page} onChange={onChangePage} />
 			</div>
-			{pending ? (
+			{loading ? (
 				<LoadingData />
 			) : error ? (
 				<div className="text-red-500 text-center p-4">{error}</div>
 			) : (
-				history.map(renderHistoryItem)
+				items.map(renderHistoryItem)
 			)}
 		</div>
 	);
