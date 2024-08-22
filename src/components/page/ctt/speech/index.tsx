@@ -36,7 +36,6 @@ const SpeechToTextPage = () => {
 	const buildFormData = useCallback(() => {
 		const formData = new FormData();
 		formData.append("provider", provider);
-		formData.append("language_code", language);
 		formData.append("file", file as File);
 		if (provider === VoiceProvider.OPEN_AI) {
 			formData.append("model", OpenAITranscriptionModel.Whisper1);
