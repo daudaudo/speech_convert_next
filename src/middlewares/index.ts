@@ -7,6 +7,10 @@ import { RequestMethod } from "~/enums/request";
 import { auth } from "~/middlewares/auth";
 
 const requireAuthPaths = [
+	PagePath.textToSpeech,
+	PagePath.speechToText,
+	PagePath.documentToSpeech,
+	PagePath.documentToText,
 	PagePath.textHistory,
 	PagePath.speechHistory,
 	PagePath.conversationHistory,
